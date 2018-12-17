@@ -1,0 +1,77 @@
+<!--
+  Generated template for the ChartPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar no-border>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title>Portfolio Overview</ion-title>
+  </ion-navbar>
+
+</ion-header> 
+
+
+<ion-content class="background" padding>
+
+  <div align="center">
+
+   <div class="doughnut-container">
+      <div class="donut-inner">
+          <div>
+            <div class="period">Monthly</div>
+            <div class="diff">4.15%</div>
+            <div class="period">6 Months</div>
+            <div class="diff">-0.95%</div>
+          </div>
+      </div>
+      <canvas #doughnutCanvas></canvas>
+    </div>
+
+    <div class="doughnut-legend-container">
+      
+      <div *ngFor="let number of [1,2,3,4,5,6]">
+        <div class="doughnut-legend">
+            <div class="donut-legend-inner">
+              <div>
+                <div class="diff">4.15%</div>
+              </div>
+            </div>
+            <canvas #doughnutLegendCanvas></canvas>
+        </div>
+        <div class="donut-legend-bottom">
+            <div>
+              <div class="diff">Time Deposit</div>
+            </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    </div>
+
+
+
+  <!-- <ion-card>
+    <ion-card-header>
+      Bar Chart
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #barCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      Line Chart
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #lineCanvas></canvas>
+    </ion-card-content>
+  </ion-card> -->
+
+</ion-content>

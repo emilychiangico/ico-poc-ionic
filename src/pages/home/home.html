@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h3>Ionic Menu Starter</h3>
+
+  <form #form="ngForm" (ngSubmit)="logForm(form)">
+
+      <ion-list>
+          <ion-list-header>
+              <ion-label>Test Popup</ion-label>
+            </ion-list-header>
+    
+            <!-- <button name="testdropdown" #testdropdown="ngModel" ion-item (click)="popup()" [(ngModel)]="todo.testdropdown">
+              <ion-label>Label</ion-label>
+              <ion-label>Please select ...</ion-label>
+            </button> -->
+            <!-- <button ion-item (click)="popup()">
+                <ion-label>Label</ion-label>
+                <ion-label type="text">{{ abc }}</ion-label>
+                  <ion-icon name="ios-arrow-forward" item-end></ion-icon>
+              </button>
+
+          <ion-item>
+              <ion-label>Label</ion-label>
+              <ion-input (click)="popup()" name="testdropdown" #testdropdown="ngModel" [(ngModel)]="todo.testdropdown" placeholder="Please select"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-label>End ..</ion-label>
+              <ion-input (ionFocus)="popup()" placeholder="ABC"></ion-input>
+          </ion-item> -->
+
+          <!-- <button ion-item (click)="popup()">
+              <ion-label>Label</ion-label>
+              <ion-label ngDefaultControl type="text" required name="testdropdown" #testdropdown="ngModel" [(ngModel)]="todo.testdropdown" >{{ todo.testdropdown }}</ion-label>
+                <ion-icon name="ios-arrow-forward" item-end></ion-icon>
+          </button> -->
+          <click-popup ngDefaultControl type="text" required 
+          [ngModelBinding]="testdropdown"
+          name="testdropdown" #testdropdown="ngModel" [(ngModel)]="todo.testdropdown"
+          buttonText="BUTTON"
+          buttonLabel="BUTTON LABEL"
+          popupTitleText="POPUP TITLE"
+          [dataList]="accList" dataListDisplayAttr="value" dataListValueAttr="text" 
+          [callback]="testCallBack">
+      </click-popup>
+
+        </ion-list>
+        <div *ngIf="testdropdown.invalid" class="alert alert-danger">
+            <div *ngIf="title.errors.required">Gary is required.</div>
+          </div>
+
+    <ion-item>
+      <ion-label>Todo</ion-label>
+      <ion-input name="title" type="text" required appForbiddenName="bob" [(ngModel)]="todo.title" 
+      #title="ngModel"></ion-input>
+    </ion-item>
+    <div *ngIf="form.submitted && title.invalid" class="alert alert-danger">
+      <div *ngIf="title.errors.required">title is required.</div>
+      <div *ngIf="title.errors.forbiddenName">title cannot be Bob.</div>
+    </div>
+
+    <!-- <ion-item>
+      <ion-label>Description</ion-label>
+      <ion-textarea name="description" [(ngModel)]="todo.description" ngControl="description"></ion-textarea>
+    </ion-item> -->
+    <button ion-button type="submit" block>Add Todo</button>
+  </form>
+  <ion-list>
+      <ion-list-header>
+        <ion-label>TEST Header</ion-label>
+      </ion-list-header>
+      <ion-item role="listitem">
+        <ion-input type="text" test-content test-content2 [placeholder]="'Test String'" maxlength="8"></ion-input>
+      </ion-item>
+      <ion-item role="listitem">
+        <ion-input type="text" maxlength="5"></ion-input>
+      </ion-item>
+      <ion-item role="listitem">
+        <ion-label>Test</ion-label>
+      </ion-item>
+  
+    </ion-list>
+  <!-- <button ion-button secondary menuToggle>Toggle Menu</button> -->
+</ion-content>
