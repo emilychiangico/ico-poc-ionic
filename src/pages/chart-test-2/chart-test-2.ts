@@ -64,7 +64,7 @@ export class ChartTest2Page {
 
     var cLabels = ["Red", "Blue", "Grey", "Green", "Purple", "Goldenrod"];
     var cData = [100, 90, 50, 5, 20, 40];
-    //cData = [100, 0,0,0,0,0];
+    //cData = [100, 0, 0, 0, 100, 100];
     var gradientColors = [
       {
         type: "linear",
@@ -215,9 +215,8 @@ export class ChartTest2Page {
       // );
 
 
-      this.initDoughnutLegendChart(doughnutLegendCanvanList[index], gradientColors[index], rotateDegreeStart, rotateDegreeEnd);
-
-      //this.testing(doughnutLegendCanvanList[index]);
+      let percentage = cData[index]/sum * 100;
+      this.initDoughnutLegendChart(doughnutLegendCanvanList[index], gradientColors[index], percentage, rotateDegreeStart, rotateDegreeEnd, 90);
 
     });
 
@@ -263,19 +262,46 @@ export class ChartTest2Page {
   }
 */
 
-  // TODO - handle draw when only p data
-  initDoughnutLegendChart(test, color, rotateDegreeStart, rotateDegreeEnd) {
-    var el = test.nativeElement;
+  // draw Doughnut chart with 0% < data < 100%
+  initDoughnutLegendChart(canvanObj, color, dataPercentage, rotateDegreeStart, rotateDegreeEnd, height) {
+    var el = canvanObj.nativeElement;
     //console.log("test.width = " + el.width);
     //console.log("test.height = " + el.height);
     var ctx = el.getContext("2d");
 
-    var centerX = 90 / 2;
-    var centerY = 90 / 2;
+    //var centerX = height / 2;
+    //var centerY = height / 2;
+    var center = height / 2;
+    
+    if(dataPercentage == 0) {
+      this.drawArc(ctx, center, 0, 2 * Math.PI, 1, '#EFEFEF');
+    } else if(dataPercentage == 100) {
+      this.drawArc(ctx, center, 0, 2 * Math.PI, 8.5, GradientUtil.prepareSingleBackgroundColor(color, ctx));
+    } else {
+      console.log("test.rotateDegreeStart = " + rotateDegreeStart);
+      console.log("test.rotateDegreeEnd = " + rotateDegreeEnd);
+  
+      var arcPoint = this.getPointOfArc(rotateDegreeStart, rotateDegreeEnd);
 
-    console.log("test.rotateDegreeStart = " + rotateDegreeStart);
-    console.log("test.rotateDegreeEnd = " + rotateDegreeEnd);
+      this.drawArc(ctx, center, arcPoint.start, arcPoint.end, 8.5, GradientUtil.prepareSingleBackgroundColor(color, ctx));
+      // ctx.beginPath();
+      // ctx.arc(centerX, centerY, 40, arcPoint.start, arcPoint.end, false);
+      // ctx.lineWidth = 8.5;
+      // ctx.strokeStyle = GradientUtil.prepareSingleBackgroundColor(color, ctx);
+      // ctx.stroke();
 
+      this.drawArc(ctx, center, arcPoint.end, arcPoint.start, 1, '#EFEFEF');
+      // ctx.beginPath();
+      // ctx.arc(centerX, centerY, 40, arcPoint.end, arcPoint.start, false);
+      // ctx.lineWidth = 1;
+      // ctx.strokeStyle = '#EFEFEF';
+      // ctx.stroke();
+    }
+  }
+
+  getPointOfArc(rotateDegreeStart, rotateDegreeEnd) {
+    // arc -> 0 * Math.PI == 90 degree
+    // arc -> 1.5 * Math.PI == 360 degree
     var start = 270 + rotateDegreeStart;
     var end = 270 + rotateDegreeEnd;
 
@@ -293,16 +319,14 @@ export class ChartTest2Page {
     console.log("test.startPoint = " + start / 180);
     console.log("test.endPoint = " + end / 180);
 
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, 40, startPoint, endPoint, false);
-    ctx.lineWidth = 7;
-    ctx.strokeStyle = GradientUtil.prepareSingleBackgroundColor(color, ctx);
-    ctx.stroke();
+    return {start: startPoint, end: endPoint};
+  }
 
+  drawArc(ctx, center, startPoint, endPoint, lineWidth, color) {
     ctx.beginPath();
-    ctx.arc(centerX, centerY, 40, endPoint, startPoint, false);
-    ctx.lineWidth = 0.3;
-    ctx.strokeStyle = '#EFEFEF';
+    ctx.arc(center, center, 40, startPoint, endPoint, false);
+    ctx.lineWidth = lineWidth;
+    ctx.strokeStyle = color;
     ctx.stroke();
   }
 
