@@ -18,6 +18,9 @@ import { GradientColorUtil } from '../../providers-v2/gradient-color-util';
 export class AreaChartPage {
 
   @ViewChild('areaChartCanvas') areaChartCanvas;
+  areaChart;
+  selectedMonthIndex: number = 0;
+  selectedMonthLabel: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -27,7 +30,107 @@ export class AreaChartPage {
     this.createAreaChart();
   }
 
+  selectMonth() {
+    this.areaChart.data.xHighlightRange.begin = this.selectedMonthIndex;
+    this.areaChart.data.xHighlightRange.end = this.selectedMonthIndex+1;
+    this.areaChart.update();
+  }
+
+  selectMonth_old() {
+    console.log(">>>>>> selectMonth_old");
+    console.log(this.areaChart);
+
+    let newFontColors = [];
+    this.areaChart.data.labels.forEach((element, index) => {
+      console.log("index = " + index);
+      console.log("element = " + element);
+      if (index == this.selectedMonthIndex) {
+        newFontColors.push("#ffffff");
+        //this.areaChart.options.scales.xAxes[0].ticks.fontColor[index] = "#ffffff";
+      } else {
+        newFontColors.push("#999999");
+        //this.areaChart.options.scales.xAxes[0].ticks.fontColor[index] = "#999999";
+      }
+    });
+    console.log(this.areaChart.options.scales.xAxes[0].ticks.fontColor);
+    //this.areaChart.options.scales.
+    //console.log(newFontColors);
+    this.areaChart.options.scales.xAxes[0].ticks.fontColor = newFontColors;
+    this.areaChart.options.scales.xAxes[0].ticks.major.fontColor = newFontColors;
+    this.areaChart.options.scales.xAxes[0].ticks.minor.fontColor = newFontColors;
+    this.areaChart.update();
+  }
+
   createAreaChart() {
+
+    // The original draw function for the line chart. This will be applied after we have drawn our highlight range (as a rectangle behind the line chart).
+    var originalLineDraw = Chart.controllers.line.prototype.draw;
+    // Extend the line chart, in order to override the draw function.
+    Chart.helpers.extend(Chart.controllers.line.prototype, {
+      draw : function() {
+        var chart = this.chart;
+        // Get the object that determines the region to highlight.
+        var yHighlightRange = chart.config.data.yHighlightRange;
+
+        var ctx = chart.chart.ctx;
+        var xaxis = chart.scales['x-axis-0'];
+        var yaxis = chart.scales['y-axis-0'];
+
+        // If the object exists.
+        if (yHighlightRange !== undefined) {
+
+          var yRangeBegin = yHighlightRange.begin;
+          var yRangeEnd = yHighlightRange.end;
+
+          var yRangeBeginPixel = yaxis.getPixelForValue(yRangeBegin);
+          var yRangeEndPixel = yaxis.getPixelForValue(yRangeEnd);
+
+          ctx.save();
+
+          // The fill style of the rectangle we are about to fill.
+          ctx.fillStyle = 'rgba(0, 255, 0, 0.3)';
+          // Fill the rectangle that represents the highlight region. The parameters are the closest-to-starting-point pixel's x-coordinate,
+          // the closest-to-starting-point pixel's y-coordinate, the width of the rectangle in pixels, and the height of the rectangle in pixels, respectively.
+          ctx.fillRect(xaxis.left, Math.min(yRangeBeginPixel, yRangeEndPixel), xaxis.right - xaxis.left, Math.max(yRangeBeginPixel, yRangeEndPixel) - Math.min(yRangeBeginPixel, yRangeEndPixel));
+
+          ctx.restore();
+        }
+
+        var xHighlightRange = chart.config.data.xHighlightRange;
+
+        // If the object exists.
+        if (xHighlightRange !== undefined) {
+
+          var xRangeBegin = xHighlightRange.begin;
+          var xRangeEnd = xHighlightRange.end;
+
+          var xRangeBeginPixel = xaxis.getPixelForTick(xRangeBegin);
+          var xRangeEndPixel = xaxis.getPixelForTick(xRangeEnd);
+
+          console.log('xRangeBeginPixel = ' + xRangeBeginPixel);
+          console.log('xRangeEndPixel = ' + xRangeEndPixel);
+          console.log('yaxis.top = ' + yaxis.top);
+          console.log('yaxis.bottom = ' + yaxis.bottom);
+
+          ctx.save();
+          ctx.fillStyle = 'rgba(230, 230, 230, 0.01)';
+          ctx.fillRect(
+            Math.min(xRangeBeginPixel, xRangeEndPixel), 
+            yaxis.top, 
+            Math.max(xRangeBeginPixel, xRangeEndPixel) - Math.min(xRangeBeginPixel, xRangeEndPixel),
+            yaxis.bottom - yaxis.top
+          );
+          ctx.restore();
+
+        }
+
+        // Apply the original draw function for the line chart.
+        originalLineDraw.apply(this, arguments);
+      }
+    });
+
+
+
 
     var areaChartCanvasEl = this.areaChartCanvas.nativeElement;
     console.log("areaChartCanvasEl.width = " + areaChartCanvasEl.width);
@@ -62,17 +165,26 @@ export class AreaChartPage {
       ["FEB", "2018"], 
       ["MAR", "2018"], 
       ["APR", "2018"], 
-      ["MAY", "2018"], 
-      [],
+      ["MAY", "2018"],
+      ["JUN", "2018"],
       ];
 
     
     const backgroundColors = GradientColorUtil.getGradientColorForAreaChart(ctx);
 
-    const myChart = new Chart(ctx, {
+    this.areaChart = new Chart(ctx, {
       type: 'line',
       data: {
         labels: xData,
+        // This, if it exists at all, defines the highlight region.
+        // yHighlightRange: {
+        //   begin: 6.5,
+        //   end: 12.5
+        // },
+        xHighlightRange: {
+          begin: this.selectedMonthIndex,
+          end: this.selectedMonthIndex + 1
+        },
         datasets: [{
           label: "Unavailable",
           fill: true,
@@ -125,12 +237,43 @@ export class AreaChartPage {
         },
         scales: {
           xAxes: [{
+            beforeUpdate: (scaleInstance) => {
+              console.log(">>>>>>> beforeBuildTicks");
+              console.log(scaleInstance);
+              /*
+              let newFontColors = [];
+              xData.forEach((element, index) => {
+                console.log("index = " + index);
+                console.log("element = " + element);
+                if (index == this.selectedMonthIndex) {
+                  newFontColors.push("#ffffff");
+                } else {
+                  newFontColors.push("#d9d9d9");
+                }
+              });
+              scaleInstance.options.ticks.fontColor = newFontColors;
+              scaleInstance.options.ticks.major.fontColor = newFontColors;
+              scaleInstance.options.ticks.minor.fontColor = newFontColors;
+              console.log(scaleInstance.options.ticks);
+              */
+            },
             ticks: {
               labelOffset: 30,
+              fontFunction: (tickIndex) => {
+                //console.log("fontFunction tickIndex = " + tickIndex);
+                //console.log("fontFunction selectedMonthIndex = " + this.selectedMonthIndex);
+                if (tickIndex == this.selectedMonthIndex) {
+                 //console.log("******* should be bold****")
+                    return 'bold 12px sans-serif';
+                } else {
+                    //console.log("******* should be normal****")
+                    return '200 12px sans-serif"';
+                }
+              },
               padding: 5,
               fontSize: 12, 
-              fontFamily: "'Roboto', sans-serif", 
-              fontColor: '#FFF', 
+              fontFamily: "sans-serif", 
+              fontColor: '#FFFFFF', 
               fontStyle: '200'
             },
             gridLines: {
@@ -152,8 +295,8 @@ export class AreaChartPage {
               },
               padding: 5,
               fontSize: 12, 
-              fontFamily: "'Roboto', sans-serif", 
-              fontColor: '#FFF', 
+              fontFamily: "sans-serif", 
+              fontColor: '#FFFFFF', 
               fontStyle: '200'
             },
             gridLines: {
@@ -167,6 +310,11 @@ export class AreaChartPage {
         },
         animation: {
           duration: 750,
+          onComplete: () => {
+            console.log(">>>>>>>>>>>>>>>> onComplete");
+            console.log(this.areaChart);
+            //this.selectMonth();
+          }
         },
         legend: {
             display: false,
@@ -174,8 +322,36 @@ export class AreaChartPage {
             labels: {
                 fontColor: 'rgb(255, 99, 132)'
             }
+        },
+        onClick: (chartEvent, item) => {
+          console.log("onClick");
+          console.log(chartEvent);
+          console.log(item);
+
+          var xAxis = this.areaChart.scales['x-axis-0'];
+          console.log(xAxis);
+
+          // If mouse is over the legend, change cursor style to pointer, else don't show it
+          var x = chartEvent.offsetX - 30;
+          var y = chartEvent.offsetY;
+      
+          if (chartEvent.type === 'click' &&
+            x <= xAxis.right && x >= xAxis.left 
+            /** && y <= xAxis.bottom && y >= xAxis.top **/
+           ) {
+            // category scale returns index here for some reason
+            var index = xAxis.getValueForPixel(x);
+            this.selectedMonthIndex = index;
+            this.selectedMonthLabel = this.areaChart.data.labels[index].join();
+            this.selectMonth();
+            //document.getElementById('tick').innerHTML = chartInstance.data.labels[index];
+          // var element = this.getElementAtEvent(e);
+          // if (element.length) {
+          //    console.log(element[0])
+          // }
+          }
         }
-      }
+      },
     }, );
   }
 
