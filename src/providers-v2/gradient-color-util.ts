@@ -6,6 +6,10 @@ export class GradientColorUtil {
 
     static colorTheme = COLOR_THEME["theme1"];
 
+    static getThemeColor() {
+      return this.colorTheme;
+    }
+
     static getAreaGradientColor(ctx, chartWidth, chartHeight) {
       console.log(">>>> getAreaGradientColor Start >>>>");
 
@@ -27,6 +31,7 @@ export class GradientColorUtil {
         color["point"] = GradientUtil.getPointOfLinearGradient(ChartType.Area, chartWidth, chartHeight);
       }
 
+      console.log("AreaGradientColor >>");
       console.log(gradientColors);
 
       console.log(">>>> getAreaGradientColor End >>>>");
@@ -60,6 +65,7 @@ export class GradientColorUtil {
         }
       }
 
+      console.log("BarGradientColor >>");
       console.log(gradientColors);
 
       console.log(">>>> getBarGradientColor End >>>>");
@@ -99,6 +105,7 @@ export class GradientColorUtil {
         gradientColors[index]["point"] = GradientUtil.getPointOfLinearGradient(ChartType.Doughnut, chartWidth, chartHeight, halfRotateDegree);
       });
 
+      console.log("DoughnutGradientColor >>");
       console.log(gradientColors);
 
       console.log(">>>> getDoughnutGradientColor End >>>>");
