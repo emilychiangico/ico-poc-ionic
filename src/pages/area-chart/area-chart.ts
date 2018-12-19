@@ -170,7 +170,7 @@ export class AreaChartPage {
       ];
 
     
-    const backgroundColors = GradientColorUtil.getGradientColorForAreaChart(ctx);
+    const backgroundColors = GradientColorUtil.getGradientColorForAreaChart(ctx, areaChartCanvasEl.width, areaChartCanvasEl.height);
 
     this.areaChart = new Chart(ctx, {
       type: 'line',
@@ -352,7 +352,17 @@ export class AreaChartPage {
           }
         }
       },
-    }, );
+    });
+
+    // update color by char size
+    let color = GradientColorUtil.getGradientColorForAreaChart(ctx, this.areaChart.width, this.areaChart.height);
+
+    let datasets = this.areaChart.data.datasets;
+    for(var i = 0; i < datasets.length; i++) {
+      datasets[i].backgroundColor = color[i]
+    }
+
+		this.areaChart.update();
   }
 
 }
