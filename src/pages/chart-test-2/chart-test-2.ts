@@ -72,7 +72,7 @@ export class ChartTest2Page {
     console.log(rotateDegreeList);
     
     // Draw doughnut Chart
-    gradientColors = GradientColorUtil.getDoughnutGradientColor(ctx, cData, 220, 220)
+    gradientColors = GradientColorUtil.getDoughnutGradientColor(ctx, cData, 220, 220);
     this.initDoughnutChart(this.doughnutCanvas, cData, gradientColors);
     
     // Draw doughnut Legend Chart

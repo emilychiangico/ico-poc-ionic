@@ -214,7 +214,7 @@ export class ChartTestPage {
     var rotateDegreeList = DoughnutUtil.getRotateDegreeList(cData);
     console.log(rotateDegreeList);
 
-    gradientColors = GradientUtil.getDonghnutPointOfLinearGradient(gradientColors, rotateDegreeList, 220, 220);
+    //gradientColors = GradientUtil.getDonghnutPointOfLinearGradient(gradientColors, rotateDegreeList, 220, 220);
 
     this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
 
@@ -224,7 +224,7 @@ export class ChartTestPage {
             datasets: [{
                 label: '# of Votes',
                 data: cData,
-                backgroundColor: this.prepareBackgroundColors(gradientColors, ctx),
+                backgroundColor: GradientColorUtil.getDoughnutGradientColor(ctx, cData, 220, 220),
                 borderColor: "rgba(255,255,255,0)",
                 hoverBackgroundColor: cHoverBackgroundColor
             }]
