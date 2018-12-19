@@ -6,7 +6,9 @@ export class GradientColorUtil {
 
     static colorTheme = COLOR_THEME["theme1"];
 
-    static getGradientColorForAreaChart(ctx, chartWidth, chartHeight) {
+    static getAreaGradientColor(ctx, chartWidth, chartHeight) {
+      console.log(">>>> getAreaGradientColor Start >>>>");
+
       let gradientColors = [
         this.colorTheme.portfolioHoildingColors.savingAndCurrent,
         this.colorTheme.portfolioHoildingColors.timeDeposit,
@@ -25,10 +27,15 @@ export class GradientColorUtil {
         color["point"] = GradientUtil.getPointOfLinearGradient(ChartType.Area, chartWidth, chartHeight);
       }
 
+      console.log(gradientColors);
+
+      console.log(">>>> getAreaGradientColor End >>>>");
+
       return GradientUtil.prepareBackgroundColors(gradientColors, ctx);
     }
 
     static getBarGradientColor(ctx, chartWidth, chartHeight, noOfBar?, selectedIndex?) {
+      console.log(">>>> getBarGradientColor Start >>>>");
 
       var selectColor = this.colorTheme.bar.selected;
       selectColor["point"] = GradientUtil.getPointOfLinearGradient(ChartType.Bar, chartWidth, chartHeight);
@@ -53,15 +60,15 @@ export class GradientColorUtil {
         }
       }
 
+      console.log(gradientColors);
+
+      console.log(">>>> getBarGradientColor End >>>>");
+
       return GradientUtil.prepareBackgroundColors(gradientColors, ctx);
     }
 
     static getDoughnutGradientColor(ctx, data, chartWidth, chartHeight) {
       console.log(">>>> getDoughnutGradientColor Start >>>>");
-      console.log(data);
-      console.log("chartWidth >> " + chartWidth);
-      console.log("chartHeight >> " + chartHeight);
-
 
       let gradientColors = [
         this.colorTheme.portfolioHoildingColors.savingAndCurrent,
@@ -78,8 +85,22 @@ export class GradientColorUtil {
 
       let rotateDegreeList = DoughnutUtil.getRotateDegreeList(data);
 
-      gradientColors = GradientUtil.getDonghnutPointOfLinearGradient(gradientColors, rotateDegreeList, chartWidth, chartHeight);
-      
+      rotateDegreeList.forEach((item, index) => {
+        let halfRotateDegree;
+        // get halfRotateDegree of startDegree and endDegree
+        if(index < rotateDegreeList.length-1) {
+          halfRotateDegree = (item + rotateDegreeList[index+1]) / 2;
+        } else {
+          halfRotateDegree = (item + 360) / 2;
+        }
+  
+        console.log("halfRotateDegree >> " + halfRotateDegree);
+  
+        gradientColors[index]["point"] = GradientUtil.getPointOfLinearGradient(ChartType.Doughnut, chartWidth, chartHeight, halfRotateDegree);
+      });
+
+      console.log(gradientColors);
+
       console.log(">>>> getDoughnutGradientColor End >>>>");
 
       return GradientUtil.prepareBackgroundColors(gradientColors, ctx);

@@ -2,27 +2,6 @@ export enum ChartType { Area, Bar, Doughnut, DoughnutLegend, Point };
 
 export class GradientUtil {
 
-    static getDonghnutPointOfLinearGradient(gradientColors, rotateDegreeList, width, height) {
-        console.log(">>>> getDonghnutPointOfLinearGradient Start >>>>");
-
-        rotateDegreeList.forEach((item, index) => {
-          let halfRotateDegree;
-          if(index < rotateDegreeList.length-1) {
-            halfRotateDegree = (item + rotateDegreeList[index+1]) / 2;
-          } else {
-            halfRotateDegree = (item + 360) / 2;
-          }
-    
-          console.log("halfRotateDegree >> " + halfRotateDegree);
-    
-          // count line
-          gradientColors[index]["point"] = this.getPointOfLinearGradient(ChartType.Doughnut, width, height, halfRotateDegree);
-        });
-        console.log(">>>> getDonghnutPointOfLinearGradient End >>>>");
-
-        return gradientColors;
-    }
-
     static getPointOfLinearGradient(chartType, width, height, rotateDegrees?) {
       switch(chartType) {
         case ChartType.Area:

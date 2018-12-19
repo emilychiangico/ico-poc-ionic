@@ -21,7 +21,7 @@ import { BarChart2Page } from '../pages/bar-chart-2/bar-chart-2';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = AreaChartPage;
+  rootPage: any = MixedChartPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -39,7 +39,7 @@ export class MyApp {
       //{ title: 'Chart Gradient Test', component: ChartTestPage },
       { title: 'Portfolio Overview', component: ChartTest2Page },
       { title: 'Area Chart', component: AreaChartPage },
-      { title: 'Scroll Bar Chart', component: BarChartPage },
+      //{ title: 'Scroll Bar Chart', component: BarChartPage },
       { title: 'Bar Chart', component: BarChart2Page }
     ];
 
