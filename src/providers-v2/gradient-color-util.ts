@@ -1,5 +1,6 @@
 import { GradientUtil } from '../providers-v2/gradient-util';
 
+
 export class GradientColorUtil {
 
     static getGradientColorForAreaChart(ctx) {
@@ -78,5 +79,39 @@ export class GradientColorUtil {
           return GradientUtil.prepareBackgroundColors(gradientColors, ctx);
 
     }
+
+    static getBarGradientColor(ctx, color, chartWidth, chartHeight, noOfBar?, selectedIndex?) {
+      let selectColor = {
+        type: "linear",
+        colorStops: color.bar.selected,
+        point: GradientUtil.countPointOfLinearGradient(chartWidth, chartHeight, 135)
+      }
+
+      let noSelecedColor = {
+        type: "linear",
+        colorStops: color.bar.noSelected,
+        point: GradientUtil.countPointOfLinearGradient(chartWidth, chartHeight, 135)
+      }
+
+      if(!Number.isInteger(noOfBar)) {
+        return GradientUtil.prepareSingleBackgroundColor(selectColor, ctx);
+      }
+
+      let gradientColors = [];
+      for(var i = 0; i < noOfBar; i++) {
+        if(!Number.isInteger(selectedIndex)) {
+          gradientColors.push(selectColor);
+        }else {
+          if(i == selectedIndex) {
+            gradientColors.push(selectColor);
+          } else {
+            gradientColors.push(noSelecedColor);
+          }
+        }
+      }
+
+      return GradientUtil.prepareBackgroundColors(gradientColors, ctx);
+    }
+
 
 }

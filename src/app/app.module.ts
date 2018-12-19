@@ -10,6 +10,7 @@ import { ChartTestPage } from '../pages/chart-test/chart-test';
 import { ChartTest2Page } from '../pages/chart-test-2/chart-test-2';
 import { AreaChartPage } from '../pages/area-chart/area-chart';
 import { BarChartPage } from '../pages/bar-chart/bar-chart';
+import { BarChart2Page } from '../pages/bar-chart-2/bar-chart-2';
 import { MixedChartPage } from '../pages/mixed-chart/mixed-chart';
 import { HighchartsPage } from '../pages/highcharts/highcharts';
 import { C3ChartPage } from '../pages/c3-chart/c3-chart';
@@ -31,6 +32,7 @@ import { ClickPopupComponent } from '../components-v2/click-popup/click-popup'
     ChartTest2Page,
     AreaChartPage,
     BarChartPage,
+    BarChart2Page,
     MixedChartPage,
     HighchartsPage,
     C3ChartPage,
@@ -52,6 +54,7 @@ import { ClickPopupComponent } from '../components-v2/click-popup/click-popup'
     ChartTest2Page,
     AreaChartPage,
     BarChartPage,
+    BarChart2Page,
     MixedChartPage,
     HighchartsPage,
     C3ChartPage,

@@ -2,6 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js';
 
+import { GradientColorUtil } from '../../providers-v2/gradient-color-util';
+import { COLOR_THEME } from './../../providers-v2/colorTheme';
+
 /**
  * Generated class for the MixedChartPage page.
  *
@@ -16,7 +19,9 @@ import { Chart } from 'chart.js';
 })
 export class MixedChartPage {
 
-  @ViewChild('mixedChartCanvas') mixedChartCanvas;
+	@ViewChild('mixedChartCanvas') mixedChartCanvas;
+	
+	mixedChart = null;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -154,89 +159,147 @@ export class MixedChartPage {
   };
   */
 
-     let chartColors = {
-      red: 'rgb(255, 99, 132)',
-      orange: 'rgb(255, 159, 64)',
-      yellow: 'rgb(255, 205, 86)',
-      green: 'rgb(75, 192, 192)',
-      blue: 'rgb(54, 162, 235)',
-      purple: 'rgb(153, 102, 255)',
-      grey: 'rgb(201, 203, 207)'
-    };
+    //  let chartColors = {
+    //   red: 'rgb(255, 99, 132,0.5)',
+    //   orange: 'rgb(255, 159, 64)',
+    //   yellow: 'rgb(255, 205, 86)',
+    //   green: 'rgb(75, 192, 192)',
+    //   blue: 'rgb(54, 162, 235)',
+    //   purple: 'rgb(153, 102, 255)',
+		// 	grey: 'rgb(201, 203, 207)',
+		// };
 
     function randomScalingFactor() {
       let max = 100;
       let min = -100;
       return Math.floor(Math.random() * (max - min + 1)) + min;
       //return Math.round(Samples.utils.rand(-100, 100));
-    };
+		};
+		
+		var el = this.mixedChartCanvas.nativeElement;
+		var ctx = el.getContext("2d");
+
+		var themeColor = COLOR_THEME["theme1"];
 
     var chartData = {
-			labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+			labels: this.pastSixMonthData.label,
 			datasets: [{
 				type: 'line',
 				label: 'Dataset 1',
-				borderColor: chartColors.blue,
+				borderColor: themeColor.mix.benchmarkLine,
+				pointBackgroundColor: themeColor.mix.benchmarkLine,
+				backgroundColor: themeColor.mix.benchmarkBackground,
+				borderWidth: 2,
+				data: this.pastSixMonthData.benchmark
+			}, {
+				type: 'line',
+				label: 'Dataset 2',
+				data: this.pastSixMonthData.monthlyReturn,
+				borderColor: themeColor.mix.returnLine,
+				pointBackgroundColor: themeColor.mix.returnLine,
 				borderWidth: 2,
 				fill: false,
-				data: [
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor()
-				]
-			}, {
-				type: 'bar',
-				label: 'Dataset 2',
-				backgroundColor: chartColors.red,
-				data: [
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor()
-				],
-				borderColor: 'white',
-				borderWidth: 2
 			}, {
 				type: 'bar',
 				label: 'Dataset 3',
-				backgroundColor: chartColors.green,
-				data: [
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor()
-				]
+				backgroundColor: GradientColorUtil.getBarGradientColor(ctx, themeColor, el.width, el.height),
+				hoverBackgroundColor: GradientColorUtil.getBarGradientColor(ctx, themeColor, el.width, el.height),
+				data: this.pastSixMonthData.lastSixMonthReturn
 			}]
-
     };
     
 
-    new Chart(this.mixedChartCanvas.nativeElement, {
+    this.mixedChart = new Chart(this.mixedChartCanvas.nativeElement, {
       type: 'bar',
       data: chartData,
       options: {
-        responsive: true,
+				responsive: true,
+				aspectRatio: 1.3,
         title: {
-          display: true,
+          display: false,
           text: 'Chart.js Combo Bar Line Chart'
         },
         tooltips: {
+					enabled: false,
           mode: 'index',
           intersect: true
-        }
+				},
+				legend: {
+					display: false, // no display legend
+				},
+				scales: {
+					yAxes: [{
+							ticks: {
+								callback: (label, index, labels) => {
+									return label+'.00%';
+								},
+								fontColor: themeColor.gridLine,
+								stepSize: 2,
+								min: -4,
+								max: 8,
+								padding: 5,
+							},
+							gridLines: {
+								color: themeColor.gridLine,
+								zeroLineColor: themeColor.gridLine,
+								drawBorder: true,
+								drawTicks: false
+							}
+					}],
+					xAxes: [{
+							barPercentage: 0.5,
+							ticks: {
+								fontColor: themeColor.gridLine,
+								padding: 5,
+							},
+							gridLines: {
+								color: themeColor.gridLine,
+								drawBorder: true,
+								drawTicks: false
+							}
+					}]
+				},
+				events: [] // remove onhover
       }
-    });
+		});
+		
+		// update Gradient Color by barChart size
+		let dataset = this.mixedChart.data.datasets[2];
+		dataset.backgroundColor = GradientColorUtil.getBarGradientColor(ctx, themeColor, this.mixedChart.width, this.mixedChart.height);
+		dataset.hoverBackgroundColor = GradientColorUtil.getBarGradientColor(ctx, themeColor, this.mixedChart.width, this.mixedChart.height);
 
-  }
+		this.mixedChart.update();
+
+	}
+
+	pastSixMonthData = {
+		label: [["DEC", "2017"], ["JAN", "2018"], ["FEB", "2018"], ["MAR", "2018"], ["APR", "2018"], ["MAY", "2018"]],
+		benchmark: [5, 2.8, 7, -2.5, -1, 1],
+		monthlyReturn: [2, 1.8, 5, -1, -2, 3],
+		lastSixMonthReturn: [2, 1.8, 5.8, -3, -2, 3]
+	}
+
+	thisYearData = {
+		label: [["JAN"], ["FEB"], ["MAR"], ["APR"], ["MAY"],["JUN"],["JUL"],["AUG"],["SEP"],["OCT"],["NOV"],["DEC"]],
+		benchmark: [2.8, 7, -2.5, -1, 1, 2, 5, -3, -0.5, 3, 1, 7.5],
+		monthlyReturn: [1.8, 5, -1, -2, 3, 6, 1, -3, -1.5, 4.5, 3, 7],
+		lastSixMonthReturn: [1.8, 5.8, -3, -2, 3, 4, 4, -2, -1, 5, 2.5, 5]
+	}
+	
+	pastSixMonth() {
+    this.mixedChart.data.labels = this.pastSixMonthData.label;
+		this.mixedChart.data.datasets[0].data = this.pastSixMonthData.benchmark;
+		this.mixedChart.data.datasets[1].data = this.pastSixMonthData.monthlyReturn;
+		this.mixedChart.data.datasets[2].data = this.pastSixMonthData.lastSixMonthReturn;
+    this.mixedChart.update();
+	}
+
+	thisYear() {
+    this.mixedChart.data.labels = this.thisYearData.label;
+		this.mixedChart.data.datasets[0].data = this.thisYearData.benchmark;
+		this.mixedChart.data.datasets[1].data = this.thisYearData.monthlyReturn;
+		this.mixedChart.data.datasets[2].data = this.thisYearData.lastSixMonthReturn;
+    this.mixedChart.update();
+	}
 
 }

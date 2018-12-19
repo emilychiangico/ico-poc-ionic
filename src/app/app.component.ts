@@ -13,6 +13,7 @@ import { HighchartsPage } from '../pages/highcharts/highcharts';
 import { C3ChartPage } from '../pages/c3-chart/c3-chart';
 import { AreaChartPage } from '../pages/area-chart/area-chart';
 import { BarChartPage } from '../pages/bar-chart/bar-chart';
+import { BarChart2Page } from '../pages/bar-chart-2/bar-chart-2';
 
 @Component({
   templateUrl: 'app.html'
@@ -29,16 +30,17 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage },
-      { title: 'Doughnut Chart.js', component: ChartPage },
+      //{ title: 'Home', component: HomePage },
+      //{ title: 'List', component: ListPage },
+      //{ title: 'Doughnut Chart.js', component: ChartPage },
       { title: 'Mixed Chart.js', component: MixedChartPage },
-      { title: 'Highcharts', component: HighchartsPage },
-      { title: 'c3.js Chart', component: C3ChartPage },
-      { title: 'Chart Gradient Test', component: ChartTestPage },
+      //{ title: 'Highcharts', component: HighchartsPage },
+      //{ title: 'c3.js Chart', component: C3ChartPage },
+      //{ title: 'Chart Gradient Test', component: ChartTestPage },
       { title: 'Portfolio Overview', component: ChartTest2Page },
       { title: 'Area Chart', component: AreaChartPage },
-      { title: 'Bar Chart', component: BarChartPage }
+      { title: 'Scroll Bar Chart', component: BarChartPage },
+      { title: 'Bar Chart', component: BarChart2Page }
     ];
 
   }

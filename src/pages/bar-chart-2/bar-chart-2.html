@@ -10,7 +10,7 @@
       <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
         </button>
-    <ion-title>Mixed Chart</ion-title>
+    <ion-title>Bar Chart</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -18,11 +18,10 @@
 
 <ion-content class="background" padding>
 
-  <button (click)="pastSixMonth()">Past 6 months</button>
-  <button (click)="thisYear()">2018</button>
+  <canvas #barChartCanvas></canvas>
 
-  <div style="padding-top: 10px"></div>
+  <p style="color: white">Selected Month: {{ month }}</p>
 
-  <canvas #mixedChartCanvas></canvas>
-
+  <canvas #barChartCanvas2></canvas>
+    
 </ion-content>
