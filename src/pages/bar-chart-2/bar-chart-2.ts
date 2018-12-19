@@ -228,8 +228,8 @@ export class BarChart2Page {
 			],
 			datasets: [{
 				type: 'bar',
-				backgroundColor: GradientColorUtil.getBarGradientColor(ctx, themeColor, el.width, el.height, 6, 5),
-				hoverBackgroundColor: GradientColorUtil.getBarGradientColor(ctx, themeColor, el.width, el.height, 6, 5),
+				backgroundColor: GradientColorUtil.getBarGradientColor(ctx, el.width, el.height, 6, 5),
+				hoverBackgroundColor: GradientColorUtil.getBarGradientColor(ctx, el.width, el.height, 6, 5),
 				data: [30,40,30,50,35,45]
 			}]
     };
@@ -295,8 +295,8 @@ export class BarChart2Page {
 						console.log("index >> " + index);
 
 						// Reset old state
-						dataset.backgroundColor = GradientColorUtil.getBarGradientColor(ctx, themeColor, barChart.width, barChart.height, 6, index);
-						dataset.hoverBackgroundColor = GradientColorUtil.getBarGradientColor(ctx, themeColor, barChart.width, barChart.height, 6, index);
+						dataset.backgroundColor = GradientColorUtil.getBarGradientColor(ctx, barChart.width, barChart.height, 6, index);
+						dataset.hoverBackgroundColor = GradientColorUtil.getBarGradientColor(ctx, barChart.width, barChart.height, 6, index);
 						// for(var i = 0; i < dataset.data.length; i++) {
 						// 	dataset.backgroundColor[i] = backgroundColors;
 						// 	dataset.hoverBackgroundColor[i] = backgroundColors;
@@ -314,8 +314,8 @@ export class BarChart2Page {
 
 		// update Gradient Color by barChart size
 		let dataset = barChart.data.datasets[0];
-		dataset.backgroundColor = GradientColorUtil.getBarGradientColor(ctx, themeColor, barChart.width, barChart.height, 6, 5);
-		dataset.hoverBackgroundColor = GradientColorUtil.getBarGradientColor(ctx, themeColor, barChart.width, barChart.height, 6, 5);
+		dataset.backgroundColor = GradientColorUtil.getBarGradientColor(ctx, barChart.width, barChart.height, 6, 5);
+		dataset.hoverBackgroundColor = GradientColorUtil.getBarGradientColor(ctx, barChart.width, barChart.height, 6, 5);
 
 		barChart.update();
 
@@ -337,8 +337,8 @@ export class BarChart2Page {
 			labels: ["AUD", "EUR", "GBP", "HKD", "OTH", "USD"],
 			datasets: [{
 				type: 'bar',
-				backgroundColor: GradientColorUtil.getBarGradientColor(ctx, themeColor, el.width, el.height),
-				hoverBackgroundColor: GradientColorUtil.getBarGradientColor(ctx, themeColor, el.width, el.height),
+				backgroundColor: GradientColorUtil.getBarGradientColor(ctx, el.width, el.height),
+				hoverBackgroundColor: GradientColorUtil.getBarGradientColor(ctx, el.width, el.height),
 				data: [20,- 25, -10, 50, 10, 20]
 			}]
 		};
@@ -393,8 +393,8 @@ export class BarChart2Page {
 
 		// update Gradient Color by barChart size
 		let dataset = barChart.data.datasets[0];
-		dataset.backgroundColor = GradientColorUtil.getBarGradientColor(ctx, themeColor, barChart.width, barChart.height);
-		dataset.hoverBackgroundColor = GradientColorUtil.getBarGradientColor(ctx, themeColor, barChart.width, barChart.height);
+		dataset.backgroundColor = GradientColorUtil.getBarGradientColor(ctx, barChart.width, barChart.height);
+		dataset.hoverBackgroundColor = GradientColorUtil.getBarGradientColor(ctx, barChart.width, barChart.height);
 
 		barChart.update();
 

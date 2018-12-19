@@ -1,7 +1,10 @@
 import { GradientUtil } from '../providers-v2/gradient-util';
+import { COLOR_THEME } from './colorTheme';
 
 
 export class GradientColorUtil {
+
+    static colorTheme = COLOR_THEME["theme1"];
 
     static getGradientColorForAreaChart(ctx) {
         var gradientColors = [
@@ -80,18 +83,13 @@ export class GradientColorUtil {
 
     }
 
-    static getBarGradientColor(ctx, color, chartWidth, chartHeight, noOfBar?, selectedIndex?) {
-      let selectColor = {
-        type: "linear",
-        colorStops: color.bar.selected,
-        point: GradientUtil.countPointOfLinearGradient(chartWidth, chartHeight, 135)
-      }
+    static getBarGradientColor(ctx, chartWidth, chartHeight, noOfBar?, selectedIndex?) {
 
-      let noSelecedColor = {
-        type: "linear",
-        colorStops: color.bar.noSelected,
-        point: GradientUtil.countPointOfLinearGradient(chartWidth, chartHeight, 135)
-      }
+      var selectColor = this.colorTheme.bar.selected;
+      selectColor["point"] = GradientUtil.countPointOfLinearGradient(chartWidth, chartHeight, 135);
+
+      let noSelecedColor = this.colorTheme.bar.noSelected;
+      noSelecedColor["point"] = GradientUtil.countPointOfLinearGradient(chartWidth, chartHeight, 135);
 
       if(!Number.isInteger(noOfBar)) {
         return GradientUtil.prepareSingleBackgroundColor(selectColor, ctx);

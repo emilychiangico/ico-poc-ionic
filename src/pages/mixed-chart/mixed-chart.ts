@@ -202,8 +202,8 @@ export class MixedChartPage {
 			}, {
 				type: 'bar',
 				label: 'Dataset 3',
-				backgroundColor: GradientColorUtil.getBarGradientColor(ctx, themeColor, el.width, el.height),
-				hoverBackgroundColor: GradientColorUtil.getBarGradientColor(ctx, themeColor, el.width, el.height),
+				backgroundColor: GradientColorUtil.getBarGradientColor(ctx, el.width, el.height),
+				hoverBackgroundColor: GradientColorUtil.getBarGradientColor(ctx, el.width, el.height),
 				data: this.pastSixMonthData.lastSixMonthReturn
 			}]
     };
@@ -265,8 +265,8 @@ export class MixedChartPage {
 		
 		// update Gradient Color by barChart size
 		let dataset = this.mixedChart.data.datasets[2];
-		dataset.backgroundColor = GradientColorUtil.getBarGradientColor(ctx, themeColor, this.mixedChart.width, this.mixedChart.height);
-		dataset.hoverBackgroundColor = GradientColorUtil.getBarGradientColor(ctx, themeColor, this.mixedChart.width, this.mixedChart.height);
+		dataset.backgroundColor = GradientColorUtil.getBarGradientColor(ctx, this.mixedChart.width, this.mixedChart.height);
+		dataset.hoverBackgroundColor = GradientColorUtil.getBarGradientColor(ctx, this.mixedChart.width, this.mixedChart.height);
 
 		this.mixedChart.update();
 
