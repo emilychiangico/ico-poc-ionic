@@ -338,7 +338,7 @@ export class BarChart2Page {
 			datasets: [{
 				type: 'bar',
 				backgroundColor: GradientColorUtil.getBarGradientColor(ctx, el.width, el.height),
-				hoverBackgroundColor: GradientColorUtil.getBarGradientColor(ctx, el.width, el.height),
+				//hoverBackgroundColor: GradientColorUtil.getBarGradientColor(ctx, el.width, el.height),
 				data: [20,- 25, -10, 50, 10, 20]
 			}]
 		};
@@ -387,14 +387,15 @@ export class BarChart2Page {
 							drawTicks: false
 						}
 					}]
-				}
+				},
+				events: [] // remove all event of chart
 			}
 		});
 
 		// update Gradient Color by barChart size
 		let dataset = barChart.data.datasets[0];
 		dataset.backgroundColor = GradientColorUtil.getBarGradientColor(ctx, barChart.width, barChart.height);
-		dataset.hoverBackgroundColor = GradientColorUtil.getBarGradientColor(ctx, barChart.width, barChart.height);
+		//dataset.hoverBackgroundColor = GradientColorUtil.getBarGradientColor(ctx, barChart.width, barChart.height);
 
 		barChart.update();
 

@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { GradientUtil } from '../../providers-v2/gradient-util';
 
+import { DoughnutUtil } from '../../providers-v2/doughnut-util';
+import { GradientColorUtil } from '../../providers-v2/gradient-color-util';
+
 /**
  * Generated class for the ChartPage page.
  *
@@ -208,10 +211,10 @@ export class ChartTestPage {
         "#FFCE56"
     ];
 
-    var rotateDegreeList = GradientUtil.getRotateDegreeList(cData);
+    var rotateDegreeList = DoughnutUtil.getRotateDegreeList(cData);
     console.log(rotateDegreeList);
 
-    gradientColors = GradientUtil.getPointOfLinearGradient(gradientColors, rotateDegreeList, 220, 220);
+    gradientColors = GradientUtil.getDonghnutPointOfLinearGradient(gradientColors, rotateDegreeList, 220, 220);
 
     this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
 

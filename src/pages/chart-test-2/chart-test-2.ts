@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { GradientUtil } from '../../providers-v2/gradient-util';
 
+import { DoughnutUtil } from '../../providers-v2/doughnut-util';
+import { GradientColorUtil } from '../../providers-v2/gradient-color-util';
+
 /**
  * Generated class for the ChartPage page.
  *
@@ -53,8 +56,6 @@ export class ChartTest2Page {
     return ctx.createRadialGradient(canvasEl.width/3, canvasEl.height/2 , canvasEl.width/11, canvasEl.width/3, canvasEl.height/3, canvasEl.width*1.3);
   }
 
-
-
   initChart() {
 
     var doughnutCanvasEl = this.doughnutCanvas.nativeElement;
@@ -64,137 +65,28 @@ export class ChartTest2Page {
 
     var cLabels = ["Red", "Blue", "Grey", "Green", "Purple", "Goldenrod"];
     var cData = [100, 90, 50, 5, 20, 40];
-    //cData = [100, 0, 0, 0, 100, 100];
-    var gradientColors = [
-      {
-        type: "linear",
-        colorStops: [
-          {stop: 0.4, color: "Grey"},
-          {stop: 0.5, color: "#FAFAFA"},
-          {stop: 0.6, color: "Grey"}
-        ],
-        point: null
-      },
-      {
-        type: "linear",
-        colorStops: [
-          {stop: 0.35, color: "Blue"},
-          {stop: 0.4, color: "#5B5BFF"},
-          {stop: 0.5, color: "#FAFAFA"},
-          {stop: 0.6, color: "#5B5BFF"},
-          {stop: 0.65, color: "Blue"},
-        ],
-        point: null
-      },
-      {
-        type: "linear",
-        colorStops: [
-          {stop: 0.4, color: "Purple"},
-          {stop: 0.5, color: "#FAFAFA"},
-          {stop: 0.6, color: "Purple"},
-        ],
-        point: null,
-        //color: 'rgba(153, 102, 255, 0.2)'
-      },
-      {
-        type: "linear",
-        colorStops: [
-          {stop: 0.35, color: "Red"},
-          {stop: 0.4, color: "#FF6262"},
-          {stop: 0.5, color: "#FF8E8E"},
-          {stop: 0.6, color: "#FF6262"},
-          {stop: 0.65, color: "Red"},
+    //cData = [100, 0, 0, 0, 100, 100];\
+    var gradientColors = null;
 
-          //  {stop: 0.000, color: "Red"},
-          //  {stop: 0.300, color: "#FF6262"},
-          //  {stop: 0.830, color: "#FF8E8E"},
-          //  {stop: 1, color: "#FF6262"},
-        ],
-        point: null
-      },
-
-      {
-        type: "linear",
-        colorStops: [
-          {stop: 0.4, color: "Green"},
-          {stop: 0.5, color: "#FAFAFA"},
-          {stop: 0.6, color: "Green"},
-        ],
-        point: null,
-        //color: 'rgba(75, 192, 192, 0.2)'
-      },
-
-      {
-        type: "linear",
-        colorStops: [
-          {stop: 0.4, color: "Goldenrod"},
-          {stop: 0.5, color: "#FAFAFA"},
-          {stop: 0.6, color: "Goldenrod"},
-        ],
-        point: null,
-        //color: 'rgba(255, 159, 64, 0.2)'
-      },            
-    ];
-    var cHoverBackgroundColor = [
-        "#FF6384",
-        "#36A2EB",
-        "#FFCE56",
-        "#FF6384",
-        "#36A2EB",
-        "#FFCE56"
-    ];
-
-
-    var rotateDegreeList = GradientUtil.getRotateDegreeList(cData);
+    var rotateDegreeList = DoughnutUtil.getRotateDegreeList(cData);
     console.log(rotateDegreeList);
-
-    gradientColors = GradientUtil.getPointOfLinearGradient(gradientColors, rotateDegreeList, 220, 220);
-
-    this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
-
-        type: 'doughnut',
-        data: {
-            labels: cLabels,
-            datasets: [{
-                label: '# of Votes',
-                data: cData,
-                backgroundColor: GradientUtil.prepareBackgroundColors(gradientColors, ctx),
-                borderColor: "rgba(255,255,255,0)",
-                hoverBackgroundColor: cHoverBackgroundColor
-            }]
-        },
-        options: {
-          aspectRatio: 1,
-          cutoutPercentage: 92,
-          legend: {
-              display: false,
-              position: 'bottom',
-              labels: {
-                  //fontColor: 'rgb(255, 99, 132)'
-              }
-        }
-      }
-    });
-
-    // let doughnutLegendCanvanList = [
-    //   this.doughnutLegendCanvas1,
-    //   this.doughnutLegendCanvas2,
-    //   this.doughnutLegendCanvas3,
-    //   this.doughnutLegendCanvas4,
-    //   this.doughnutLegendCanvas5,
-    //   this.doughnutLegendCanvas6
-    // ]
+    
+    // Draw doughnut Chart
+    gradientColors = GradientColorUtil.getDoughnutGradientColor(ctx, cData, 220, 220)
+    this.initDoughnutChart(this.doughnutCanvas, cData, gradientColors);
+    
+    // Draw doughnut Legend Chart
     let doughnutLegendCanvanList = this.doughnutLegendCanvasList.toArray();
 
-    gradientColors = GradientUtil.getPointOfLinearGradient(gradientColors, rotateDegreeList, 90, 90);
+    gradientColors = GradientColorUtil.getDoughnutGradientColor(ctx, cData, 90, 90);
 
     cLabels.forEach((item, index) => {
 
       var sum = cData.reduce((a, b) => a + b, 0);
-      let dataset = [cData[index], sum - cData[index]];
+      //let dataset = [cData[index], sum - cData[index]];
 
       console.log(doughnutLegendCanvanList);
-      let lengendCtx = doughnutLegendCanvanList[index].nativeElement.getContext("2d");
+      //let lengendCtx = doughnutLegendCanvanList[index].nativeElement.getContext("2d");
       let rotateDegreeStart = rotateDegreeList[index];
       let rotateDegreeEnd;
       
@@ -203,17 +95,6 @@ export class ChartTest2Page {
       } else {
         rotateDegreeEnd = rotateDegreeList[0];
       }
-      
-
-      // this.initDoughnutLegendChart(
-      //   doughnutLegendCanvanList[index],
-      //   item,
-      //   dataset, 
-      //   rotateDegree,
-      //   this.prepareSingleBackgroundColor(gradientColors[index], lengendCtx), 
-      //   cHoverBackgroundColor[index]
-      // );
-
 
       let percentage = cData[index]/sum * 100;
       this.initDoughnutLegendChart(doughnutLegendCanvanList[index], gradientColors[index], percentage, rotateDegreeStart, rotateDegreeEnd, 90);
@@ -221,46 +102,34 @@ export class ChartTest2Page {
     });
 
   }
-/*
-  initDoughnutLegendChart(doughnutLegendCv, label, cData, rotateDegree, backgroundColor, hoverBackgroundColor) {
 
-    new Chart(doughnutLegendCv.nativeElement, {
+  initDoughnutChart(canvasObj, data, gradientColors) {
+    this.doughnutChart = new Chart(canvasObj.nativeElement, {
 
       type: 'doughnut',
       data: {
-          labels: [label, "Other"],
+          //labels: labels,
           datasets: [{
-              label: '# of Votes',
-              data: cData,
-              backgroundColor: [
-                  backgroundColor,
-                  "#EFEFEF",
-                  //"rgba(220,220,220,0)",
-              ],
-              borderColor: "rgba(255,255,255,0)",
-              hoverBackgroundColor: [
-                  hoverBackgroundColor,
-                  "#36A2EB"
-              ]
+            //label: '# of Votes',
+            data: data,
+            backgroundColor: gradientColors,
+            borderColor: "rgba(255,255,255,0)"
           }]
       },
       options: {
         aspectRatio: 1,
         cutoutPercentage: 92,
-        rotation: (-0.5 * Math.PI) + (rotateDegree/180 * Math.PI),
-        //circumference: 1 * Math.PI,
         legend: {
-            display: false,
-            position: 'bottom',
-            labels: {
-                //fontColor: 'rgb(255, 99, 132)'
-            }
+          display: false,
+          // position: 'bottom',
+          // labels: {
+          //     fontColor: 'rgb(255, 99, 132)'
+          // }
+        },
+        events: [] // remove all event of chart
       }
-    }
-  });
-
+    });
   }
-*/
 
   // draw Doughnut chart with 0% < data < 100%
   initDoughnutLegendChart(canvanObj, color, dataPercentage, rotateDegreeStart, rotateDegreeEnd, height) {
@@ -269,33 +138,22 @@ export class ChartTest2Page {
     //console.log("test.height = " + el.height);
     var ctx = el.getContext("2d");
 
-    //var centerX = height / 2;
-    //var centerY = height / 2;
     var center = height / 2;
     
     if(dataPercentage == 0) {
       this.drawArc(ctx, center, 0, 2 * Math.PI, 1, '#EFEFEF');
     } else if(dataPercentage == 100) {
-      this.drawArc(ctx, center, 0, 2 * Math.PI, 8.5, GradientUtil.prepareSingleBackgroundColor(color, ctx));
+      this.drawArc(ctx, center, 0, 2 * Math.PI, 8.5, color);
     } else {
       console.log("test.rotateDegreeStart = " + rotateDegreeStart);
       console.log("test.rotateDegreeEnd = " + rotateDegreeEnd);
   
       var arcPoint = this.getPointOfArc(rotateDegreeStart, rotateDegreeEnd);
 
-      this.drawArc(ctx, center, arcPoint.start, arcPoint.end, 8.5, GradientUtil.prepareSingleBackgroundColor(color, ctx));
-      // ctx.beginPath();
-      // ctx.arc(centerX, centerY, 40, arcPoint.start, arcPoint.end, false);
-      // ctx.lineWidth = 8.5;
-      // ctx.strokeStyle = GradientUtil.prepareSingleBackgroundColor(color, ctx);
-      // ctx.stroke();
-
+      // draw data arc
+      this.drawArc(ctx, center, arcPoint.start, arcPoint.end, 8.5, color);
+      // draw data arc
       this.drawArc(ctx, center, arcPoint.end, arcPoint.start, 1, '#EFEFEF');
-      // ctx.beginPath();
-      // ctx.arc(centerX, centerY, 40, arcPoint.end, arcPoint.start, false);
-      // ctx.lineWidth = 1;
-      // ctx.strokeStyle = '#EFEFEF';
-      // ctx.stroke();
     }
   }
 

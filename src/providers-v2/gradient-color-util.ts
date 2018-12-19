@@ -1,6 +1,6 @@
-import { GradientUtil } from '../providers-v2/gradient-util';
+import { GradientUtil } from './gradient-util';
+import { DoughnutUtil } from './doughnut-util';
 import { COLOR_THEME } from './colorTheme';
-
 
 export class GradientColorUtil {
 
@@ -107,6 +107,35 @@ export class GradientColorUtil {
           }
         }
       }
+
+      return GradientUtil.prepareBackgroundColors(gradientColors, ctx);
+    }
+
+    static getDoughnutGradientColor(ctx, data, chartWidth, chartHeight) {
+      console.log(">>>> getDoughnutGradientColor Start >>>>");
+      console.log(data);
+      console.log("chartWidth >> " + chartWidth);
+      console.log("chartHeight >> " + chartHeight);
+
+
+      let gradientColors = [
+        this.colorTheme.portfolioHoildingColors.savingAndCurrent,
+        this.colorTheme.portfolioHoildingColors.timeDeposit,
+        this.colorTheme.portfolioHoildingColors.linkedDeposit,
+        this.colorTheme.portfolioHoildingColors.stock,
+        this.colorTheme.portfolioHoildingColors.bondNoteCertDeposit,
+        this.colorTheme.portfolioHoildingColors.unitTrust,
+        this.colorTheme.portfolioHoildingColors.structuredProduct,
+        this.colorTheme.portfolioHoildingColors.optionAndDerivativerContract,
+        this.colorTheme.portfolioHoildingColors.loan,
+        this.colorTheme.portfolioHoildingColors.forwardForeignExchange
+      ];
+
+      let rotateDegreeList = DoughnutUtil.getRotateDegreeList(data);
+
+      gradientColors = GradientUtil.getDonghnutPointOfLinearGradient(gradientColors, rotateDegreeList, chartWidth, chartHeight);
+      
+      console.log(">>>> getDoughnutGradientColor End >>>>");
 
       return GradientUtil.prepareBackgroundColors(gradientColors, ctx);
     }
