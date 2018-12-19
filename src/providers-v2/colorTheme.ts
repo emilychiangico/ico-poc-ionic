@@ -13,6 +13,9 @@ export const COLOR_THEME = {
             benchmarkBackground: COLOR.mix["white_0.2"],
             returnLine: COLOR.common["white"]
         },
+        doughnut: {
+            notData: COLOR.doughnut["gery"]
+        },
         portfolioHoildingColors: {
             savingAndCurrent: COLOR.gradientColors["grey"],
             timeDeposit: COLOR.gradientColors["blue"],

@@ -28,4 +28,35 @@ export class DoughnutUtil {
         return rotateDegreeList;
     }
 
+    static getPointOfLegend(rotateDegreeStart, rotateDegreeEnd) {
+      // arc -> 0 * Math.PI == 90 degree
+      // arc -> 1.5 * Math.PI == 360 degree
+      var start = 270 + rotateDegreeStart;
+      var end = 270 + rotateDegreeEnd;
+  
+      if(start > 360) {
+        start = start - 360;
+      }
+  
+      if(end > 360) {
+        end = end - 360;
+      }
+  
+      var startPoint = (start / 180) * Math.PI;
+      var endPoint = (end / 180) * Math.PI;
+  
+      console.log("test.startPoint = " + start / 180);
+      console.log("test.endPoint = " + end / 180);
+  
+      return {start: startPoint, end: endPoint};
+    }
+
+    static drawLegend(ctx, center, startPoint, endPoint, lineWidth, color) {
+      ctx.beginPath();
+      ctx.arc(center, center, 40, startPoint, endPoint, false);
+      ctx.lineWidth = lineWidth;
+      ctx.strokeStyle = color;
+      ctx.stroke();
+    }
+
 }

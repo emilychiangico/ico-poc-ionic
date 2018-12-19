@@ -38,6 +38,10 @@ export const COLOR = {
         "grey_0.5": "rgb(192, 187, 191, 0.5)"
     },
 
+    doughnut: {
+        "gery": "#EFEFEF"
+    },
+
     gradientColors: {
         "grey" : {
             type: "linear",
