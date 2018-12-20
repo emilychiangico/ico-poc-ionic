@@ -16,7 +16,7 @@ export const COLOR_THEME = {
         doughnut: {
             notData: COLOR.doughnut["gery"]
         },
-        portfolioHoildingColors: {
+        portfolioHoldingColors: {
             savingAndCurrent: COLOR.gradientColors["grey"],
             timeDeposit: COLOR.gradientColors["dark_cyan"],
             structuredProduct: COLOR.gradientColors["purple"],

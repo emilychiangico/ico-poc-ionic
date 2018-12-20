@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js';
-import { GradientColorUtil } from '../../providers-v2/gradient-color-util';
+import { GradientColorUtil, PortfolioHoldingType } from '../../providers-v2/gradient-color-util';
 
 /**
  * Generated class for the AreaChartPage page.
@@ -41,6 +41,15 @@ export class AreaChartPage {
     ["APR", "2018"], 
     ["MAY", "2018"],
     ["JUN", "2018"],
+  ];
+
+  holdingTypeList = [
+    PortfolioHoldingType.SavingAndCurrent,
+    PortfolioHoldingType.TimeDeposit,
+    PortfolioHoldingType.StructuredProduct,
+    PortfolioHoldingType.UnitTrust,
+    PortfolioHoldingType.Stock,
+    PortfolioHoldingType.BondNoteCertDeposit,
   ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
@@ -159,7 +168,7 @@ export class AreaChartPage {
     console.log("areaChartCanvasEl.height = " + areaChartCanvasEl.height);
     var ctx = areaChartCanvasEl.getContext("2d");
 
-    const backgroundColors = GradientColorUtil.getAreaGradientColor(ctx, areaChartCanvasEl.width, areaChartCanvasEl.height);
+    const backgroundColors = GradientColorUtil.getAreaGradientColor(ctx, this.holdingTypeList, areaChartCanvasEl.width, areaChartCanvasEl.height);
 
     this.areaChart = new Chart(ctx, {
       type: 'line',
@@ -367,7 +376,7 @@ export class AreaChartPage {
     });
 
     // update color by char size
-    let color = GradientColorUtil.getAreaGradientColor(ctx, this.areaChart.width, this.areaChart.height);
+    let color = GradientColorUtil.getAreaGradientColor(ctx, this.holdingTypeList, this.areaChart.width, this.areaChart.height);
 
     let datasets = this.areaChart.data.datasets;
     for(var i = 0; i < datasets.length; i++) {
@@ -384,7 +393,7 @@ export class AreaChartPage {
     console.log("areaChartCanvasEl.height = " + areaChartCanvasEl.height);
     var ctx = areaChartCanvasEl.getContext("2d");
 
-    const backgroundColors = GradientColorUtil.getAreaGradientColor(ctx, areaChartCanvasEl.width, areaChartCanvasEl.height);
+    const backgroundColors = GradientColorUtil.getAreaGradientColor(ctx, this.holdingTypeList, areaChartCanvasEl.width, areaChartCanvasEl.height);
 
     this.areaChart2 = new Chart(ctx, {
       type: 'line',
@@ -550,7 +559,7 @@ export class AreaChartPage {
     });
 
     // update color by char size
-    let color = GradientColorUtil.getAreaGradientColor(ctx, this.areaChart2.width, this.areaChart2.height);
+    let color = GradientColorUtil.getAreaGradientColor(ctx, this.holdingTypeList, this.areaChart2.width, this.areaChart2.height);
 
     let datasets = this.areaChart2.data.datasets;
     for(var i = 0; i < datasets.length; i++) {

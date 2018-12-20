@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js';
 
 import { DoughnutUtil } from '../../providers-v2/doughnut-util';
-import { GradientColorUtil } from '../../providers-v2/gradient-color-util';
+import { GradientColorUtil, PortfolioHoldingType } from '../../providers-v2/gradient-color-util';
 import { ChartUtil } from '../../providers-v2/chart-util';
 
 /**
@@ -66,22 +66,36 @@ export class ChartTest2Page {
     //var cLabels = ["Red", "Blue", "Grey", "Green", "Purple", "Goldenrod"];
     var cData = [45, 35, 12, 12, 6, 5];
     //cData = [100, 0, 0, 0, 100, 100];\
+
+    var type = [
+      PortfolioHoldingType.SavingAndCurrent,
+      PortfolioHoldingType.TimeDeposit,
+      PortfolioHoldingType.StructuredProduct,
+      PortfolioHoldingType.UnitTrust,
+      PortfolioHoldingType.Stock,
+      PortfolioHoldingType.BondNoteCertDeposit,
+    ];
+
+    var chartData = {
+      dataList: cData,
+      typeList: type
+    }
     
     // Draw doughnut Chart
-    this.initDoughnutChart(this.doughnutCanvas, cData);
+    this.initDoughnutChart(this.doughnutCanvas, chartData);
     
     // Draw doughnut Legend Chart
-    this.initDoughnutLegendChart(this.doughnutLegendCanvasList.toArray(), cData);
+    this.initDoughnutLegendChart(this.doughnutLegendCanvasList.toArray(), chartData);
 
   }
 
-  initDoughnutChart(canvasObj, data) {
+  initDoughnutChart(canvasObj, cData) {
     var ctx = canvasObj.nativeElement.getContext("2d");
 
     var chartData = {
       datasets: [{
-        data: data,
-        backgroundColor: GradientColorUtil.getDoughnutGradientColor(ctx, data, 220, 220),
+        data: cData.dataList,
+        backgroundColor: GradientColorUtil.getDoughnutGradientColor(ctx, cData.dataList, cData.typeList, 220, 220),
         borderColor: "rgba(255,255,255,0)"
       }]
     };
@@ -116,14 +130,16 @@ export class ChartTest2Page {
   }
 
   // draw Doughnut chart with 0% < data < 100%
-  initDoughnutLegendChart(doughnutLegendCanvanList, data) {
+  initDoughnutLegendChart(doughnutLegendCanvanList, cData) {
 
-    var rotateDegreeList = DoughnutUtil.getRotateDegreeList(data);
+    var rotateDegreeList = DoughnutUtil.getRotateDegreeList(cData.dataList);
     console.log(rotateDegreeList);
+
+    var gradientColors = null;
 
     doughnutLegendCanvanList.forEach((legendCanvan, index) => {
 
-      var sum = data.reduce((a, b) => a + b, 0);
+      var sum = cData.dataList.reduce((a, b) => a + b, 0);
 
       let lengendCtx = doughnutLegendCanvanList[index].nativeElement.getContext("2d");
       let rotateDegreeStart = rotateDegreeList[index];
@@ -135,9 +151,9 @@ export class ChartTest2Page {
         rotateDegreeEnd = rotateDegreeList[0];
       }
 
-      let gradientColors = GradientColorUtil.getDoughnutGradientColor(lengendCtx, data, 90, 90);
+      gradientColors = GradientColorUtil.getDoughnutGradientColor(lengendCtx, cData.dataList, cData.typeList, 90, 90);
 
-      let percentage = data[index]/sum * 100;
+      let percentage = cData[index]/sum * 100;
       ChartUtil.createDoughnutLegendChart(legendCanvan, gradientColors[index], percentage, rotateDegreeStart, rotateDegreeEnd, 90);
     });
   }
