@@ -27,12 +27,12 @@ export class AreaChartPage {
   selectedMonthIndex2: number = 0;
   selectedMonthLabel2: string;
 
-  savingAndCurrent = [1, 2.2, 1.8, 1, 2, 2, 2];
-  timeDeposit =     [3, 3.2, 2.5, 2, 2.1, 2.3, 2.5];
+  savingAndCurrent = [6, 13.2, 10.8, 6, 12, 12, 12];
+  timeDeposit =     [6, 6.4, 5, 4, 4.2, 4.6, 5];
   unitTrust = [6, 7, 7, 5, 4.5, 4.8, 5.5];
   structProd = [8.6, 8.6, 9.5, 7, 7.5, 7.5, 7.7];
   bondsNoteCert = [9, 9, 10, 9, 8, 8.2, 8.6];
-  stock = [2, 4, 3, 1, 8, 4, 10];
+  stock = [4, 5, 4.5, 2, 8, 4, 10];
   xData = [
     ["DEC", "2017"], 
     ["JAN", "2018"], 
@@ -306,7 +306,10 @@ export class AreaChartPage {
               fontSize: 12, 
               fontFamily: "sans-serif", 
               fontColor: '#FFFFFF', 
-              fontStyle: '200'
+              fontStyle: '200',
+              stepSize: 20,
+              min: 0,
+              max: 80
             },
             gridLines: {
               //drawOnChartArea: true,
@@ -481,7 +484,10 @@ export class AreaChartPage {
               fontSize: 12, 
               fontFamily: "sans-serif", 
               fontColor: '#FFFFFF', 
-              fontStyle: '200'
+              fontStyle: '200',
+              stepSize: 20,
+              min: 0,
+              max: 80
             },
             gridLines: {
               //drawOnChartArea: true,
@@ -509,7 +515,8 @@ export class AreaChartPage {
         },
         tooltips: {
           enabled: true,
-          mode: 'nearest'
+          mode: 'index',
+          intersect: true
         },
         onClick: (chartEvent, item) => {
           console.log("onClick");
