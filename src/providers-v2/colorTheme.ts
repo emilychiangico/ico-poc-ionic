@@ -18,12 +18,13 @@ export const COLOR_THEME = {
         },
         portfolioHoildingColors: {
             savingAndCurrent: COLOR.gradientColors["grey"],
-            timeDeposit: COLOR.gradientColors["blue"],
-            linkedDeposit: COLOR.gradientColors["purple"],
-            stock: COLOR.gradientColors["red"],
-            bondNoteCertDeposit: COLOR.gradientColors["green"],
-            unitTrust: COLOR.gradientColors["goldenrod"],
-            structuredProduct: COLOR.gradientColors["hotpink"],
+            timeDeposit: COLOR.gradientColors["dark_cyan"],
+            structuredProduct: COLOR.gradientColors["purple"],
+            stock: COLOR.gradientColors["blue"],
+            bondNoteCertDeposit: COLOR.gradientColors["light_cyan"],
+            unitTrust: COLOR.gradientColors["ligth_purple"],
+
+            linkedDeposit: COLOR.gradientColors["hotpink"],
             optionAndDerivativerContract: COLOR.gradientColors["cyan"],
             loan: COLOR.gradientColors["gold"],
             forwardForeignExchange: COLOR.gradientColors["brown"]

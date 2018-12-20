@@ -14,16 +14,17 @@ export class GradientColorUtil {
       console.log(">>>> getAreaGradientColor Start >>>>");
 
       let gradientColors = [
-        this.colorTheme.portfolioHoildingColors.savingAndCurrent,
-        this.colorTheme.portfolioHoildingColors.timeDeposit,
-        this.colorTheme.portfolioHoildingColors.linkedDeposit,
-        this.colorTheme.portfolioHoildingColors.stock,
-        this.colorTheme.portfolioHoildingColors.bondNoteCertDeposit,
-        this.colorTheme.portfolioHoildingColors.unitTrust,
-        this.colorTheme.portfolioHoildingColors.structuredProduct,
-        this.colorTheme.portfolioHoildingColors.optionAndDerivativerContract,
-        this.colorTheme.portfolioHoildingColors.loan,
-        this.colorTheme.portfolioHoildingColors.forwardForeignExchange
+        this.colorTheme.portfolioHoildingColors.savingAndCurrent.area,
+        this.colorTheme.portfolioHoildingColors.timeDeposit.area,
+        this.colorTheme.portfolioHoildingColors.structuredProduct.area,
+        this.colorTheme.portfolioHoildingColors.unitTrust.area,
+        this.colorTheme.portfolioHoildingColors.stock.area,
+        this.colorTheme.portfolioHoildingColors.bondNoteCertDeposit.area,
+
+        this.colorTheme.portfolioHoildingColors.linkedDeposit.area,
+        this.colorTheme.portfolioHoildingColors.optionAndDerivativerContract.area,
+        this.colorTheme.portfolioHoildingColors.loan.area,
+        this.colorTheme.portfolioHoildingColors.forwardForeignExchange.area
       ];
 
       for(let color of gradientColors) {
@@ -77,16 +78,17 @@ export class GradientColorUtil {
       console.log(">>>> getDoughnutGradientColor Start >>>>");
 
       let gradientColors = [
-        this.colorTheme.portfolioHoildingColors.savingAndCurrent,
-        this.colorTheme.portfolioHoildingColors.timeDeposit,
-        this.colorTheme.portfolioHoildingColors.linkedDeposit,
-        this.colorTheme.portfolioHoildingColors.stock,
-        this.colorTheme.portfolioHoildingColors.bondNoteCertDeposit,
-        this.colorTheme.portfolioHoildingColors.unitTrust,
-        this.colorTheme.portfolioHoildingColors.structuredProduct,
-        this.colorTheme.portfolioHoildingColors.optionAndDerivativerContract,
-        this.colorTheme.portfolioHoildingColors.loan,
-        this.colorTheme.portfolioHoildingColors.forwardForeignExchange
+        this.colorTheme.portfolioHoildingColors.savingAndCurrent.doughnut,
+        this.colorTheme.portfolioHoildingColors.timeDeposit.doughnut,
+        this.colorTheme.portfolioHoildingColors.structuredProduct.doughnut,
+        this.colorTheme.portfolioHoildingColors.unitTrust.doughnut,
+        this.colorTheme.portfolioHoildingColors.stock.doughnut,
+        this.colorTheme.portfolioHoildingColors.bondNoteCertDeposit.doughnut,
+
+        this.colorTheme.portfolioHoildingColors.linkedDeposit.doughnut,
+        this.colorTheme.portfolioHoildingColors.optionAndDerivativerContract.doughnut,
+        this.colorTheme.portfolioHoildingColors.loan.doughnut,
+        this.colorTheme.portfolioHoildingColors.forwardForeignExchange.doughnut
       ];
 
       let rotateDegreeList = DoughnutUtil.getRotateDegreeList(data);

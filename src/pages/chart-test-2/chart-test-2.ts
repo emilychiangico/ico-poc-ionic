@@ -64,7 +64,7 @@ export class ChartTest2Page {
     // var ctx = doughnutCanvasEl.getContext("2d");
 
     //var cLabels = ["Red", "Blue", "Grey", "Green", "Purple", "Goldenrod"];
-    var cData = [100, 90, 50, 5, 20, 40];
+    var cData = [45, 35, 12, 12, 6, 5];
     //cData = [100, 0, 0, 0, 100, 100];\
     
     // Draw doughnut Chart
