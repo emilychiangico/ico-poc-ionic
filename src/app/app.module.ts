@@ -17,9 +17,11 @@ import { C3ChartPage } from '../pages/c3-chart/c3-chart';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { DirectivesModule } from '../directives/directives.module'
-import { PopupContentService, PopupContent } from '../providers-v2/popup-content/popup-content'
-import { ClickPopupComponent } from '../components-v2/click-popup/click-popup'
+import { DirectivesModule } from '../directives/directives.module';
+import { PopupContentService, PopupContent } from '../providers-v2/popup-content/popup-content';
+import { ClickPopupComponent } from '../components-v2/click-popup/click-popup';
+
+import { ComponentsModule } from '../components-v2/components.module';
 
 
 @NgModule({
@@ -42,7 +44,8 @@ import { ClickPopupComponent } from '../components-v2/click-popup/click-popup'
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    DirectivesModule
+    DirectivesModule,
+    ComponentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

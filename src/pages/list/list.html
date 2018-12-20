@@ -10,7 +10,8 @@
 <ion-content>
   <ion-list>
     <button ion-item *ngFor="let item of items">
-      <canvas #pointCanvas width="20" height="20"></canvas>
+      <!-- <canvas #pointCanvas width="20" height="20"></canvas> -->
+      <legend-point [type]="item.type"></legend-point>
       <!-- <ion-icon [name]="item.icon" item-start></ion-icon> -->
       {{item.title}}
       <!-- <div class="item-note" item-end>

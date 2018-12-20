@@ -10,11 +10,11 @@ import {GradientColorUtil, PortfolioHoldingType} from '../../providers-v2/gradie
 export class ListPage {
   selectedItem: any;
   icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+  items: Array<{title: string, note: string, icon: string, type: number}>;
   label: string[];
   type: number[];
 
-  @ViewChildren('pointCanvas') pointCanvasList: QueryList<ElementRef>;
+  // @ViewChildren('pointCanvas') pointCanvasList: QueryList<ElementRef>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     // If we navigated to this page, we will have an item available as a nav param
@@ -37,7 +37,8 @@ export class ListPage {
       this.items.push({
         title: this.label[i],
         note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
+        icon: this.icons[Math.floor(Math.random() * this.icons.length)],
+        type: this.type[i],
       });
     }
   }
@@ -45,10 +46,10 @@ export class ListPage {
   ngOnInit() {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MixedChartPage');
-    this.drawPoint(this.pointCanvasList);
-  }
+  // ionViewDidLoad() {
+  //   console.log('ionViewDidLoad MixedChartPage');
+  //   this.drawPoint(this.pointCanvasList);
+  // }
 
 
   itemTapped(event, item) {
@@ -58,26 +59,26 @@ export class ListPage {
     });
   }
 
-  drawPoint(pointCanvanList) {
+  // drawPoint(pointCanvanList) {
 
-    console.log(pointCanvanList);
+  //   console.log(pointCanvanList);
 
-    pointCanvanList.forEach((canvan, index) => {
+  //   pointCanvanList.forEach((canvan, index) => {
       
-      let el = canvan.nativeElement;
-      let ctx = el.getContext("2d");
+  //     let el = canvan.nativeElement;
+  //     let ctx = el.getContext("2d");
 
-      let centerW = el.width / 2;
-      let centerH = el.height / 2;
+  //     let centerW = el.width / 2;
+  //     let centerH = el.height / 2;
       
-      let gradientColors = GradientColorUtil.getColorByPortfolioHoldingType(this.type[index]);
+  //     let gradientColors = GradientColorUtil.getColorByPortfolioHoldingType(this.type[index]);
       
-      ctx.beginPath();
-      ctx.arc(centerW, centerH, 10, 0, 2 * Math.PI, false);
-      ctx.fillStyle = GradientColorUtil.getPointGradientColor(ctx, el.width, el.height, gradientColors.area);
-      ctx.fill();
+  //     ctx.beginPath();
+  //     ctx.arc(centerW, centerH, 10, 0, 2 * Math.PI, false);
+  //     ctx.fillStyle = GradientColorUtil.getPointGradientColor(ctx, el.width, el.height, gradientColors.area);
+  //     ctx.fill();
 
-    });
-  }
+  //   });
+  // }
 
 }
