@@ -1,10 +1,9 @@
 import { Component, ViewChild, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Chart } from 'chart.js';
 
-import { DoughnutUtil } from '../../providers-v2/doughnut-util';
-import { GradientColorUtil, PortfolioHoldingType } from '../../providers-v2/gradient-color-util';
-import { ChartUtil } from '../../providers-v2/chart-util';
+import { DoughnutUtil } from '../../providers-v2/util/doughnut-util';
+import { GradientColorUtil, PortfolioHoldingType } from '../../providers-v2/util/gradient-color-util';
+import { ChartUtil } from '../../providers-v2/util/chart-util';
 
 /**
  * Generated class for the ChartPage page.

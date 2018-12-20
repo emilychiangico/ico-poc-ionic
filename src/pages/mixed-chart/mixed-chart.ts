@@ -1,9 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Chart } from 'chart.js';
 
-import { GradientColorUtil } from '../../providers-v2/gradient-color-util';
-import { ChartUtil } from './../../providers-v2/chart-util';
+import { GradientColorUtil } from '../../providers-v2/util/gradient-color-util';
+import { ChartUtil } from './../../providers-v2/util/chart-util';
 
 /**
  * Generated class for the MixedChartPage page.
@@ -22,6 +21,7 @@ export class MixedChartPage {
 	@ViewChild('mixedChartCanvas') mixedChartCanvas;
 	
 	mixedChart = null;
+	//type = PortfolioHoldingType.SavingAndCurrent;
 
 	pastSixMonthData = {
 		label: [["DEC", "2017"], ["JAN", "2018"], ["FEB", "2018"], ["MAR", "2018"], ["APR", "2018"], ["MAY", "2018"]],

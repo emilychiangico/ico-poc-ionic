@@ -1,6 +1,6 @@
 import { GradientUtil, ChartType } from './gradient-util';
 import { DoughnutUtil } from './doughnut-util';
-import { COLOR_THEME } from './colorTheme';
+import { COLOR_THEME } from '../color/colorTheme';
 
 export enum PortfolioHoldingType { SavingAndCurrent, TimeDeposit, StructuredProduct, Stock, BondNoteCertDeposit,
   UnitTrust, LinkedDeposit, OptionAndDerivativerContract, Loan, ForwardForeignExchange };

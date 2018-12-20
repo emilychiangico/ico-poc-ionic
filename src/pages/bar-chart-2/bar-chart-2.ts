@@ -1,9 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Chart } from 'chart.js';
 
-import { GradientColorUtil } from '../../providers-v2/gradient-color-util';
-import { ChartUtil } from '../../providers-v2/chart-util';
+import { GradientColorUtil } from '../../providers-v2/util/gradient-color-util';
+import { ChartUtil } from '../../providers-v2/util/chart-util';
 
 /**
  * Generated class for the MixedChartPage page.

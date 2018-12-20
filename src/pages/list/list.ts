@@ -1,7 +1,7 @@
 import { Component, ViewChild, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-import {GradientColorUtil, PortfolioHoldingType} from '../../providers-v2/gradient-color-util';
+import {GradientColorUtil, PortfolioHoldingType} from '../../providers-v2/util/gradient-color-util';
 
 @Component({
   selector: 'page-list',
