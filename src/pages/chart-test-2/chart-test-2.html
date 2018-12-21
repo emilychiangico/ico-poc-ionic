@@ -33,18 +33,19 @@
 
     <div class="doughnut-legend-container">
       
-      <div *ngFor="let number of [1,2,3,4,5,6]">
+      <!-- <div *ngFor="let number of [1,2,3,4,5,6]"> -->
+      <div *ngFor="let data of holdingDataList">  
         <div class="doughnut-legend">
             <div class="donut-legend-inner">
               <div>
-                <div class="diff">4.15%</div>
+                <div class="diff">{{ data.percentage }}%</div>
               </div>
             </div>
             <canvas #doughnutLegendCanvas></canvas>
         </div>
         <div class="donut-legend-bottom">
             <div>
-              <div class="diff">Time Deposit</div>
+              <div>{{ data.title }}</div>
             </div>
         </div>
       </div>
@@ -73,5 +74,27 @@
       <canvas #lineCanvas></canvas>
     </ion-card-content>
   </ion-card> -->
+
+  
+  <!-- <ion-list>
+    <button ion-item *ngFor="let holdingData of holdingDataList">
+      <legend-point [type]="holdingData.type"></legend-point>
+      <div class="title">{{ holdingData.title }}</div>
+      <div class="item-note amount" item-end>
+        HKD {{ holdingData.amount }}
+      </div>
+    </button>
+  </ion-list> -->
+
+  <ion-list>
+    <ion-item class="test" *ngFor="let holdingData of holdingDataList">
+      <legend-point [type]="holdingData.type"></legend-point>
+      <div class="title">{{ holdingData.title }}</div>
+      <div class="amount" item-end>
+        HKD {{ holdingData.amount }}
+        <ion-icon name="ios-arrow-forward" item-end></ion-icon>
+      </div>
+    </ion-item>
+  </ion-list>
 
 </ion-content>

@@ -43,8 +43,9 @@ page-chart-test-2 {
                 font-size: 20px;
                 margin-bottom: 10px;
                 color: white;
+                white-space: normal;
             }
-         }
+        }
     }
 
     .doughnut-legend-container {
@@ -53,7 +54,7 @@ page-chart-test-2 {
         // width: 100vw; 
         white-space: nowrap;
         margin: 20px 0;
-        height: 120px;
+        height: auto;
     }
 
     .doughnut-legend-container > div {
@@ -61,10 +62,13 @@ page-chart-test-2 {
         width: 90px;
         margin: 0px 15px;
         position: relative;
+        vertical-align: top;
 
         .donut-legend-bottom {
             margin: 10px 0 ;
             color: white;
+            white-space: normal;
+            width: 100%;
         }
     }
 
@@ -94,7 +98,39 @@ page-chart-test-2 {
             }
         }
 
-
     }
+
+    ion-item.test {
+        background: rgb(45, 50, 75);
+        color: rgb(223, 217, 217);
+        height: 80px;
+        border: 0 !important;
+        margin: 5px 0 5px 0;
+        font-size: 14px;
+
+        > .item-inner {
+            border: 0 !important;
+            vertical-align: middle;
+
+            ion-label {
+                display: contents;
+            }
+        }
+
+        .title {
+            padding-left:10px;
+            white-space: normal;
+        }
+
+        .amount {
+            display: contents;
+            font-weight: bold;
+
+            > ion-icon {
+                padding-left: 10px;
+            }
+        }
+    }
+
 
 }

@@ -25,48 +25,17 @@ export class ChartTest2Page {
 
     @ViewChildren('doughnutLegendCanvas') doughnutLegendCanvasList: QueryList<ElementRef>;
 
-    /*
-    @ViewChild('doughnutLegendCanvas1') doughnutLegendCanvas1;
-    @ViewChild('doughnutLegendCanvas2') doughnutLegendCanvas2;
-    @ViewChild('doughnutLegendCanvas3') doughnutLegendCanvas3;
-    @ViewChild('doughnutLegendCanvas4') doughnutLegendCanvas4;
-    @ViewChild('doughnutLegendCanvas5') doughnutLegendCanvas5;
-    @ViewChild('doughnutLegendCanvas6') doughnutLegendCanvas6;
-    */
-
     barChart: any;
     doughnutChart: any;
     lineChart: any;
-   
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+    //List Data
+    holdingDataList = [];
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ChartPage');
-    this.initChart();
-    //this.initDoughnutLegendChart();
-    //this.prepareTextInCenter();
-  }
+    cData = [4500000, 3500000, 1200000, 1200000, 600000, 500000];
+    //cData = [6008194.18, 31857040.24, 31857040.24, 31857040.24, 31857040.24, 31857040.24];
 
-  // preareRadialGradient(canvasEl: any) {
-  //   var ctx = canvasEl.getContext("2d");
-  //   //return ctx.createRadialGradient(0, 0, 0, 0.5, 0.3, 7);
-  //   return ctx.createRadialGradient(canvasEl.width/3, canvasEl.height/2 , canvasEl.width/11, canvasEl.width/3, canvasEl.height/3, canvasEl.width*1.3);
-  // }
-
-  initChart() {
-
-    // var doughnutCanvasEl = this.doughnutCanvas.nativeElement;
-    // console.log("doughnutCanvasEl.width = " + doughnutCanvasEl.width);
-    // console.log("doughnutCanvasEl.height = " + doughnutCanvasEl.height);
-    // var ctx = doughnutCanvasEl.getContext("2d");
-
-    //var cLabels = ["Red", "Blue", "Grey", "Green", "Purple", "Goldenrod"];
-    var cData = [45, 35, 12, 12, 6, 5];
-    //cData = [100, 0, 0, 0, 100, 100];\
-
-    var type = [
+    type = [
       PortfolioHoldingType.SavingAndCurrent,
       PortfolioHoldingType.TimeDeposit,
       PortfolioHoldingType.StructuredProduct,
@@ -75,16 +44,64 @@ export class ChartTest2Page {
       PortfolioHoldingType.BondNoteCertDeposit,
     ];
 
-    var chartData = {
-      dataList: cData,
-      typeList: type
+    titles = [
+      "Saving & Current",
+      "Time Deposit",
+      "Structured Product",
+      "Unit Trust",
+      "Stock",
+      "Bonds, Note & Certifcate of Deposit",
+    ];
+
+    chartData = {
+      dataList: this.cData,
+      typeList: this.type
     }
+   
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
+
+  ngOnInit() {
+    this.initHoldingDataList();
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ChartPage');
+    console.log(this.doughnutLegendCanvasList);
+    this.initChart();
+  }
+
+  initHoldingDataList() {
+    let percentageList = this.countPercentage();
+
+    this.type.forEach((item, index) => {
+      this.holdingDataList.push({
+        type: item,
+        title: this.titles[index],
+        amount: this.cData[index],
+        percentage: percentageList[index]
+      });
+    });
+  }
+
+  countPercentage() {
+    let sum = this.cData.reduce((a, b) => a + b, 0);
+    let list = []
+    this.cData.forEach((data) => {
+      list.push((data / sum * 100).toFixed(2));
+    });
+
+    return list;
+  }
+
+  initChart() {
     
     // Draw doughnut Chart
-    this.initDoughnutChart(this.doughnutCanvas, chartData);
+    this.initDoughnutChart(this.doughnutCanvas, this.chartData);
     
     // Draw doughnut Legend Chart
-    this.initDoughnutLegendChart(this.doughnutLegendCanvasList.toArray(), chartData);
+    this.initDoughnutLegendChart(this.doughnutLegendCanvasList.toArray(), this.chartData);
 
   }
 
