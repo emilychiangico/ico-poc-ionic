@@ -3,16 +3,16 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-import { ChartPage } from '../pages/chart/chart';
-import { ChartTestPage } from '../pages/chart-test/chart-test';
+import { HomePage } from '../pages/testing-page/home/home';
+import { ListPage } from '../pages/testing-page/list/list';
+import { ChartPage } from '../pages/testing-page/chart/chart';
+import { ChartTestPage } from '../pages/testing-page/chart-test/chart-test';
 import { ChartTest2Page } from '../pages/chart-test-2/chart-test-2';
 import { MixedChartPage } from '../pages/mixed-chart/mixed-chart';
-import { HighchartsPage } from '../pages/highcharts/highcharts';
-import { C3ChartPage } from '../pages/c3-chart/c3-chart';
+import { HighchartsPage } from '../pages/testing-page/highcharts/highcharts';
+import { C3ChartPage } from '../pages/testing-page/c3-chart/c3-chart';
 import { AreaChartPage } from '../pages/area-chart/area-chart';
-import { BarChartPage } from '../pages/bar-chart/bar-chart';
+import { BarChartPage } from '../pages/testing-page/bar-chart/bar-chart';
 import { BarChart2Page } from '../pages/bar-chart-2/bar-chart-2';
 
 @Component({
@@ -21,7 +21,7 @@ import { BarChart2Page } from '../pages/bar-chart-2/bar-chart-2';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = MixedChartPage;
+  rootPage: any = ChartTest2Page;
 
   pages: Array<{title: string, component: any}>;
 
@@ -30,17 +30,17 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      //{ title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage },
-      //{ title: 'Doughnut Chart.js', component: ChartPage },
+      { title: 'Portfolio Overview', component: ChartTest2Page },
+      { title: 'Bar Chart', component: BarChart2Page },
+      { title: 'Area Chart', component: AreaChartPage },
       { title: 'Mixed Chart.js', component: MixedChartPage },
+      { title: 'List', component: ListPage },
+      //{ title: 'Home', component: HomePage },
+      //{ title: 'Doughnut Chart.js', component: ChartPage },
       //{ title: 'Highcharts', component: HighchartsPage },
       //{ title: 'c3.js Chart', component: C3ChartPage },
       //{ title: 'Chart Gradient Test', component: ChartTestPage },
-      { title: 'Portfolio Overview', component: ChartTest2Page },
-      { title: 'Area Chart', component: AreaChartPage },
       //{ title: 'Scroll Bar Chart', component: BarChartPage },
-      { title: 'Bar Chart', component: BarChart2Page }
     ];
 
   }

@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { DirectivesModule } from '../../directives/directives.module'
-import { PopupContentService } from '../../providers-v2/popup-content/popup-content'
+import { DirectivesModule } from '../../../directives/directives.module'
+import { PopupContentService } from '../../../providers-v2/popup-content/popup-content'
 
 @Component({
   selector: 'page-home',
