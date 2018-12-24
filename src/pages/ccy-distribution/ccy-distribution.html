@@ -9,18 +9,21 @@
       <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
         </button>
-    <ion-title>Mixed Chart</ion-title>
+    <ion-title>Currency Distribution</ion-title>
   </ion-navbar>
+
 </ion-header>
 
 
 <ion-content class="background" padding>
 
-  <button (click)="pastSixMonth()">Past 6 months</button>
-  <button (click)="thisYear()">2018</button>
+  <canvas #barChartCanvas2></canvas>
 
-  <div style="padding-top: 10px"></div>
-
-  <canvas #mixedChartCanvas></canvas>
-
+  <div listContact>
+    <bea-list-item type="currency"
+                  [header]="beaListHeader"
+                  [data]="dataList">
+    </bea-list-item>
+  </div>
+    
 </ion-content>

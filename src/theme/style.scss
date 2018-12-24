@@ -1,0 +1,33 @@
+$text-color : rgb(223, 217, 217);
+
+ion-navbar.header {
+    > div.toolbar-background {
+        background: transparent;
+        border: 0px;
+    }
+
+    ion-title {
+        > div.toolbar-title {
+            color: $text-color !important;
+        }
+    }
+
+    button[ion-button] {
+        color: $text-color !important;
+    }
+    
+}
+
+.background {
+    background-image: linear-gradient(30deg, rgb(33, 33, 39),rgb(42, 42, 56), rgb(48, 65, 113), rgb(44, 66, 126));
+
+    //background-image: linear-gradient(30deg, rgb(33, 33, 35), rgb(66, 67, 78));
+
+    //background-image: linear-gradient(30deg, rgb(33, 33, 38), rgb(60, 67, 97));
+}
+
+div[listContact] {
+    background: rgb(35, 39, 64);
+    //background: red;
+    margin: 0px -16px -16px -16px;
+}

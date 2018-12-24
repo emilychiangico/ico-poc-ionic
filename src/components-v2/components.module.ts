@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 
-import { LegendPointComponent } from './legend-point/legend-point';
+import { LegendPointComponentModule } from './legend-point/legend-point.module';
+import { BeaListItemModule } from './bea-list-item/bea-list-item.module';
 
 @NgModule({
     declarations: [
-        LegendPointComponent
     ],
     imports: [],
     exports: [
-        LegendPointComponent
+        BeaListItemModule,
+        LegendPointComponentModule
     ]
 })
 export class ComponentsModule {

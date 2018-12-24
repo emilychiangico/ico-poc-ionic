@@ -57,6 +57,11 @@ export class ChartTest2Page {
       dataList: this.cData,
       typeList: this.type
     }
+
+    beaListHeader = {
+      left: "Account",
+      right: "Total Amount"
+    }
    
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
@@ -80,7 +85,8 @@ export class ChartTest2Page {
         type: item,
         title: this.titles[index],
         amount: this.cData[index],
-        percentage: percentageList[index]
+        percentage: percentageList[index],
+        goToPage: ""
       });
     });
   }

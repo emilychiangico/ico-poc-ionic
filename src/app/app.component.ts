@@ -14,6 +14,7 @@ import { C3ChartPage } from '../pages/testing-page/c3-chart/c3-chart';
 import { AreaChartPage } from '../pages/area-chart/area-chart';
 import { BarChartPage } from '../pages/testing-page/bar-chart/bar-chart';
 import { BarChart2Page } from '../pages/bar-chart-2/bar-chart-2';
+import { CcyDistributionPage } from '../pages/ccy-distribution/ccy-distribution';
 
 @Component({
   templateUrl: 'app.html'
@@ -31,6 +32,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Portfolio Overview', component: ChartTest2Page },
+      { title: 'Currency Distribution', component: CcyDistributionPage },
       { title: 'Bar Chart', component: BarChart2Page },
       { title: 'Area Chart', component: AreaChartPage },
       { title: 'Mixed Chart.js', component: MixedChartPage },

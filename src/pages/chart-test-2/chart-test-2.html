@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar no-border>
+  <ion-navbar class="header" no-border>
       <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
         </button>
@@ -75,18 +75,21 @@
     </ion-card-content>
   </ion-card> -->
 
-  
-  <!-- <ion-list>
-    <button ion-item *ngFor="let holdingData of holdingDataList">
-      <legend-point [type]="holdingData.type"></legend-point>
-      <div class="title">{{ holdingData.title }}</div>
-      <div class="item-note amount" item-end>
-        HKD {{ holdingData.amount }}
-      </div>
-    </button>
-  </ion-list> -->
+  <div listContact>
+    <bea-list-item type="overview"
+                  [header]="beaListHeader"
+                  [data]="holdingDataList">
+    </bea-list-item>
+  </div>
 
-  <ion-list>
+  <!-- <div listContact>
+      <bea-list-item type="history"
+                    [header]="beaListHeader"
+                    [data]="holdingDataList">
+      </bea-list-item>
+    </div> -->
+
+  <!-- <ion-list>
     <ion-item class="test" *ngFor="let holdingData of holdingDataList">
       <legend-point [type]="holdingData.type"></legend-point>
       <div class="title">{{ holdingData.title }}</div>
@@ -95,6 +98,6 @@
         <ion-icon name="ios-arrow-forward" item-end></ion-icon>
       </div>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
 
 </ion-content>

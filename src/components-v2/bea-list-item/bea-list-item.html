@@ -1,0 +1,39 @@
+<ion-list>
+    <ion-item class="header">
+        <div>{{ header.left }}</div>
+        <div item-end>{{ header.right }}</div>
+    </ion-item>
+
+    <!-- HoldingType - Amount -->
+    <ng-container *ngIf="type == 'overview'">
+        <ion-item class="itemList" *ngFor="let data of dataList" (click)="goToPage(data.goToPage)">
+            <legend-point [type]="data.type"></legend-point>
+            <div class="title">{{ data.title }}</div>
+            <div class="amount" item-end>
+                HKD {{ data.amount }}
+                <ion-icon name="ios-arrow-forward" item-end></ion-icon>
+            </div>
+        </ion-item>
+    </ng-container>
+
+    <ng-container *ngIf="type == 'history'">
+        <ion-item class="itemList" *ngFor="let data of dataList">
+            <legend-point [type]="data.type"></legend-point>
+            <div class="title">{{ data.title }}</div>
+            <div class="notIconRight" item-end>
+                {{ data.amount }} %
+            </div>
+        </ion-item>
+    </ng-container>
+
+    <!-- CCY - Amount -->
+    <ng-container *ngIf="type == 'currency'">
+        <ion-item class="itemList" *ngFor="let data of dataList">
+            <div class="notIconLeft">{{ data.ccy }}</div>
+            <div class="notIconRight" item-end>
+                HKD {{ data.amount }}
+            </div>
+        </ion-item>
+    </ng-container>
+
+</ion-list>

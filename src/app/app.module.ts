@@ -15,6 +15,8 @@ import { MixedChartPage } from '../pages/mixed-chart/mixed-chart';
 import { HighchartsPage } from '../pages/testing-page/highcharts/highcharts';
 import { C3ChartPage } from '../pages/testing-page/c3-chart/c3-chart';
 
+import { CcyDistributionPage } from '../pages/ccy-distribution/ccy-distribution';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { DirectivesModule } from '../directives/directives.module';
@@ -38,6 +40,7 @@ import { ComponentsModule } from '../components-v2/components.module';
     MixedChartPage,
     HighchartsPage,
     C3ChartPage,
+    CcyDistributionPage,
     PopupContent,
     ClickPopupComponent
   ],
@@ -61,6 +64,7 @@ import { ComponentsModule } from '../components-v2/components.module';
     MixedChartPage,
     HighchartsPage,
     C3ChartPage,
+    CcyDistributionPage,
     PopupContent,
     ClickPopupComponent
   ],
