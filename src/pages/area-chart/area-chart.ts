@@ -22,6 +22,7 @@ export class AreaChartPage {
   selectedMonthIndex: number = 0;
   selectedMonthLabel: string;
 
+  @ViewChild('areaChartContainer') areaChartContainer;
   @ViewChild('areaChartCanvas2') areaChartCanvas2;
   areaChart2;
   selectedMonthIndex2: number = 0;
@@ -138,10 +139,10 @@ export class AreaChartPage {
           var xRangeBeginPixel = xaxis.getPixelForTick(xRangeBegin);
           var xRangeEndPixel = xaxis.getPixelForTick(xRangeEnd);
 
-          console.log('xRangeBeginPixel = ' + xRangeBeginPixel);
-          console.log('xRangeEndPixel = ' + xRangeEndPixel);
-          console.log('yaxis.top = ' + yaxis.top);
-          console.log('yaxis.bottom = ' + yaxis.bottom);
+          // console.log('xRangeBeginPixel = ' + xRangeBeginPixel);
+          // console.log('xRangeEndPixel = ' + xRangeEndPixel);
+          // console.log('yaxis.top = ' + yaxis.top);
+          // console.log('yaxis.bottom = ' + yaxis.bottom);
 
           ctx.save();
           ctx.fillStyle = 'rgba(230, 230, 230, 0.01)';
@@ -160,6 +161,37 @@ export class AreaChartPage {
       }
     });
   }
+
+  openTip(oChart,datasetIndex,pointIndex){
+    if(oChart.tooltip._active == undefined)
+       oChart.tooltip._active = []
+    var activeElements = oChart.tooltip._active;
+    var requestedElem = oChart.getDatasetMeta(datasetIndex).data[pointIndex];
+    for(var i = 0; i < activeElements.length; i++) {
+        if(requestedElem._index == activeElements[i]._index)  
+           return;
+    }
+    activeElements.push(requestedElem);
+    oChart.tooltip._active = activeElements;
+    oChart.tooltip.update(true);
+    oChart.draw();
+ }
+ 
+  closeTip(oChart,datasetIndex,pointIndex){
+    var activeElements = oChart.tooltip._active;
+    if(activeElements == undefined || activeElements.length == 0)
+      return;
+    var requestedElem = oChart.getDatasetMeta(datasetIndex).data[pointIndex];
+    for(var i = 0; i < activeElements.length; i++) {
+        if(requestedElem._index == activeElements[i]._index)  {
+           activeElements.splice(i, 1);
+           break;
+        }
+    }
+    oChart.tooltip._active = activeElements;
+    oChart.tooltip.update(true);
+    oChart.draw();
+ }
 
   createAreaChart() {
 
@@ -459,11 +491,11 @@ export class AreaChartPage {
                 //console.log("fontFunction tickIndex = " + tickIndex);
                 //console.log("fontFunction selectedMonthIndex = " + this.selectedMonthIndex);
                 if (tickIndex == this.selectedMonthIndex2) {
-                 //console.log("******* should be bold****")
+                    //console.log("******* should be bold****");
                     return 'bold 12px sans-serif';
                 } else {
-                    //console.log("******* should be normal****")
-                    return '200 12px sans-serif"';
+                    //console.log("******* should be normal****");
+                    return '200 12px sans-serif';
                 }
               },
               padding: 5,
@@ -523,9 +555,84 @@ export class AreaChartPage {
             }
         },
         tooltips: {
-          enabled: true,
-          mode: 'index',
-          intersect: true
+          enabled: false,
+          //mode: 'index',
+          //intersect: true,
+          custom: (tooltipModel) => {
+            console.log("tooltips custom function");
+            console.log(tooltipModel);
+            console.log(tooltipModel.dataPoints[0].yLabel);
+
+            // Tooltip Element
+            var tooltipEl = document.getElementById('chartjs-tooltip');
+
+            // Create element on first render
+            if (!tooltipEl) {
+                tooltipEl = document.createElement('div');
+                tooltipEl.id = 'chartjs-tooltip';
+                //tooltipEl.innerHTML = "<table></table>";
+                this.areaChartContainer.nativeElement.appendChild(tooltipEl);
+                //document.body.appendChild(tooltipEl);
+            }
+
+            // Hide if no tooltip
+            if (tooltipModel.opacity === 0) {
+                tooltipEl.style.opacity = "0";
+                return;
+            }
+
+            // Set caret Position
+            tooltipEl.classList.remove('above', 'below', 'no-transform');
+            if (tooltipModel.yAlign) {
+                tooltipEl.classList.add(tooltipModel.yAlign);
+            } else {
+                tooltipEl.classList.add('no-transform');
+            }
+
+            function getBody(bodyItem) {
+                return bodyItem.lines;
+            }
+
+            // Set Text
+            if (tooltipModel.body) {
+                var titleLines = tooltipModel.title || [];
+                var bodyLines = tooltipModel.body.map(getBody);
+
+                var innerHtml = '';
+
+                innerHtml += '<div style="position: relative;">';
+
+                innerHtml += '<div style="margin-left: -30px; background: blue; padding: 3px 20px; border-radius: 10px; color: #FFF; font-weight: bold;">';
+                innerHtml += "HKD " + tooltipModel.dataPoints[0].yLabel;
+                innerHtml += '</div>';
+
+                innerHtml += '<div style="border-left: 3px dashed #FFFFFF; width: 1%; height: 40px;"></div>';
+
+                innerHtml += '<div style="margin-left: -5px; background: white; border-radius: 5px; width: 14px; height: 14px; padding: 2px;">';
+                innerHtml += '<div style="background: blue; border-radius: 5px; width: 10px; height: 10px;">';                
+                innerHtml += '</div>';
+                innerHtml += '</div>';
+
+                innerHtml += '</div>';
+
+                tooltipEl.innerHTML = innerHtml;
+            }
+
+            // `this` will be the overall tooltip
+            var position = this.areaChart2.canvas.getBoundingClientRect();
+
+            // Display, position, and set styles for font
+            tooltipEl.style.opacity = "1";
+            tooltipEl.style.position = 'absolute';
+            tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 'px';
+            tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY - 120 + 'px';
+            tooltipEl.style.fontFamily = tooltipModel._bodyFontFamily;
+            tooltipEl.style.fontSize = tooltipModel.bodyFontSize + 'px';
+            tooltipEl.style.fontStyle = tooltipModel._bodyFontStyle;
+            tooltipEl.style.padding = tooltipModel.yPadding + 'px ' + tooltipModel.xPadding + 'px';
+            tooltipEl.style.pointerEvents = 'none';
+            tooltipEl.style.zIndex = '100';
+          },
         },
         onClick: (chartEvent, item) => {
           console.log("onClick");
@@ -540,7 +647,7 @@ export class AreaChartPage {
           var y = chartEvent.offsetY;
       
           if (chartEvent.type === 'click' &&
-            x <= xAxis.right && x >= xAxis.left 
+            x <= xAxis.right-30 && x >= xAxis.left-30
             /** && y <= xAxis.bottom && y >= xAxis.top **/
            ) {
             // category scale returns index here for some reason
@@ -548,11 +655,10 @@ export class AreaChartPage {
             this.selectedMonthIndex2 = index;
             this.selectedMonthLabel2 = this.areaChart2.data.labels[index].join();
             this.selectMonth(this.areaChart2, this.selectedMonthIndex2);
-            //document.getElementById('tick').innerHTML = chartInstance.data.labels[index];
-          // var element = this.getElementAtEvent(e);
-          // if (element.length) {
-          //    console.log(element[0])
-          // }
+
+            this.openTip(this.areaChart2, 0, this.selectedMonthIndex2);
+
+       
           }
         }
       },
@@ -568,5 +674,9 @@ export class AreaChartPage {
 
 		this.areaChart2.update();
   }
+
+
+
+  
 
 }

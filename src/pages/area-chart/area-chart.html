@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-    <ion-navbar class="header" no-border>
+    <ion-navbar no-border>
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
           </button>
@@ -16,11 +16,14 @@
 
 <ion-content class="background">
     <div style="padding: 20px 0;">
+    <div #areaChartContainer>
+        <canvas #areaChartCanvas2></canvas>
+    </div>
     <canvas #areaChartCanvas></canvas>
     </div>
     <div padding style="color: white;">
         <div>Index = {{selectedMonthIndex}}</div>
         <div>Month = {{selectedMonthLabel}}</div>
     </div>
-    <canvas #areaChartCanvas2></canvas>
+    
 </ion-content>
