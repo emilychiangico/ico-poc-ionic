@@ -33,9 +33,9 @@ export class MyApp {
     this.pages = [
       { title: 'Portfolio Overview', component: ChartTest2Page },
       { title: 'Currency Distribution', component: CcyDistributionPage },
+      { title: 'Performance', component: MixedChartPage },
       { title: 'Bar Chart', component: BarChart2Page },
       { title: 'Area Chart', component: AreaChartPage },
-      { title: 'Mixed Chart.js', component: MixedChartPage },
       { title: 'List', component: ListPage },
       //{ title: 'Home', component: HomePage },
       //{ title: 'Doughnut Chart.js', component: ChartPage },

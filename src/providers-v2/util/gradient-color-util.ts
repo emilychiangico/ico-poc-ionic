@@ -14,7 +14,7 @@ export class GradientColorUtil {
     }
 
     static getColorByPortfolioHoldingType(holderType) {
-      switch(holderType){
+      switch(holderType) {
         case PortfolioHoldingType.SavingAndCurrent:
           return this.colorTheme.portfolioHoldingColors.savingAndCurrent;
         case PortfolioHoldingType.TimeDeposit:
@@ -35,6 +35,8 @@ export class GradientColorUtil {
           return this.colorTheme.portfolioHoldingColors.loan;
         case PortfolioHoldingType.ForwardForeignExchange:
           return this.colorTheme.portfolioHoldingColors.forwardForeignExchange;
+        default:
+          return null;
       }
     }
 

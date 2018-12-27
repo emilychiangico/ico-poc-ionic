@@ -16,6 +16,7 @@
         </ion-item>
     </ng-container>
 
+    <!-- HoldingType - Percentage -->
     <ng-container *ngIf="type == 'history'">
         <ion-item class="itemList" *ngFor="let data of dataList">
             <legend-point [type]="data.type"></legend-point>
@@ -30,6 +31,16 @@
     <ng-container *ngIf="type == 'currency'">
         <ion-item class="itemList" *ngFor="let data of dataList">
             <div class="notIconLeft">{{ data.ccy }}</div>
+            <div class="notIconRight" item-end>
+                HKD {{ data.amount }}
+            </div>
+        </ion-item>
+    </ng-container>
+
+    <!-- Performance - Percentage -->
+    <ng-container *ngIf="type == 'performance'">
+        <ion-item class="itemList" *ngFor="let data of dataList">
+            <div class="notIconLeft">{{ data.type }}</div>
             <div class="notIconRight" item-end>
                 HKD {{ data.amount }}
             </div>

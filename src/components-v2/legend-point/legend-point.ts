@@ -10,30 +10,72 @@ export class LegendPointComponent implements OnInit {
     
     @ViewChild('pointCanvas') pointCanvas;
 
+    @Input('legendType') legendType: string;
     @Input('type') type: number;
+
+    @Input('color') color: any;
 
     constructor(injector: Injector) {
     }
 
-    ngOnInit(){
+    ngOnInit() {
         console.log('init LegendPointComponent');
         console.log('type >> ' + this.type);
-        this.drawPoint();
+
+        if(this.legendType == "line") {
+            this.drawLineLegend();
+        }else {
+            this.drawPointLegend();
+        }
+        
     }
 
-    drawPoint() {
+    getColor(ctx?, width?, height?) {
+        let color = null;
+        if(!this.color) {
+            color = GradientColorUtil.getColorByPortfolioHoldingType(this.type);
+            if(!color) {
+                return "red";
+            } else {
+                return GradientColorUtil.getPointGradientColor(ctx, width, height, color.area);
+            }
+        } else {
+            return this.color;
+        }
+    }
+
+    drawPointLegend() {
         console.log('>>>>>>> drawPoint >>>>>>>');
         let el = this.pointCanvas.nativeElement;
         let ctx = el.getContext("2d");
 
         let center = el.width / 2;
         
-        let gradientColors = GradientColorUtil.getColorByPortfolioHoldingType(this.type);
+        //let gradientColors = GradientColorUtil.getColorByPortfolioHoldingType(this.type);
         
         ctx.beginPath();
         ctx.arc(center, center, center, 0, 2 * Math.PI, false);
-        ctx.fillStyle = GradientColorUtil.getPointGradientColor(ctx, el.width, el.height, gradientColors.area);
+        ctx.fillStyle = this.getColor(ctx, el.width, el.height);
         ctx.fill();
+    }
+
+    drawLineLegend() {
+        console.log('>>>>>>> drawlinePoint >>>>>>>');
+        let el = this.pointCanvas.nativeElement;
+        let ctx = el.getContext("2d");
+
+        let center = el.width / 2;
+        
+        ctx.beginPath();
+        ctx.arc(center, center, 3, 0, 2 * Math.PI, false);
+        ctx.fillStyle = this.getColor();
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.moveTo(0, center);
+        ctx.lineTo(el.width, center);
+        ctx.strokeStyle = this.getColor();
+        ctx.stroke();
     }
 
 }

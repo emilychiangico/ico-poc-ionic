@@ -9,7 +9,7 @@
       <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
         </button>
-    <ion-title>Mixed Chart</ion-title>
+    <ion-title>Performance</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -22,5 +22,32 @@
   <div style="padding-top: 10px"></div>
 
   <canvas #mixedChartCanvas></canvas>
+
+  <div style="padding-top: 10px"></div>
+
+  <button ion-button round outline class="benchmark" (click)="changeBenchmark(0)">Dow jones industrial Average</button>
+  <button ion-button round outline class="benchmark" (click)="changeBenchmark(1)">Hang Seng Index</button>
+  <button ion-button round outline class="benchmark" (click)="changeBenchmark(2)">HS China Enterprese Index</button>
+
+  <div style="padding-top: 10px"></div>
+
+  <div class="legendList">
+    <ng-container *ngFor="let legend of legendList">
+      <div class="legendItem">
+        <legend-point [legendType]="legend.type" [color]="legend.color"></legend-point>
+        <div class="legendTitle">{{ legend.name }}</div>
+      </div>
+    </ng-container>
+  </div>
+
+  <div style="padding-top: 10px"></div>
+
+  <div listContact>
+    <bea-list-item type="performance"
+                  [header]="beaListHeader"
+                  [data]="dataList">
+    </bea-list-item>
+  </div>
+
 
 </ion-content>
