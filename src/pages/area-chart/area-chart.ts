@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { GradientColorUtil, PortfolioHoldingType } from '../../providers-v2/util/gradient-color-util';
 
@@ -16,6 +16,8 @@ import { GradientColorUtil, PortfolioHoldingType } from '../../providers-v2/util
   templateUrl: 'area-chart.html',
 })
 export class AreaChartPage {
+
+  @ViewChild(Content) content: Content;
 
   @ViewChild('areaChartCanvas') areaChartCanvas;
   areaChart;
@@ -163,6 +165,7 @@ export class AreaChartPage {
   }
 
   openTip(oChart,datasetIndex,pointIndex){
+    console.log("called openTip");
     if(oChart.tooltip._active == undefined)
        oChart.tooltip._active = []
     var activeElements = oChart.tooltip._active;
@@ -172,13 +175,16 @@ export class AreaChartPage {
            return;
     }
     activeElements.push(requestedElem);
+    console.log(activeElements);
     oChart.tooltip._active = activeElements;
     oChart.tooltip.update(true);
     oChart.draw();
  }
  
   closeTip(oChart,datasetIndex,pointIndex){
+    console.log("called closeTip");
     var activeElements = oChart.tooltip._active;
+    console.log(activeElements);
     if(activeElements == undefined || activeElements.length == 0)
       return;
     var requestedElem = oChart.getDatasetMeta(datasetIndex).data[pointIndex];
@@ -608,7 +614,7 @@ export class AreaChartPage {
 
                 innerHtml += '<div style="border-left: 3px dashed #FFFFFF; width: 1%; height: 40px;"></div>';
 
-                innerHtml += '<div style="margin-left: -5px; background: white; border-radius: 5px; width: 14px; height: 14px; padding: 2px;">';
+                innerHtml += '<div style="margin-left: -5px; background: white; border-radius: 7px; width: 14px; height: 14px; padding: 2px;">';
                 innerHtml += '<div style="background: blue; border-radius: 5px; width: 10px; height: 10px;">';                
                 innerHtml += '</div>';
                 innerHtml += '</div>';
@@ -621,11 +627,14 @@ export class AreaChartPage {
             // `this` will be the overall tooltip
             var position = this.areaChart2.canvas.getBoundingClientRect();
 
+            let scrollLeft = this.content.getContentDimensions().scrollLeft;
+            let scrollTop = this.content.getContentDimensions().scrollTop;
+
             // Display, position, and set styles for font
             tooltipEl.style.opacity = "1";
             tooltipEl.style.position = 'absolute';
-            tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 'px';
-            tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY - 120 + 'px';
+            tooltipEl.style.left = position.left + scrollLeft + tooltipModel.caretX + 'px';
+            tooltipEl.style.top = position.top + scrollTop + tooltipModel.caretY - 120 + 'px';
             tooltipEl.style.fontFamily = tooltipModel._bodyFontFamily;
             tooltipEl.style.fontSize = tooltipModel.bodyFontSize + 'px';
             tooltipEl.style.fontStyle = tooltipModel._bodyFontStyle;
@@ -657,8 +666,8 @@ export class AreaChartPage {
             this.selectMonth(this.areaChart2, this.selectedMonthIndex2);
 
             this.openTip(this.areaChart2, 0, this.selectedMonthIndex2);
-
-       
+          } else {
+            this.closeTip(this.areaChart2, 0, this.selectedMonthIndex2);
           }
         }
       },
