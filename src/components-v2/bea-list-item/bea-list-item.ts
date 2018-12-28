@@ -7,7 +7,7 @@ import { NavController } from 'ionic-angular';
 })
 export class BeaListItemComponent implements OnInit {
 
-    @Input('header') header: any;
+    @Input('header') header: any = null;
 
     @Input('type') type: string;
     @Input('data') dataList: any[];

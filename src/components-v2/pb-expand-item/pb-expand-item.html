@@ -1,0 +1,44 @@
+<ion-item class="info-item" no-lines detail-none [attr.aria-expanded]="expanded" (click)="expand($event)" [class.item-expanded]="expanded">
+    <ng-container *ngIf="type == 'assetAllocation'">
+        <legend-point [type]="data.type"></legend-point>
+        <div bea-icon-title>{{ data.title }}</div>
+    </ng-container>
+
+    <ng-container *ngIf="type == 'nav'">
+        {{ data.title }}
+    </ng-container>
+</ion-item>
+
+<!---------- expanded detail ---------->
+<ion-list role="list" class="pb-expand-list item detail-list" no-line [@expanded]="expanded" [attr.aria-hidden]="!expanded" [class.item-hidden]="!expanded">
+    <ng-container *ngIf="type == 'assetAllocation'">
+        <ion-item role="text" class="asset-record">
+            <div bea-item-month class="title">Month</div>
+            <div bea-item-amount>Amount(HKD)</div>
+        </ion-item>
+
+        <ion-item role="text" class="asset-record" *ngFor="let monthData of data.monthDetail">
+            <div bea-item-month>{{ monthData.month }} {{ monthData.year }}</div>
+            <div bea-item-amount>{{ monthData.amount }}</div>
+        </ion-item>
+    </ng-container>
+
+    <ng-container *ngIf="type == 'nav'">
+        <ion-item role="text" class="nav-record border">
+            <div bea-item-title class="nav">Net Asset Value</div>
+            <div bea-item-amount>HKD {{ data.netAssetValue }}</div>
+        </ion-item>
+        <ion-item role="text" class="nav-record">
+            <div bea-item-title>Cash & Deposit</div>
+            <div bea-item-amount>HKD {{ data.cashAndDeposit }}</div>
+        </ion-item>
+        <ion-item role="text" class="nav-record">
+            <div bea-item-title>Investment</div>
+            <div bea-item-amount>HKD {{ data.investment }}</div>
+        </ion-item>
+        <ion-item role="text" class="nav-record">
+            <div bea-item-title>Loan</div>
+            <div bea-item-amount>HKD {{ data.loan }}</div>
+        </ion-item>
+    </ng-container>
+</ion-list>

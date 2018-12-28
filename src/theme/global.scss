@@ -1,0 +1,35 @@
+@mixin icon-button {
+    .button {
+        margin: 0;
+        vertical-align: baseline;
+
+        .bea-icon {
+            @include icon;
+        }
+    }
+}
+
+@mixin icon {
+    color: red;
+    font-size: 1.8rem;
+    height: 1em;
+}
+
+@mixin where($target, $condition) {
+    @at-root #{selector-replace(&, $target, $target + $condition)} {
+        @content;
+    }
+}
+
+@mixin flex-row($h: unset, $v: unset, $wrap: "") {
+    display: flex;
+    flex-direction: row;
+    justify-content: $h;
+    align-items: $v;
+
+    @if $wrap != "" {
+        flex-wrap: $wrap;
+    }
+
+    //@extend flex;
+}

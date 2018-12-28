@@ -4,6 +4,7 @@ import { BeaListItemComponent } from './bea-list-item';
 import { IonicModule } from 'ionic-angular';
 
 import { LegendPointComponentModule } from '../legend-point/legend-point.module';
+import { PbExpandItemComponentModule } from '../pb-expand-item/pb-expand-item.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { LegendPointComponentModule } from '../legend-point/legend-point.module'
   ],
   imports: [
     IonicModule,
-    LegendPointComponentModule
+    LegendPointComponentModule,
+    PbExpandItemComponentModule
   ],
   exports: [
     BeaListItemComponent

@@ -15,6 +15,8 @@ import { AreaChartPage } from '../pages/area-chart/area-chart';
 import { BarChartPage } from '../pages/testing-page/bar-chart/bar-chart';
 import { BarChart2Page } from '../pages/bar-chart-2/bar-chart-2';
 import { CcyDistributionPage } from '../pages/ccy-distribution/ccy-distribution';
+import { AssetAllocationDetailPage } from '../pages/asset-allocation-detail/asset-allocation-detail';
+import { NavDetailPage } from '../pages/nav-detail/nav-detail';
 
 @Component({
   templateUrl: 'app.html'
@@ -34,6 +36,8 @@ export class MyApp {
       { title: 'Portfolio Overview', component: ChartTest2Page },
       { title: 'Currency Distribution', component: CcyDistributionPage },
       { title: 'Performance', component: MixedChartPage },
+      { title: 'AssetAllocationDetailPage', component: AssetAllocationDetailPage},
+      { title: 'NavDetailPage', component: NavDetailPage},
       { title: 'Bar Chart', component: BarChart2Page },
       { title: 'Area Chart', component: AreaChartPage },
       { title: 'List', component: ListPage },

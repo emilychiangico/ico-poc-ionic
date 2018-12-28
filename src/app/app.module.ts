@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/testing-page/home/home';
@@ -16,6 +17,8 @@ import { HighchartsPage } from '../pages/testing-page/highcharts/highcharts';
 import { C3ChartPage } from '../pages/testing-page/c3-chart/c3-chart';
 
 import { CcyDistributionPage } from '../pages/ccy-distribution/ccy-distribution';
+import { AssetAllocationDetailPage } from '../pages/asset-allocation-detail/asset-allocation-detail';
+import { NavDetailPage } from '../pages/nav-detail/nav-detail';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -42,13 +45,16 @@ import { ComponentsModule } from '../components-v2/components.module';
     C3ChartPage,
     CcyDistributionPage,
     PopupContent,
-    ClickPopupComponent
+    ClickPopupComponent,
+    AssetAllocationDetailPage,
+    NavDetailPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     DirectivesModule,
-    ComponentsModule
+    ComponentsModule,
+    BrowserAnimationsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -66,7 +72,9 @@ import { ComponentsModule } from '../components-v2/components.module';
     C3ChartPage,
     CcyDistributionPage,
     PopupContent,
-    ClickPopupComponent
+    ClickPopupComponent,
+    AssetAllocationDetailPage,
+    NavDetailPage
   ],
   providers: [
     StatusBar,

@@ -1,0 +1,166 @@
+pb-expand-item.item-wrapper {
+    .list-ios > &:last-child .item-block {
+        border-width: 0; // override
+    }
+
+    @mixin item-padding {
+        padding-right: 15px;
+    }
+
+    @mixin amount {
+        flex: 50% 0 0;
+        text-align: right;
+        font-weight: bold;
+    }
+
+    @mixin record-label {
+        @include flex-row($v: center);
+        white-space: normal;
+        margin: 10px 0 !important;
+        font-weight: normal;
+        height: 100%;
+        font-size: 14px;
+
+        [bea-item-amount] {
+            @include amount;
+        }
+    }
+
+    .info-item {
+        padding-top: 15px;
+        padding-bottom: 15px;
+
+        background-color: $list-item-background;
+        color: $text-color;
+
+        > .item-inner {
+            &::after {
+                @extend bea-icon.bea-arrow_down:before;
+                display: inline-block;
+                font-family: 'BEA';
+                font-size: 1rem !important;
+                font-weight: inherit !important;
+                margin: 0 8px 0 8px;
+                
+                // set background
+                //background-color: $list-item-background;
+                color: $text-color;
+                border-radius: 50%;
+
+                transition: transform 300ms ease;
+                @include where('.info-item', '.item-expanded') {
+                    transform: rotate(180deg);
+                }
+            }
+
+            > .input-wrapper {
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                
+                > .label {
+                    flex: none;
+                    width: 100%;
+                    height: 100%;
+                    margin: 0;
+
+                    @include flex-row($v: center);
+                    white-space: normal;
+
+                    font-size: 14px;
+                }
+
+                [bea-icon-title] {
+                    padding-left: 10px;
+                }
+            
+            }
+        }
+    }
+
+    bea-icon {
+        &.bea-arrow_down:before {
+            padding: 0.5rem !important;
+        }
+    }
+
+    ion-list.pb-expand-list {
+        margin-bottom: 16px;
+    }
+    
+    .detail-list ion-item { //, .asset-record, .detail-record
+        @include where('.detail-list', '.item-hidden') {
+            height: 0px;
+            border: 0px;
+            background-color: transparent !important;
+        }
+
+        background-color: $list-item-background;
+        color: $text-color;
+    }
+
+    ion-item.asset-record {
+        @include item-padding;
+
+        padding-top: 0 !important;
+        padding-left: 46px !important;
+        border: 0 !important;
+        min-height: 0;
+
+        & > .item-inner {
+            border: 0 !important;
+        }
+        
+        & > .item-inner > .input-wrapper {
+            
+            > ion-label {
+                @include record-label;
+
+                [bea-item-month] {
+                    flex: 50% 0 0;
+
+                    &.title {
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+
+    ion-item.nav-record {
+        @include item-padding;
+
+        padding-top: 0 !important;
+        border: 0 !important;
+        min-height: 0;
+
+        &.border {
+            border-bottom: 1px solid $text-color !important;
+        }
+
+        & > .item-inner {
+            border: 0 !important;
+        }
+        
+        & > .item-inner > .input-wrapper {
+            
+            > ion-label {
+                @include record-label;
+
+                [bea-item-title] {
+                    flex: 50% 0 0;
+                    font-weight: lighter;
+
+                    &.nav {
+                        font-weight: normal;
+                    }
+                }
+            }
+        }
+    }
+
+    ion-item.bea-item {
+        background-color: transparent !important;
+    }
+
+}

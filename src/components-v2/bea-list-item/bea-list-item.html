@@ -1,5 +1,5 @@
-<ion-list>
-    <ion-item class="header">
+<ion-list pb-list>
+    <ion-item class="header" *ngIf="header">
         <div>{{ header.left }}</div>
         <div item-end>{{ header.right }}</div>
     </ion-item>
@@ -45,6 +45,20 @@
                 HKD {{ data.amount }}
             </div>
         </ion-item>
+    </ng-container>
+
+    <!-- Asset Allocation - View Details -->
+    <ng-container *ngIf="type == 'assetAllocationDetail'">
+        <ng-container *ngFor="let data of dataList">
+            <pb-expand-item type="assetAllocation" [data]="data"></pb-expand-item>
+        </ng-container>
+    </ng-container>
+
+    <!-- Net Asset Value - View Details -->
+    <ng-container *ngIf="type == 'navDetail'">
+        <ng-container *ngFor="let data of dataList">
+            <pb-expand-item type="nav" [data]="data"></pb-expand-item>
+        </ng-container>
     </ng-container>
 
 </ion-list>
