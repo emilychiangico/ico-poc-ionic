@@ -1,0 +1,599 @@
+bea-icon {
+    display: inline-block;
+    font-family: 'BEA';
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1;
+    text-rendering: auto;
+    text-transform: none;
+    speak: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    font-size: 1em;
+
+    &.bea-BELD_service_hour:before {
+        content: "\e9c0";
+    }
+    &.bea-BELD_minus:before {
+        content: "\e9be";
+    }
+    &.bea-BELD_fail:before {
+        content: "\e9bf";
+    }
+    &.bea-alert:before {
+        content: "\e9c1";
+    }
+    &.bea-video_time:before {
+        content: "\e9bc";
+    }
+    &.bea-video_views:before {
+        content: "\e9bd";
+    }
+    &.bea-time_deposit_edit:before {
+        content: "\e9b8";
+    }
+    &.bea-time_deposit_no_record:before {
+        content: "\e9b9";
+    }
+    &.bea-time_deposit_service_hour:before {
+        content: "\e9ba";
+    }
+    &.bea-time_deposit_uplift:before {
+        content: "\e9bb";
+    }
+    &.bea-time_deposit_filter:before {
+        content: "\e9b6";
+    }
+    &.bea-time_deposit_rate:before {
+        content: "\e9b7";
+    }
+    &.bea-coffee:before {
+        content: "\e9b5";
+    }
+    &.bea-minus_circle:before {
+        content: "\e9b4";
+    }
+    &.bea-bea_logo:before {
+        content: "\e956";
+    }
+    &.bea-arrow_up:before {
+        content: "\e904";
+    }
+    &.bea-arrow_down:before {
+        content: "\e903";
+    }
+    &.bea-arrow_left:before {
+        content: "\e901";
+    }
+    &.bea-arrow_right:before {
+        content: "\e907";
+    }
+    &.bea-menu:before {
+        content: "\e906";
+    }
+    &.bea-date:before {
+        content: "\e902";
+    }
+    &.bea-tick:before {
+        content: "\e914";
+    }
+    &.bea-tick_circle:before {
+        content: "\e911";
+    }
+    &.bea-tick_circle_dark:before {
+        content: "\e98f";
+    }
+    &.bea-cross:before {
+        content: "\e98d";
+    }
+    &.bea-cross_circle:before {
+        content: "\e90b";
+    }
+    &.bea-plus:before {
+        content: "\e98e";
+    }
+    &.bea-plus_circle:before {
+        content: "\e910";
+    }
+    &.bea-refresh:before {
+        content: "\e97d";
+    }
+    &.bea-arrow_left_1:before {
+        content: "\e982";
+    }
+    &.bea-arrow_right_1:before {
+        content: "\e984";
+    }
+    &.bea-arrow_left_2:before {
+        content: "\e983";
+    }
+    &.bea-arrow_right_2:before {
+        content: "\e985";
+    }
+    &.bea-arrow_order:before {
+        content: "\e9ab";
+    }
+    &.bea-bonus_gallery_cart:before {
+        content: "\e96d";
+    }
+    &.bea-bonus_gallery_compare:before {
+        content: "\e96e";
+    }
+    &.bea-bonus_gallery_filter:before {
+        content: "\e96f";
+    }
+    &.bea-bonus_gallery_fulllist:before {
+        content: "\e970";
+    }
+    &.bea-bonus_gallery_icoupon:before {
+        content: "\e971";
+    }
+    &.bea-bonus_gallery_shop:before {
+        content: "\e972";
+    }
+    &.bea-bonus_gallery_sort:before {
+        content: "\e973";
+    }
+    &.bea-bonus_gallery_zoom:before {
+        content: "\e974";
+    }
+    &.bea-book_now:before {
+        content: "\e93f";
+    }
+    &.bea-call:before {
+        content: "\e90d";
+    }
+    &.bea-card_activation_talking:before {
+        content: "\e975";
+    }
+    &.bea-cardless_step1:before {
+        content: "\e9a3";
+    }
+    &.bea-cardless_step2:before {
+        content: "\e9a4";
+    }
+    &.bea-cardless_step3:before {
+        content: "\e9a5";
+    }
+    &.bea-credit_card_gift:before {
+        content: "\e99f";
+    }
+    &.bea-cyberbanking:before {
+        content: "\e915";
+    }
+    &.bea-docu_enlarge:before {
+        content: "\e90c";
+    }
+    &.bea-docu_format:before {
+        content: "\e917";
+    }
+    &.bea-docu_multi:before {
+        content: "\e90e";
+    }
+    &.bea-docu_nosymbol:before {
+        content: "\e90f";
+    }
+    &.bea-ebills:before {
+        content: "\e91c";
+    }
+    &.bea-edit_amount:before {
+        content: "\e936";
+    }
+    &.bea-enquiries:before {
+        content: "\e940";
+    }
+    &.bea-find_us_listview:before {
+        content: "\e976";
+    }
+    &.bea-find_us_map_view:before {
+        content: "\e977";
+    }
+    &.bea-find_us_nav:before {
+        content: "\e978";
+    }
+    &.bea-find_us_nearby:before {
+        content: "\e979";
+    }
+    &.bea-find_us_phone:before {
+        content: "\e97a";
+    }
+    &.bea-find_us_safety_box:before {
+        content: "\e97b";
+    }
+    &.bea-find_us_wheelchair:before {
+        content: "\e97c";
+    }
+    &.bea-fx_alert_date:before {
+        content: "\e9a1";
+    }
+    &.bea-fx_alert_service_hr:before {
+        content: "\e9a2";
+    }
+    &.bea-gold:before {
+        content: "\e988";
+    }
+    &.bea-icalendar_search:before {
+        content: "\e9b0";
+    }
+    &.bea-ip2p_bin:before {
+        content: "\e99a";
+    }
+    &.bea-ip2p_cancel:before {
+        content: "\e99b";
+    }
+    &.bea-ip2p_collect:before {
+        content: "\e921";
+    }
+    &.bea-ip2p_dining:before {
+        content: "\e918";
+    }
+    &.bea-ip2p_facetoface:before {
+        content: "\e919";
+    }
+    &.bea-ip2p_frdlist:before {
+        content: "\e91a";
+    }
+    &.bea-ip2p_global:before {
+        content: "\e9b1";
+    }
+    &.bea-ip2p_iwishes:before {
+        content: "\e922";
+    }
+    &.bea-ip2p_make:before {
+        content: "\e923";
+    }
+    &.bea-ip2p_movies:before {
+        content: "\e91b";
+    }
+    &.bea-ip2p_others:before {
+        content: "\e91d";
+    }
+    &.bea-ip2p_request:before {
+        content: "\e924";
+    }
+    &.bea-ip2p_scan:before {
+        content: "\e91e";
+    }
+    &.bea-ip2p_shopping:before {
+        content: "\e91f";
+    }
+    &.bea-iplanner_after:before {
+        content: "\e941";
+    }
+    &.bea-iplanner_before:before {
+        content: "\e942";
+    }
+    &.bea-iplanner_bookmark:before {
+        content: "\e943";
+    }
+    &.bea-iplanner_checklist_bills:before {
+        content: "\e944";
+    }
+    &.bea-iplanner_checklist_car_rental:before {
+        content: "\e945";
+    }
+    &.bea-iplanner_checklist_cardlimit:before {
+        content: "\e946";
+    }
+    &.bea-iplanner_checklist_cash_in_hand:before {
+        content: "\e9ac";
+    }
+    &.bea-iplanner_checklist_exclusive_offer:before {
+        content: "\e9b2";
+    }
+    &.bea-iplanner_checklist_flight:before {
+        content: "\e947";
+    }
+    &.bea-iplanner_checklist_fx:before {
+        content: "\e948";
+    }
+    &.bea-iplanner_checklist_hotel:before {
+        content: "\e949";
+    }
+    &.bea-iplanner_checklist_hotel-copy:before {
+        content: "\e992";
+    }
+    &.bea-iplanner_checklist_insurance:before {
+        content: "\e94a";
+    }
+    &.bea-iplanner_checklist_ip2p_activate:before {
+        content: "\e94b";
+    }
+    &.bea-iplanner_checklist_lounge:before {
+        content: "\e94c";
+    }
+    &.bea-iplanner_checklist_overseas:before {
+        content: "\e94d";
+    }
+    &.bea-iplanner_checklist_plan_your_trip:before {
+        content: "\e9ad";
+    }
+    &.bea-iplanner_checklist_souvenir:before {
+        content: "\e9ae";
+    }
+    &.bea-iplanner_checklist_travel_spending:before {
+        content: "\e9af";
+    }
+    &.bea-iplanner_checklist_visa:before {
+        content: "\e94e";
+    }
+    &.bea-iplanner_checklist_wifiegg:before {
+        content: "\e94f";
+    }
+    &.bea-iplanner_datepicker:before {
+        content: "\e950";
+    }
+    &.bea-iplanner_detail:before {
+        content: "\e951";
+    }
+    &.bea-iplanner_during:before {
+        content: "\e952";
+    }
+    &.bea-iplanner_flight_date:before {
+        content: "\e953";
+    }
+    &.bea-iplanner_fx_rate:before {
+        content: "\e954";
+    }
+    &.bea-iplanner_itinerary:before {
+        content: "\e993";
+    }
+    &.bea-iplanner_login_fb:before {
+        content: "\e957";
+    }
+    &.bea-iplanner_login_otp:before {
+        content: "\e955";
+    }
+    &.bea-iplanner_login_phone:before {
+        content: "\e958";
+    }
+    &.bea-iplanner_notification:before {
+        content: "\e9aa";
+    }
+    &.bea-iplanner_overbudget:before {
+        content: "\e9a6";
+    }
+    &.bea-iplanner_pin_flag:before {
+        content: "\e9a9";
+    }
+    &.bea-iplanner_pin_map:before {
+        content: "\e994";
+    }
+    &.bea-iplanner_referral:before {
+        content: "\e959";
+    }
+    &.bea-iplanner_spending_amount:before {
+        content: "\e95a";
+    }
+    &.bea-iplanner_spending_books:before {
+        content: "\e95b";
+    }
+    &.bea-iplanner_spending_camera:before {
+        content: "\e95c";
+    }
+    &.bea-iplanner_spending_category:before {
+        content: "\e95d";
+    }
+    &.bea-iplanner_spending_clothes:before {
+        content: "\e95e";
+    }
+    &.bea-iplanner_spending_cosmetics:before {
+        content: "\e95f";
+    }
+    &.bea-iplanner_spending_dining:before {
+        content: "\e960";
+    }
+    &.bea-iplanner_spending_electronics:before {
+        content: "\e961";
+    }
+    &.bea-iplanner_spending_entertainment:before {
+        content: "\e965";
+    }
+    &.bea-iplanner_spending_exchange:before {
+        content: "\e962";
+    }
+    &.bea-iplanner_spending_jewellery:before {
+        content: "\e963";
+    }
+    &.bea-iplanner_spending_notification:before {
+        content: "\e964";
+    }
+    &.bea-iplanner_spending_others:before {
+        content: "\e9a7";
+    }
+    &.bea-iplanner_spending_souvenir:before {
+        content: "\e966";
+    }
+    &.bea-iplanner_spending_transportation:before {
+        content: "\e967";
+    }
+    &.bea-iplanner_spending_uploadimg:before {
+        content: "\e968";
+    }
+    &.bea-iplanner_splitcost:before {
+        content: "\e969";
+    }
+    &.bea-iplanner_star_active:before {
+        content: "\e9a8";
+    }
+    &.bea-iplanner_travel_dining:before {
+        content: "\e995";
+    }
+    &.bea-iplanner_travel_hotel:before {
+        content: "\e996";
+    }
+    &.bea-iplanner_travel_sightseeing:before {
+        content: "\e997";
+    }
+    &.bea-iplanner_travel_supermarket:before {
+        content: "\e998";
+    }
+    &.bea-iplanner_travelspending:before {
+        content: "\e96a";
+    }
+    &.bea-iplanner_viewmore:before {
+        content: "\e96b";
+    }
+    &.bea-location:before {
+        content: "\e926";
+    }
+    &.bea-login_backspace:before {
+        content: "\e990";
+    }
+    &.bea-login_identity_message:before {
+        content: "\e900";
+    }
+    &.bea-login_information:before {
+        content: "\e905";
+    }
+    &.bea-login_password:before {
+        content: "\e908";
+    }
+    &.bea-login_touchid:before {
+        content: "\e909";
+    }
+    &.bea-login_upload:before {
+        content: "\e90a";
+    }
+    &.bea-login_username:before {
+        content: "\e913";
+    }
+    &.bea-mb_bills:before {
+        content: "\e920";
+    }
+    &.bea-mb_bonus_gallery:before {
+        content: "\e925";
+    }
+    &.bea-mb_cardless_atm:before {
+        content: "\e9a0";
+    }
+    &.bea-mb_credit_card:before {
+        content: "\e92a";
+    }
+    &.bea-mb_fx:before {
+        content: "\e92b";
+    }
+    &.bea-mb_insurance:before {
+        content: "\e92c";
+    }
+    &.bea-mb_iplanner:before {
+        content: "\e92d";
+    }
+    &.bea-mb_overseas_atm:before {
+        content: "\e927";
+    }
+    &.bea-mb_transfer:before {
+        content: "\e92e";
+    }
+    &.bea-menu_agreement:before {
+        content: "\e93a";
+    }
+    &.bea-menu_collect_ip2p:before {
+        content: "\e92f";
+    }
+    &.bea-menu_corporate:before {
+        content: "\e93e";
+    }
+    &.bea-menu_faq:before {
+        content: "\e93b";
+    }
+    &.bea-menu_find_us:before {
+        content: "\e938";
+    }
+    &.bea-menu_investment:before {
+        content: "\e937";
+    }
+    &.bea-menu_lifestyle:before {
+        content: "\e930";
+    }
+    &.bea-menu_lifestyle_click:before {
+        content: "\e986";
+    }
+    &.bea-menu_lock:before {
+        content: "\e93d";
+    }
+    &.bea-menu_logout:before {
+        content: "\e96c";
+    }
+    &.bea-menu_message:before {
+        content: "\e93c";
+    }
+    &.bea-menu_mobile_banking:before {
+        content: "\e929";
+    }
+    &.bea-menu_my_wallet:before {
+        content: "\e932";
+    }
+    &.bea-menu_services_and_offers:before {
+        content: "\e931";
+    }
+    &.bea-menu_settings:before {
+        content: "\e939";
+    }
+    &.bea-note:before {
+        content: "\e916";
+    }
+    &.bea-rewrite:before {
+        content: "\e999";
+    }
+    &.bea-service_branch_location:before {
+        content: "\e97e";
+    }
+    &.bea-service_email:before {
+        content: "\e97f";
+    }
+    &.bea-service_fax:before {
+        content: "\e980";
+    }
+    &.bea-service_service_hour:before {
+        content: "\e99c";
+    }
+    &.bea-settings_profile_camera:before {
+        content: "\e987";
+    }
+    &.bea-settings_profile_edit:before {
+        content: "\e991";
+    }
+    &.bea-settings_social_media_fb:before {
+        content: "\e989";
+    }
+    &.bea-settings_social_media_gplus:before {
+        content: "\e98a";
+    }
+    &.bea-settings_social_media_ig:before {
+        content: "\e98b";
+    }
+    &.bea-settings_social_media_tt:before {
+        content: "\e98c";
+    }
+    &.bea-share:before {
+        content: "\e981";
+    }
+    &.bea-star:before {
+        content: "\e928";
+    }
+    &.bea-supremegold_button:before {
+        content: "\e9b3";
+    }
+    &.bea-tab_hot_offers:before {
+        content: "\e933";
+    }
+    &.bea-tab_investment:before {
+        content: "\e934";
+    }
+    &.bea-tab_ip2p:before {
+        content: "\e935";
+    }
+    &.bea-tab_my_banking:before {
+        content: "\e99e";
+    }
+    &.bea-travel_insurance_discount:before {
+        content: "\e99d";
+    }
+    &.bea-upload:before {
+        content: "\e912";
+    }
+
+}
