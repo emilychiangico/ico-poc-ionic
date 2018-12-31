@@ -17,12 +17,12 @@
     </ng-container>
 
     <!-- HoldingType - Percentage -->
-    <ng-container *ngIf="type == 'history'">
+    <ng-container *ngIf="type == 'assetHistory'">
         <ion-item class="itemList" *ngFor="let data of dataList">
             <legend-point [type]="data.type"></legend-point>
             <div class="title">{{ data.title }}</div>
             <div class="notIconRight" item-end>
-                {{ data.amount }} %
+                {{ data.percentage }} %
             </div>
         </ion-item>
     </ng-container>
@@ -58,6 +58,32 @@
     <ng-container *ngIf="type == 'navDetail'">
         <ng-container *ngFor="let data of dataList">
             <pb-expand-item type="nav" [data]="data"></pb-expand-item>
+        </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="type == 'navRecord'">
+        <ng-container *ngFor="let data of dataList">
+            <ion-list style="margin: 0;">
+                <ion-item role="text" class="nav-record border">
+                    <div bea-item-title class="nav">
+                        <legend-point legendType="" color="white"></legend-point>
+                        <div class="padding">Net Asset Value</div>
+                    </div>
+                    <div bea-item-amount>HKD {{ data.netAssetValue }}</div>
+                </ion-item>
+                <ion-item role="text" class="nav-record legendPadding">
+                    <div bea-item-title>Cash & Deposit</div>
+                    <div bea-item-amount>HKD {{ data.cashAndDeposit }}</div>
+                </ion-item>
+                <ion-item role="text" class="nav-record legendPadding">
+                    <div bea-item-title>Investment</div>
+                    <div bea-item-amount>HKD {{ data.investment }}</div>
+                </ion-item>
+                <ion-item role="text" class="nav-record legendPadding">
+                    <div bea-item-title>Loan</div>
+                    <div bea-item-amount>HKD {{ data.loan }}</div>
+                </ion-item>
+            </ion-list>
         </ng-container>
     </ng-container>
 

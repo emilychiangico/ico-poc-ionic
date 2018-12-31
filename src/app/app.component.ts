@@ -15,8 +15,10 @@ import { AreaChartPage } from '../pages/area-chart/area-chart';
 import { BarChartPage } from '../pages/testing-page/bar-chart/bar-chart';
 import { BarChart2Page } from '../pages/bar-chart-2/bar-chart-2';
 import { CcyDistributionPage } from '../pages/ccy-distribution/ccy-distribution';
+import { ListItemTestPage } from '../pages/testing-page/list-item-test/list-item-test';
 import { AssetAllocationDetailPage } from '../pages/asset-allocation-detail/asset-allocation-detail';
 import { NavDetailPage } from '../pages/nav-detail/nav-detail';
+import { PortfolioHistoryPage } from '../pages/portfolio-history/portfolio-history';
 
 @Component({
   templateUrl: 'app.html'
@@ -34,13 +36,14 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Portfolio Overview', component: ChartTest2Page },
+      { title: 'PortfolioHistoryPage', component: PortfolioHistoryPage},
       { title: 'Currency Distribution', component: CcyDistributionPage },
       { title: 'Performance', component: MixedChartPage },
-      { title: 'AssetAllocationDetailPage', component: AssetAllocationDetailPage},
-      { title: 'NavDetailPage', component: NavDetailPage},
+      //{ title: 'AssetAllocationDetailPage', component: AssetAllocationDetailPage},
+      //{ title: 'NavDetailPage', component: NavDetailPage},
       { title: 'Bar Chart', component: BarChart2Page },
       { title: 'Area Chart', component: AreaChartPage },
-      { title: 'List', component: ListPage },
+      { title: 'List', component: ListItemTestPage },
       //{ title: 'Home', component: HomePage },
       //{ title: 'Doughnut Chart.js', component: ChartPage },
       //{ title: 'Highcharts', component: HighchartsPage },

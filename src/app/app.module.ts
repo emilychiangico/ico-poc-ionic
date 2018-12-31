@@ -17,8 +17,10 @@ import { HighchartsPage } from '../pages/testing-page/highcharts/highcharts';
 import { C3ChartPage } from '../pages/testing-page/c3-chart/c3-chart';
 
 import { CcyDistributionPage } from '../pages/ccy-distribution/ccy-distribution';
+import { ListItemTestPage } from '../pages/testing-page/list-item-test/list-item-test';
 import { AssetAllocationDetailPage } from '../pages/asset-allocation-detail/asset-allocation-detail';
 import { NavDetailPage } from '../pages/nav-detail/nav-detail';
+import { PortfolioHistoryPage } from '../pages/portfolio-history/portfolio-history';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -46,8 +48,10 @@ import { ComponentsModule } from '../components-v2/components.module';
     CcyDistributionPage,
     PopupContent,
     ClickPopupComponent,
+    ListItemTestPage,
     AssetAllocationDetailPage,
-    NavDetailPage
+    NavDetailPage,
+    PortfolioHistoryPage
   ],
   imports: [
     BrowserModule,
@@ -73,8 +77,10 @@ import { ComponentsModule } from '../components-v2/components.module';
     CcyDistributionPage,
     PopupContent,
     ClickPopupComponent,
+    ListItemTestPage,
     AssetAllocationDetailPage,
-    NavDetailPage
+    NavDetailPage,
+    PortfolioHistoryPage
   ],
   providers: [
     StatusBar,

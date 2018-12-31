@@ -70,4 +70,59 @@ bea-list-item {
         }
     }
 
+    ion-item.nav-record {
+        padding-right: 15px;
+        padding-top: 0 !important;
+        border: 0 !important;
+        min-height: 0;
+
+        background-color: $list-item-background;
+        color: $text-color;
+
+        &.border {
+            border-bottom: 1px solid $text-color !important;
+        }
+
+        &.legendPadding {
+            padding-left: 46px;
+        }
+
+        & > .item-inner {
+            border: 0 !important;
+        }
+        
+        & > .item-inner > .input-wrapper {
+            
+            > ion-label {
+                @include flex-row($v: center);
+                white-space: normal;
+                margin: 10px 0 !important;
+                font-weight: normal;
+                height: 100%;
+                font-size: 14px;
+
+                [bea-item-title] {
+                    flex: 50% 0 0;
+                    font-weight: lighter;
+                    display: flex;
+
+                    &.nav {
+                        font-weight: normal;
+                    }
+
+                    & .padding {
+                        padding-left: 10px;
+                        margin: auto 0;
+                    }
+                }
+
+                [bea-item-amount] {
+                    flex: 50% 0 0;
+                    text-align: right;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
 }

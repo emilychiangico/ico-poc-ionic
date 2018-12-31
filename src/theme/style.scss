@@ -2,6 +2,8 @@ $text-color : rgb(223, 217, 217);
 
 $list-item-background : rgb(45, 50, 75);
 
+$button-color-blue : rgb(59, 94, 194);
+
 ion-navbar.header {
     > div.toolbar-background {
         background: transparent;
@@ -30,6 +32,26 @@ ion-navbar.header {
 
 div[listContact] {
     background: rgb(35, 39, 64);
-    //background: red;
     margin: 0px -16px -16px -16px;
+}
+
+.centerButton {
+    text-align: center;
+    padding-bottom: 16px;
+}
+
+.viewDetailButton {
+    width: 50%;
+    background-color: $button-color-blue !important;
+    color: $text-color !important;
+}
+
+.selectButton {
+    color: $text-color !important;
+    border-color: $text-color !important;
+
+    &.selected {
+        background: $button-color-blue;
+        border-color: $button-color-blue !important;
+    }
 }
