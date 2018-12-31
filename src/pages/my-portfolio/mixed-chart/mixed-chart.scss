@@ -2,6 +2,7 @@ page-mixed-chart {
 
     .legendList {
         display: table;
+        padding-bottom: 16px;
     }
 
     .legendItem {
@@ -16,10 +17,20 @@ page-mixed-chart {
     }
 
     button.benchmark {
-        color: $text-color;
-        border-color: $text-color;
         font-size: 12px;
         padding: 0 1.1em;
+    }
+
+    div[button-row].range {
+        display: block;
+        text-align: center;
+
+        button {
+            width: auto;
+            font-size: 12px;
+            padding: 0 1.1em;
+            margin: 0;
+        }
     }
 
 }

@@ -16,20 +16,36 @@
 
 <ion-content class="background" padding>
 
-  <button (click)="pastSixMonth()">Past 6 months</button>
-  <button (click)="thisYear()">2018</button>
+  <div amount-display>
+    <div class="title">AUM (HKD)</div>
+    <div class="amount">1,635,667,494.00</div>
+    <div class="note">Date and conversion rates as of 31 May 2018</div>
+  </div>
 
-  <div style="padding-top: 10px"></div>
+  <div button-row class="range">
+    <button ion-button outline [class.selected]="selectedRange == 'month'" (click)="pastSixMonth()">
+      Past 6 months
+    </button>
+    <button ion-button outline [class.selected]="selectedRange == 'year'" (click)="thisYear()">
+      2018
+    </button>
+  </div>
 
   <canvas #mixedChartCanvas></canvas>
 
-  <div style="padding-top: 10px"></div>
-
-  <button ion-button round outline class="benchmark" (click)="changeBenchmark(0)">Dow jones industrial Average</button>
-  <button ion-button round outline class="benchmark" (click)="changeBenchmark(1)">Hang Seng Index</button>
-  <button ion-button round outline class="benchmark" (click)="changeBenchmark(2)">HS China Enterprese Index</button>
-
-  <div style="padding-top: 10px"></div>
+  <div button-row style="padding-bottom: 0">
+    <button ion-button round outline class="benchmark" [class.selected]="selectedIndex == 0" (click)="changeBenchmark(0)">
+      Dow jones industrial Average
+    </button>
+    <button ion-button round outline class="benchmark" [class.selected]="selectedIndex == 1" (click)="changeBenchmark(1)">
+      Hang Seng Index
+    </button>
+  </div>
+  <div button-row style="padding-top: 0">
+    <button ion-button round outline class="benchmark" [class.selected]="selectedIndex == 2" (click)="changeBenchmark(2)">
+      HS China Enterprese Index
+    </button>
+  </div>
 
   <div class="legendList">
     <ng-container *ngFor="let legend of legendList">
@@ -39,8 +55,6 @@
       </div>
     </ng-container>
   </div>
-
-  <div style="padding-top: 10px"></div>
 
   <div listContact>
     <bea-list-item type="performance"

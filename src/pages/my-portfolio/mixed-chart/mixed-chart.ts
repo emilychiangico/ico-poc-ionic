@@ -66,6 +66,7 @@ export class MixedChartPage {
 	}
 
 	selectedIndex = 0;
+	selectedRange = "month";
 	selectedList = this.pastSixMonthData;
 
 	legendList : any[] = [];
@@ -194,8 +195,9 @@ export class MixedChartPage {
 	
 	pastSixMonth() {
 		this.selectedList = this.pastSixMonthData;
+		this.selectedRange = 'month';
 
-    this.mixedChart.data.labels = this.pastSixMonthData.label;
+    	this.mixedChart.data.labels = this.pastSixMonthData.label;
 		this.mixedChart.data.datasets[0].data = this.pastSixMonthData.benchmarkDataList[this.selectedIndex].benchmark;
 		this.mixedChart.data.datasets[1].data = this.pastSixMonthData.benchmarkDataList[this.selectedIndex].monthlyReturn;
 		this.mixedChart.data.datasets[2].data = this.pastSixMonthData.benchmarkDataList[this.selectedIndex].lastSixMonthReturn;
@@ -203,13 +205,14 @@ export class MixedChartPage {
 		this.mixedChart.options.scales.xAxes[0].ticks.fontSize = 12;
 		this.mixedChart.options.scales.yAxes[0].ticks.fontSize = 12;
 
-    this.mixedChart.update();
+    	this.mixedChart.update();
 	}
 
 	thisYear() {
 		this.selectedList = this.thisYearData;
+		this.selectedRange = 'year';
 
-    this.mixedChart.data.labels = this.thisYearData.label;
+    	this.mixedChart.data.labels = this.thisYearData.label;
 		this.mixedChart.data.datasets[0].data = this.thisYearData.benchmarkDataList[this.selectedIndex].benchmark;
 		this.mixedChart.data.datasets[1].data = this.thisYearData.benchmarkDataList[this.selectedIndex].monthlyReturn;
 		this.mixedChart.data.datasets[2].data = this.thisYearData.benchmarkDataList[this.selectedIndex].lastSixMonthReturn;
@@ -217,7 +220,7 @@ export class MixedChartPage {
 		this.mixedChart.options.scales.xAxes[0].ticks.fontSize = 10;
 		this.mixedChart.options.scales.yAxes[0].ticks.fontSize = 10;
 
-    this.mixedChart.update();
+    	this.mixedChart.update();
 	}
 
 	setLegend(themeColor) {
@@ -225,7 +228,7 @@ export class MixedChartPage {
 			{name:"Monthly Return", color: themeColor.mix.returnLine, type:""},
 			{name:"Last 6 Monthly Return", color: themeColor.mix.returnLine, type:"line"},
 			{name:"Benchmark", color: themeColor.mix.benchmarkLine, type:"line"},
-		]
+		];
 	}
 
 	changeBenchmark(index) {
@@ -235,7 +238,7 @@ export class MixedChartPage {
 		this.mixedChart.data.datasets[1].data = this.selectedList.benchmarkDataList[this.selectedIndex].monthlyReturn;
 		this.mixedChart.data.datasets[2].data = this.selectedList.benchmarkDataList[this.selectedIndex].lastSixMonthReturn;
 
-    this.mixedChart.update();
+    	this.mixedChart.update();
 	}
 
 }
