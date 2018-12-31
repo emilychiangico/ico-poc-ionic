@@ -1,11 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 
-import { GradientColorUtil, PortfolioHoldingType } from '../../providers-v2/util/gradient-color-util';
-import { ChartUtil } from '../../providers-v2/util/chart-util';
+import { GradientColorUtil, PortfolioHoldingType } from '../../../providers-v2/util/gradient-color-util';
+import { ChartUtil } from '../../../providers-v2/util/chart-util';
 
-import { AssetAllocationDetailPage } from '../asset-allocation-detail/asset-allocation-detail';
-import { NavDetailPage } from '../nav-detail/nav-detail';
+import { AssetAllocationDetailPage } from '../../asset-allocation-detail/asset-allocation-detail';
+import { NavDetailPage } from '../../nav-detail/nav-detail';
 /**
  * Generated class for the MixedChartPage page.
  *
@@ -110,7 +110,9 @@ export class PortfolioHistoryPage {
 
 	selectedTab = "asset";
 
-	constructor(public navCtrl: NavController, public navParams: NavParams) {
+	_rootNav;
+	constructor(private _appCtrl: App, public navCtrl: NavController, public navParams: NavParams) {
+		this._rootNav = this._appCtrl.getRootNav();
 	}
 
 	ionViewDidLoad() {
@@ -366,10 +368,14 @@ export class PortfolioHistoryPage {
 
 	viewDetail() {
 		if(this.selectedTab == "asset") {
-			this.navCtrl.push(AssetAllocationDetailPage);
+			this.push(AssetAllocationDetailPage);
 		} else {
-			this.navCtrl.push(NavDetailPage);
+			this.push(NavDetailPage);
 		}
 	}
+
+    push(page: any, params?: any): Promise<any> {
+        return this._rootNav.push(page, params);
+    }
 	
 }

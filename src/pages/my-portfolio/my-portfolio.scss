@@ -1,0 +1,17 @@
+page-my-portfolio {
+
+    ion-tabs {
+        .tabbar {
+            background: transparent !important;
+
+            .tab-button {
+                color: rgb(129, 132, 161) !important;
+
+                &[aria-selected=true] {
+                    color: $text-color !important;
+                }
+            }
+        }
+    }
+
+}

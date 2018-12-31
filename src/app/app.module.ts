@@ -12,15 +12,15 @@ import { ChartTest2Page } from '../pages/chart-test-2/chart-test-2';
 import { AreaChartPage } from '../pages/area-chart/area-chart';
 import { BarChartPage } from '../pages/testing-page/bar-chart/bar-chart';
 import { BarChart2Page } from '../pages/bar-chart-2/bar-chart-2';
-import { MixedChartPage } from '../pages/mixed-chart/mixed-chart';
+import { MixedChartPage } from '../pages/my-portfolio/mixed-chart/mixed-chart';
 import { HighchartsPage } from '../pages/testing-page/highcharts/highcharts';
 import { C3ChartPage } from '../pages/testing-page/c3-chart/c3-chart';
 
-import { CcyDistributionPage } from '../pages/ccy-distribution/ccy-distribution';
-import { ListItemTestPage } from '../pages/testing-page/list-item-test/list-item-test';
+import { CcyDistributionPage } from '../pages/my-portfolio/ccy-distribution/ccy-distribution';
 import { AssetAllocationDetailPage } from '../pages/asset-allocation-detail/asset-allocation-detail';
 import { NavDetailPage } from '../pages/nav-detail/nav-detail';
-import { PortfolioHistoryPage } from '../pages/portfolio-history/portfolio-history';
+import { PortfolioHistoryPage } from '../pages/my-portfolio/portfolio-history/portfolio-history';
+import { MyPortfolioPage } from '../pages/my-portfolio/my-portfolio';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -48,10 +48,10 @@ import { ComponentsModule } from '../components-v2/components.module';
     CcyDistributionPage,
     PopupContent,
     ClickPopupComponent,
-    ListItemTestPage,
     AssetAllocationDetailPage,
     NavDetailPage,
-    PortfolioHistoryPage
+    PortfolioHistoryPage,
+    MyPortfolioPage
   ],
   imports: [
     BrowserModule,
@@ -77,10 +77,10 @@ import { ComponentsModule } from '../components-v2/components.module';
     CcyDistributionPage,
     PopupContent,
     ClickPopupComponent,
-    ListItemTestPage,
     AssetAllocationDetailPage,
     NavDetailPage,
-    PortfolioHistoryPage
+    PortfolioHistoryPage,
+    MyPortfolioPage
   ],
   providers: [
     StatusBar,
