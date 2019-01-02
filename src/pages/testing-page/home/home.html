@@ -41,7 +41,7 @@
               <ion-label ngDefaultControl type="text" required name="testdropdown" #testdropdown="ngModel" [(ngModel)]="todo.testdropdown" >{{ todo.testdropdown }}</ion-label>
                 <ion-icon name="ios-arrow-forward" item-end></ion-icon>
           </button> -->
-          <click-popup ngDefaultControl type="text" required 
+          <!-- <click-popup ngDefaultControl type="text" required 
           [ngModelBinding]="testdropdown"
           name="testdropdown" #testdropdown="ngModel" [(ngModel)]="todo.testdropdown"
           buttonText="BUTTON"
@@ -49,7 +49,7 @@
           popupTitleText="POPUP TITLE"
           [dataList]="accList" dataListDisplayAttr="value" dataListValueAttr="text" 
           [callback]="testCallBack">
-      </click-popup>
+      </click-popup> -->
 
         </ion-list>
         <div *ngIf="testdropdown.invalid" class="alert alert-danger">

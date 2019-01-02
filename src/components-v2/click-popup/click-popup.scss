@@ -1,3 +1,52 @@
-.click-popup {
+click-popup {
 
+  // .label{
+  //   font-size: bea-font-size(38) !important;
+  // }
+
+  .buttonLabel {
+      color: bea-content-color(1, default, darker) !important; // #1a1a1a
+      font-weight: bold;
+
+      .bea-vip-theme-1  & {
+          color: bea-content-color(1, vip, darker) !important; // #ddc09a 
+      }
   }
+
+}
+
+.app-root.ios {
+  .list {
+    &.bea-list {
+      & > click-popup > .item {
+        & > .item-inner > .input-wrapper {
+          align-items: center;
+          display: flex;
+
+          & > .label {
+            white-space: normal;
+            font-size:bea-font-size(38);
+            margin-top: 1.6rem;
+            margin-bottom: 1.6rem;
+
+            .sub-label {
+              font-size: 0.95em;
+            }
+          }
+        }
+
+        &.item-label-stacked {
+          *[item-content] {
+            align-self: stretch;
+          }
+        }
+
+        &.item-checkbox {
+          & > .checkbox.tnc-checkbox {
+            position: relative;
+          }
+        }
+      }
+    }
+  }
+}

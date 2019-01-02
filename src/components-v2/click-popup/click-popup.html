@@ -8,9 +8,10 @@
 </button> -->
 <!-- value="{{ buttonValue }}" -->
 
-<button ion-item (click)="popup()">
-    <ion-label>{{ buttonLabel }}</ion-label>
+<button *ngIf="type && type == 'pbType'" ion-button round type="button" class="templateBtn" (click)="tranTemplatePopup()">
     <ion-label ngDefaultControl type="text" >
-    {{ buttonText }}
+        <!-- {{ displayText }} -->
+        <div [innerHtml]="displayText"></div>
     </ion-label>
+    <ion-icon attr.aria-label="{{voiceOverText}}" name="ios-arrow-down" item-end></ion-icon>
 </button>

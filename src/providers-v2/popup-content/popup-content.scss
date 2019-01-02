@@ -1,4 +1,4 @@
-.popup-content {
+.popup-content-v2 {
   @media (min-height: 500px) {
     ion-backdrop {
       opacity: 0.3 !important;
@@ -58,6 +58,13 @@
       background-color: color($colors, light);
     }
 
+    ion-list-header {
+      background-color: #fff !important;
+      ion-label {
+        text-transform: none;
+      }
+    }
+
     .ion-backdrop {
       opacity: 0.3 !important;
       display: block;
@@ -71,4 +78,40 @@
   }
 
 
+
+  ion-scroll {
+    white-space: nowrap;
+    height: 80vh;
+
+    .scroll-content{
+      // contain: content;
+      // position: relative;
+      margin: 0px;
+      padding: 0px;
+      button {
+        padding-left: 0px;
+        .input-wrapper {
+          padding-left: 16px;
+        }
+      }
+    }
   }
+
+  .popup-content-scroll {
+    min-height: 20vh;
+    max-height: 65vh; 
+    overflow-y: auto;
+    button{
+      padding-left: 0px;
+      .item-inner{
+        padding-left: 16px;
+      }
+    }
+  }
+
+  button.item {
+    ion-label.label {
+      white-space: normal;
+    }
+  }
+}

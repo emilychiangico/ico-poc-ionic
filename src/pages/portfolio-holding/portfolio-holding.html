@@ -11,6 +11,34 @@
         </button>
     <ion-title>Portfolio Holdings</ion-title>
   </ion-navbar>
+  <div header-content>
+
+    <click-popup ngDefaultControl class="bea-select" type="pbType"
+      [ngModelBinding]="holdingType" 
+      name="holdingType" #holdingType="ngModel" [(ngModel)]="selectedType"
+      buttonText="Please Select"
+      popupTitleText="Please Select"
+      [dataList]="holdingTypeList" dataListDisplayAttr="name" dataListValueAttr="id" 
+      (onSelect)="typePopupCallback($event[0])">
+    </click-popup>
+
+    <div class="title">Total Amount</div>
+    <div class="value"><span class="ccy">HKD</span> 11,770,124.00</div>
+    
+    <ion-grid role="list" class="twoColCenter">
+        <ion-row>
+            <ion-col role="listitem" col-6 col-sm-4>
+                <div class="title">AUM Proportion</div>
+                <div class="value">25.34%</div>
+            </ion-col>
+            <ion-col role="listitem" class="line" col-6 col-sm-4 line>
+                <div class="title">Holding</div>
+                <div class="value">12</div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+  </div>
+
 </ion-header>
 
 

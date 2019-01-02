@@ -19,9 +19,34 @@ import { HoldingListPage }from './holding-list/holding-list';
 export class PortfolioHoldingPage {
 
 	tab1Root = HoldingListPage;
-	tab2Root = HoldingListPage;
+  tab2Root = HoldingListPage;
+
+  selectedType = 0;
+  
+  holdingTypeList = [
+    {
+      id: 0,
+      name: "Saving & Current"
+    },
+    {
+      id: 1,
+      name: "Time Deposit"
+    },
+    {
+      id: 2,
+      name: "Linked Deposit"
+    },
+    {
+      id: 3,
+      name: "Stock"
+    }
+  ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
+
+  typePopupCallback() {
+    
   }
 
   

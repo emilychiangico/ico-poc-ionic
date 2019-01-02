@@ -1,5 +1,45 @@
 page-portfolio-holding {
 
+    ion-header {
+        div[header-content] {
+            min-height: 100px;
+            padding: 16px;
+            color: $text-color;
+            text-align: center;
+
+            click-popup {
+                button {
+                    background-color: rgb(45, 52, 75) !important;
+                    margin-bottom: 16px;
+                }
+            }
+
+            .title {
+                font-weight: 100;
+                font-size: 18px;
+            }
+
+            .value {
+                font-size: 30px;
+
+                .ccy {
+                    height: 100%;
+                    font-size: 15px;
+                }
+            }
+
+            .twoColCenter {
+                font-size: 20px;
+                padding-top: 16px;
+                                
+                .line {
+                    border-left-width: 2px !important; 
+                    border-left-style: solid;
+                }
+            }
+        }
+    }
+
     ion-tabs {
         .tabbar {
             background: transparent !important;
