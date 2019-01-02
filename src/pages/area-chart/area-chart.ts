@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { GradientColorUtil, PortfolioHoldingType } from '../../providers-v2/util/gradient-color-util';
+import { ChartUtil } from '../../providers-v2/util/chart-util';
 
 /**
  * Generated class for the AreaChartPage page.
@@ -60,7 +61,7 @@ export class AreaChartPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AreaChartPage');
-    this.drawSelectedArea();
+    ChartUtil.initChartForSelectedArea();
     this.createAreaChart();
     this.createAreaChart2();
   }
@@ -96,109 +97,6 @@ export class AreaChartPage {
     this.areaChart.update();
   }
 
-  drawSelectedArea() {
-    // The original draw function for the line chart. This will be applied after we have drawn our highlight range (as a rectangle behind the line chart).
-    var originalLineDraw = Chart.controllers.line.prototype.draw;
-    // Extend the line chart, in order to override the draw function.
-    Chart.helpers.extend(Chart.controllers.line.prototype, {
-      draw : function() {
-        var chart = this.chart;
-        // Get the object that determines the region to highlight.
-        var yHighlightRange = chart.config.data.yHighlightRange;
-
-        var ctx = chart.chart.ctx;
-        var xaxis = chart.scales['x-axis-0'];
-        var yaxis = chart.scales['y-axis-0'];
-
-        // If the object exists.
-        if (yHighlightRange !== undefined) {
-
-          var yRangeBegin = yHighlightRange.begin;
-          var yRangeEnd = yHighlightRange.end;
-
-          var yRangeBeginPixel = yaxis.getPixelForValue(yRangeBegin);
-          var yRangeEndPixel = yaxis.getPixelForValue(yRangeEnd);
-
-          ctx.save();
-
-          // The fill style of the rectangle we are about to fill.
-          ctx.fillStyle = 'rgba(0, 255, 0, 0.3)';
-          // Fill the rectangle that represents the highlight region. The parameters are the closest-to-starting-point pixel's x-coordinate,
-          // the closest-to-starting-point pixel's y-coordinate, the width of the rectangle in pixels, and the height of the rectangle in pixels, respectively.
-          ctx.fillRect(xaxis.left, Math.min(yRangeBeginPixel, yRangeEndPixel), xaxis.right - xaxis.left, Math.max(yRangeBeginPixel, yRangeEndPixel) - Math.min(yRangeBeginPixel, yRangeEndPixel));
-
-          ctx.restore();
-        }
-
-        var xHighlightRange = chart.config.data.xHighlightRange;
-
-        // If the object exists.
-        if (xHighlightRange !== undefined) {
-
-          var xRangeBegin = xHighlightRange.begin;
-          var xRangeEnd = xHighlightRange.end;
-
-          var xRangeBeginPixel = xaxis.getPixelForTick(xRangeBegin);
-          var xRangeEndPixel = xaxis.getPixelForTick(xRangeEnd);
-
-          // console.log('xRangeBeginPixel = ' + xRangeBeginPixel);
-          // console.log('xRangeEndPixel = ' + xRangeEndPixel);
-          // console.log('yaxis.top = ' + yaxis.top);
-          // console.log('yaxis.bottom = ' + yaxis.bottom);
-
-          ctx.save();
-          ctx.fillStyle = 'rgba(230, 230, 230, 0.01)';
-          ctx.fillRect(
-            Math.min(xRangeBeginPixel, xRangeEndPixel), 
-            yaxis.top, 
-            Math.max(xRangeBeginPixel, xRangeEndPixel) - Math.min(xRangeBeginPixel, xRangeEndPixel),
-            yaxis.bottom - yaxis.top
-          );
-          ctx.restore();
-
-        }
-
-        // Apply the original draw function for the line chart.
-        originalLineDraw.apply(this, arguments);
-      }
-    });
-  }
-
-  openTip(oChart,datasetIndex,pointIndex){
-    console.log("called openTip");
-    if(oChart.tooltip._active == undefined)
-       oChart.tooltip._active = []
-    var activeElements = oChart.tooltip._active;
-    var requestedElem = oChart.getDatasetMeta(datasetIndex).data[pointIndex];
-    for(var i = 0; i < activeElements.length; i++) {
-        if(requestedElem._index == activeElements[i]._index)  
-           return;
-    }
-    activeElements.push(requestedElem);
-    console.log(activeElements);
-    oChart.tooltip._active = activeElements;
-    oChart.tooltip.update(true);
-    oChart.draw();
- }
- 
-  closeTip(oChart,datasetIndex,pointIndex){
-    console.log("called closeTip");
-    var activeElements = oChart.tooltip._active;
-    console.log(activeElements);
-    if(activeElements == undefined || activeElements.length == 0)
-      return;
-    var requestedElem = oChart.getDatasetMeta(datasetIndex).data[pointIndex];
-    for(var i = 0; i < activeElements.length; i++) {
-        if(requestedElem._index == activeElements[i]._index)  {
-           activeElements.splice(i, 1);
-           break;
-        }
-    }
-    oChart.tooltip._active = activeElements;
-    oChart.tooltip.update(true);
-    oChart.draw();
- }
-
   createAreaChart() {
 
     var areaChartCanvasEl = this.areaChartCanvas.nativeElement;
@@ -208,210 +106,117 @@ export class AreaChartPage {
 
     const backgroundColors = GradientColorUtil.getAreaGradientColor(ctx, this.holdingTypeList, areaChartCanvasEl.width, areaChartCanvasEl.height);
 
-    this.areaChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: this.xData,
-        // This, if it exists at all, defines the highlight region.
-        // yHighlightRange: {
-        //   begin: 6.5,
-        //   end: 12.5
-        // },
-        xHighlightRange: {
-          begin: this.selectedMonthIndex,
-          end: this.selectedMonthIndex + 1
-        },
-        datasets: [{
-          label: "UntimeDeposit",
-          fill: true,
-
-          backgroundColor: backgroundColors[0],
-          pointRadius: 0,
-          borderWidth: 0.01,
-          borderColor: backgroundColors[0],
-
-          borderCapStyle: 'butt',
-          data: this.savingAndCurrent,
-
-        }, {
-          label: "Available for Existing",
-          fill: true,
-          backgroundColor: backgroundColors[1],
-          pointRadius: 0,
-          borderWidth: 0.01,
-          borderColor: backgroundColors[1],
-          borderCapStyle: 'butt',
-          data: this.timeDeposit,
-        }, {
-          label: "Available",
-          fill: true,
-          backgroundColor: backgroundColors[2],
-          pointRadius: 0,
-          borderWidth: 0.01,
-          borderColor: backgroundColors[2],
-          borderCapStyle: 'butt',
-          data: this.unitTrust,
-        }, {
-          label: "Logged In",
-          fill: true,
-          backgroundColor: backgroundColors[3],
-          pointRadius: 0,
-          borderWidth: 0.01,
-          borderColor: backgroundColors[3],
-          borderCapStyle: 'butt',
-          data: this.structProd,
-        },
-        {
-          label: "Logged In",
-          fill: true,
-          backgroundColor: backgroundColors[4],
-          pointRadius: 0,
-          borderWidth: 0.01,
-          borderColor: backgroundColors[4],
-          borderCapStyle: 'butt',
-          data: this.bondsNoteCert,
-        },
-        {
-          label: "Logged In",
-          fill: true,
-          backgroundColor: backgroundColors[5],
-          pointRadius: 0,
-          borderWidth: 0.01,
-          borderColor: backgroundColors[5],
-          borderCapStyle: 'butt',
-          data: this.stock,
-        }]
+    let chartData = {
+      labels: this.xData,
+      // This, if it exists at all, defines the highlight region.
+      // yHighlightRange: {
+      //   begin: 6.5,
+      //   end: 12.5
+      // },
+      xHighlightRange: {
+        begin: this.selectedMonthIndex,
+        end: this.selectedMonthIndex + 1
       },
-      options: {
-        responsive: true,
-        aspectRatio: 1.3,
-        spanGaps: false,
-        elements: {
-          line: {
-            tension: 0.000001
-          }
-        },
-        scales: {
-          xAxes: [{
-            beforeUpdate: (scaleInstance) => {
-              console.log(">>>>>>> beforeBuildTicks");
-              console.log(scaleInstance);
-              /*
-              let newFontColors = [];
-              xData.forEach((element, index) => {
-                console.log("index = " + index);
-                console.log("element = " + element);
-                if (index == this.selectedMonthIndex) {
-                  newFontColors.push("#ffffff");
-                } else {
-                  newFontColors.push("#d9d9d9");
-                }
-              });
-              scaleInstance.options.ticks.fontColor = newFontColors;
-              scaleInstance.options.ticks.major.fontColor = newFontColors;
-              scaleInstance.options.ticks.minor.fontColor = newFontColors;
-              console.log(scaleInstance.options.ticks);
-              */
-            },
-            ticks: {
-              labelOffset: 30,
-              fontFunction: (tickIndex) => {
-                //console.log("fontFunction tickIndex = " + tickIndex);
-                //console.log("fontFunction selectedMonthIndex = " + this.selectedMonthIndex);
-                if (tickIndex == this.selectedMonthIndex) {
-                 //console.log("******* should be bold****")
-                    return 'bold 12px sans-serif';
-                } else {
-                    //console.log("******* should be normal****")
-                    return '200 12px sans-serif"';
-                }
-              },
-              padding: 5,
-              fontSize: 12, 
-              fontFamily: "sans-serif", 
-              fontColor: '#FFFFFF', 
-              fontStyle: '200'
-            },
-            gridLines: {
-              //drawOnChartArea: true,
-              display: true,
-              color: "#3b486d",
-              //style: '100',
-              drawBorder: true,
-              //drawOnChartArea: false,
-              drawTicks: false,
-            }
-          }],
-          yAxes: [{
-            
-            stacked: true, // Can't just just `stacked: true` like the docs say
-            ticks: {
-              callback: (label, index, labels) => {
-                return label+'mn';
-              },
-              padding: 5,
-              fontSize: 12, 
-              fontFamily: "sans-serif", 
-              fontColor: '#FFFFFF', 
-              fontStyle: '200',
-              stepSize: 20,
-              min: 0,
-              max: 80
-            },
-            gridLines: {
-              //drawOnChartArea: true,
-              display: true,
-              color: "#3b486d",
-              //drawOnChartArea: false,
-              drawTicks: false,
-            }
-          }]
-        },
-        animation: {
-          duration: 750,
-          onComplete: () => {
-            console.log(">>>>>>>>>>>>>>>> onComplete");
-            console.log(this.areaChart);
-            //this.selectMonth();
-          }
-        },
-        legend: {
-            display: false,
-            position: 'bottom',
-            labels: {
-                fontColor: 'rgb(255, 99, 132)'
-            }
-        },
-        onClick: (chartEvent, item) => {
-          console.log("onClick");
-          console.log(chartEvent);
-          console.log(item);
+      datasets: [{
+        label: "UntimeDeposit",
+        fill: true,
 
-          var xAxis = this.areaChart.scales['x-axis-0'];
-          console.log(xAxis);
+        backgroundColor: backgroundColors[0],
+        pointRadius: 0,
+        borderWidth: 0.01,
+        borderColor: backgroundColors[0],
 
-          // If mouse is over the legend, change cursor style to pointer, else don't show it
-          var x = chartEvent.offsetX - 30;
-          var y = chartEvent.offsetY;
-      
-          if (chartEvent.type === 'click' &&
-            x <= xAxis.right && x >= xAxis.left 
-            /** && y <= xAxis.bottom && y >= xAxis.top **/
-           ) {
-            // category scale returns index here for some reason
-            var index = xAxis.getValueForPixel(x);
-            this.selectedMonthIndex = index;
-            this.selectedMonthLabel = this.areaChart.data.labels[index].join();
-            this.selectMonth(this.areaChart, this.selectedMonthIndex);
-            //document.getElementById('tick').innerHTML = chartInstance.data.labels[index];
-          // var element = this.getElementAtEvent(e);
-          // if (element.length) {
-          //    console.log(element[0])
-          // }
-          }
-        }
+        borderCapStyle: 'butt',
+        data: this.savingAndCurrent,
+
+      }, {
+        label: "Available for Existing",
+        fill: true,
+        backgroundColor: backgroundColors[1],
+        pointRadius: 0,
+        borderWidth: 0.01,
+        borderColor: backgroundColors[1],
+        borderCapStyle: 'butt',
+        data: this.timeDeposit,
+      }, {
+        label: "Available",
+        fill: true,
+        backgroundColor: backgroundColors[2],
+        pointRadius: 0,
+        borderWidth: 0.01,
+        borderColor: backgroundColors[2],
+        borderCapStyle: 'butt',
+        data: this.unitTrust,
+      }, {
+        label: "Logged In",
+        fill: true,
+        backgroundColor: backgroundColors[3],
+        pointRadius: 0,
+        borderWidth: 0.01,
+        borderColor: backgroundColors[3],
+        borderCapStyle: 'butt',
+        data: this.structProd,
       },
-    });
+      {
+        label: "Logged In",
+        fill: true,
+        backgroundColor: backgroundColors[4],
+        pointRadius: 0,
+        borderWidth: 0.01,
+        borderColor: backgroundColors[4],
+        borderCapStyle: 'butt',
+        data: this.bondsNoteCert,
+      },
+      {
+        label: "Logged In",
+        fill: true,
+        backgroundColor: backgroundColors[5],
+        pointRadius: 0,
+        borderWidth: 0.01,
+        borderColor: backgroundColors[5],
+        borderCapStyle: 'butt',
+        data: this.stock,
+      }]
+    };
+
+    let clickCallback = (chartEvent, item) => {
+      console.log("onClick");
+      console.log(chartEvent);
+      console.log(item);
+
+      var xAxis = this.areaChart.scales['x-axis-0'];
+      console.log(xAxis);
+
+      // If mouse is over the legend, change cursor style to pointer, else don't show it
+      var x = chartEvent.offsetX - 30;
+      var y = chartEvent.offsetY;
+  
+      if (chartEvent.type === 'click' &&
+        x <= xAxis.right-30 && x >= xAxis.left-30
+        /** && y <= xAxis.bottom && y >= xAxis.top **/
+       ) {
+        // category scale returns index here for some reason
+        var index = xAxis.getValueForPixel(x);
+        this.selectedMonthIndex = index;
+        this.selectedMonthLabel = this.areaChart.data.labels[index].join();
+        this.selectMonth(this.areaChart, this.selectedMonthIndex);
+      }
+    };
+
+    let fontFunction = (tickIndex) => {
+      //console.log("fontFunction tickIndex = " + tickIndex);
+      //console.log("fontFunction selectedMonthIndex = " + this.selectedMonthIndex);
+      if (tickIndex == this.selectedMonthIndex) {
+       //console.log("******* should be bold****")
+          return 'bold 12px sans-serif';
+      } else {
+          //console.log("******* should be normal****")
+          return '200 12px sans-serif';
+      }
+    };
+
+
+    this.areaChart = ChartUtil.createAreaChart(this.areaChartCanvas, chartData, clickCallback, fontFunction, null);
 
     // update color by char size
     let color = GradientColorUtil.getAreaGradientColor(ctx, this.holdingTypeList, this.areaChart.width, this.areaChart.height);
@@ -427,251 +232,150 @@ export class AreaChartPage {
   createAreaChart2() {
 
     var areaChartCanvasEl = this.areaChartCanvas2.nativeElement;
-    console.log("areaChartCanvasEl.width = " + areaChartCanvasEl.width);
+    console.log("areaChartCanvasEl.width = " + areaChartCanvasEl.width);;
     console.log("areaChartCanvasEl.height = " + areaChartCanvasEl.height);
     var ctx = areaChartCanvasEl.getContext("2d");
 
     const backgroundColors = GradientColorUtil.getAreaGradientColor(ctx, this.holdingTypeList, areaChartCanvasEl.width, areaChartCanvasEl.height);
 
-    this.areaChart2 = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: this.xData,
-        // This, if it exists at all, defines the highlight region.
-        // yHighlightRange: {
-        //   begin: 6.5,
-        //   end: 12.5
-        // },
-        xHighlightRange: {
-          begin: this.selectedMonthIndex2,
-          end: this.selectedMonthIndex2 + 1
-        },
-        datasets: [{
-          label: "UntimeDeposit",
-          fill: true,
-
-          backgroundColor: backgroundColors[0],
-          pointRadius: 0,
-          borderWidth: 0.01,
-          borderColor: backgroundColors[0],
-
-          borderCapStyle: 'butt',
-          data: this.savingAndCurrent,
-
-        }]
+    let chartData = {
+      labels: this.xData,
+      xHighlightRange: {
+        begin: this.selectedMonthIndex2,
+        end: this.selectedMonthIndex2 + 1
       },
-      options: {
-        responsive: true,
-        aspectRatio: 1.3,
-        spanGaps: false,
-        elements: {
-          line: {
-            tension: 0.000001
-          }
-        },
-        scales: {
-          xAxes: [{
-            beforeUpdate: (scaleInstance) => {
-              console.log(">>>>>>> beforeBuildTicks");
-              console.log(scaleInstance);
-              /*
-              let newFontColors = [];
-              xData.forEach((element, index) => {
-                console.log("index = " + index);
-                console.log("element = " + element);
-                if (index == this.selectedMonthIndex) {
-                  newFontColors.push("#ffffff");
-                } else {
-                  newFontColors.push("#d9d9d9");
-                }
-              });
-              scaleInstance.options.ticks.fontColor = newFontColors;
-              scaleInstance.options.ticks.major.fontColor = newFontColors;
-              scaleInstance.options.ticks.minor.fontColor = newFontColors;
-              console.log(scaleInstance.options.ticks);
-              */
-            },
-            ticks: {
-              labelOffset: 30,
-              fontFunction: (tickIndex) => {
-                //console.log("fontFunction tickIndex = " + tickIndex);
-                //console.log("fontFunction selectedMonthIndex = " + this.selectedMonthIndex);
-                if (tickIndex == this.selectedMonthIndex2) {
-                    //console.log("******* should be bold****");
-                    return 'bold 12px sans-serif';
-                } else {
-                    //console.log("******* should be normal****");
-                    return '200 12px sans-serif';
-                }
-              },
-              padding: 5,
-              fontSize: 12, 
-              fontFamily: "sans-serif", 
-              fontColor: '#FFFFFF', 
-              fontStyle: '200'
-            },
-            gridLines: {
-              //drawOnChartArea: true,
-              display: true,
-              color: "#3b486d",
-              //style: '100',
-              drawBorder: true,
-              //drawOnChartArea: false,
-              drawTicks: false,
-            }
-          }],
-          yAxes: [{
-            
-            stacked: true, // Can't just just `stacked: true` like the docs say
-            ticks: {
-              callback: (label, index, labels) => {
-                return label+'mn';
-              },
-              padding: 5,
-              fontSize: 12, 
-              fontFamily: "sans-serif", 
-              fontColor: '#FFFFFF', 
-              fontStyle: '200',
-              stepSize: 20,
-              min: 0,
-              max: 80
-            },
-            gridLines: {
-              //drawOnChartArea: true,
-              display: true,
-              color: "#3b486d",
-              //drawOnChartArea: false,
-              drawTicks: false,
-            }
-          }]
-        },
-        animation: {
-          duration: 750,
-          onComplete: () => {
-            console.log(">>>>>>>>>>>>>>>> onComplete");
-            console.log(this.areaChart2);
-            //this.selectMonth();
-          }
-        },
-        legend: {
-            display: false,
-            position: 'bottom',
-            labels: {
-                fontColor: 'rgb(255, 99, 132)'
-            }
-        },
-        tooltips: {
-          enabled: false,
-          //mode: 'index',
-          //intersect: true,
-          custom: (tooltipModel) => {
-            console.log("tooltips custom function");
-            console.log(tooltipModel);
-            console.log(tooltipModel.dataPoints[0].yLabel);
+      datasets: [{
+        label: "UntimeDeposit",
+        fill: true,
+        backgroundColor: backgroundColors[0],
+        pointRadius: 0,
+        borderWidth: 0.01,
+        borderColor: backgroundColors[0],
+        borderCapStyle: 'butt',
+        data: this.savingAndCurrent,
+      }]
+    };
 
-            // Tooltip Element
-            var tooltipEl = document.getElementById('chartjs-tooltip');
+    let clickCallback = (chartEvent, item) => {
+      console.log("onClick");
+      console.log(chartEvent);
+      console.log(item);
 
-            // Create element on first render
-            if (!tooltipEl) {
-                tooltipEl = document.createElement('div');
-                tooltipEl.id = 'chartjs-tooltip';
-                //tooltipEl.innerHTML = "<table></table>";
-                this.areaChartContainer.nativeElement.appendChild(tooltipEl);
-                //document.body.appendChild(tooltipEl);
-            }
+      var xAxis = this.areaChart2.scales['x-axis-0'];
+      console.log(xAxis);
 
-            // Hide if no tooltip
-            if (tooltipModel.opacity === 0) {
-                tooltipEl.style.opacity = "0";
-                return;
-            }
+      // If mouse is over the legend, change cursor style to pointer, else don't show it
+      var x = chartEvent.offsetX - 30;
+      var y = chartEvent.offsetY;
+  
+      if (chartEvent.type === 'click' &&
+        x <= xAxis.right-30 && x >= xAxis.left-30
+        /** && y <= xAxis.bottom && y >= xAxis.top **/
+       ) {
+        // category scale returns index here for some reason
+        var index = xAxis.getValueForPixel(x);
+        this.selectedMonthIndex2 = index;
+        this.selectedMonthLabel2 = this.areaChart2.data.labels[index].join();
+        this.selectMonth(this.areaChart2, this.selectedMonthIndex2);
 
-            // Set caret Position
-            tooltipEl.classList.remove('above', 'below', 'no-transform');
-            if (tooltipModel.yAlign) {
-                tooltipEl.classList.add(tooltipModel.yAlign);
-            } else {
-                tooltipEl.classList.add('no-transform');
-            }
+        ChartUtil.openTip(this.areaChart2, 0, this.selectedMonthIndex2);
+      } else {
+        ChartUtil.closeTip(this.areaChart2, 0, this.selectedMonthIndex2);
+      }
+    };
 
-            function getBody(bodyItem) {
-                return bodyItem.lines;
-            }
+    let fontFunction = (tickIndex) => {
+      //console.log("fontFunction tickIndex = " + tickIndex);
+      //console.log("fontFunction selectedMonthIndex = " + this.selectedMonthIndex);
+      if (tickIndex == this.selectedMonthIndex2) {
+          //console.log("******* should be bold****");
+          return 'bold 12px sans-serif';
+      } else {
+          //console.log("******* should be normal****");
+          return '200 12px sans-serif';
+      }
+    };
 
-            // Set Text
-            if (tooltipModel.body) {
-                var titleLines = tooltipModel.title || [];
-                var bodyLines = tooltipModel.body.map(getBody);
+    let customTooltip = (tooltipModel) => {
+      console.log("tooltips custom function");
+      console.log(tooltipModel);
+      console.log(tooltipModel.dataPoints[0].yLabel);
 
-                var innerHtml = '';
+      // Tooltip Element
+      var tooltipEl = document.getElementById('chartjs-tooltip');
 
-                innerHtml += '<div style="position: relative;">';
+      // Create element on first render
+      if (!tooltipEl) {
+          tooltipEl = document.createElement('div');
+          tooltipEl.id = 'chartjs-tooltip';
+          //tooltipEl.innerHTML = "<table></table>";
+          this.areaChartContainer.nativeElement.appendChild(tooltipEl);
+          //document.body.appendChild(tooltipEl);
+      }
 
-                innerHtml += '<div style="margin-left: -30px; background: blue; padding: 3px 20px; border-radius: 10px; color: #FFF; font-weight: bold;">';
-                innerHtml += "HKD " + tooltipModel.dataPoints[0].yLabel;
-                innerHtml += '</div>';
+      // Hide if no tooltip
+      if (tooltipModel.opacity === 0) {
+          tooltipEl.style.opacity = "0";
+          return;
+      }
 
-                innerHtml += '<div style="border-left: 3px dashed #FFFFFF; width: 1%; height: 40px;"></div>';
+      // Set caret Position
+      tooltipEl.classList.remove('above', 'below', 'no-transform');
+      if (tooltipModel.yAlign) {
+          tooltipEl.classList.add(tooltipModel.yAlign);
+      } else {
+          tooltipEl.classList.add('no-transform');
+      }
 
-                innerHtml += '<div style="margin-left: -5px; background: white; border-radius: 7px; width: 14px; height: 14px; padding: 2px;">';
-                innerHtml += '<div style="background: blue; border-radius: 5px; width: 10px; height: 10px;">';                
-                innerHtml += '</div>';
-                innerHtml += '</div>';
+      function getBody(bodyItem) {
+          return bodyItem.lines;
+      }
 
-                innerHtml += '</div>';
+      // Set Text
+      if (tooltipModel.body) {
+          var titleLines = tooltipModel.title || [];
+          var bodyLines = tooltipModel.body.map(getBody);
 
-                tooltipEl.innerHTML = innerHtml;
-            }
+          var innerHtml = '';
 
-            // `this` will be the overall tooltip
-            var position = this.areaChart2.canvas.getBoundingClientRect();
+          innerHtml += '<div style="position: relative;">';
 
-            let scrollLeft = this.content.getContentDimensions().scrollLeft;
-            let scrollTop = this.content.getContentDimensions().scrollTop;
+          innerHtml += '<div style="margin-left: -30px; background: blue; padding: 3px 20px; border-radius: 10px; color: #FFF; font-weight: bold;">';
+          innerHtml += "HKD " + tooltipModel.dataPoints[0].yLabel;
+          innerHtml += '</div>';
 
-            // Display, position, and set styles for font
-            tooltipEl.style.opacity = "1";
-            tooltipEl.style.position = 'absolute';
-            tooltipEl.style.left = position.left + scrollLeft + tooltipModel.caretX + 'px';
-            tooltipEl.style.top = position.top + scrollTop + tooltipModel.caretY - 120 + 'px';
-            tooltipEl.style.fontFamily = tooltipModel._bodyFontFamily;
-            tooltipEl.style.fontSize = tooltipModel.bodyFontSize + 'px';
-            tooltipEl.style.fontStyle = tooltipModel._bodyFontStyle;
-            tooltipEl.style.padding = tooltipModel.yPadding + 'px ' + tooltipModel.xPadding + 'px';
-            tooltipEl.style.pointerEvents = 'none';
-            tooltipEl.style.zIndex = '100';
-          },
-        },
-        onClick: (chartEvent, item) => {
-          console.log("onClick");
-          console.log(chartEvent);
-          console.log(item);
+          innerHtml += '<div style="border-left: 3px dashed #FFFFFF; width: 1%; height: 40px;"></div>';
 
-          var xAxis = this.areaChart2.scales['x-axis-0'];
-          console.log(xAxis);
+          innerHtml += '<div style="margin-left: -5px; background: white; border-radius: 7px; width: 14px; height: 14px; padding: 2px;">';
+          innerHtml += '<div style="background: blue; border-radius: 5px; width: 10px; height: 10px;">';                
+          innerHtml += '</div>';
+          innerHtml += '</div>';
 
-          // If mouse is over the legend, change cursor style to pointer, else don't show it
-          var x = chartEvent.offsetX - 30;
-          var y = chartEvent.offsetY;
-      
-          if (chartEvent.type === 'click' &&
-            x <= xAxis.right-30 && x >= xAxis.left-30
-            /** && y <= xAxis.bottom && y >= xAxis.top **/
-           ) {
-            // category scale returns index here for some reason
-            var index = xAxis.getValueForPixel(x);
-            this.selectedMonthIndex2 = index;
-            this.selectedMonthLabel2 = this.areaChart2.data.labels[index].join();
-            this.selectMonth(this.areaChart2, this.selectedMonthIndex2);
+          innerHtml += '</div>';
 
-            this.openTip(this.areaChart2, 0, this.selectedMonthIndex2);
-          } else {
-            this.closeTip(this.areaChart2, 0, this.selectedMonthIndex2);
-          }
-        }
-      },
-    });
+          tooltipEl.innerHTML = innerHtml;
+      }
+
+      // `this` will be the overall tooltip
+      var position = this.areaChart2.canvas.getBoundingClientRect();
+
+      let scrollLeft = this.content.getContentDimensions().scrollLeft;
+      let scrollTop = this.content.getContentDimensions().scrollTop;
+
+      // Display, position, and set styles for font
+      tooltipEl.style.opacity = "1";
+      tooltipEl.style.position = 'absolute';
+      tooltipEl.style.left = position.left + scrollLeft + tooltipModel.caretX + 'px';
+      tooltipEl.style.top = position.top + scrollTop + tooltipModel.caretY - 120 + 'px';
+      tooltipEl.style.fontFamily = tooltipModel._bodyFontFamily;
+      tooltipEl.style.fontSize = tooltipModel.bodyFontSize + 'px';
+      tooltipEl.style.fontStyle = tooltipModel._bodyFontStyle;
+      tooltipEl.style.padding = tooltipModel.yPadding + 'px ' + tooltipModel.xPadding + 'px';
+      tooltipEl.style.pointerEvents = 'none';
+      tooltipEl.style.zIndex = '100';
+    };
+
+    this.areaChart2 = ChartUtil.createAreaChart(this.areaChartCanvas2, chartData, clickCallback, fontFunction, customTooltip);
 
     // update color by char size
     let color = GradientColorUtil.getAreaGradientColor(ctx, this.holdingTypeList, this.areaChart2.width, this.areaChart2.height);
