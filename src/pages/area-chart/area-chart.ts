@@ -203,20 +203,28 @@ export class AreaChartPage {
       }
     };
 
-    let fontFunction = (tickIndex) => {
-      //console.log("fontFunction tickIndex = " + tickIndex);
-      //console.log("fontFunction selectedMonthIndex = " + this.selectedMonthIndex);
-      if (tickIndex == this.selectedMonthIndex) {
-       //console.log("******* should be bold****")
-          return 'bold 12px sans-serif';
-      } else {
-          //console.log("******* should be normal****")
-          return '200 12px sans-serif';
-      }
-    };
+		let xTick = {
+			labelOffset: 30,
+			fontFunction: (tickIndex) => {
+				// console.log("fontFunction tickIndex = " + tickIndex);
+				// console.log("fontFunction selectedMonthIndex = " + this.selectedMonthIndex);
+				if (tickIndex == this.selectedMonthIndex) {
+				 //console.log("******* should be bold****")
+					return 'bold 12px sans-serif';
+				} else {
+					//console.log("******* should be normal****")
+					return '200 12px sans-serif';
+				}
+			},
+			padding: 5,
+			fontSize: 12, 
+			fontFamily: "sans-serif", 
+			fontColor: '#FFFFFF', 
+			fontStyle: '200'
+		};
 
 
-    this.areaChart = ChartUtil.createAreaChart(this.areaChartCanvas, chartData, clickCallback, fontFunction, null);
+    this.areaChart = ChartUtil.createAreaChart(this.areaChartCanvas, chartData, xTick, {}, clickCallback);
 
     // update color by char size
     let color = GradientColorUtil.getAreaGradientColor(ctx, this.holdingTypeList, this.areaChart.width, this.areaChart.height);
@@ -284,98 +292,110 @@ export class AreaChartPage {
       }
     };
 
-    let fontFunction = (tickIndex) => {
-      //console.log("fontFunction tickIndex = " + tickIndex);
-      //console.log("fontFunction selectedMonthIndex = " + this.selectedMonthIndex);
-      if (tickIndex == this.selectedMonthIndex2) {
-          //console.log("******* should be bold****");
-          return 'bold 12px sans-serif';
-      } else {
-          //console.log("******* should be normal****");
-          return '200 12px sans-serif';
+		let xTick = {
+			labelOffset: 30,
+			fontFunction: (tickIndex) => {
+				// console.log("fontFunction tickIndex = " + tickIndex);
+				// console.log("fontFunction selectedMonthIndex = " + this.selectedMonthIndex);
+				if (tickIndex == this.selectedMonthIndex) {
+				 //console.log("******* should be bold****")
+					return 'bold 12px sans-serif';
+				} else {
+					//console.log("******* should be normal****")
+					return '200 12px sans-serif';
+				}
+			},
+			padding: 5,
+			fontSize: 12, 
+			fontFamily: "sans-serif", 
+			fontColor: '#FFFFFF', 
+			fontStyle: '200'
+		};
+
+    let customTooltip = {
+      enabled: false,
+      custom: (tooltipModel) => {
+        console.log("tooltips custom function");
+        console.log(tooltipModel);
+        console.log(tooltipModel.dataPoints[0].yLabel);
+  
+        // Tooltip Element
+        var tooltipEl = document.getElementById('chartjs-tooltip');
+  
+        // Create element on first render
+        if (!tooltipEl) {
+            tooltipEl = document.createElement('div');
+            tooltipEl.id = 'chartjs-tooltip';
+            //tooltipEl.innerHTML = "<table></table>";
+            this.areaChartContainer.nativeElement.appendChild(tooltipEl);
+            //document.body.appendChild(tooltipEl);
+        }
+  
+        // Hide if no tooltip
+        if (tooltipModel.opacity === 0) {
+            tooltipEl.style.opacity = "0";
+            return;
+        }
+  
+        // Set caret Position
+        tooltipEl.classList.remove('above', 'below', 'no-transform');
+        if (tooltipModel.yAlign) {
+            tooltipEl.classList.add(tooltipModel.yAlign);
+        } else {
+            tooltipEl.classList.add('no-transform');
+        }
+  
+        function getBody(bodyItem) {
+            return bodyItem.lines;
+        }
+  
+        // Set Text
+        if (tooltipModel.body) {
+            var titleLines = tooltipModel.title || [];
+            var bodyLines = tooltipModel.body.map(getBody);
+  
+            var innerHtml = '';
+  
+            innerHtml += '<div style="position: relative;">';
+  
+            innerHtml += '<div style="margin-left: -30px; background: blue; padding: 3px 20px; border-radius: 10px; color: #FFF; font-weight: bold;">';
+            innerHtml += "HKD " + tooltipModel.dataPoints[0].yLabel;
+            innerHtml += '</div>';
+  
+            innerHtml += '<div style="border-left: 3px dashed #FFFFFF; width: 1%; height: 40px;"></div>';
+  
+            innerHtml += '<div style="margin-left: -5px; background: white; border-radius: 7px; width: 14px; height: 14px; padding: 2px;">';
+            innerHtml += '<div style="background: blue; border-radius: 5px; width: 10px; height: 10px;">';                
+            innerHtml += '</div>';
+            innerHtml += '</div>';
+  
+            innerHtml += '</div>';
+  
+            tooltipEl.innerHTML = innerHtml;
+        }
+  
+        // `this` will be the overall tooltip
+        var position = this.areaChart2.canvas.getBoundingClientRect();
+  
+        let scrollLeft = this.content.getContentDimensions().scrollLeft;
+        let scrollTop = this.content.getContentDimensions().scrollTop;
+  
+        // Display, position, and set styles for font
+        tooltipEl.style.opacity = "1";
+        tooltipEl.style.position = 'absolute';
+        tooltipEl.style.left = position.left + scrollLeft + tooltipModel.caretX + 'px';
+        tooltipEl.style.top = position.top + scrollTop + tooltipModel.caretY - 120 + 'px';
+        tooltipEl.style.fontFamily = tooltipModel._bodyFontFamily;
+        tooltipEl.style.fontSize = tooltipModel.bodyFontSize + 'px';
+        tooltipEl.style.fontStyle = tooltipModel._bodyFontStyle;
+        tooltipEl.style.padding = tooltipModel.yPadding + 'px ' + tooltipModel.xPadding + 'px';
+        tooltipEl.style.pointerEvents = 'none';
+        tooltipEl.style.zIndex = '100';
       }
     };
+    
 
-    let customTooltip = (tooltipModel) => {
-      console.log("tooltips custom function");
-      console.log(tooltipModel);
-      console.log(tooltipModel.dataPoints[0].yLabel);
-
-      // Tooltip Element
-      var tooltipEl = document.getElementById('chartjs-tooltip');
-
-      // Create element on first render
-      if (!tooltipEl) {
-          tooltipEl = document.createElement('div');
-          tooltipEl.id = 'chartjs-tooltip';
-          //tooltipEl.innerHTML = "<table></table>";
-          this.areaChartContainer.nativeElement.appendChild(tooltipEl);
-          //document.body.appendChild(tooltipEl);
-      }
-
-      // Hide if no tooltip
-      if (tooltipModel.opacity === 0) {
-          tooltipEl.style.opacity = "0";
-          return;
-      }
-
-      // Set caret Position
-      tooltipEl.classList.remove('above', 'below', 'no-transform');
-      if (tooltipModel.yAlign) {
-          tooltipEl.classList.add(tooltipModel.yAlign);
-      } else {
-          tooltipEl.classList.add('no-transform');
-      }
-
-      function getBody(bodyItem) {
-          return bodyItem.lines;
-      }
-
-      // Set Text
-      if (tooltipModel.body) {
-          var titleLines = tooltipModel.title || [];
-          var bodyLines = tooltipModel.body.map(getBody);
-
-          var innerHtml = '';
-
-          innerHtml += '<div style="position: relative;">';
-
-          innerHtml += '<div style="margin-left: -30px; background: blue; padding: 3px 20px; border-radius: 10px; color: #FFF; font-weight: bold;">';
-          innerHtml += "HKD " + tooltipModel.dataPoints[0].yLabel;
-          innerHtml += '</div>';
-
-          innerHtml += '<div style="border-left: 3px dashed #FFFFFF; width: 1%; height: 40px;"></div>';
-
-          innerHtml += '<div style="margin-left: -5px; background: white; border-radius: 7px; width: 14px; height: 14px; padding: 2px;">';
-          innerHtml += '<div style="background: blue; border-radius: 5px; width: 10px; height: 10px;">';                
-          innerHtml += '</div>';
-          innerHtml += '</div>';
-
-          innerHtml += '</div>';
-
-          tooltipEl.innerHTML = innerHtml;
-      }
-
-      // `this` will be the overall tooltip
-      var position = this.areaChart2.canvas.getBoundingClientRect();
-
-      let scrollLeft = this.content.getContentDimensions().scrollLeft;
-      let scrollTop = this.content.getContentDimensions().scrollTop;
-
-      // Display, position, and set styles for font
-      tooltipEl.style.opacity = "1";
-      tooltipEl.style.position = 'absolute';
-      tooltipEl.style.left = position.left + scrollLeft + tooltipModel.caretX + 'px';
-      tooltipEl.style.top = position.top + scrollTop + tooltipModel.caretY - 120 + 'px';
-      tooltipEl.style.fontFamily = tooltipModel._bodyFontFamily;
-      tooltipEl.style.fontSize = tooltipModel.bodyFontSize + 'px';
-      tooltipEl.style.fontStyle = tooltipModel._bodyFontStyle;
-      tooltipEl.style.padding = tooltipModel.yPadding + 'px ' + tooltipModel.xPadding + 'px';
-      tooltipEl.style.pointerEvents = 'none';
-      tooltipEl.style.zIndex = '100';
-    };
-
-    this.areaChart2 = ChartUtil.createAreaChart(this.areaChartCanvas2, chartData, clickCallback, fontFunction, customTooltip);
+    this.areaChart2 = ChartUtil.createAreaChart(this.areaChartCanvas2, chartData, xTick, customTooltip, clickCallback);
 
     // update color by char size
     let color = GradientColorUtil.getAreaGradientColor(ctx, this.holdingTypeList, this.areaChart2.width, this.areaChart2.height);

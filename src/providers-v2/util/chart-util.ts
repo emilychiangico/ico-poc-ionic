@@ -142,7 +142,7 @@ export class ChartUtil {
 		}
 	}
 
-	static createAreaChart(canvasObj, chartData, clickCallback, fontCallback, tooltipCallback) {
+	static createAreaChart(canvasObj, chartData, xTick, tooltips, clickCallback) {
 		return new Chart(canvasObj.nativeElement, {
 			type: 'line',
 			data: chartData,
@@ -177,19 +177,7 @@ export class ChartUtil {
 					console.log(scaleInstance.options.ticks);
 					*/
 				  },
-				  ticks: {
-					labelOffset: 30,
-					fontFunction: (tickIndex) => {
-						if (fontCallback) {
-							return fontCallback(tickIndex);
-						}
-					},
-					padding: 5,
-					fontSize: 12, 
-					fontFamily: "sans-serif", 
-					fontColor: '#FFFFFF', 
-					fontStyle: '200'
-				  },
+				  ticks: xTick,
 				  gridLines: {
 					//drawOnChartArea: true,
 					display: true,
@@ -240,14 +228,7 @@ export class ChartUtil {
 					  fontColor: 'rgb(255, 99, 132)'
 				  }
 			  },
-			  tooltips: {
-				enabled: false,
-				custom: (tooltipModel) => {
-					if (tooltipCallback) {
-						tooltipCallback(tooltipModel);
-					}
-				}
-			  },
+			  tooltips: tooltips,
 			  onClick: (evt, item) => {
 				if (clickCallback) {
 					clickCallback(evt, item);
