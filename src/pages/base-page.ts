@@ -1,4 +1,4 @@
-import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App, Events } from 'ionic-angular';
 import {
     AfterContentChecked,
     AfterContentInit,
@@ -14,14 +14,19 @@ export class BasePage {
 
     _rootNav;
 
-    private _appCtrl: App
+    private _appCtrl: App;
+
+    _event: Events;
     
 	constructor(injector: Injector) {
         this._appCtrl = injector.get(App);
+        this._event = injector.get(Events);
+
 		this._rootNav = this._appCtrl.getRootNav();
 	}
 
     push(page: any, params?: any): Promise<any> {
         return this._rootNav.push(page, params);
     }
+
 }

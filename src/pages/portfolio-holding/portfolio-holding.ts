@@ -1,9 +1,11 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, Injector } from '@angular/core';
+import { IonicPage } from 'ionic-angular';
 
 import { HoldingListPage }from './holding-list/holding-list';
 import { AssetHistoryPage } from './asset-history/asset-history';
+import { BasePage } from '../base-page';
 
+import { PortfolioHoldingType } from '../../providers-v2/util/gradient-color-util';
 
 /**
  * Generated class for the MixedChartPage page.
@@ -17,7 +19,7 @@ import { AssetHistoryPage } from './asset-history/asset-history';
   selector: 'page-portfolio-holding',
   templateUrl: 'portfolio-holding.html',
 })
-export class PortfolioHoldingPage {
+export class PortfolioHoldingPage extends BasePage{
 
 	tab1Root = HoldingListPage;
   tab2Root = AssetHistoryPage;
@@ -26,29 +28,32 @@ export class PortfolioHoldingPage {
   
   holdingTypeList = [
     {
-      id: 0,
+      id: PortfolioHoldingType.SavingAndCurrent,
       name: "Saving & Current"
     },
     {
-      id: 1,
+      id: PortfolioHoldingType.TimeDeposit,
       name: "Time Deposit"
     },
     {
-      id: 2,
+      id: PortfolioHoldingType.LinkedDeposit,
       name: "Linked Deposit"
     },
     {
-      id: 3,
+      id: PortfolioHoldingType.Stock,
       name: "Stock"
     }
   ];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(injector: Injector) {
+    super(injector);
   }
 
-  typePopupCallback() {
-    
+  typePopupCallback(selectedItem) {
+    console.log(selectedItem);
+    if(selectedItem) {
+      this._event.publish('change-type', selectedItem);
+    }
   }
 
-  
 }

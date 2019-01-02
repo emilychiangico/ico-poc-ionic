@@ -4,19 +4,6 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<!-- <ion-header>
-  <ion-navbar class="header">
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
-    <ion-title>My Protfolio</ion-title>
-  </ion-navbar>
-  <div header-content>
-    NAV by Month
-  </div>
-</ion-header> -->
-
-
 <ion-content class="background" padding>
 
     <div listContact>
@@ -24,7 +11,7 @@
             <ng-container *ngFor="let data of dataList">
 
                 <!-------------------- savingAndCurrent Start -------------------->
-                <ion-list saving-and-current *ngIf="data.type == 'savingAndCurrent'">
+                <ion-list saving-and-current *ngIf="selectedType == 'savingAndCurrent'">
                     <ion-item role="text" class="title">
                         <div>Account Type</div>
                     </ion-item>
@@ -45,7 +32,7 @@
                 <!-------------------- savingAndCurrent End -------------------->
 
                 <!-------------------- timeDeposit Start -------------------->
-                <ion-list time-deposit *ngIf="data.type == 'timeDeposit'">
+                <ion-list time-deposit *ngIf="selectedType == 'timeDeposit'">
                     <ion-item role="text">
                         <div>{{ data.accountType }} {{ data.referNo }}</div>
                     </ion-item>
@@ -76,7 +63,7 @@
                 <!-------------------- timeDeposit End -------------------->
 
                 <!-------------------- linkedDeposit Start -------------------->
-                <ion-list linked-deposit *ngIf="data.type == 'linkedDeposit'">
+                <ion-list linked-deposit *ngIf="selectedType == 'linkedDeposit'">
                     <ion-item role="text">
                         <div>{{ data.accountType }}</div>
                     </ion-item>
@@ -112,7 +99,7 @@
                 <!-------------------- linkedDeposit End -------------------->
 
                 <!-------------------- stock Start -------------------->
-                <ion-list stock *ngIf="data.type == 'stock'">
+                <ion-list stock *ngIf="selectedType == 'stock'">
                     <ion-item role="text">
                         <div>{{ data.company }}</div>
                     </ion-item>
