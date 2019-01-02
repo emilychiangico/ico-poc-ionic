@@ -21,6 +21,7 @@ import { PortfolioHistoryPage } from '../pages/my-portfolio/portfolio-history/po
 import { MyPortfolioPage } from '../pages/my-portfolio/my-portfolio';
 import { HoldingListPage } from '../pages/portfolio-holding/holding-list/holding-list';
 import { PortfolioHoldingPage } from '../pages/portfolio-holding/portfolio-holding';
+import { AssetHistoryPage } from '../pages/portfolio-holding/asset-history/asset-history';
 
 @Component({
   templateUrl: 'app.html'

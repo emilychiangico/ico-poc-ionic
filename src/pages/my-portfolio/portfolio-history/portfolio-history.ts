@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Injector } from '@angular/core';
 import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 
 import { GradientColorUtil, PortfolioHoldingType } from '../../../providers-v2/util/gradient-color-util';
@@ -6,6 +6,8 @@ import { ChartUtil } from '../../../providers-v2/util/chart-util';
 
 import { AssetAllocationDetailPage } from '../../asset-allocation-detail/asset-allocation-detail';
 import { NavDetailPage } from '../../nav-detail/nav-detail';
+
+import { BasePage } from '../../base-page';
 /**
  * Generated class for the MixedChartPage page.
  *
@@ -18,7 +20,7 @@ import { NavDetailPage } from '../../nav-detail/nav-detail';
   selector: 'page-portfolio-history',
   templateUrl: 'portfolio-history.html',
 })
-export class PortfolioHistoryPage {
+export class PortfolioHistoryPage extends BasePage {
 
 	@ViewChild('barChartCanvas') barChartCanvas;
 
@@ -110,9 +112,8 @@ export class PortfolioHistoryPage {
 
 	selectedTab = "asset";
 
-	_rootNav;
-	constructor(private _appCtrl: App, public navCtrl: NavController, public navParams: NavParams) {
-		this._rootNav = this._appCtrl.getRootNav();
+	constructor(injector: Injector) {
+		super(injector);
 	}
 
 	ionViewDidLoad() {
@@ -373,9 +374,5 @@ export class PortfolioHistoryPage {
 			this.push(NavDetailPage);
 		}
 	}
-
-    push(page: any, params?: any): Promise<any> {
-        return this._rootNav.push(page, params);
-    }
 	
 }

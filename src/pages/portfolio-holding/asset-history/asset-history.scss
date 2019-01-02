@@ -1,0 +1,44 @@
+page-asset-history {
+
+    div[listContact] {
+        margin: -16px -16px -16px -16px;
+        text-align: center;
+    }
+
+    .title {
+        padding: 16px 0;
+        font-size: 20px;
+    }
+
+    ion-item.itemList {
+        background: transparent;
+        color: $text-color;
+        border: 0 !important;
+        margin: 10px 0;
+        font-size: 14px;
+
+        > .item-inner {
+            border: 0 !important;
+            vertical-align: middle;
+
+            ion-label {
+                display: contents;
+            }
+        }
+
+        .title {
+            padding-left: 10px;
+            white-space: normal;
+        }
+
+        .amount {
+            display: contents;
+            font-weight: bold;
+
+            > ion-icon {
+                padding-left: 10px;
+            }
+        }
+    }
+
+}

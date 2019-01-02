@@ -23,6 +23,7 @@ import { PortfolioHistoryPage } from '../pages/my-portfolio/portfolio-history/po
 import { MyPortfolioPage } from '../pages/my-portfolio/my-portfolio';
 import { HoldingListPage } from '../pages/portfolio-holding/holding-list/holding-list';
 import { PortfolioHoldingPage } from '../pages/portfolio-holding/portfolio-holding';
+import { AssetHistoryPage } from '../pages/portfolio-holding/asset-history/asset-history';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -55,7 +56,8 @@ import { ComponentsModule } from '../components-v2/components.module';
     PortfolioHistoryPage,
     MyPortfolioPage,
     HoldingListPage,
-    PortfolioHoldingPage
+    PortfolioHoldingPage,
+    AssetHistoryPage
   ],
   imports: [
     BrowserModule,
@@ -86,7 +88,8 @@ import { ComponentsModule } from '../components-v2/components.module';
     PortfolioHistoryPage,
     MyPortfolioPage,
     HoldingListPage,
-    PortfolioHoldingPage
+    PortfolioHoldingPage,
+    AssetHistoryPage
   ],
   providers: [
     StatusBar,

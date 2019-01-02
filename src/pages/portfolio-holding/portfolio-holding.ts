@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { HoldingListPage }from './holding-list/holding-list';
+import { AssetHistoryPage } from './asset-history/asset-history';
 
 
 /**
@@ -19,7 +20,7 @@ import { HoldingListPage }from './holding-list/holding-list';
 export class PortfolioHoldingPage {
 
 	tab1Root = HoldingListPage;
-  tab2Root = HoldingListPage;
+  tab2Root = AssetHistoryPage;
 
   selectedType = 0;
   
