@@ -163,7 +163,7 @@ export class PortfolioHistoryPage {
 					return 'bold 12px sans-serif';
 				} else {
 					//console.log("******* should be normal****")
-					return '200 12px sans-serif"';
+					return '200 12px sans-serif';
 				}
 			},
 			fontColor: themeColor.gridLine,
