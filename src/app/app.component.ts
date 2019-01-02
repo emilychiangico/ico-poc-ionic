@@ -19,6 +19,8 @@ import { AssetAllocationDetailPage } from '../pages/asset-allocation-detail/asse
 import { NavDetailPage } from '../pages/nav-detail/nav-detail';
 import { PortfolioHistoryPage } from '../pages/my-portfolio/portfolio-history/portfolio-history';
 import { MyPortfolioPage } from '../pages/my-portfolio/my-portfolio';
+import { HoldingListPage } from '../pages/portfolio-holding/holding-list/holding-list';
+import { PortfolioHoldingPage } from '../pages/portfolio-holding/portfolio-holding';
 
 @Component({
   templateUrl: 'app.html'
@@ -37,6 +39,7 @@ export class MyApp {
     this.pages = [
       { title: 'Portfolio Overview', component: ChartTest2Page },
       { title: 'My Portfolio', component: MyPortfolioPage},
+      { title: 'Portfolio Holding', component: PortfolioHoldingPage},
       //{ title: 'PortfolioHistoryPage', component: PortfolioHistoryPage},
       //{ title: 'Currency Distribution', component: CcyDistributionPage },
       //{ title: 'Performance', component: MixedChartPage },

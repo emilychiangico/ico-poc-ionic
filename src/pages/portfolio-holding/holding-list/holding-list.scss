@@ -1,0 +1,125 @@
+page-holding-list {
+
+    $border-color : rgba(223, 217, 217, 0.2);
+
+    div[listContact] {
+        margin: -16px -16px -16px -16px;
+    }
+
+    ion-header {
+        div[header-content] {
+            min-height: 100px;
+            padding: 16px;
+            font-size: 30px;
+            color: $text-color;
+        }
+    }
+
+    @mixin base-style {
+        margin-bottom: 16px;
+        background-color: $list-item-background;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        hr {
+            border-top: 1px solid $border-color !important;
+            margin: 5px 0 10px 0;
+        }
+
+        ion-item {
+            background-color: transparent;
+            color: $text-color;
+            border: 0 !important;
+            min-height: 0;
+            font-weight: bolder;
+            padding-bottom: 5px;
+            font-size: 14px;
+
+            &:first-child {
+                padding-top: 10px !important;
+            }
+
+            &:last-child {
+                padding-bottom: 10px !important;
+            }
+
+            &.title {
+                @include label-weight;
+                padding-bottom: 5px;
+                padding-top: 5px;
+            }
+
+            & > .item-inner {
+                border: 0 !important;
+            }
+
+            & > .item-inner > .input-wrapper {
+                > ion-label {
+                    @include flex-row($v: center);
+                    margin: 0;
+
+                    [item-ccy] {
+                        flex: 20%;
+                    }
+                    [item-principal] {
+                        flex: 40%;
+                    }
+                    [item-principal-hkd] {
+                        flex: 40%;
+                    }
+                }
+            }
+
+        }
+    }
+
+    @mixin label-weight {
+        font-weight: 50;
+        color: rgba(223, 217, 217, 0.6);
+    }
+
+    ion-list[saving-and-current] {
+        @include base-style;
+    }
+
+    ion-list[time-deposit], ion-list[stock] {
+        @include base-style;
+        ion-item {
+            & > .item-inner > .input-wrapper {
+                > ion-label {
+
+                    [item-title] {
+                        flex: 40%;
+                        @include label-weight;
+                    }
+
+                    [item-value] {
+                        flex: 60%;
+                    }
+                }
+            }
+        }
+    }
+
+    ion-list[linked-deposit] {
+        @include base-style;
+        ion-item {
+            & > .item-inner > .input-wrapper {
+                > ion-label {
+
+                    [item-title] {
+                        flex: 50%;
+                        @include label-weight;
+                    }
+
+                    [item-value] {
+                        flex: 50%;
+                    }
+                }
+            }
+        }
+    }
+
+}

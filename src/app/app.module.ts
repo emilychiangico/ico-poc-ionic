@@ -21,6 +21,8 @@ import { AssetAllocationDetailPage } from '../pages/asset-allocation-detail/asse
 import { NavDetailPage } from '../pages/nav-detail/nav-detail';
 import { PortfolioHistoryPage } from '../pages/my-portfolio/portfolio-history/portfolio-history';
 import { MyPortfolioPage } from '../pages/my-portfolio/my-portfolio';
+import { HoldingListPage } from '../pages/portfolio-holding/holding-list/holding-list';
+import { PortfolioHoldingPage } from '../pages/portfolio-holding/portfolio-holding';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -51,7 +53,9 @@ import { ComponentsModule } from '../components-v2/components.module';
     AssetAllocationDetailPage,
     NavDetailPage,
     PortfolioHistoryPage,
-    MyPortfolioPage
+    MyPortfolioPage,
+    HoldingListPage,
+    PortfolioHoldingPage
   ],
   imports: [
     BrowserModule,
@@ -80,7 +84,9 @@ import { ComponentsModule } from '../components-v2/components.module';
     AssetAllocationDetailPage,
     NavDetailPage,
     PortfolioHistoryPage,
-    MyPortfolioPage
+    MyPortfolioPage,
+    HoldingListPage,
+    PortfolioHoldingPage
   ],
   providers: [
     StatusBar,

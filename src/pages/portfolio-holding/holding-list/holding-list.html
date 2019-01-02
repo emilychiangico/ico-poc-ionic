@@ -1,0 +1,149 @@
+<!--
+  Generated template for the MixedChartPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- <ion-header>
+  <ion-navbar class="header">
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title>My Protfolio</ion-title>
+  </ion-navbar>
+  <div header-content>
+    NAV by Month
+  </div>
+</ion-header> -->
+
+
+<ion-content class="background" padding>
+
+    <div listContact>
+        <ion-list pb-list>
+            <ng-container *ngFor="let data of dataList">
+
+                <!-------------------- savingAndCurrent Start -------------------->
+                <ion-list saving-and-current *ngIf="data.type == 'savingAndCurrent'">
+                    <ion-item role="text" class="title">
+                        <div>Account Type</div>
+                    </ion-item>
+                    <ion-item role="text">
+                        <div>{{ data.accountType }}</div>
+                    </ion-item>
+                    <ion-item role="text" class="title">
+                        <div item-ccy>CCY</div>
+                        <div item-principal>Principal</div>
+                        <div item-principal-hkd>Principal (in HKD)</div>
+                    </ion-item>
+                    <ion-item role="text">
+                        <div item-ccy>{{ data.ccy }}</div>
+                        <div item-principal>{{ data.principal }}</div>
+                        <div item-principal-hkd>{{ data.principalInHKD }}</div>
+                    </ion-item>
+                </ion-list>
+                <!-------------------- savingAndCurrent End -------------------->
+
+                <!-------------------- timeDeposit Start -------------------->
+                <ion-list time-deposit *ngIf="data.type == 'timeDeposit'">
+                    <ion-item role="text">
+                        <div>{{ data.accountType }} {{ data.referNo }}</div>
+                    </ion-item>
+                    <ion-item role="text" class="title">
+                        <div item-ccy>CCY</div>
+                        <div item-principal>Principal</div>
+                        <div item-principal-hkd>Principal (in HKD)</div>
+                    </ion-item>
+                    <ion-item role="text">
+                        <div item-ccy>{{ data.ccy }}</div>
+                        <div item-principal>{{ data.principal }}</div>
+                        <div item-principal-hkd>{{ data.principalInHKD }}</div>
+                    </ion-item>
+                    <hr/>
+                    <ion-item role="text">
+                        <div item-title>Effective Date</div>
+                        <div item-value>{{ data.effectiveDate }}</div>
+                    </ion-item>
+                    <ion-item role="text">
+                        <div item-title>Due Date</div>
+                        <div item-value>{{ data.dueDate }}</div>
+                    </ion-item>
+                    <ion-item role="text">
+                        <div item-title>Interest Rate</div>
+                        <div item-value>{{ data.interestRate }} %</div>
+                    </ion-item>
+                </ion-list>
+                <!-------------------- timeDeposit End -------------------->
+
+                <!-------------------- linkedDeposit Start -------------------->
+                <ion-list linked-deposit *ngIf="data.type == 'linkedDeposit'">
+                    <ion-item role="text">
+                        <div>{{ data.accountType }}</div>
+                    </ion-item>
+                    <ion-item role="text">
+                        <div>Reference No. {{ data.referNo }}</div>
+                    </ion-item>
+                    <hr/>
+                    <ion-item role="text">
+                        <div item-title>Settlement Date</div>
+                        <div item-title>Maturity Date</div>
+                    </ion-item>
+                    <ion-item role="text">
+                        <div item-value>{{ data.settlementDate }}</div>
+                        <div item-value>{{ data.maturityDate }}</div>
+                    </ion-item>
+                    <ion-item role="text">
+                        <div item-title>Coupon Rate p.a.</div>
+                        <div item-title>Reference Value</div>
+                    </ion-item>
+                    <ion-item role="text">
+                        <div item-value>{{ data.couponRate }}</div>
+                        <div item-value>{{ data.referValue }}</div>
+                    </ion-item>
+                    <ion-item role="text">
+                        <div item-title>Deposit Amount</div>
+                        <div item-title>Deposit Amount (in HKD)</div>
+                    </ion-item>
+                    <ion-item role="text">
+                        <div item-value>{{ data.amount }}</div>
+                        <div item-value>{{ data.amountInHKD }}</div>
+                    </ion-item>
+                </ion-list>
+                <!-------------------- linkedDeposit End -------------------->
+
+                <!-------------------- stock Start -------------------->
+                <ion-list stock *ngIf="data.type == 'stock'">
+                    <ion-item role="text">
+                        <div>{{ data.company }}</div>
+                    </ion-item>
+                    <ion-item role="text" class="title">
+                        <div item-ccy>CCY</div>
+                        <div item-principal>Market Value</div>
+                        <div item-principal-hkd>Market Value (in HKD)</div>
+                    </ion-item>
+                    <ion-item role="text">
+                        <div item-ccy>{{ data.ccy }}</div>
+                        <div item-principal>{{ data.marketValue }}</div>
+                        <div item-principal-hkd>{{ data.marketValueInHKD }}</div>
+                    </ion-item>
+                    <hr/>
+                    <ion-item role="text" class="border">
+                        <div item-title>Shares</div>
+                        <div item-value>{{ data.shares }}</div>
+                    </ion-item>
+                    <ion-item role="text">
+                        <div item-title>Market Price</div>
+                        <div item-value>{{ data.marketPrice }}</div>
+                    </ion-item>
+                    <ion-item role="text">
+                        <div item-title>Avg Unit Cost</div>
+                        <div item-value>{{ data.avgUnitCost }}</div>
+                    </ion-item>
+                </ion-list>
+                <!-------------------- stock End -------------------->
+
+            </ng-container>
+        </ion-list>
+    </div>
+
+</ion-content>
