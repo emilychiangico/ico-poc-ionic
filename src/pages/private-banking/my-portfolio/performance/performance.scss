@@ -3,11 +3,12 @@ page-performance {
     .legendList {
         display: table;
         padding-bottom: 16px;
+        width: 100%;
     }
 
     .legendItem {
         width: 50%;
-        display: inline-table;
+        display: inline-flex;
         
         .legendTitle {
             display: inherit;
