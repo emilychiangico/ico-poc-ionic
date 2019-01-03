@@ -1,14 +1,14 @@
 import { Component, ViewChild, Injector } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 
-import { GradientColorUtil } from '../../../providers-v2/util/gradient-color-util';
-import { PortfolioHoldingType } from '../../../providers-v2/util/portfolio-holding-util';
-import { ChartUtil } from '../../../providers-v2/util/chart-util';
+import { GradientColorUtil } from '../../../../providers-v2/util/gradient-color-util';
+import { PortfolioHoldingType } from '../../../../providers-v2/util/portfolio-holding-util';
+import { ChartUtil } from '../../../../providers-v2/util/chart-util';
 
 import { AssetAllocationDetailPage } from '../../asset-allocation-detail/asset-allocation-detail';
 import { NavDetailPage } from '../../nav-detail/nav-detail';
 
-import { BasePage } from '../../base-page';
+import { BasePage } from '../../../base-page';
 
 @IonicPage()
 @Component({

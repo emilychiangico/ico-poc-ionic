@@ -1,7 +1,7 @@
 import { Injector, Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import { PortfolioHoldingPage } from '../../../pages/portfolio-holding/portfolio-holding';
+import { PortfolioHoldingPage } from '../../../pages/private-banking/portfolio-holding/portfolio-holding';
 
 @Component({
     selector:"pb-list-item",

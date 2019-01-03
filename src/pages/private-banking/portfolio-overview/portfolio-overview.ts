@@ -1,24 +1,17 @@
 import { Component, ViewChild, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { DoughnutUtil } from '../../providers-v2/util/doughnut-util';
-import { GradientColorUtil } from '../../providers-v2/util/gradient-color-util';
-import { PortfolioHoldingType } from '../../providers-v2/util/portfolio-holding-util';
-import { ChartUtil } from '../../providers-v2/util/chart-util';
-
-/**
- * Generated class for the ChartPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { DoughnutUtil } from '../../../providers-v2/util/doughnut-util';
+import { GradientColorUtil } from '../../../providers-v2/util/gradient-color-util';
+import { PortfolioHoldingType } from '../../../providers-v2/util/portfolio-holding-util';
+import { ChartUtil } from '../../../providers-v2/util/chart-util';
 
 @IonicPage()
 @Component({
-  selector: 'page-chart-test-2',
-  templateUrl: 'chart-test-2.html',
+  selector: 'page-portfolio-overview',
+  templateUrl: 'portfolio-overview.html',
 })
-export class ChartTest2Page {
+export class PortfolioOverviewPage {
 
     @ViewChild('barCanvas') barCanvas;
     @ViewChild('doughnutCanvas') doughnutCanvas;

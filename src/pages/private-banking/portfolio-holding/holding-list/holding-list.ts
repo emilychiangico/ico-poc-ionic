@@ -1,8 +1,8 @@
 import { Component, Injector } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
-import { PortfolioHoldingType } from '../../../providers-v2/util/portfolio-holding-util';
+import { PortfolioHoldingType } from '../../../../providers-v2/util/portfolio-holding-util';
 
-import { BasePage } from '../../base-page';
+import { BasePage } from '../../../base-page';
 
 @IonicPage()
 @Component({

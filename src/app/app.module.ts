@@ -8,22 +8,22 @@ import { HomePage } from '../pages/testing-page/home/home';
 import { ListPage } from '../pages/testing-page/list/list';
 import { ChartPage } from '../pages/testing-page/chart/chart';
 import { ChartTestPage } from '../pages/testing-page/chart-test/chart-test';
-import { ChartTest2Page } from '../pages/chart-test-2/chart-test-2';
+import { PortfolioOverviewPage } from '../pages/private-banking/portfolio-overview/portfolio-overview';
 import { AreaChartPage } from '../pages/area-chart/area-chart';
 import { BarChartPage } from '../pages/testing-page/bar-chart/bar-chart';
 import { BarChart2Page } from '../pages/bar-chart-2/bar-chart-2';
-import { PerformancePage } from '../pages/my-portfolio/performance/performance';
+import { PerformancePage } from '../pages/private-banking/my-portfolio/performance/performance';
 import { HighchartsPage } from '../pages/testing-page/highcharts/highcharts';
 import { C3ChartPage } from '../pages/testing-page/c3-chart/c3-chart';
 
-import { CcyDistributionPage } from '../pages/my-portfolio/ccy-distribution/ccy-distribution';
-import { AssetAllocationDetailPage } from '../pages/asset-allocation-detail/asset-allocation-detail';
-import { NavDetailPage } from '../pages/nav-detail/nav-detail';
-import { PortfolioHistoryPage } from '../pages/my-portfolio/portfolio-history/portfolio-history';
-import { MyPortfolioPage } from '../pages/my-portfolio/my-portfolio';
-import { HoldingListPage } from '../pages/portfolio-holding/holding-list/holding-list';
-import { PortfolioHoldingPage } from '../pages/portfolio-holding/portfolio-holding';
-import { AssetHistoryPage } from '../pages/portfolio-holding/asset-history/asset-history';
+import { CcyDistributionPage } from '../pages/private-banking/my-portfolio/ccy-distribution/ccy-distribution';
+import { AssetAllocationDetailPage } from '../pages/private-banking/asset-allocation-detail/asset-allocation-detail';
+import { NavDetailPage } from '../pages/private-banking/nav-detail/nav-detail';
+import { PortfolioHistoryPage } from '../pages/private-banking/my-portfolio/portfolio-history/portfolio-history';
+import { MyPortfolioPage } from '../pages/private-banking/my-portfolio/my-portfolio';
+import { HoldingListPage } from '../pages/private-banking/portfolio-holding/holding-list/holding-list';
+import { PortfolioHoldingPage } from '../pages/private-banking/portfolio-holding/portfolio-holding';
+import { AssetHistoryPage } from '../pages/private-banking/portfolio-holding/asset-history/asset-history';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -43,7 +43,7 @@ import { PipesModule } from '../pipes/pipes.module';
     ListPage,
     ChartPage,
     ChartTestPage,
-    ChartTest2Page,
+    PortfolioOverviewPage,
     AreaChartPage,
     BarChartPage,
     BarChart2Page,
@@ -76,7 +76,7 @@ import { PipesModule } from '../pipes/pipes.module';
     ListPage,
     ChartPage,
     ChartTestPage,
-    ChartTest2Page,
+    PortfolioOverviewPage,
     AreaChartPage,
     BarChartPage,
     BarChart2Page,
