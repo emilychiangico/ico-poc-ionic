@@ -298,7 +298,7 @@ export class AreaChartPage {
 			fontFunction: (tickIndex) => {
 				// console.log("fontFunction tickIndex = " + tickIndex);
 				// console.log("fontFunction selectedMonthIndex = " + this.selectedMonthIndex);
-				if (tickIndex == this.selectedMonthIndex) {
+				if (tickIndex == this.selectedMonthIndex2) {
 				 //console.log("******* should be bold****")
 					return 'bold 12px sans-serif';
 				} else {
@@ -318,7 +318,11 @@ export class AreaChartPage {
       custom: (tooltipModel) => {
         console.log("tooltips custom function");
         console.log(tooltipModel);
-        console.log(tooltipModel.dataPoints[0].yLabel);
+        if (tooltipModel.dataPoints) {
+          console.log(tooltipModel.dataPoints[0].yLabel);
+        } else {
+          return;
+        }
   
         // Tooltip Element
         var tooltipEl = document.getElementById('chartjs-tooltip');
@@ -377,6 +381,7 @@ export class AreaChartPage {
   
         // `this` will be the overall tooltip
         var position = this.areaChart2.canvas.getBoundingClientRect();
+        console.log(position);
   
         let scrollLeft = this.content.getContentDimensions().scrollLeft;
         let scrollTop = this.content.getContentDimensions().scrollTop;
@@ -392,11 +397,21 @@ export class AreaChartPage {
         tooltipEl.style.padding = tooltipModel.yPadding + 'px ' + tooltipModel.xPadding + 'px';
         tooltipEl.style.pointerEvents = 'none';
         tooltipEl.style.zIndex = '100';
+
+        //console.log(">>>>>>>>> draw tooltip completed");
       }
+    };
+
+    let onResizeCallback = (chartInstance, newSize) => {
+      ChartUtil.closeTip(chartInstance, 0, this.selectedMonthIndex2);
+      setTimeout(() => {
+        ChartUtil.openTip(chartInstance, 0, this.selectedMonthIndex2);
+      },300);
     };
     
 
-    this.areaChart2 = ChartUtil.createAreaChart(this.areaChartCanvas2, chartData, xTick, customTooltip, clickCallback);
+    this.areaChart2 = ChartUtil.createAreaChart(this.areaChartCanvas2, chartData, xTick, customTooltip, 
+      clickCallback, onResizeCallback);
 
     // update color by char size
     let color = GradientColorUtil.getAreaGradientColor(ctx, this.holdingTypeList, this.areaChart2.width, this.areaChart2.height);

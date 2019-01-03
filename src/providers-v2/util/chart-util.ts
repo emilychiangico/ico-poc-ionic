@@ -142,11 +142,17 @@ export class ChartUtil {
 		}
 	}
 
-	static createAreaChart(canvasObj, chartData, xTick, tooltips, clickCallback) {
+	static createAreaChart(canvasObj, chartData, xTick, tooltips, clickCallback, onResizeCallback?) {
 		return new Chart(canvasObj.nativeElement, {
 			type: 'line',
 			data: chartData,
 			options: {
+			  onResize: (chartInstance, newSize) => {
+				console.log(">>>>>>> onResize");
+				if (onResizeCallback) {
+					onResizeCallback(chartInstance, newSize);
+				}
+			  },
 			  responsive: true,
 			  aspectRatio: 1.3,
 			  spanGaps: false,
@@ -309,11 +315,16 @@ export class ChartUtil {
 	}
 
 	static openTip(oChart,datasetIndex,pointIndex){
-		console.log("called openTip");
+		console.log("called openTip pointIndex = " + pointIndex);
+		if (pointIndex == undefined) {
+			return;
+		}
 		if(oChart.tooltip._active == undefined)
 		   oChart.tooltip._active = []
 		var activeElements = oChart.tooltip._active;
+		console.log(oChart.getDatasetMeta(datasetIndex).data);
 		var requestedElem = oChart.getDatasetMeta(datasetIndex).data[pointIndex];
+		console.log(activeElements);
 		for(var i = 0; i < activeElements.length; i++) {
 			if(requestedElem._index == activeElements[i]._index)  
 			   return;
@@ -326,10 +337,13 @@ export class ChartUtil {
 	 }
 	 
 	 static closeTip(oChart,datasetIndex,pointIndex){
-		console.log("called closeTip");
+		console.log("called closeTip pointIndex = " + pointIndex);
+		if (pointIndex == undefined) {
+			return;
+		}
 		var activeElements = oChart.tooltip._active;
 		console.log(activeElements);
-		if(activeElements == undefined || activeElements.length == 0)
+		if(activeElements == undefined || activeElements.length == 0 || activeElements[0] == undefined)
 		  return;
 		var requestedElem = oChart.getDatasetMeta(datasetIndex).data[pointIndex];
 		for(var i = 0; i < activeElements.length; i++) {

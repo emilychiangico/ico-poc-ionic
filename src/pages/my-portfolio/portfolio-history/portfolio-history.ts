@@ -227,6 +227,7 @@ export class PortfolioHistoryPage extends BasePage {
 	}
 
 	initAreaChar() {
+		ChartUtil.initChartForSelectedArea();
 		var areaChartCanvasEl = this.areaChartCanvas.nativeElement;
 		console.log("areaChartCanvasEl.width = " + areaChartCanvasEl.width);
 		console.log("areaChartCanvasEl.height = " + areaChartCanvasEl.height);
