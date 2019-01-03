@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { PbAmountComponent } from './pd-amount';
 
-import { PipesModule } from '../../pipes/pipes.module';
+import { PipesModule } from '../../../pipes/pipes.module';
 
 @NgModule({
   declarations: [

@@ -1,4 +1,4 @@
-import { Injector, Component, Input, OnInit, ViewChild} from '@angular/core'
+import { Injector, Component, Input, OnInit } from '@angular/core'
 
 @Component({
     selector:"pd-amount",
@@ -13,7 +13,6 @@ export class PbAmountComponent implements OnInit {
     }
 
     ngOnInit() {
-
     }
 
 }

@@ -1,6 +1,6 @@
-import { Injector, Component, Input, OnInit, ViewChild} from '@angular/core'
+import { Injector, Component, Input, OnInit, ViewChild } from '@angular/core'
 
-import { GradientColorUtil } from '../../providers-v2/util/gradient-color-util';
+import { GradientColorUtil } from '../../../providers-v2/util/gradient-color-util';
 
 @Component({
     selector:"legend-point",
