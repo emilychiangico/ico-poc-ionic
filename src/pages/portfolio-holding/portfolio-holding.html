@@ -45,8 +45,8 @@
 <ion-content class="background" padding>
 
     <ion-tabs tabsPlacement="top">
-      <ion-tab [root]="tab1Root" tabTitle="Portfolio Holdings"></ion-tab>
-      <ion-tab [root]="tab2Root" tabTitle="Asset History"></ion-tab>
+      <ion-tab [root]="tab1Root" tabTitle="Portfolio Holdings" (ionSelect)="onTabSelect('list')"></ion-tab>
+      <ion-tab [root]="tab2Root" tabTitle="Asset History" (ionSelect)="onTabSelect('history')"></ion-tab>
     </ion-tabs>
 
 </ion-content>

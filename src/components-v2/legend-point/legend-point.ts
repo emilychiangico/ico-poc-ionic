@@ -21,13 +21,21 @@ export class LegendPointComponent implements OnInit {
     ngOnInit() {
         console.log('init LegendPointComponent');
         console.log('type >> ' + this.type);
+        this.createLegend();
+    }
 
+    ngOnChanges(){
+        console.log("On Change:" + this.type);
+        this.clear();
+        this.createLegend();
+    }
+
+    createLegend() {
         if(this.legendType == "line") {
             this.drawLineLegend();
         }else {
             this.drawPointLegend();
         }
-        
     }
 
     getColor(ctx?, width?, height?) {
@@ -76,6 +84,13 @@ export class LegendPointComponent implements OnInit {
         ctx.lineTo(el.width, center);
         ctx.strokeStyle = this.getColor();
         ctx.stroke();
+    }
+
+    clear() {
+        let el = this.pointCanvas.nativeElement;
+        let ctx = el.getContext("2d");
+        
+        ctx.clearRect(0, 0, el.width, el.height);
     }
 
 }

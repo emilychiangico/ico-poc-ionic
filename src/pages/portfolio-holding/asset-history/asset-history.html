@@ -5,12 +5,12 @@
         <div class="title">Asset Allocation By Month</div>
 
         <div #areaChartContainer>
-            <canvas #areaChartCanvas2></canvas>
+            <canvas #areaChartCanvas></canvas>
         </div>
 
         <ion-item class="itemList" (click)="viewAll()">
             <legend-point [type]="selectedType"></legend-point>
-            <div class="title">Test</div>
+            <div class="title">{{ title }}</div>
             <div class="amount" item-end>
                 View all
                 <ion-icon name="ios-arrow-forward" item-end></ion-icon>

@@ -14,7 +14,7 @@ export class PortfolioHoldingUtil {
 			case PortfolioHoldingType.Stock:
 				return "Stock";
 			case PortfolioHoldingType.BondNoteCertDeposit:
-				return "Bond & Note Cert Deposit";
+				return "Bond, Note & Certifcate of Deposit";
 			case PortfolioHoldingType.UnitTrust:
 				return "Unit Trust";
 			case PortfolioHoldingType.LinkedDeposit:

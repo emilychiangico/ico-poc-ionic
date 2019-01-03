@@ -16,7 +16,7 @@ import { BasePage } from '../../base-page';
   selector: 'page-holding-list',
   templateUrl: 'holding-list.html',
 })
-export class HoldingListPage extends BasePage implements OnInit {
+export class HoldingListPage extends BasePage {
 
 	selectedType = 'savingAndCurrent';
 
@@ -90,18 +90,28 @@ export class HoldingListPage extends BasePage implements OnInit {
 		super(injector);
 	}
 
-	ngOnInit() {
-		this._event.subscribe('change-type', (selectedType) => {
+	ionViewWillEnter() {
+		this._event.subscribe('change-type-list', (selectedType) => {
 			console.log('change-type >> ');
 			console.log(selectedType);
-			this.dataList = this.getTestData(selectedType.id);
+			this.dataList = this.loadData(selectedType);
 
 			console.log(this.dataList);
 			console.log(this.selectedType);
 		});
 	}
 
-	getTestData(id) {
+	ionViewWillLeave() {
+		//console.log("holding-list >> ionViewWillLeave");
+		this._event.unsubscribe('change-type-list');
+    }
+
+    ionViewWillUnload() {
+		//console.log("holding-list >> ionViewWillUnload");
+		this._event.unsubscribe('change-type-list');
+    }
+
+	loadData(id) {
 		console.log(id);
 		switch(id) {
 			case PortfolioHoldingType.SavingAndCurrent:
