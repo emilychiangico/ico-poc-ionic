@@ -1,6 +1,6 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
-import { PortfolioHoldingType } from '../../../providers-v2/util/gradient-color-util';
+import { PortfolioHoldingType } from '../../../providers-v2/util/portfolio-holding-util';
 
 import { BasePage } from '../../base-page';
 

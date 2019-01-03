@@ -1,6 +1,7 @@
 import { Component, ViewChild, Injector } from '@angular/core';
-import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
-import { GradientColorUtil, PortfolioHoldingType } from '../../../providers-v2/util/gradient-color-util';
+import { IonicPage, Content } from 'ionic-angular';
+import { GradientColorUtil } from '../../../providers-v2/util/gradient-color-util';
+import { PortfolioHoldingType } from '../../../providers-v2/util/portfolio-holding-util';
 import { ChartUtil } from '../../../providers-v2/util/chart-util';
 
 import { AssetAllocationDetailPage } from '../../asset-allocation-detail/asset-allocation-detail';

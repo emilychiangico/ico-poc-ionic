@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
-import { Chart } from 'chart.js';
-import { GradientColorUtil, PortfolioHoldingType } from '../../providers-v2/util/gradient-color-util';
+
+import { GradientColorUtil } from '../../providers-v2/util/gradient-color-util';
+import { PortfolioHoldingType } from '../../providers-v2/util/portfolio-holding-util';
 import { ChartUtil } from '../../providers-v2/util/chart-util';
 
 /**

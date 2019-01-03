@@ -2,7 +2,8 @@ import { Component, ViewChild, ViewChildren, QueryList, ElementRef } from '@angu
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { DoughnutUtil } from '../../providers-v2/util/doughnut-util';
-import { GradientColorUtil, PortfolioHoldingType } from '../../providers-v2/util/gradient-color-util';
+import { GradientColorUtil } from '../../providers-v2/util/gradient-color-util';
+import { PortfolioHoldingType } from '../../providers-v2/util/portfolio-holding-util';
 import { ChartUtil } from '../../providers-v2/util/chart-util';
 
 /**

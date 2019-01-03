@@ -1,14 +1,5 @@
-import { IonicPage, NavController, NavParams, App, Events } from 'ionic-angular';
-import {
-    AfterContentChecked,
-    AfterContentInit,
-    AfterViewInit,
-    ComponentFactoryResolver,
-    Injector,
-    NgZone,
-    ViewChild,
-    ViewContainerRef
-} from '@angular/core';
+import { App, Events } from 'ionic-angular';
+import { Injector } from '@angular/core';
 
 export class BasePage {
 

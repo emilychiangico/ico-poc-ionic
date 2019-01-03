@@ -5,7 +5,7 @@ import { HoldingListPage }from './holding-list/holding-list';
 import { AssetHistoryPage } from './asset-history/asset-history';
 import { BasePage } from '../base-page';
 
-import { PortfolioHoldingType } from '../../providers-v2/util/gradient-color-util';
+import { PortfolioHoldingType } from '../../providers-v2/util/portfolio-holding-util';
 
 /**
  * Generated class for the MixedChartPage page.
@@ -24,7 +24,7 @@ export class PortfolioHoldingPage extends BasePage{
 	tab1Root = HoldingListPage;
   tab2Root = AssetHistoryPage;
 
-  selectedType = 0;
+  selectedType = PortfolioHoldingType.SavingAndCurrent;
   
   holdingTypeList = [
     {
@@ -54,6 +54,10 @@ export class PortfolioHoldingPage extends BasePage{
     if(selectedItem) {
       this._event.publish('change-type', selectedItem);
     }
+  }
+
+  getSelectedType() {
+    return this.selectedType;
   }
 
 }

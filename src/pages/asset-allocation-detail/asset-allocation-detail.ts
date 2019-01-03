@@ -1,7 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { PortfolioHoldingType } from '../../providers-v2/util/gradient-color-util';
+import { PortfolioHoldingType } from '../../providers-v2/util/portfolio-holding-util';
 
 /**
  * Generated class for the MixedChartPage page.
