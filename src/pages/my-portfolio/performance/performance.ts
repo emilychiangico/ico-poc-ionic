@@ -6,10 +6,10 @@ import { ChartUtil } from './../../../providers-v2/util/chart-util';
 
 @IonicPage()
 @Component({
-	selector: 'page-mixed-chart',
-	templateUrl: 'mixed-chart.html',
+	selector: 'page-performance',
+	templateUrl: 'performance.html',
 })
-export class MixedChartPage {
+export class PerformancePage {
 
 	@ViewChild('mixedChartCanvas') mixedChartCanvas;
 

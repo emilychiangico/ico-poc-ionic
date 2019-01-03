@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 
 import { CcyDistributionPage } from './ccy-distribution/ccy-distribution';
-import { MixedChartPage } from './mixed-chart/mixed-chart';
+import { PerformancePage } from './performance/performance';
 import { PortfolioHistoryPage } from './portfolio-history/portfolio-history';
 
 @IonicPage()
@@ -14,7 +14,7 @@ export class MyPortfolioPage {
 
 	tab1Root = PortfolioHistoryPage;
 	tab2Root = CcyDistributionPage;
-	tab3Root = MixedChartPage;
+	tab3Root = PerformancePage;
 
   constructor() {
   }

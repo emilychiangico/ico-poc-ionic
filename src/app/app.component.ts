@@ -8,7 +8,7 @@ import { ListPage } from '../pages/testing-page/list/list';
 import { ChartPage } from '../pages/testing-page/chart/chart';
 import { ChartTestPage } from '../pages/testing-page/chart-test/chart-test';
 import { ChartTest2Page } from '../pages/chart-test-2/chart-test-2';
-import { MixedChartPage } from '../pages/my-portfolio/mixed-chart/mixed-chart';
+import { PerformancePage } from '../pages/my-portfolio/performance/performance';
 import { HighchartsPage } from '../pages/testing-page/highcharts/highcharts';
 import { C3ChartPage } from '../pages/testing-page/c3-chart/c3-chart';
 import { AreaChartPage } from '../pages/area-chart/area-chart';
@@ -43,7 +43,7 @@ export class MyApp {
       { title: 'Portfolio Holding', component: PortfolioHoldingPage},
       //{ title: 'PortfolioHistoryPage', component: PortfolioHistoryPage},
       //{ title: 'Currency Distribution', component: CcyDistributionPage },
-      //{ title: 'Performance', component: MixedChartPage },
+      //{ title: 'Performance', component: PerformancePage },
       //{ title: 'AssetAllocationDetailPage', component: AssetAllocationDetailPage},
       //{ title: 'NavDetailPage', component: NavDetailPage},
       { title: 'Bar Chart', component: BarChart2Page },

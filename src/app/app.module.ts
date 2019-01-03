@@ -12,7 +12,7 @@ import { ChartTest2Page } from '../pages/chart-test-2/chart-test-2';
 import { AreaChartPage } from '../pages/area-chart/area-chart';
 import { BarChartPage } from '../pages/testing-page/bar-chart/bar-chart';
 import { BarChart2Page } from '../pages/bar-chart-2/bar-chart-2';
-import { MixedChartPage } from '../pages/my-portfolio/mixed-chart/mixed-chart';
+import { PerformancePage } from '../pages/my-portfolio/performance/performance';
 import { HighchartsPage } from '../pages/testing-page/highcharts/highcharts';
 import { C3ChartPage } from '../pages/testing-page/c3-chart/c3-chart';
 
@@ -47,7 +47,7 @@ import { PipesModule } from '../pipes/pipes.module';
     AreaChartPage,
     BarChartPage,
     BarChart2Page,
-    MixedChartPage,
+    PerformancePage,
     HighchartsPage,
     C3ChartPage,
     CcyDistributionPage,
@@ -80,7 +80,7 @@ import { PipesModule } from '../pipes/pipes.module';
     AreaChartPage,
     BarChartPage,
     BarChart2Page,
-    MixedChartPage,
+    PerformancePage,
     HighchartsPage,
     C3ChartPage,
     CcyDistributionPage,
