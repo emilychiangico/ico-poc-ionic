@@ -57,6 +57,12 @@ export class PortfolioHoldingPage extends BasePage implements OnInit {
     }
 
     ngOnInit() {
+        let type = this._navParams.get("type");
+        if(type >= 0) {
+            this.selectedType = type;
+        } else {
+            this.selectedType == this.holdingTypeList[0].id;
+        }
         this.loadData();
     }
 

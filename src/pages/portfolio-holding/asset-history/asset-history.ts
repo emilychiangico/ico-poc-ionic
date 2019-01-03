@@ -313,7 +313,7 @@ export class AssetHistoryPage extends BasePage {
 
 	/********* button handling **********/
 	viewAll() {
-		this.push(MyPortfolioPage);
+		this.setRoot(MyPortfolioPage);
 	}
 
 	viewDetail() {

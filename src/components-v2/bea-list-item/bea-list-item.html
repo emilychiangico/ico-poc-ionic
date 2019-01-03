@@ -6,7 +6,7 @@
 
     <!-- HoldingType - Amount -->
     <ng-container *ngIf="type == 'overview'">
-        <ion-item class="itemList" *ngFor="let data of dataList" (click)="goToPage(data.goToPage)">
+        <ion-item class="itemList" *ngFor="let data of dataList" (click)="goToPortfolioHolding(data.type)">
             <legend-point [type]="data.type"></legend-point>
             <div class="title">{{ data.title }}</div>
             <div class="amount" item-end>

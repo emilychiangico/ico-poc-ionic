@@ -1,6 +1,8 @@
 import { Injector, Component, Input, OnInit, ViewChild, Output, EventEmitter} from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+import { PortfolioHoldingPage } from '../../pages/portfolio-holding/portfolio-holding';
+
 @Component({
     selector:"bea-list-item",
     templateUrl: "bea-list-item.html"
@@ -26,10 +28,8 @@ export class BeaListItemComponent implements OnInit {
         console.log(this.dataList);
     }
 
-    goToPage(pageId) {
-        if(pageId) {
-            this.navCtrl.push(pageId);
-        }
+    goToPortfolioHolding(type) {
+        this.navCtrl.setRoot(PortfolioHoldingPage, {type: type});
     }
 
 }

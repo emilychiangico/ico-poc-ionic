@@ -89,8 +89,7 @@ export class ChartTest2Page {
         type: item,
         title: this.titles[index],
         amount: this.cData[index],
-        percentage: percentageList[index],
-        goToPage: ""
+        percentage: percentageList[index]
       });
     });
   }
