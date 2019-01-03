@@ -1,19 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-import { PortfolioHoldingType } from '../../providers-v2/util/portfolio-holding-util';
-
-/**
- * Generated class for the MixedChartPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-nav-detail',
-  templateUrl: 'nav-detail.html',
+	selector: 'page-nav-detail',
+	templateUrl: 'nav-detail.html',
 })
 export class NavDetailPage {
 
@@ -62,8 +53,8 @@ export class NavDetailPage {
 		},
 	];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+	constructor() {
+	}
 
-  
+
 }

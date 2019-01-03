@@ -1,19 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 
 import { PortfolioHoldingType } from '../../providers-v2/util/portfolio-holding-util';
 
-/**
- * Generated class for the MixedChartPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
-  selector: 'page-asset-allocation-detail',
-  templateUrl: 'asset-allocation-detail.html',
+	selector: 'page-asset-allocation-detail',
+	templateUrl: 'asset-allocation-detail.html',
 })
 export class AssetAllocationDetailPage {
 
@@ -97,8 +90,8 @@ export class AssetAllocationDetailPage {
 		}
 	];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+	constructor() {
+	}
 
-  
+
 }

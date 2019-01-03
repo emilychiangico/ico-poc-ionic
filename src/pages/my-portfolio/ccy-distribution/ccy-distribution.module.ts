@@ -3,11 +3,11 @@ import { IonicPageModule } from 'ionic-angular';
 import { CcyDistributionPage } from './ccy-distribution';
 
 @NgModule({
-  declarations: [
-    CcyDistributionPage,
-  ],
-  imports: [
-    IonicPageModule.forChild(CcyDistributionPage),
-  ],
+	declarations: [
+		CcyDistributionPage,
+	],
+	imports: [
+		IonicPageModule.forChild(CcyDistributionPage),
+	],
 })
-export class CcyDistributionPageModule {}
+export class CcyDistributionPageModule { }

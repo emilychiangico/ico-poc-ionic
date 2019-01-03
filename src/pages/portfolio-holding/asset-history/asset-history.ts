@@ -9,13 +9,6 @@ import { MyPortfolioPage } from '../../my-portfolio/my-portfolio';
 
 import { BasePage } from '../../base-page';
 
-/**
- * Generated class for the MixedChartPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
 	selector: 'page-asset-history',
@@ -309,6 +302,8 @@ export class AssetHistoryPage extends BasePage {
 		datasets[0].backgroundColor = color[0];
 
 		this.areaChart2.update();
+
+		ChartUtil.closeTip(this.areaChart2, 0, this.selectedMonthIndex);
 	}
 
 	/********* button handling **********/

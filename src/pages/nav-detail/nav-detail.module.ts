@@ -3,11 +3,11 @@ import { IonicPageModule } from 'ionic-angular';
 import { NavDetailPage } from './nav-detail';
 
 @NgModule({
-  declarations: [
-    NavDetailPage,
-  ],
-  imports: [
-    IonicPageModule.forChild(NavDetailPage),
-  ],
+    declarations: [
+        NavDetailPage,
+    ],
+    imports: [
+        IonicPageModule.forChild(NavDetailPage),
+    ],
 })
-export class NavDetailPageModule {}
+export class NavDetailPageModule { }

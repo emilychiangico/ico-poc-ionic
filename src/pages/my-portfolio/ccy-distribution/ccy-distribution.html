@@ -1,31 +1,12 @@
-<!--
-  Generated template for the MixedChartPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<!-- <ion-header>
-  <ion-navbar class="header">
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
-    <ion-title>Currency Distribution</ion-title>
-  </ion-navbar>
-
-</ion-header> -->
-
-
 <ion-content class="background" padding>
 
-  <pd-amount [amount]="amount" [date]="date"></pd-amount>
+    <pd-amount [amount]="amount" [date]="date"></pd-amount>
 
-  <canvas #barChartCanvas2></canvas>
+    <canvas #barChartCanvas2></canvas>
 
-  <div listContact>
-    <pb-list-item type="currency"
-                  [header]="beaListHeader"
-                  [data]="dataList">
-    </pb-list-item>
-  </div>
-    
+    <div listContact>
+        <pb-list-item type="currency" [header]="beaListHeader" [data]="dataList">
+        </pb-list-item>
+    </div>
+
 </ion-content>

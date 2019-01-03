@@ -1,27 +1,20 @@
-import { Component, Injector, OnInit } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 import { PortfolioHoldingType } from '../../../providers-v2/util/portfolio-holding-util';
 
 import { BasePage } from '../../base-page';
 
-/**
- * Generated class for the MixedChartPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
-  selector: 'page-holding-list',
-  templateUrl: 'holding-list.html',
+	selector: 'page-holding-list',
+	templateUrl: 'holding-list.html',
 })
 export class HoldingListPage extends BasePage {
 
 	selectedType = 'savingAndCurrent';
 
 	TestDataList = {
-		savingAndCurrent:[
+		savingAndCurrent: [
 			{
 				accountType: "HKD Current Account",
 				ccy: "HKD",
@@ -104,16 +97,16 @@ export class HoldingListPage extends BasePage {
 	ionViewWillLeave() {
 		//console.log("holding-list >> ionViewWillLeave");
 		this._event.unsubscribe('change-type-list');
-    }
+	}
 
-    ionViewWillUnload() {
+	ionViewWillUnload() {
 		//console.log("holding-list >> ionViewWillUnload");
 		this._event.unsubscribe('change-type-list');
-    }
+	}
 
 	loadData(id) {
 		console.log(id);
-		switch(id) {
+		switch (id) {
 			case PortfolioHoldingType.SavingAndCurrent:
 				this.selectedType = 'savingAndCurrent';
 				return this.TestDataList.savingAndCurrent;
@@ -158,5 +151,5 @@ export class HoldingListPage extends BasePage {
 				return null;
 		}
 	}
-  
+
 }

@@ -9,12 +9,6 @@ import { AssetAllocationDetailPage } from '../../asset-allocation-detail/asset-a
 import { NavDetailPage } from '../../nav-detail/nav-detail';
 
 import { BasePage } from '../../base-page';
-/**
- * Generated class for the MixedChartPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({

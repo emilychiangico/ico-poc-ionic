@@ -4,22 +4,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GradientColorUtil } from '../../../providers-v2/util/gradient-color-util';
 import { ChartUtil } from './../../../providers-v2/util/chart-util';
 
-/**
- * Generated class for the MixedChartPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
-  selector: 'page-mixed-chart',
-  templateUrl: 'mixed-chart.html',
+	selector: 'page-mixed-chart',
+	templateUrl: 'mixed-chart.html',
 })
 export class MixedChartPage {
 
 	@ViewChild('mixedChartCanvas') mixedChartCanvas;
-	
+
 	mixedChart = null;
 	//type = PortfolioHoldingType.SavingAndCurrent;
 
@@ -45,7 +38,7 @@ export class MixedChartPage {
 	}
 
 	thisYearData = {
-		label: [["JAN"], ["FEB"], ["MAR"], ["APR"], ["MAY"],["JUN"],["JUL"],["AUG"],["SEP"],["OCT"],["NOV"],["DEC"]],
+		label: [["JAN"], ["FEB"], ["MAR"], ["APR"], ["MAY"], ["JUN"], ["JUL"], ["AUG"], ["SEP"], ["OCT"], ["NOV"], ["DEC"]],
 		benchmarkDataList: [
 			{
 				benchmark: [2.8, 7, -2.5, -1, 1, 2, 5, -3, -0.5, 3, 1, 7.5],
@@ -54,7 +47,7 @@ export class MixedChartPage {
 			},
 			{
 				benchmark: [4, 1.8, 8, -3.5, -2, 1, 2, 2, 3, 3, 4, 5],
-				monthlyReturn: [5, 3.8, 2, -2, -4, 6, 5, 4, 3, 2, 1 ,1],
+				monthlyReturn: [5, 3.8, 2, -2, -4, 6, 5, 4, 3, 2, 1, 1],
 				lastSixMonthReturn: [4, 6.8, 2.8, -4, -2, 1, 1, 2, 3, 4, 5, 6]
 			},
 			{
@@ -69,9 +62,9 @@ export class MixedChartPage {
 	selectedRange = "month";
 	selectedList = this.pastSixMonthData;
 
-	legendList : any[] = [];
+	legendList: any[] = [];
 
-	dataList = [{type: "Change (Net Capital In-Out Value)", amount:4756964.13}];
+	dataList = [{ type: "Change (Net Capital In-Out Value)", amount: 4756964.13 }];
 
 	beaListHeader = {
 		left: "01 Nov 2017 - 30 Apr 2018",
@@ -81,23 +74,23 @@ export class MixedChartPage {
 	amount = 1635667494.00;
 	date = "31 May 2018";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+	constructor(public navCtrl: NavController, public navParams: NavParams) {
+	}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MixedChartPage');
-    this.initChart2();
-  }
+	ionViewDidLoad() {
+		console.log('ionViewDidLoad MixedChartPage');
+		this.initChart2();
+	}
 
-  initChart2() {
+	initChart2() {
 
-    // function randomScalingFactor() {
-    //   let max = 100;
-    //   let min = -100;
-    //   return Math.floor(Math.random() * (max - min + 1)) + min;
-    //   //return Math.round(Samples.utils.rand(-100, 100));
+		// function randomScalingFactor() {
+		//   let max = 100;
+		//   let min = -100;
+		//   return Math.floor(Math.random() * (max - min + 1)) + min;
+		//   //return Math.round(Samples.utils.rand(-100, 100));
 		// };
-		
+
 		var el = this.mixedChartCanvas.nativeElement;
 		var ctx = el.getContext("2d");
 
@@ -105,7 +98,7 @@ export class MixedChartPage {
 
 		this.setLegend(themeColor);
 
-    var chartData = {
+		var chartData = {
 			labels: this.pastSixMonthData.label,
 			datasets: [{
 				type: 'line',
@@ -130,23 +123,23 @@ export class MixedChartPage {
 				hoverBackgroundColor: GradientColorUtil.getBarGradientColor(ctx, el.width, el.height),
 				data: this.pastSixMonthData.benchmarkDataList[this.selectedIndex].lastSixMonthReturn
 			}]
-    };
-    
+		};
+
 		this.mixedChart = ChartUtil.createMixedChart(this.mixedChartCanvas, chartData);
-    // this.mixedChart = new Chart(this.mixedChartCanvas.nativeElement, {
-    //   type: 'bar',
-    //   data: chartData,
-    //   options: {
+		// this.mixedChart = new Chart(this.mixedChartCanvas.nativeElement, {
+		//   type: 'bar',
+		//   data: chartData,
+		//   options: {
 		// 		responsive: true,
 		// 		aspectRatio: 1.3,
-    //     title: {
-    //       display: false,
-    //       text: 'Chart.js Combo Bar Line Chart'
-    //     },
-    //     tooltips: {
+		//     title: {
+		//       display: false,
+		//       text: 'Chart.js Combo Bar Line Chart'
+		//     },
+		//     tooltips: {
 		// 			enabled: false,
-    //       mode: 'index',
-    //       intersect: true
+		//       mode: 'index',
+		//       intersect: true
 		// 		},
 		// 		legend: {
 		// 			display: false, // no display legend
@@ -184,9 +177,9 @@ export class MixedChartPage {
 		// 			}]
 		// 		},
 		// 		events: [] // remove onhover
-    //   }
+		//   }
 		// });
-		
+
 		// update Gradient Color by barChart size
 		let dataset = this.mixedChart.data.datasets[2];
 		dataset.backgroundColor = GradientColorUtil.getBarGradientColor(ctx, this.mixedChart.width, this.mixedChart.height);
@@ -195,12 +188,12 @@ export class MixedChartPage {
 		this.mixedChart.update();
 
 	}
-	
+
 	pastSixMonth() {
 		this.selectedList = this.pastSixMonthData;
 		this.selectedRange = 'month';
 
-    	this.mixedChart.data.labels = this.pastSixMonthData.label;
+		this.mixedChart.data.labels = this.pastSixMonthData.label;
 		this.mixedChart.data.datasets[0].data = this.pastSixMonthData.benchmarkDataList[this.selectedIndex].benchmark;
 		this.mixedChart.data.datasets[1].data = this.pastSixMonthData.benchmarkDataList[this.selectedIndex].monthlyReturn;
 		this.mixedChart.data.datasets[2].data = this.pastSixMonthData.benchmarkDataList[this.selectedIndex].lastSixMonthReturn;
@@ -208,14 +201,14 @@ export class MixedChartPage {
 		this.mixedChart.options.scales.xAxes[0].ticks.fontSize = 12;
 		this.mixedChart.options.scales.yAxes[0].ticks.fontSize = 12;
 
-    	this.mixedChart.update();
+		this.mixedChart.update();
 	}
 
 	thisYear() {
 		this.selectedList = this.thisYearData;
 		this.selectedRange = 'year';
 
-    	this.mixedChart.data.labels = this.thisYearData.label;
+		this.mixedChart.data.labels = this.thisYearData.label;
 		this.mixedChart.data.datasets[0].data = this.thisYearData.benchmarkDataList[this.selectedIndex].benchmark;
 		this.mixedChart.data.datasets[1].data = this.thisYearData.benchmarkDataList[this.selectedIndex].monthlyReturn;
 		this.mixedChart.data.datasets[2].data = this.thisYearData.benchmarkDataList[this.selectedIndex].lastSixMonthReturn;
@@ -223,14 +216,14 @@ export class MixedChartPage {
 		this.mixedChart.options.scales.xAxes[0].ticks.fontSize = 10;
 		this.mixedChart.options.scales.yAxes[0].ticks.fontSize = 10;
 
-    	this.mixedChart.update();
+		this.mixedChart.update();
 	}
 
 	setLegend(themeColor) {
 		this.legendList = [
-			{name:"Monthly Return", color: themeColor.mix.returnLine, type:""},
-			{name:"Last 6 Monthly Return", color: themeColor.mix.returnLine, type:"line"},
-			{name:"Benchmark", color: themeColor.mix.benchmarkLine, type:"line"},
+			{ name: "Monthly Return", color: themeColor.mix.returnLine, type: "" },
+			{ name: "Last 6 Monthly Return", color: themeColor.mix.returnLine, type: "line" },
+			{ name: "Benchmark", color: themeColor.mix.benchmarkLine, type: "line" },
 		];
 	}
 
@@ -241,7 +234,7 @@ export class MixedChartPage {
 		this.mixedChart.data.datasets[1].data = this.selectedList.benchmarkDataList[this.selectedIndex].monthlyReturn;
 		this.mixedChart.data.datasets[2].data = this.selectedList.benchmarkDataList[this.selectedIndex].lastSixMonthReturn;
 
-    	this.mixedChart.update();
+		this.mixedChart.update();
 	}
 
 }

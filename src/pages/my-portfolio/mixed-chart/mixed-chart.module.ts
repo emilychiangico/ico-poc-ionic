@@ -3,11 +3,11 @@ import { IonicPageModule } from 'ionic-angular';
 import { MixedChartPage } from './mixed-chart';
 
 @NgModule({
-  declarations: [
-    MixedChartPage,
-  ],
-  imports: [
-    IonicPageModule.forChild(MixedChartPage),
-  ],
+    declarations: [
+        MixedChartPage,
+    ],
+    imports: [
+        IonicPageModule.forChild(MixedChartPage),
+    ],
 })
-export class MixedChartPageModule {}
+export class MixedChartPageModule { }

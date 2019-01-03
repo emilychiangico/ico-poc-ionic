@@ -4,13 +4,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GradientColorUtil } from '../../../providers-v2/util/gradient-color-util';
 import { ChartUtil } from '../../../providers-v2/util/chart-util';
 
-/**
- * Generated class for the MixedChartPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
 	selector: 'page-ccy-distribution',

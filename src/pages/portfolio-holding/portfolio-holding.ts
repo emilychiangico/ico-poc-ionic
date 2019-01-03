@@ -7,13 +7,6 @@ import { BasePage } from '../base-page';
 
 import { PortfolioHoldingType } from '../../providers-v2/util/portfolio-holding-util';
 
-/**
- * Generated class for the MixedChartPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
     selector: 'page-portfolio-holding',
@@ -58,7 +51,7 @@ export class PortfolioHoldingPage extends BasePage implements OnInit {
 
     ngOnInit() {
         let type = this._navParams.get("type");
-        if(type >= 0) {
+        if (type >= 0) {
             this.selectedType = type;
         } else {
             this.selectedType == this.holdingTypeList[0].id;
