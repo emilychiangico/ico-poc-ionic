@@ -19,26 +19,26 @@
 
         <ion-item role="text" class="asset-record" *ngFor="let monthData of data.monthDetail">
             <div bea-item-month>{{ monthData.month }} {{ monthData.year }}</div>
-            <div bea-item-amount>{{ monthData.amount }}</div>
+            <div bea-item-amount>{{ monthData.amount | beaNumber }}</div>
         </ion-item>
     </ng-container>
 
     <ng-container *ngIf="type == 'nav'">
         <ion-item role="text" class="nav-record border">
             <div bea-item-title class="nav">Net Asset Value</div>
-            <div bea-item-amount>HKD {{ data.netAssetValue }}</div>
+            <div bea-item-amount>HKD {{ data.netAssetValue | beaNumber }}</div>
         </ion-item>
         <ion-item role="text" class="nav-record">
             <div bea-item-title>Cash & Deposit</div>
-            <div bea-item-amount>HKD {{ data.cashAndDeposit }}</div>
+            <div bea-item-amount>HKD {{ data.cashAndDeposit | beaNumber }}</div>
         </ion-item>
         <ion-item role="text" class="nav-record">
             <div bea-item-title>Investment</div>
-            <div bea-item-amount>HKD {{ data.investment }}</div>
+            <div bea-item-amount>HKD {{ data.investment | beaNumber }}</div>
         </ion-item>
         <ion-item role="text" class="nav-record">
             <div bea-item-title>Loan</div>
-            <div bea-item-amount>HKD {{ data.loan }}</div>
+            <div bea-item-amount>HKD {{ data.loan | beaNumber }}</div>
         </ion-item>
     </ng-container>
 </ion-list>

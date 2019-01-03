@@ -33,6 +33,8 @@ import { ClickPopupComponent } from '../components-v2/click-popup/click-popup';
 
 import { ComponentsModule } from '../components-v2/components.module';
 
+import { PipesModule } from '../pipes/pipes.module';
+
 
 @NgModule({
   declarations: [
@@ -57,14 +59,15 @@ import { ComponentsModule } from '../components-v2/components.module';
     MyPortfolioPage,
     HoldingListPage,
     PortfolioHoldingPage,
-    AssetHistoryPage
+    AssetHistoryPage,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     DirectivesModule,
     ComponentsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    PipesModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -95,7 +98,7 @@ import { ComponentsModule } from '../components-v2/components.module';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    PopupContentService
+    PopupContentService,
   ]
 })
 export class AppModule {}

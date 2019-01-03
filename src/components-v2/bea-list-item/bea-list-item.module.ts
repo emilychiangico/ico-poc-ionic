@@ -6,6 +6,8 @@ import { IonicModule } from 'ionic-angular';
 import { LegendPointComponentModule } from '../legend-point/legend-point.module';
 import { PbExpandItemComponentModule } from '../pb-expand-item/pb-expand-item.module';
 
+import { PipesModule } from '../../pipes/pipes.module';
+
 @NgModule({
   declarations: [
     BeaListItemComponent
@@ -13,7 +15,8 @@ import { PbExpandItemComponentModule } from '../pb-expand-item/pb-expand-item.mo
   imports: [
     IonicModule,
     LegendPointComponentModule,
-    PbExpandItemComponentModule
+    PbExpandItemComponentModule,
+    PipesModule
   ],
   exports: [
     BeaListItemComponent

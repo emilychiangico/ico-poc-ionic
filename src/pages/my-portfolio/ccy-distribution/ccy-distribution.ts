@@ -13,26 +13,29 @@ import { ChartUtil } from '../../../providers-v2/util/chart-util';
 
 @IonicPage()
 @Component({
-  selector: 'page-ccy-distribution',
-  templateUrl: 'ccy-distribution.html',
+	selector: 'page-ccy-distribution',
+	templateUrl: 'ccy-distribution.html',
 })
 export class CcyDistributionPage {
 
 	@ViewChild('barChartCanvas2') barChartCanvas2;
-	
+
 	dataList = [
-		{ccy: "AUD", amount: 25519193.18},
-		{ccy: "EUR", amount: (32345243.34)},
-		{ccy: "GBP", amount: (1532574.64)},
-		{ccy: "HKD", amount: 71452643.53},
-		{ccy: "OTH", amount: 1245632.53},
-		{ccy: "USD", amount: 24743632.67}
+		{ ccy: "AUD", amount: 25519193.18 },
+		{ ccy: "EUR", amount: (32345243.34) },
+		{ ccy: "GBP", amount: (1532574.64) },
+		{ ccy: "HKD", amount: 71452643.53 },
+		{ ccy: "OTH", amount: 1245632.53 },
+		{ ccy: "USD", amount: 24743632.67 }
 	];
 
 	beaListHeader = {
 		left: "Currency",
 		right: "Amount"
-	  }
+	}
+
+	amount = 1635667494.00;
+	date = "31 May 2018";
 
 	constructor(public navCtrl: NavController, public navParams: NavParams) {
 	}
@@ -60,7 +63,7 @@ export class CcyDistributionPage {
 				type: 'bar',
 				backgroundColor: GradientColorUtil.getBarGradientColor(ctx, el.width, el.height),
 				//hoverBackgroundColor: GradientColorUtil.getBarGradientColor(ctx, el.width, el.height),
-				data: [20,- 25, -10, 50, 10, 20]
+				data: [20, - 25, -10, 50, 10, 20]
 			}]
 		};
 
@@ -80,9 +83,9 @@ export class CcyDistributionPage {
 			padding: 5
 		};
 
-		var barChart = ChartUtil.createBarChar(this.barChartCanvas2, 
+		var barChart = ChartUtil.createBarChar(this.barChartCanvas2,
 			chartData,
-			xTick, 
+			xTick,
 			yTick,
 			null
 		);
@@ -95,6 +98,6 @@ export class CcyDistributionPage {
 		barChart.update();
 
 	}
-	
+
 
 }

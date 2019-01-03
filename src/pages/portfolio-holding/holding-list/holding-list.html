@@ -25,8 +25,8 @@
                     </ion-item>
                     <ion-item role="text">
                         <div item-ccy>{{ data.ccy }}</div>
-                        <div item-principal>{{ data.principal }}</div>
-                        <div item-principal-hkd>{{ data.principalInHKD }}</div>
+                        <div item-principal>{{ data.principal | beaNumber }}</div>
+                        <div item-principal-hkd>{{ data.principalInHKD | beaNumber }}</div>
                     </ion-item>
                 </ion-list>
                 <!-------------------- savingAndCurrent End -------------------->
@@ -43,8 +43,8 @@
                     </ion-item>
                     <ion-item role="text">
                         <div item-ccy>{{ data.ccy }}</div>
-                        <div item-principal>{{ data.principal }}</div>
-                        <div item-principal-hkd>{{ data.principalInHKD }}</div>
+                        <div item-principal>{{ data.principal | beaNumber }}</div>
+                        <div item-principal-hkd>{{ data.principalInHKD | beaNumber }}</div>
                     </ion-item>
                     <hr/>
                     <ion-item role="text">
@@ -57,7 +57,7 @@
                     </ion-item>
                     <ion-item role="text">
                         <div item-title>Interest Rate</div>
-                        <div item-value>{{ data.interestRate }} %</div>
+                        <div item-value>{{ data.interestRate | beaNumber:4 }} %</div>
                     </ion-item>
                 </ion-list>
                 <!-------------------- timeDeposit End -------------------->
@@ -84,16 +84,16 @@
                         <div item-title>Reference Value</div>
                     </ion-item>
                     <ion-item role="text">
-                        <div item-value>{{ data.couponRate }}</div>
-                        <div item-value>{{ data.referValue }}</div>
+                        <div item-value>{{ data.couponRate | beaNumber:4 }}</div>
+                        <div item-value>{{ data.referValue | beaNumber:4 }}</div>
                     </ion-item>
                     <ion-item role="text">
                         <div item-title>Deposit Amount</div>
                         <div item-title>Deposit Amount (in HKD)</div>
                     </ion-item>
                     <ion-item role="text">
-                        <div item-value>{{ data.amount }}</div>
-                        <div item-value>{{ data.amountInHKD }}</div>
+                        <div item-value>{{ data.amount | beaNumber }}</div>
+                        <div item-value>{{ data.amountInHKD | beaNumber }}</div>
                     </ion-item>
                 </ion-list>
                 <!-------------------- linkedDeposit End -------------------->
@@ -110,17 +110,17 @@
                     </ion-item>
                     <ion-item role="text">
                         <div item-ccy>{{ data.ccy }}</div>
-                        <div item-principal>{{ data.marketValue }}</div>
-                        <div item-principal-hkd>{{ data.marketValueInHKD }}</div>
+                        <div item-principal>{{ data.marketValue | beaNumber }}</div>
+                        <div item-principal-hkd>{{ data.marketValueInHKD | beaNumber }}</div>
                     </ion-item>
                     <hr/>
                     <ion-item role="text" class="border">
                         <div item-title>Shares</div>
-                        <div item-value>{{ data.shares }}</div>
+                        <div item-value>{{ data.shares | beaNumber:0 }}</div>
                     </ion-item>
                     <ion-item role="text">
                         <div item-title>Market Price</div>
-                        <div item-value>{{ data.marketPrice }}</div>
+                        <div item-value>{{ data.marketPrice | beaNumber:4 }}</div>
                     </ion-item>
                     <ion-item role="text">
                         <div item-title>Avg Unit Cost</div>

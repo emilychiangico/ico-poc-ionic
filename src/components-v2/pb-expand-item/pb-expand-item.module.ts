@@ -6,6 +6,8 @@ import { PbExpandItemComponent } from './pb-expand-item';
 
 import { LegendPointComponentModule } from '../legend-point/legend-point.module';
 
+import { PipesModule } from '../../pipes/pipes.module';
+
 
 @NgModule({
     declarations: [
@@ -13,7 +15,8 @@ import { LegendPointComponentModule } from '../legend-point/legend-point.module'
     ],
     imports: [
         IonicModule,
-        LegendPointComponentModule
+        LegendPointComponentModule,
+        PipesModule
     ],
     exports: [
         PbExpandItemComponent

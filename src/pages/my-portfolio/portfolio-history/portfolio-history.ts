@@ -113,6 +113,9 @@ export class PortfolioHistoryPage extends BasePage {
 
 	selectedTab = "asset";
 
+	amount = 1635667494.00;
+	date = "31 May 2018";
+
 	constructor(injector: Injector) {
 		super(injector);
 	}

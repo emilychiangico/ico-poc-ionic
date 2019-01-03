@@ -63,6 +63,9 @@ export class ChartTest2Page {
       left: "Account",
       right: "Total Amount"
     }
+
+    amount = 1635667494.00;
+    date = "31 May 2018";
    
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {

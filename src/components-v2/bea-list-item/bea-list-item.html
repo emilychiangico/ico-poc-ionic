@@ -10,7 +10,7 @@
             <legend-point [type]="data.type"></legend-point>
             <div class="title">{{ data.title }}</div>
             <div class="amount" item-end>
-                HKD {{ data.amount }}
+                HKD {{ data.amount | beaNumber }}
                 <ion-icon name="ios-arrow-forward" item-end></ion-icon>
             </div>
         </ion-item>
@@ -22,7 +22,7 @@
             <legend-point [type]="data.type"></legend-point>
             <div class="title">{{ data.title }}</div>
             <div class="notIconRight" item-end>
-                {{ data.percentage }} %
+                {{ data.percentage | beaNumber }}%
             </div>
         </ion-item>
     </ng-container>
@@ -32,7 +32,7 @@
         <ion-item class="itemList" *ngFor="let data of dataList">
             <div class="notIconLeft">{{ data.ccy }}</div>
             <div class="notIconRight" item-end>
-                HKD {{ data.amount }}
+                HKD {{ data.amount | beaNumber }}
             </div>
         </ion-item>
     </ng-container>
@@ -42,7 +42,7 @@
         <ion-item class="itemList" *ngFor="let data of dataList">
             <div class="notIconLeft">{{ data.type }}</div>
             <div class="notIconRight" item-end>
-                HKD {{ data.amount }}
+                HKD {{ data.amount | beaNumber }}
             </div>
         </ion-item>
     </ng-container>
@@ -69,19 +69,19 @@
                         <legend-point legendType="" color="white"></legend-point>
                         <div class="padding">Net Asset Value</div>
                     </div>
-                    <div bea-item-amount>HKD {{ data.netAssetValue }}</div>
+                    <div bea-item-amount>HKD {{ data.netAssetValue | beaNumber }}</div>
                 </ion-item>
                 <ion-item role="text" class="nav-record legendPadding">
                     <div bea-item-title>Cash & Deposit</div>
-                    <div bea-item-amount>HKD {{ data.cashAndDeposit }}</div>
+                    <div bea-item-amount>HKD {{ data.cashAndDeposit | beaNumber }}</div>
                 </ion-item>
                 <ion-item role="text" class="nav-record legendPadding">
                     <div bea-item-title>Investment</div>
-                    <div bea-item-amount>HKD {{ data.investment }}</div>
+                    <div bea-item-amount>HKD {{ data.investment | beaNumber }}</div>
                 </ion-item>
                 <ion-item role="text" class="nav-record legendPadding">
                     <div bea-item-title>Loan</div>
-                    <div bea-item-amount>HKD {{ data.loan }}</div>
+                    <div bea-item-amount>HKD {{ data.loan | beaNumber }}</div>
                 </ion-item>
             </ion-list>
         </ng-container>

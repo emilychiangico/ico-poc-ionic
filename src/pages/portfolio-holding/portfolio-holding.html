@@ -23,17 +23,17 @@
     </click-popup>
 
     <div class="title">Total Amount</div>
-    <div class="value"><span class="ccy">HKD</span> 11,770,124.00</div>
+    <div class="value"><span class="ccy">HKD</span> {{ info.totalAmount | beaNumber }}</div>
     
     <ion-grid role="list" class="twoColCenter">
         <ion-row>
             <ion-col role="listitem" col-6 col-sm-4>
                 <div class="title">AUM Proportion</div>
-                <div class="value">25.34%</div>
+                <div class="value">{{ info.aumProportion | beaNumber }}%</div>
             </ion-col>
             <ion-col role="listitem" class="line" col-6 col-sm-4 line>
                 <div class="title">Holding</div>
-                <div class="value">12</div>
+                <div class="value">{{ info.holding | beaNumber:0 }}</div>
             </ion-col>
         </ion-row>
     </ion-grid>
