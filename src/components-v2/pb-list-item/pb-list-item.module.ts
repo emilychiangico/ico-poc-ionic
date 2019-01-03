@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { BeaListItemComponent } from './bea-list-item';
+import { PbListItemComponent } from './pb-list-item';
 import { IonicModule } from 'ionic-angular';
 
 import { LegendPointComponentModule } from '../legend-point/legend-point.module';
@@ -10,7 +10,7 @@ import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
   declarations: [
-    BeaListItemComponent
+    PbListItemComponent
   ],
   imports: [
     IonicModule,
@@ -19,7 +19,7 @@ import { PipesModule } from '../../pipes/pipes.module';
     PipesModule
   ],
   exports: [
-    BeaListItemComponent
+    PbListItemComponent
 ]
 })
-export class BeaListItemModule {}
+export class PbListItemComponentModule {}

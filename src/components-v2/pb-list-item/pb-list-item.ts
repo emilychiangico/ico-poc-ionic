@@ -4,10 +4,10 @@ import { NavController } from 'ionic-angular';
 import { PortfolioHoldingPage } from '../../pages/portfolio-holding/portfolio-holding';
 
 @Component({
-    selector:"bea-list-item",
-    templateUrl: "bea-list-item.html"
+    selector:"pb-list-item",
+    templateUrl: "pb-list-item.html"
 })
-export class BeaListItemComponent implements OnInit {
+export class PbListItemComponent implements OnInit {
 
     @Input('header') header: any = null;
 

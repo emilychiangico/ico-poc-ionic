@@ -34,17 +34,17 @@
 
   <div listContact>
     <ng-container *ngIf="selectedTab == 'asset'">
-      <bea-list-item type="assetHistory"
+      <pb-list-item type="assetHistory"
                     [header]="header"
                     [data]="assetSelectedData">
-      </bea-list-item>
+      </pb-list-item>
     </ng-container>
 
     <ng-container *ngIf="selectedTab == 'nav'">
-        <bea-list-item type="navRecord"
+        <pb-list-item type="navRecord"
                       [header]="header"
                       [data]="navSelectedData">
-        </bea-list-item>
+        </pb-list-item>
     </ng-container>
 
     <div view-detail>
