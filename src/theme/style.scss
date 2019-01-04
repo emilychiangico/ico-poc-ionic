@@ -23,11 +23,13 @@ ion-navbar.header {
 }
 
 .background {
-    background-image: linear-gradient(30deg, rgb(33, 33, 39),rgb(42, 42, 56), rgb(48, 65, 113), rgb(44, 66, 126));
+    background-image: linear-gradient(30deg, rgb(33, 33, 39),rgb(42, 42, 56), rgb(48, 65, 113), rgb(44, 66, 126)) !important;
 
-    //background-image: linear-gradient(30deg, rgb(33, 33, 35), rgb(66, 67, 78));
+    //background-image: linear-gradient(30deg, rgb(33, 33, 39),rgb(42, 42, 56), rgb(48, 65, 113), rgb(255,0,0)) !important;
 
-    //background-image: linear-gradient(30deg, rgb(33, 33, 38), rgb(60, 67, 97));
+    //background-image: linear-gradient(30deg, rgb(33, 33, 35), rgb(66, 67, 78)) !important;;
+
+    //background-image: linear-gradient(30deg, rgb(33, 33, 38), rgb(60, 67, 97)) !important;;
 }
 
 div[listContact] {
@@ -88,4 +90,35 @@ div[amount-display] {
 ion-list[pb-list] {
     padding: 16px;
     margin: 0 !important;
+}
+
+@mixin tab-page-transparent-background {
+    ion-content {
+        background: transparent !important;
+        div ion-tab {
+            div.nav-decor {
+                background: transparent !important;
+            }
+        }
+    }
+}
+
+@mixin tab-tabs {
+    ion-tabs {
+        .tabbar {
+            background: transparent !important;
+
+            .tab-button {
+                color: rgb(129, 132, 161) !important;
+                border-bottom-width: 1px;
+                border-bottom-style: solid;
+                border-image-slice: 1;
+
+                &[aria-selected=true] {
+                    color: $text-color !important;
+                    border-image: linear-gradient(90deg, rgb(129, 132, 161), white, rgb(129, 132, 161));
+                }
+            }
+        }
+    }
 }

@@ -1,45 +1,44 @@
-<ion-content class="background" padding>
+<ion-content padding>
 
-  <pd-amount [amount]="amount" [date]="date"></pd-amount>
+    <pd-amount [amount]="amount" [date]="date"></pd-amount>
 
-  <div button-row class="range">
-    <button ion-button outline [class.selected]="selectedRange == 'month'" (click)="pastSixMonth()">
-      Past 6 months
-    </button>
-    <button ion-button outline [class.selected]="selectedRange == 'year'" (click)="thisYear()">
-      2018
-    </button>
-  </div>
+    <div button-row class="range">
+        <button ion-button outline [class.selected]="selectedRange == 'month'" (click)="pastSixMonth()">
+            Past 6 months
+        </button>
+        <button ion-button outline [class.selected]="selectedRange == 'year'" (click)="thisYear()">
+            2018
+        </button>
+    </div>
 
-  <canvas #mixedChartCanvas></canvas>
+    <canvas #mixedChartCanvas></canvas>
 
-  <div button-row style="padding-bottom: 0">
-    <button ion-button round outline class="benchmark" [class.selected]="selectedIndex == 0" (click)="changeBenchmark(0)">
-      Dow jones industrial Average
-    </button>
-    <button ion-button round outline class="benchmark" [class.selected]="selectedIndex == 1" (click)="changeBenchmark(1)">
-      Hang Seng Index
-    </button>
-  </div>
-  <div button-row style="padding-top: 0">
-    <button ion-button round outline class="benchmark" [class.selected]="selectedIndex == 2" (click)="changeBenchmark(2)">
-      HS China Enterprese Index
-    </button>
-  </div>
+    <div button-row style="padding-bottom: 0">
+        <button ion-button round outline class="benchmark" [class.selected]="selectedIndex == 0" (click)="changeBenchmark(0)">
+            Dow jones industrial Average
+        </button>
+        <button ion-button round outline class="benchmark" [class.selected]="selectedIndex == 1" (click)="changeBenchmark(1)">
+            Hang Seng Index
+        </button>
+    </div>
+    <div button-row style="padding-top: 0">
+        <button ion-button round outline class="benchmark" [class.selected]="selectedIndex == 2" (click)="changeBenchmark(2)">
+            HS China Enterprese Index
+        </button>
+    </div>
 
-  <div class="legendList">
-    <ng-container *ngFor="let legend of legendList">
-      <div class="legendItem">
-        <legend-point [legendType]="legend.type" [color]="legend.color"></legend-point>
-        <div class="legendTitle">{{ legend.name }}</div>
-      </div>
-    </ng-container>
-  </div>
+    <div class="legendList">
+        <ng-container *ngFor="let legend of legendList">
+            <div class="legendItem">
+                <legend-point [legendType]="legend.type" [color]="legend.color"></legend-point>
+                <div class="legendTitle">{{ legend.name }}</div>
+            </div>
+        </ng-container>
+    </div>
 
-  <div listContact>
-    <pb-list-item type="performance" [header]="beaListHeader" [data]="dataList">
-    </pb-list-item>
-  </div>
-
+    <div listContact>
+        <pb-list-item type="performance" [header]="beaListHeader" [data]="dataList">
+        </pb-list-item>
+    </div>
 
 </ion-content>

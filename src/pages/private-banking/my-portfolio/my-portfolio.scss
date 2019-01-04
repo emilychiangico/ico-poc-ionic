@@ -1,21 +1,7 @@
 page-my-portfolio {
 
-    ion-tabs {
-        .tabbar {
-            background: transparent !important;
+    @include tab-page-transparent-background;
 
-            .tab-button {
-                color: rgb(129, 132, 161) !important;
-                border-bottom-width: 1px;
-                border-bottom-style: solid;
-                border-image-slice: 1;
-
-                &[aria-selected=true] {
-                    color: $text-color !important;
-                    border-image: linear-gradient(90deg, rgb(129, 132, 161), white, rgb(129, 132, 161));
-                }
-            }
-        }
-    }
+    @include tab-tabs;
 
 }
