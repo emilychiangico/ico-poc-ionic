@@ -4,6 +4,10 @@ $list-item-background : rgb(45, 50, 75);
 
 $button-color-blue : rgb(59, 94, 194);
 
+ion-header.header-md::after {
+    height: 0px;
+}
+
 ion-navbar.header {
     > div.toolbar-background {
         background: transparent;
