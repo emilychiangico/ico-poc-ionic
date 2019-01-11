@@ -23,6 +23,9 @@ import { HoldingListPage } from '../pages/private-banking/portfolio-holding/hold
 import { PortfolioHoldingPage } from '../pages/private-banking/portfolio-holding/portfolio-holding';
 import { AssetHistoryPage } from '../pages/private-banking/portfolio-holding/asset-history/asset-history';
 
+
+import { ColorSettingPage } from '../pages/color-setting/color-setting';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -48,6 +51,7 @@ export class MyApp {
       //{ title: 'NavDetailPage', component: NavDetailPage},
       { title: 'Bar Chart', component: BarChart2Page },
       { title: 'Area Chart', component: AreaChartPage },
+      { title: 'Setting', component: ColorSettingPage }
       //{ title: 'List', component: ListPage },
       //{ title: 'Home', component: HomePage },
       //{ title: 'Doughnut Chart.js', component: ChartPage },

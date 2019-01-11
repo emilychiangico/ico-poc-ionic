@@ -41,7 +41,6 @@ $colors: (
   dark:       #222
 );
 
-
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
@@ -72,6 +71,39 @@ $colors: (
 
 @import "ionic.theme.default";
 
+$bea-colors: (
+  theme-1: (
+    background : (
+      lighter: rgb(48, 65, 113),
+      light: rgb(44, 59, 101),
+      dark: rgb(39, 42, 68),
+      darker: rgb(33, 33, 39)
+    ),
+    list-item-background : rgb(45, 50, 75),
+    list-background: rgb(35, 39, 64)
+  ),
+  theme-2: (
+    background : (
+      lighter: rgb(66, 67, 78),
+      light: rgb(52, 59, 82),
+      dark: rgb(41, 42, 49),
+      darker: rgb(33, 33, 35)
+    ),
+    list-item-background : rgb(39, 43, 59),
+    list-background: rgb(39, 42, 59)
+  ),
+  theme-3: (
+    background : (
+      lighter: rgb(60, 67, 97),
+      light:  rgb(47, 51, 73),
+      dark: rgb(39, 41, 54),
+      darker: rgb(33, 33, 38)
+    ),
+    list-item-background : rgb(45, 50, 75),
+    list-background: rgb(35, 39, 64)
+  )
+);
+
 
 // Ionicons
 // --------------------------------------------------
@@ -87,5 +119,6 @@ $colors: (
 @import "roboto";
 @import "noto-sans";
 
+@import './bea-theme';
 @import "./global";
 @import "./style";

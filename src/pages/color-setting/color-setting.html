@@ -1,0 +1,28 @@
+
+<ion-header>
+  <ion-navbar class="header">
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title>Color Setting</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content bea-theme class="background" padding>
+
+  <ion-item [class.selected]="selectedId == 1" (click)="changeTheme(1)">
+    Theme 1
+  </ion-item>
+
+  <ion-item [class.selected]="selectedId == 2" (click)="changeTheme(2)">
+    Theme 2
+  </ion-item>
+
+  <ion-item [class.selected]="selectedId == 3" (click)="changeTheme(3)">
+    Theme 3
+  </ion-item>
+
+    
+</ion-content>

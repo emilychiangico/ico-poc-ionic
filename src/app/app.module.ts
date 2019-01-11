@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/testing-page/home/home';
@@ -35,6 +36,10 @@ import { ComponentsModule } from '../components-v2/components.module';
 
 import { PipesModule } from '../pipes/pipes.module';
 
+import { ColorSettingPage } from '../pages/color-setting/color-setting';
+
+import { SettingsService } from '../providers-v2/settings.service';
+
 
 @NgModule({
   declarations: [
@@ -60,6 +65,8 @@ import { PipesModule } from '../pipes/pipes.module';
     HoldingListPage,
     PortfolioHoldingPage,
     AssetHistoryPage,
+
+    ColorSettingPage
   ],
   imports: [
     BrowserModule,
@@ -67,7 +74,8 @@ import { PipesModule } from '../pipes/pipes.module';
     DirectivesModule,
     ComponentsModule,
     BrowserAnimationsModule,
-    PipesModule
+    PipesModule,
+    IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -92,13 +100,16 @@ import { PipesModule } from '../pipes/pipes.module';
     MyPortfolioPage,
     HoldingListPage,
     PortfolioHoldingPage,
-    AssetHistoryPage
+    AssetHistoryPage,
+    
+    ColorSettingPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PopupContentService,
+    SettingsService
   ]
 })
 export class AppModule {}
