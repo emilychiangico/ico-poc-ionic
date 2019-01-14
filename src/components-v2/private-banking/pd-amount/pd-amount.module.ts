@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { PbAmountComponent } from './pd-amount';
 
+import { BeaIconComponentModule } from '../../bea-icon/bea-icon.module';
 import { PipesModule } from '../../../pipes/pipes.module';
 
 @NgModule({
@@ -9,7 +10,8 @@ import { PipesModule } from '../../../pipes/pipes.module';
     PbAmountComponent
   ],
   imports: [
-    PipesModule
+    PipesModule,
+    BeaIconComponentModule
   ],
   exports: [
     PbAmountComponent

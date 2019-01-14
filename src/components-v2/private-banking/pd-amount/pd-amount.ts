@@ -15,4 +15,8 @@ export class PbAmountComponent implements OnInit {
     ngOnInit() {
     }
 
+    popup() {
+        console.log("PbAmountComponent >> popup")
+    }
+
 }

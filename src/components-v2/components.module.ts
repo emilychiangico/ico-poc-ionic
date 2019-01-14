@@ -5,19 +5,19 @@ import { PbListItemComponentModule } from './private-banking/pb-list-item/pb-lis
 import { PbExpandItemComponentModule } from './private-banking/pb-expand-item/pb-expand-item.module';
 import { PbAmountComponentModule } from './private-banking/pd-amount/pd-amount.module';
 
-import { BeaIconComponent } from './bea-icon/bea-icon';
+import { BeaIconComponentModule } from './bea-icon/bea-icon.module';
 
 @NgModule({
     declarations: [
-        BeaIconComponent
     ],
     imports: [],
     exports: [
         PbListItemComponentModule,
         LegendPointComponentModule,
         PbExpandItemComponentModule,
-        BeaIconComponent,
-        PbAmountComponentModule
+        PbAmountComponentModule,
+
+        BeaIconComponentModule
     ]
 })
 export class ComponentsModule {
