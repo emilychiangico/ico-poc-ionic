@@ -36,6 +36,7 @@ pb-list-item {
         border: 0 !important;
         margin: 10px 0;
         font-size: 14px;
+        border-radius: $border-radius;
 
         > .item-inner {
             border: 0 !important;
@@ -78,6 +79,15 @@ pb-list-item {
 
         background-color: $list-item-background;
         color: $text-color;
+
+        &:first-child {
+            @include top-border-radius;
+        }
+
+        &:last-child {
+            @include bottom-border-radius;
+        }
+        
 
         &.border {
             border-bottom: 1px solid $text-color !important;

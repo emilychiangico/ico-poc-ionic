@@ -18,6 +18,7 @@ page-holding-list {
     @mixin base-style {
         margin-bottom: 16px;
         background-color: $list-item-background;
+        border-radius: $border-radius;
 
         &:last-child {
             margin-bottom: 0;

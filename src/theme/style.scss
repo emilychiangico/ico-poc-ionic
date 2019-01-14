@@ -4,6 +4,8 @@ $list-item-background : rgb(45, 50, 75);
 
 $button-color-blue : rgb(59, 94, 194);
 
+$border-radius: 5px;
+
 ion-header.header-md::after {
     height: 0px;
 }
@@ -122,4 +124,12 @@ ion-list[pb-list] {
             }
         }
     }
+}
+
+@mixin top-border-radius {
+    border-radius: $border-radius $border-radius 0 0;
+}
+
+@mixin bottom-border-radius {
+    border-radius: 0 0 $border-radius $border-radius;
 }
