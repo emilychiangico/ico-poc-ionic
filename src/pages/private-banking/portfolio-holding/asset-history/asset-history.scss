@@ -5,6 +5,12 @@ page-asset-history {
         text-align: center;
     }
 
+    ion-content {
+        div.scroll-content {
+            background-color: rgb(35, 39, 64);
+        }
+    }
+
     .title {
         padding: 16px 0;
         font-size: 20px;
