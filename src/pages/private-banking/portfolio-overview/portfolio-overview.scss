@@ -42,7 +42,7 @@ page-portfolio-overview {
         overflow-y: hidden;
         // width: 100vw; 
         white-space: nowrap;
-        margin: 20px 0;
+        margin: 20px 0 0 0;
         height: auto;
     }
 
@@ -84,6 +84,31 @@ page-portfolio-overview {
                 vertical-align: middle;
                 text-align:center;
                 color: white;
+            }
+        }
+
+    }
+
+    .button-container {
+        padding: 16px 16px 0 16px;
+        height: 150px;
+        column-count: 3;
+    }
+
+    .button-container > div {
+        width: 100%;
+        height: 100%;
+        background: $list-item-background;
+        color: $text-color;
+        font-size: 15px;
+        padding: 10px;
+
+        > div {
+            height: 40%;
+
+            &.image {
+                height: 60%;
+                text-align: center;
             }
         }
 

@@ -49,7 +49,7 @@
 
     </div>
 
-    </div>
+  </div>
 
 
 
@@ -72,6 +72,35 @@
   </ion-card> -->
 
   <div listContact>
+    <!-- Button -->
+    <div class="button-container">
+      <div (click)="goToPage('history')">
+        <div>
+          Portfolio History
+        </div>
+        <div class="image">
+          <img src="assets/imgs/pb/icon-1.png">
+        </div>
+      </div>
+      <div (click)="goToPage('currency')">
+        <div>
+          Currency Distribution
+        </div>
+        <div class="image">
+          <img src="assets/imgs/pb/icon-2.png">
+        </div>
+      </div>
+      <div (click)="goToPage('performance')">
+        <div>
+          Performance
+        </div>
+        <div class="image">
+          <img src="assets/imgs/pb/icon-3.png">
+        </div>
+      </div>
+    </div>
+
+    <!-- Info of doughnut chart data-->
     <pb-list-item type="overview"
                   [header]="beaListHeader"
                   [data]="holdingDataList">

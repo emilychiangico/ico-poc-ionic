@@ -1,17 +1,19 @@
-import { Component, ViewChild, ViewChildren, QueryList, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild, ViewChildren, QueryList, ElementRef, Injector } from '@angular/core';
+import { IonicPage } from 'ionic-angular';
 
 import { DoughnutUtil } from '../../../providers-v2/util/doughnut-util';
 import { GradientColorUtil } from '../../../providers-v2/util/gradient-color-util';
 import { PortfolioHoldingType } from '../../../providers-v2/util/portfolio-holding-util';
 import { ChartUtil } from '../../../providers-v2/util/chart-util';
+import { BasePage } from '../../base-page';
+import { MyPortfolioPage } from '../my-portfolio/my-portfolio';
 
 @IonicPage()
 @Component({
   selector: 'page-portfolio-overview',
   templateUrl: 'portfolio-overview.html',
 })
-export class PortfolioOverviewPage {
+export class PortfolioOverviewPage extends BasePage {
 
     @ViewChild('barCanvas') barCanvas;
     @ViewChild('doughnutCanvas') doughnutCanvas;
@@ -61,7 +63,8 @@ export class PortfolioOverviewPage {
     date = "31 May 2018";
    
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(injector: Injector) {
+    super(injector);
   }
 
   ngOnInit() {
@@ -174,6 +177,17 @@ export class PortfolioOverviewPage {
       let percentage = cData[index]/sum * 100;
       ChartUtil.createDoughnutLegendChart(legendCanvan, gradientColors[index], percentage, rotateDegreeStart, rotateDegreeEnd, 90);
     });
+  }
+
+  goToPage(type: string) {
+    console.log("goToPage >> " + type);
+    if(type == "history") {
+      this.setRoot(MyPortfolioPage, {tabIndex: 0});
+    }else if(type == "currency") {
+      this.setRoot(MyPortfolioPage, {tabIndex: 1});
+    }else {
+      this.setRoot(MyPortfolioPage, {tabIndex: 2});
+    }
   }
 
 }

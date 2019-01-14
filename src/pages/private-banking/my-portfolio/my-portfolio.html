@@ -10,7 +10,7 @@
 
 <ion-content bea-theme class="background" padding>
 
-    <ion-tabs tabsPlacement="top">
+    <ion-tabs [selectedIndex]="selectedIndex" tabsPlacement="top">
         <ion-tab [root]="tab1Root" tabTitle="Portfolio History"></ion-tab>
         <ion-tab [root]="tab2Root" tabTitle="Currency Distribution"></ion-tab>
         <ion-tab [root]="tab3Root" tabTitle="Performance"></ion-tab>
