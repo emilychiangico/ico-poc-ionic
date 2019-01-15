@@ -8,10 +8,6 @@ $border-radius: 5px;
 
 $legend-point-size: 15px;
 
-ion-header.header-md::after {
-    height: 0px;
-}
-
 ion-navbar.header {
     > div.toolbar-background {
         background: transparent;
@@ -21,6 +17,7 @@ ion-navbar.header {
     ion-title {
         > div.toolbar-title {
             color: $text-color !important;
+            text-transform: uppercase;
         }
     }
 
@@ -134,4 +131,19 @@ ion-list[pb-list] {
 
 @mixin bottom-border-radius {
     border-radius: 0 0 $border-radius $border-radius;
+}
+
+@mixin detail-header {
+    ion-header {
+        div[header-content] {
+            min-height: 120px;
+            padding: 16px;
+            font-size: 30px;
+            color: $text-color;
+        }
+    }
+
+    div[listContent] {
+        margin-top: -16px !important;
+    }
 }

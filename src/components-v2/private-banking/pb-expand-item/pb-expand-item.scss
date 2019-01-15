@@ -108,12 +108,12 @@ pb-expand-item.item-wrapper {
         @include item-padding;
 
         padding-top: 0 !important;
-        padding-left: 46px !important;
+        padding-left: 26px + $legend-point-size !important;
         border: 0 !important;
         min-height: 0;
 
         &:last-child {
-            border-radius: 0 0 $border-radius $border-radius;
+            @include bottom-border-radius;
         }
 
         & > .item-inner {

@@ -52,7 +52,7 @@ $buttonStyles: primary secondary dark light super-light inverse-primary inverse-
                 background-color: compontent-color($theme-map, list-item-background);
             }
 
-            page-asset-history, page-holding-list {
+            page-asset-history, page-holding-list, page-nav-detail, page-asset-allocation-detail {
                 ion-content {
                     div.scroll-content {
                         background-color: compontent-color($theme-map, content-background);

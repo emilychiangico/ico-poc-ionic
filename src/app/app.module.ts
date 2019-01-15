@@ -70,7 +70,9 @@ import { SettingsService } from '../providers-v2/settings.service';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      mode: 'ios'
+    }),
     DirectivesModule,
     ComponentsModule,
     BrowserAnimationsModule,

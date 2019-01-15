@@ -1,12 +1,5 @@
 page-nav-detail {
 
-    ion-header {
-        div[header-content] {
-            min-height: 100px;
-            padding: 16px;
-            font-size: 30px;
-            color: $text-color;
-        }
-    }
+    @include detail-header;
 
 }
