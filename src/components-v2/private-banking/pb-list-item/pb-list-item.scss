@@ -83,13 +83,12 @@ pb-list-item {
             @include bottom-border-radius;
         }
         
-
         &.border {
             border-bottom: 1px solid $text-color !important;
         }
 
         &.legendPadding {
-            padding-left: 46px;
+            padding-left: 26px + $legend-point-size;
         }
 
         & > .item-inner {

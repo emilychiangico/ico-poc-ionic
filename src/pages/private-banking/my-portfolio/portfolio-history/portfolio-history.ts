@@ -290,20 +290,15 @@ export class PortfolioHistoryPage extends BasePage {
 				var y = chartEvent.offsetY;
 			
 				if (chartEvent.type === 'click' &&
-				  x <= xAxis.right && x >= xAxis.left 
-				  /** && y <= xAxis.bottom && y >= xAxis.top **/
-				 ) {
+					x <= xAxis.right-30 && x >= xAxis.left-30
+					/** && y <= xAxis.bottom && y >= xAxis.top **/
+				) {
 				  // category scale returns index here for some reason
 				  var index = xAxis.getValueForPixel(x);
 				  this.assetSelectedMonthIndex = index;
 				  //this.selectedMonthLabel = areaChart.data.labels[index].join();
 				  this.selectMonth(areaChart, this.assetSelectedMonthIndex);
 				  this.selectAreaData();
-				  //document.getElementById('tick').innerHTML = chartInstance.data.labels[index];
-				// var element = this.getElementAtEvent(e);
-				// if (element.length) {
-				//    console.log(element[0])
-				// }
 				}
 			}
 		);
