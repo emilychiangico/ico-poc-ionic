@@ -18,7 +18,6 @@ import { BasePage } from '../../../base-page';
 export class PortfolioHistoryPage extends BasePage {
 
 	@ViewChild('barChartCanvas') barChartCanvas;
-
 	navDataList = [
 		{
 			title: "Dec 2017",
@@ -63,8 +62,17 @@ export class PortfolioHistoryPage extends BasePage {
 			loan: -31857040.24
 		}
 	];
+	barChartLabel = [
+		["DEC", "2017"], 
+		["JAN", "2018"], 
+		["FEB", "2018"], 
+		["MAR", "2018"], 
+		["APR", "2018"], 
+		["MAY", "2018"]
+	];
 
 	navSelectedData;
+	navHeader;
 
 	@ViewChild('areaChartCanvas') areaChartCanvas;
 	savingAndCurrent = [6, 13.2, 10.8, 6, 12, 12, 12];
@@ -73,15 +81,6 @@ export class PortfolioHistoryPage extends BasePage {
 	structProd = [8.6, 8.6, 9.5, 7, 7.5, 7.5, 7.7];
 	bondsNoteCert = [9, 9, 10, 9, 8, 8.2, 8.6];
 	stock = [4, 5, 4.5, 2, 8, 4, 10];
-	areaChartLabel = [
-	  ["DEC", "2017"], 
-	  ["JAN", "2018"], 
-	  ["FEB", "2018"], 
-	  ["MAR", "2018"], 
-	  ["APR", "2018"], 
-	  ["MAY", "2018"],
-	  ["JUN", "2018"],
-	];
 	holdingTypeList = [
 	  PortfolioHoldingType.SavingAndCurrent,
 	  PortfolioHoldingType.TimeDeposit,
@@ -100,10 +99,20 @@ export class PortfolioHistoryPage extends BasePage {
 	};
 
 	assetSelectedData;
-	header;
+	assetHeader;
 
-	month: string = "MAY";
-	selectedMonthIndex: number = 5;
+	areaChartLabel = [
+		["DEC", "2017"], 
+		["JAN", "2018"], 
+		["FEB", "2018"], 
+		["MAR", "2018"], 
+		["APR", "2018"], 
+		["MAY", "2018"],
+		["JUN", "2018"],
+	];
+
+	assetSelectedMonthIndex: number = 5;
+	navSelectedMonthIndex: number = 5;
 
 	selectedTab = "asset";
 
@@ -137,14 +146,7 @@ export class PortfolioHistoryPage extends BasePage {
 		console.log("height >>>>" + el.height);
 
     	var chartData = {
-			labels: [
-				["DEC", "2017"], 
-				["JAN", "2018"], 
-				["FEB", "2018"], 
-				["MAR", "2018"], 
-				["APR", "2018"], 
-				["MAY", "2018"]
-			],
+			labels: this.barChartLabel,
 			datasets: [{
 				type: 'bar',
 				backgroundColor: GradientColorUtil.getBarGradientColor(ctx, el.width, el.height, 6, 5),
@@ -157,7 +159,7 @@ export class PortfolioHistoryPage extends BasePage {
 			fontFunction: (tickIndex) => {
 				//console.log("fontFunction tickIndex = " + tickIndex);
 				//console.log("fontFunction selectedMonthIndex = " + this.selectedMonthIndex);
-				if (tickIndex == this.selectedMonthIndex) {
+				if (tickIndex == this.navSelectedMonthIndex) {
 					//console.log("******* should be bold****")
 					return 'bold 12px sans-serif';
 				} else {
@@ -190,14 +192,12 @@ export class PortfolioHistoryPage extends BasePage {
 				console.log(item);
 
 				if(item.length > 0) {
-					this.month = item[0]['_model'].label[0];
-
 					var index = item[0]._index;
 					var datasetIndex = item[0]._datasetIndex;
 					var dataset = barChart.data.datasets[datasetIndex];
 
 					console.log("index >> " + index);
-					this.selectedMonthIndex = index;
+					this.navSelectedMonthIndex = index;
 
 					// Reset old state
 					dataset.backgroundColor = GradientColorUtil.getBarGradientColor(ctx, barChart.width, barChart.height, 6, index);
@@ -248,8 +248,8 @@ export class PortfolioHistoryPage extends BasePage {
 		var data = {
 			labels: this.areaChartLabel,
 			xHighlightRange: {
-			  begin: this.selectedMonthIndex,
-			  end: this.selectedMonthIndex + 1
+			  begin: this.assetSelectedMonthIndex,
+			  end: this.assetSelectedMonthIndex + 1
 			},
 			datasets: setdata(this.areaDataList.data)
 		};
@@ -259,7 +259,7 @@ export class PortfolioHistoryPage extends BasePage {
 			fontFunction: (tickIndex) => {
 				// console.log("fontFunction tickIndex = " + tickIndex);
 				// console.log("fontFunction selectedMonthIndex = " + this.selectedMonthIndex);
-				if (tickIndex == this.selectedMonthIndex) {
+				if (tickIndex == this.assetSelectedMonthIndex) {
 				 //console.log("******* should be bold****")
 					return 'bold 12px sans-serif';
 				} else {
@@ -295,9 +295,9 @@ export class PortfolioHistoryPage extends BasePage {
 				 ) {
 				  // category scale returns index here for some reason
 				  var index = xAxis.getValueForPixel(x);
-				  this.selectedMonthIndex = index;
+				  this.assetSelectedMonthIndex = index;
 				  //this.selectedMonthLabel = areaChart.data.labels[index].join();
-				  this.selectMonth(areaChart, this.selectedMonthIndex);
+				  this.selectMonth(areaChart, this.assetSelectedMonthIndex);
 				  this.selectAreaData();
 				  //document.getElementById('tick').innerHTML = chartInstance.data.labels[index];
 				// var element = this.getElementAtEvent(e);
@@ -333,13 +333,13 @@ export class PortfolioHistoryPage extends BasePage {
 			list.push({
 				type: item,
 				title: this.areaDataList.title[index],
-				percentage: this.areaDataList.data[index][this.selectedMonthIndex]
+				percentage: this.areaDataList.data[index][this.assetSelectedMonthIndex]
 			});
 		});
 		this.assetSelectedData = list;
 
-		let label = this.areaChartLabel[this.selectedMonthIndex];
-		this.header = {
+		let label = this.areaChartLabel[this.assetSelectedMonthIndex];
+		this.assetHeader = {
 			left: label[0] + " " + label[1],
 			right: ""
 		}
@@ -347,11 +347,11 @@ export class PortfolioHistoryPage extends BasePage {
 
 	selectBarData() {
 		let list = [];
-		list.push(this.navDataList[this.selectedMonthIndex]);
+		list.push(this.navDataList[this.navSelectedMonthIndex]);
 		this.navSelectedData = list;
 
-		let label = this.areaChartLabel[this.selectedMonthIndex];
-		this.header = {
+		let label = this.barChartLabel[this.navSelectedMonthIndex];
+		this.navHeader = {
 			left: label[0] + " " + label[1],
 			right: ""
 		}

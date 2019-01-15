@@ -17,12 +17,12 @@
 
     <div listContent>
         <ng-container *ngIf="selectedTab == 'asset'">
-            <pb-list-item type="assetHistory" [header]="header" [data]="assetSelectedData">
+            <pb-list-item type="assetHistory" [header]="assetHeader" [data]="assetSelectedData">
             </pb-list-item>
         </ng-container>
 
         <ng-container *ngIf="selectedTab == 'nav'">
-            <pb-list-item type="navRecord" [header]="header" [data]="navSelectedData">
+            <pb-list-item type="navRecord" [header]="navHeader" [data]="navSelectedData">
             </pb-list-item>
         </ng-container>
 
