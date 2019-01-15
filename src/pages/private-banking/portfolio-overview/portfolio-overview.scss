@@ -33,6 +33,16 @@ page-portfolio-overview {
                 margin-bottom: 10px;
                 color: white;
                 white-space: normal;
+
+                > ion-icon {
+                    &.up {
+                        color: rgb(98, 186, 106);
+                    }
+
+                    &.down {
+                        color: rgb(193, 26, 49);
+                    }
+                }
             }
         }
     }

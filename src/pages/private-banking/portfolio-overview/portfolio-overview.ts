@@ -15,15 +15,10 @@ import { MyPortfolioPage } from '../my-portfolio/my-portfolio';
 })
 export class PortfolioOverviewPage extends BasePage {
 
-    @ViewChild('barCanvas') barCanvas;
     @ViewChild('doughnutCanvas') doughnutCanvas;
-    @ViewChild('lineCanvas') lineCanvas;
-
     @ViewChildren('doughnutLegendCanvas') doughnutLegendCanvasList: QueryList<ElementRef>;
 
-    barChart: any;
     doughnutChart: any;
-    lineChart: any;
 
     //List Data
     holdingDataList = [];
@@ -61,6 +56,9 @@ export class PortfolioOverviewPage extends BasePage {
 
     amount = 1635667494.00;
     date = "31 May 2018";
+
+    monthlyDiff = 4.15;
+    sixMonthDiff = -0.95;
    
 
   constructor(injector: Injector) {

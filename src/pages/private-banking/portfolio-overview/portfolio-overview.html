@@ -19,9 +19,17 @@
       <div class="donut-inner">
           <div>
             <div class="period">Monthly</div>
-            <div class="diff">4.15%</div>
+            <div class="diff">
+              <ion-icon class="up" name="md-arrow-dropup" *ngIf="monthlyDiff > 0"></ion-icon>
+              <ion-icon class="down" name="md-arrow-dropdown" *ngIf="monthlyDiff < 0"></ion-icon>
+              {{ monthlyDiff | beaNumber }}%
+            </div>
             <div class="period">6 Months</div>
-            <div class="diff">-0.95%</div>
+            <div class="diff">
+              <ion-icon class="up" name="md-arrow-dropup" *ngIf="sixMonthDiff > 0"></ion-icon>
+              <ion-icon class="down" name="md-arrow-dropdown" *ngIf="sixMonthDiff < 0"></ion-icon>
+              {{ sixMonthDiff | beaNumber }}%
+            </div>
           </div>
       </div>
       <canvas #doughnutCanvas></canvas>
