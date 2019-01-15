@@ -80,7 +80,7 @@ $bea-colors: (
       darker: rgb(33, 33, 39)
     ),
     list-item-background : rgb(45, 50, 75),
-    list-background: rgb(35, 39, 64)
+    content-background: rgb(35, 39, 64)
   ),
   theme-2: (
     background : (
@@ -89,8 +89,8 @@ $bea-colors: (
       dark: rgb(41, 42, 49),
       darker: rgb(33, 33, 35)
     ),
-    list-item-background : rgb(39, 43, 59),
-    list-background: rgb(39, 42, 59)
+    list-item-background : rgb(46, 46, 51),
+    content-background: rgb(34, 34, 41)
   ),
   theme-3: (
     background : (
@@ -100,7 +100,7 @@ $bea-colors: (
       darker: rgb(33, 33, 38)
     ),
     list-item-background : rgb(45, 50, 75),
-    list-background: rgb(35, 39, 64)
+    content-background: rgb(35, 39, 64)
   )
 );
 

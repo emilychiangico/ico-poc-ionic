@@ -2,15 +2,15 @@ page-holding-list {
 
     $border-color : rgba(223, 217, 217, 0.2);
 
-    ion-content {
-        div.scroll-content {
-            background-color: rgb(35, 39, 64);
-        }
-    }
+    // ion-content {
+    //     div.scroll-content {
+    //         background-color: rgb(35, 39, 64);
+    //     }
+    // }
 
     @mixin base-style {
         margin-bottom: 16px;
-        background-color: $list-item-background;
+        //background-color: $list-item-background;
         border-radius: $border-radius;
 
         &:last-child {

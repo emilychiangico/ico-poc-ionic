@@ -26,12 +26,46 @@ $buttonStyles: primary secondary dark light super-light inverse-primary inverse-
                     background-color($theme-map, lighter)) !important;
             }
             
-            div[listContact] {
-                background: compontent-color($theme-map, list-background);
+            div[listContent] {
+                background: compontent-color($theme-map, content-background);
                 margin: 0px -16px -16px -16px;
             }
 
-            
+            pb-list-item {
+                ion-item.itemList, ion-item.nav-record {
+                    background-color: compontent-color($theme-map, list-item-background);
+                }
+            }
+
+            pb-expand-item.item-wrapper {
+                .info-item {
+                    background-color: compontent-color($theme-map, list-item-background);
+                }
+
+                .detail-list ion-item {
+                    background-color: compontent-color($theme-map, list-item-background);
+                }
+            }
+
+            //page-portfolio-overview
+            .button-container > div {
+                background-color: compontent-color($theme-map, list-item-background);
+            }
+
+            page-asset-history, page-holding-list {
+                ion-content {
+                    div.scroll-content {
+                        background-color: compontent-color($theme-map, content-background);
+                    }
+                }
+            }
+
+            page-holding-list {
+                ion-list:not([pb-list]) {
+                    background-color: compontent-color($theme-map, list-item-background);
+                }
+            }
+
         }
     }
 }

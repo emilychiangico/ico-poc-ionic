@@ -30,7 +30,7 @@ pb-expand-item.item-wrapper {
         padding-top: 15px;
         padding-bottom: 15px;
 
-        background-color: $list-item-background;
+        //background-color: $list-item-background;
         color: $text-color;
         border-radius: $border-radius;
 
@@ -48,7 +48,6 @@ pb-expand-item.item-wrapper {
                 margin: 0 8px 0 8px;
                 
                 // set background
-                //background-color: $list-item-background;
                 color: $text-color;
                 border-radius: 50%;
 
@@ -101,7 +100,7 @@ pb-expand-item.item-wrapper {
             border-color: transparent !important;
         }
 
-        background-color: $list-item-background;
+        //background-color: $list-item-background;
         color: $text-color;
     }
 
