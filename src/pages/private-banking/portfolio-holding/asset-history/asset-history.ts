@@ -65,12 +65,12 @@ export class AssetHistoryPage extends BasePage {
 	ionViewWillLeave() {
 		//console.log("asset-history >> ionViewWillLeave");
 		this._event.unsubscribe('change-type-history');
-    }
+	}
 
-    ionViewWillUnload() {
+	ionViewWillUnload() {
 		//console.log("asset-history >> ionViewWillUnload");
 		this._event.unsubscribe('change-type-history');
-    }
+	}
 
 	loadData() {
 		switch (this.selectedType) {

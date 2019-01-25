@@ -7,13 +7,9 @@
     </ion-navbar>
     <div header-content>
 
-        <click-popup ngDefaultControl class="bea-select" type="pbType" 
-            [ngModelBinding]="holdingType" name="holdingType" #holdingType="ngModel"
-            [(ngModel)]="selectedType" 
-            buttonText="Please Select" 
-            popupTitleText="Please Select" [dataList]="holdingTypeList"
-            dataListDisplayAttr="name" dataListValueAttr="id" 
-            (onSelect)="typePopupCallback($event[0])">
+        <click-popup ngDefaultControl class="bea-select" type="pbType" [ngModelBinding]="holdingType" name="holdingType" #holdingType="ngModel"
+            [(ngModel)]="selectedType" buttonText="Please Select" popupTitleText="Please Select" [dataList]="holdingTypeList"
+            dataListDisplayAttr="name" dataListValueAttr="id" (onSelect)="typePopupCallback($event[0])">
         </click-popup>
 
         <div class="title">Total Amount</div>

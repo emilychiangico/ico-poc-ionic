@@ -3,11 +3,11 @@ import { IonicPageModule } from 'ionic-angular';
 import { PortfolioOverviewPage } from './portfolio-overview';
 
 @NgModule({
-  declarations: [
-    PortfolioOverviewPage,
-  ],
-  imports: [
-    IonicPageModule.forChild(PortfolioOverviewPage),
-  ],
+    declarations: [
+        PortfolioOverviewPage,
+    ],
+    imports: [
+        IonicPageModule.forChild(PortfolioOverviewPage),
+    ],
 })
-export class PortfolioOverviewPageModule {}
+export class PortfolioOverviewPageModule { }

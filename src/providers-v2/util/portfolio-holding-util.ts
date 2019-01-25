@@ -1,5 +1,7 @@
-export enum PortfolioHoldingType { SavingAndCurrent, TimeDeposit, StructuredProduct, Stock, BondNoteCertDeposit,
-	UnitTrust, LinkedDeposit, OptionAndDerivativerContract, Loan, ForwardForeignExchange };
+export enum PortfolioHoldingType {
+	SavingAndCurrent, TimeDeposit, StructuredProduct, Stock, BondNoteCertDeposit,
+	UnitTrust, LinkedDeposit, OptionAndDerivativerContract, Loan, ForwardForeignExchange
+};
 
 export class PortfolioHoldingUtil {
 

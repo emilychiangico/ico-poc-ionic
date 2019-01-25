@@ -6,7 +6,7 @@ export namespace ProfolioOverviewInterface {
     }
 
     export interface Response {
-        data? :ResponseData,
+        data?: ResponseData,
         result?: BaseResponseResult
     }
 }

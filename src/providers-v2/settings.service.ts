@@ -17,8 +17,8 @@ export class SettingsService {
     onChange = new ReplaySubject<Settings>(1);
 
     constructor(private platform: Platform,
-                private storage: Storage
-            ) {
+        private storage: Storage
+    ) {
 
         this.__getSettings().then(() => {
             this.onChange.next(this.settings);
@@ -41,7 +41,7 @@ export class SettingsService {
     private __getSettings(): Promise<void> {
         return this.storage.get(STORAGE_SETTINGS_KEY).then(settingsObj => {
             let defaultSettings = new Settings(),
-            settings = JSON.parse(settingsObj);
+                settings = JSON.parse(settingsObj);
             this.settings = Object.assign(defaultSettings, settings);
         });
     }

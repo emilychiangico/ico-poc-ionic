@@ -24,9 +24,9 @@ export namespace ProfolioOverviewInterface {
 
         export interface ResponseData {
         }
-    
+
         export interface Response {
-            data? :ResponseData,
+            data?: ResponseData,
             result?: BaseResponseResult
         }
     }
@@ -34,9 +34,9 @@ export namespace ProfolioOverviewInterface {
     export namespace CurrencyDistribution {
         export interface ResponseData {
         }
-    
+
         export interface Response {
-            data? :ResponseData,
+            data?: ResponseData,
             result?: BaseResponseResult
         }
     }
@@ -44,11 +44,11 @@ export namespace ProfolioOverviewInterface {
     export namespace Performance {
         export interface ResponseData {
         }
-    
+
         export interface Response {
-            data? :ResponseData,
+            data?: ResponseData,
             result?: BaseResponseResult
         }
     }
-    
+
 }

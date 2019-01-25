@@ -12,8 +12,8 @@ import { BasePage } from '../../../base-page';
 
 @IonicPage()
 @Component({
-  selector: 'page-portfolio-history',
-  templateUrl: 'portfolio-history.html',
+	selector: 'page-portfolio-history',
+	templateUrl: 'portfolio-history.html',
 })
 export class PortfolioHistoryPage extends BasePage {
 
@@ -63,11 +63,11 @@ export class PortfolioHistoryPage extends BasePage {
 		}
 	];
 	barChartLabel = [
-		["DEC", "2017"], 
-		["JAN", "2018"], 
-		["FEB", "2018"], 
-		["MAR", "2018"], 
-		["APR", "2018"], 
+		["DEC", "2017"],
+		["JAN", "2018"],
+		["FEB", "2018"],
+		["MAR", "2018"],
+		["APR", "2018"],
 		["MAY", "2018"]
 	];
 
@@ -76,18 +76,18 @@ export class PortfolioHistoryPage extends BasePage {
 
 	@ViewChild('areaChartCanvas') areaChartCanvas;
 	savingAndCurrent = [6, 13.2, 10.8, 6, 12, 12, 12];
-	timeDeposit =     [6, 6.4, 5, 4, 4.2, 4.6, 5];
+	timeDeposit = [6, 6.4, 5, 4, 4.2, 4.6, 5];
 	unitTrust = [6, 7, 7, 5, 4.5, 4.8, 5.5];
 	structProd = [8.6, 8.6, 9.5, 7, 7.5, 7.5, 7.7];
 	bondsNoteCert = [9, 9, 10, 9, 8, 8.2, 8.6];
 	stock = [4, 5, 4.5, 2, 8, 4, 10];
 	holdingTypeList = [
-	  PortfolioHoldingType.SavingAndCurrent,
-	  PortfolioHoldingType.TimeDeposit,
-	  PortfolioHoldingType.StructuredProduct,
-	  PortfolioHoldingType.UnitTrust,
-	  PortfolioHoldingType.Stock,
-	  PortfolioHoldingType.BondNoteCertDeposit,
+		PortfolioHoldingType.SavingAndCurrent,
+		PortfolioHoldingType.TimeDeposit,
+		PortfolioHoldingType.StructuredProduct,
+		PortfolioHoldingType.UnitTrust,
+		PortfolioHoldingType.Stock,
+		PortfolioHoldingType.BondNoteCertDeposit,
 	];
 	areaDataList = {
 		title: [
@@ -102,11 +102,11 @@ export class PortfolioHistoryPage extends BasePage {
 	assetHeader;
 
 	areaChartLabel = [
-		["DEC", "2017"], 
-		["JAN", "2018"], 
-		["FEB", "2018"], 
-		["MAR", "2018"], 
-		["APR", "2018"], 
+		["DEC", "2017"],
+		["JAN", "2018"],
+		["FEB", "2018"],
+		["MAR", "2018"],
+		["APR", "2018"],
 		["MAY", "2018"],
 		["JUN", "2018"],
 	];
@@ -132,8 +132,8 @@ export class PortfolioHistoryPage extends BasePage {
 		this.initBarChar();
 		this.initAreaChar();
 	}
-	
-  	initBarChar() {
+
+	initBarChar() {
 
 		var el = this.barChartCanvas.nativeElement;
 		var ctx = el.getContext("2d");
@@ -145,13 +145,13 @@ export class PortfolioHistoryPage extends BasePage {
 		console.log("width >>>>" + el.width);
 		console.log("height >>>>" + el.height);
 
-    	var chartData = {
+		var chartData = {
 			labels: this.barChartLabel,
 			datasets: [{
 				type: 'bar',
 				backgroundColor: GradientColorUtil.getBarGradientColor(ctx, el.width, el.height, 6, 5),
 				hoverBackgroundColor: GradientColorUtil.getBarGradientColor(ctx, el.width, el.height, 6, 5),
-				data: [30,40,30,50,35,45]
+				data: [30, 40, 30, 50, 35, 45]
 			}]
 		};
 
@@ -173,25 +173,25 @@ export class PortfolioHistoryPage extends BasePage {
 
 		let yTick = {
 			callback: (label, index, labels) => {
-				return label+'mn';
+				return label + 'mn';
 			},
-			fontColor: themeColor.gridLine, 
+			fontColor: themeColor.gridLine,
 			beginAtZero: true,
 			stepSize: 20,
 			max: 80,
 			padding: 5
 		};
-		
-		var barChart = ChartUtil.createBarChar(this.barChartCanvas, 
+
+		var barChart = ChartUtil.createBarChar(this.barChartCanvas,
 			chartData,
-			xTick, 
-			yTick, 
-			(evt, item) => { 
+			xTick,
+			yTick,
+			(evt, item) => {
 				console.log("onClick >>>>>>>");
 				console.log(evt);
 				console.log(item);
 
-				if(item.length > 0) {
+				if (item.length > 0) {
 					var index = item[0]._index;
 					var datasetIndex = item[0]._datasetIndex;
 					var dataset = barChart.data.datasets[datasetIndex];
@@ -209,7 +209,7 @@ export class PortfolioHistoryPage extends BasePage {
 				}
 			}
 		);
-    
+
 		// update Gradient Color by barChart size
 		let dataset = barChart.data.datasets[0];
 		dataset.backgroundColor = GradientColorUtil.getBarGradientColor(ctx, barChart.width, barChart.height, 6, 5);
@@ -248,8 +248,8 @@ export class PortfolioHistoryPage extends BasePage {
 		var data = {
 			labels: this.areaChartLabel,
 			xHighlightRange: {
-			  begin: this.assetSelectedMonthIndex,
-			  end: this.assetSelectedMonthIndex + 1
+				begin: this.assetSelectedMonthIndex,
+				end: this.assetSelectedMonthIndex + 1
 			},
 			datasets: setdata(this.areaDataList.data)
 		};
@@ -260,7 +260,7 @@ export class PortfolioHistoryPage extends BasePage {
 				// console.log("fontFunction tickIndex = " + tickIndex);
 				// console.log("fontFunction selectedMonthIndex = " + this.selectedMonthIndex);
 				if (tickIndex == this.assetSelectedMonthIndex) {
-				 //console.log("******* should be bold****")
+					//console.log("******* should be bold****")
 					return 'bold 12px sans-serif';
 				} else {
 					//console.log("******* should be normal****")
@@ -268,9 +268,9 @@ export class PortfolioHistoryPage extends BasePage {
 				}
 			},
 			padding: 5,
-			fontSize: 12, 
-			fontFamily: "sans-serif", 
-			fontColor: '#FFFFFF', 
+			fontSize: 12,
+			fontFamily: "sans-serif",
+			fontColor: '#FFFFFF',
 			fontStyle: '200'
 		};
 
@@ -281,24 +281,24 @@ export class PortfolioHistoryPage extends BasePage {
 				console.log("onClick");
 				console.log(chartEvent);
 				console.log(item);
-	  
+
 				var xAxis = areaChart.scales['x-axis-0'];
 				console.log(xAxis);
-	  
+
 				// If mouse is over the legend, change cursor style to pointer, else don't show it
 				var x = chartEvent.offsetX - 30;
 				var y = chartEvent.offsetY;
-			
+
 				if (chartEvent.type === 'click' &&
-					x <= xAxis.right-30 && x >= xAxis.left-30
+					x <= xAxis.right - 30 && x >= xAxis.left - 30
 					/** && y <= xAxis.bottom && y >= xAxis.top **/
 				) {
-				  // category scale returns index here for some reason
-				  var index = xAxis.getValueForPixel(x);
-				  this.assetSelectedMonthIndex = index;
-				  //this.selectedMonthLabel = areaChart.data.labels[index].join();
-				  this.selectMonth(areaChart, this.assetSelectedMonthIndex);
-				  this.selectAreaData();
+					// category scale returns index here for some reason
+					var index = xAxis.getValueForPixel(x);
+					this.assetSelectedMonthIndex = index;
+					//this.selectedMonthLabel = areaChart.data.labels[index].join();
+					this.selectMonth(areaChart, this.assetSelectedMonthIndex);
+					this.selectAreaData();
 				}
 			}
 		);
@@ -307,10 +307,10 @@ export class PortfolioHistoryPage extends BasePage {
 		let color = GradientColorUtil.getAreaGradientColor(ctx, this.holdingTypeList, areaChart.width, areaChart.height);
 
 		let datasets = areaChart.data.datasets;
-		for(var i = 0; i < datasets.length; i++) {
+		for (var i = 0; i < datasets.length; i++) {
 			datasets[i].backgroundColor = color[i]
 		}
-	
+
 		areaChart.update();
 
 		this.selectAreaData();
@@ -354,7 +354,7 @@ export class PortfolioHistoryPage extends BasePage {
 
 	/********** button function **********/
 	changeTab(type) {
-		if(type == "asset") {
+		if (type == "asset") {
 			this.selectedTab = "asset";
 		} else {
 			this.selectedTab = "nav";
@@ -362,11 +362,11 @@ export class PortfolioHistoryPage extends BasePage {
 	}
 
 	viewDetail() {
-		if(this.selectedTab == "asset") {
+		if (this.selectedTab == "asset") {
 			this.push(AssetAllocationDetailPage);
 		} else {
 			this.push(NavDetailPage);
 		}
 	}
-	
+
 }

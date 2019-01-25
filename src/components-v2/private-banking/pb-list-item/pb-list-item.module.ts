@@ -9,17 +9,17 @@ import { PbExpandItemComponentModule } from '../pb-expand-item/pb-expand-item.mo
 import { PipesModule } from '../../../pipes/pipes.module';
 
 @NgModule({
-  declarations: [
-    PbListItemComponent
-  ],
-  imports: [
-    IonicModule,
-    LegendPointComponentModule,
-    PbExpandItemComponentModule,
-    PipesModule
-  ],
-  exports: [
-    PbListItemComponent
-]
+    declarations: [
+        PbListItemComponent
+    ],
+    imports: [
+        IonicModule,
+        LegendPointComponentModule,
+        PbExpandItemComponentModule,
+        PipesModule
+    ],
+    exports: [
+        PbListItemComponent
+    ]
 })
-export class PbListItemComponentModule {}
+export class PbListItemComponentModule { }
