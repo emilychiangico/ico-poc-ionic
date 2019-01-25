@@ -1,6 +1,6 @@
 import { GradientUtil, ChartType } from './gradient-util';
 import { DoughnutUtil } from './doughnut-util';
-import { COLOR_THEME } from '../color/colorTheme';
+import { COLOR_THEME } from '../chart-color/colorTheme';
 
 import { PortfolioHoldingType } from './portfolio-holding-util';
 
