@@ -67,6 +67,10 @@ pb-list-item {
         }
     }
 
+    ion-list[nav-record] {
+        margin: 10px 0;
+    }
+
     ion-item.nav-record {
         padding-right: 15px;
         padding-top: 0 !important;
