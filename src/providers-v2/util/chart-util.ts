@@ -336,23 +336,23 @@ export class ChartUtil {
         oChart.draw();
     }
 
-    static closeTip(oChart, datasetIndex, pointIndex) {
-        console.log("called closeTip pointIndex = " + pointIndex);
-        if (pointIndex == undefined) {
-            return;
-        }
-        var activeElements = oChart.tooltip._active;
-        console.log(activeElements);
-        if (activeElements == undefined || activeElements.length == 0 || activeElements[0] == undefined)
-            return;
-        var requestedElem = oChart.getDatasetMeta(datasetIndex).data[pointIndex];
-        for (var i = 0; i < activeElements.length; i++) {
-            if (requestedElem._index == activeElements[i]._index) {
-                activeElements.splice(i, 1);
-                break;
-            }
-        }
-        oChart.tooltip._active = activeElements;
+    static closeTip(oChart, datasetIndex?, pointIndex?) {
+        //console.log("called closeTip pointIndex = " + pointIndex);
+        // if (pointIndex == undefined) {
+        //     return;
+        // }
+        //var activeElements = oChart.tooltip._active;
+        // console.log(activeElements);
+        // if (activeElements == undefined || activeElements.length == 0 || activeElements[0] == undefined)
+        //     return;
+        // var requestedElem = oChart.getDatasetMeta(datasetIndex).data[pointIndex];
+        // for (var i = 0; i < activeElements.length; i++) {
+        //     if (requestedElem._index == activeElements[i]._index) {
+        //         activeElements.splice(i, 1);
+        //         break;
+        //     }
+        // }
+        oChart.tooltip._active = [];
         oChart.tooltip.update(true);
         oChart.draw();
     }

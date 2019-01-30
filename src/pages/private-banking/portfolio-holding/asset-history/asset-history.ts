@@ -175,9 +175,10 @@ export class AssetHistoryPage extends BasePage {
 				this.selectMonth(this.areaChart2, this.selectedMonthIndex);
 
 				ChartUtil.openTip(this.areaChart2, 0, this.selectedMonthIndex);
-			} else {
-				ChartUtil.closeTip(this.areaChart2, 0, this.selectedMonthIndex);
-			}
+			} 
+			//else {
+				//ChartUtil.closeTip(this.areaChart2, 0, this.selectedMonthIndex);
+			//}
 		};
 
 		let xTick = {
@@ -205,7 +206,10 @@ export class AssetHistoryPage extends BasePage {
 			custom: (tooltipModel) => {
 				console.log("tooltips custom function");
 				console.log(tooltipModel);
-				console.log(tooltipModel.dataPoints[0].yLabel);
+				// dataPoint only exist when area is selected
+				if(tooltipModel.dataPoints) {
+					console.log(tooltipModel.dataPoints[0].yLabel);
+				}
 
 				// Tooltip Element
 				var tooltipEl = document.getElementById('chartjs-tooltip');
@@ -219,8 +223,8 @@ export class AssetHistoryPage extends BasePage {
 					//document.body.appendChild(tooltipEl);
 				}
 
-				// Hide if no tooltip
-				if (tooltipModel.opacity === 0) {
+				// Hide if no tooltip / no dataPoint exist
+				if (!tooltipModel.dataPoints || tooltipModel.opacity === 0) {
 					tooltipEl.style.opacity = "0";
 					return;
 				}
@@ -295,6 +299,8 @@ export class AssetHistoryPage extends BasePage {
 
 	updateChart() {
 
+		ChartUtil.closeTip(this.areaChart2);
+
 		let color = GradientColorUtil.getAreaGradientColor(this.areaChartCanvasCtx, [this.selectedType], this.areaChart2.width, this.areaChart2.height);
 
 		let datasets = this.areaChart2.data.datasets;
@@ -303,7 +309,6 @@ export class AssetHistoryPage extends BasePage {
 
 		this.areaChart2.update();
 
-		ChartUtil.closeTip(this.areaChart2, 0, this.selectedMonthIndex);
 	}
 
 	/********* button handling **********/
