@@ -114,7 +114,7 @@ ion-list[pb-list] {
                 color: rgb(129, 132, 161) !important;
                 border-bottom-width: 1px;
                 border-bottom-style: solid;
-                border-image-slice: 1;
+                border-image-slice: 1 !important;
 
                 &[aria-selected=true] {
                     color: $text-color !important;
