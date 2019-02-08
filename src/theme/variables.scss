@@ -79,8 +79,15 @@ $bea-colors: (
       dark: rgb(39, 42, 68),
       darker: rgb(33, 33, 39)
     ),
+    tab: (
+      base: rgb(129, 132, 161),
+      light: rgb(223, 217, 217)
+    ),
+    click-popup-button: rgb(49, 56, 79),
     list-item-background : rgb(45, 50, 75),
-    content-background: rgb(35, 39, 64)
+    content-background: rgb(35, 39, 64),
+    button: rgb(59, 94, 194),
+    text: rgb(223, 217, 217)
   ),
   theme-2: (
     background : (
@@ -89,8 +96,15 @@ $bea-colors: (
       dark: rgb(41, 42, 49),
       darker: rgb(33, 33, 35)
     ),
+    tab: (
+      base: rgb(105, 91, 98),
+      light: rgb(223, 217, 217)
+    ),
+    click-popup-button: rgb(41, 42, 49),
     list-item-background : rgb(46, 46, 51),
-    content-background: rgb(34, 34, 41)
+    content-background: rgb(34, 34, 41),
+    button: rgb(19, 57, 163),
+    text: rgb(223, 217, 217)
   ),
   theme-3: (
     background : (
@@ -99,8 +113,15 @@ $bea-colors: (
       dark: rgb(39, 41, 54),
       darker: rgb(33, 33, 38)
     ),
+    tab: (
+      base: rgb(85, 112, 86),
+      light: rgb(223, 217, 217)
+    ),
+    click-popup-button: rgb(39, 41, 54),
     list-item-background : rgb(45, 50, 75),
-    content-background: rgb(35, 39, 64)
+    content-background: rgb(35, 39, 64),
+    button: rgb(23, 93, 139),
+    text: rgb(223, 217, 217)
   )
 );
 

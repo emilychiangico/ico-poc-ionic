@@ -1,14 +1,10 @@
-$themeTypes: default vip;
-$contentStyles: darker lighter highlight black dark-gray gray light-gray white;
-$buttonStyles: primary secondary dark light super-light inverse-primary inverse-light keypad-key black dark-gray gray light-gray white;
+@function compontent-color($themeMap, $name, $type: null) {
+    @if ($type) {
+        $type-color: map-get($themeMap, $type);
+        @return map-get($type-color, $name);
+    }
 
-@function compontent-color($colorMap, $name) {
-    @return map-get($colorMap, $name);
-} 
-
-@function background-color($theme-map, $name) {
-    $background-color: compontent-color($theme-map, background);
-    @return map-get($background-color, $name);
+    @return map-get($themeMap, $name);
 } 
 
 
@@ -20,10 +16,28 @@ $buttonStyles: primary secondary dark light super-light inverse-primary inverse-
 
             &.background {
                 background-image: linear-gradient(30deg, 
-                    background-color($theme-map, darker),
-                    background-color($theme-map, dark), 
-                    background-color($theme-map, light), 
-                    background-color($theme-map, lighter)) !important;
+                    compontent-color($theme-map, darker, background),
+                    compontent-color($theme-map, dark, background), 
+                    compontent-color($theme-map, light, background), 
+                    compontent-color($theme-map, lighter, background)) !important;
+            }
+
+            ion-tabs {
+                .tabbar {
+                    background: transparent !important;
+        
+                    .tab-button {
+                        color: compontent-color($theme-map, base, tab) !important;
+                        border-bottom-width: 1px;
+                        border-bottom-style: solid;
+                        border-image-slice: 1 !important;
+        
+                        &[aria-selected=true] {
+                            color: compontent-color($theme-map, text) !important;
+                            border-image: linear-gradient(90deg, compontent-color($theme-map, base, tab), compontent-color($theme-map, light, tab), compontent-color($theme-map, base, tab));
+                        }
+                    }
+                }
             }
             
             div[listContent] {
@@ -47,6 +61,55 @@ $buttonStyles: primary secondary dark light super-light inverse-primary inverse-
                 }
             }
 
+            div[view-detail] {
+                text-align: center;
+                padding-bottom: 16px;
+            
+                button {
+                    width: 50%;
+                    background-color: compontent-color($theme-map, button) !important;
+                    color: compontent-color($theme-map, text) !important;
+                }
+            }
+
+            div[button-row] {
+                display: flex;
+                padding: 16px 0;
+            
+                button {
+                    width: 50%;
+                    color: compontent-color($theme-map, text) !important;
+                    border-color: compontent-color($theme-map, text) !important;
+
+                    &.activated {
+                        background: transparent;
+                    }
+                
+                    &.selected {
+                        background: compontent-color($theme-map, button);
+                        border-color: compontent-color($theme-map, button) !important;
+                    }
+
+                    &.benchmark {
+                        font-size: 12px;
+                        padding: 0 1.1em;
+                    }
+                }
+
+                &.range {
+                    display: block;
+                    text-align: center;
+
+                    button {
+                        width: auto;
+                        font-size: 12px;
+                        padding: 0 1.1em;
+                        margin: 0;
+                    }
+                }
+
+            }
+
             //page-portfolio-overview
             .button-container > div {
                 background-color: compontent-color($theme-map, list-item-background);
@@ -63,6 +126,14 @@ $buttonStyles: primary secondary dark light super-light inverse-primary inverse-
             page-holding-list {
                 ion-list:not([pb-list]) {
                     background-color: compontent-color($theme-map, list-item-background);
+                }
+            }
+
+            click-popup {
+                button {
+                    background-color: compontent-color($theme-map, click-popup-button) !important;
+                    color: compontent-color($theme-map, text);
+                    margin-bottom: 16px;
                 }
             }
 
