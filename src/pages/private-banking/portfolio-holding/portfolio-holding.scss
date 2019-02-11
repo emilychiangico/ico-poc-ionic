@@ -7,12 +7,11 @@ page-portfolio-holding {
             color: $text-color;
             text-align: center;
 
-            // click-popup {
-            //     button {
-            //         background-color: rgb(49, 56, 79) !important;
-            //         margin-bottom: 16px;
-            //     }
-            // }
+            click-popup {
+                button {
+                    margin-bottom: 16px;
+                }
+            }
 
             .title {
                 font-weight: 100;
@@ -41,8 +40,6 @@ page-portfolio-holding {
     }
 
     @include tab-page-transparent-background;
-
-    //@include tab-tabs;
 
     .scroll-content {
         padding-top: 0px !important;

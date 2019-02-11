@@ -1,3 +1,5 @@
+
+
 @function compontent-color($themeMap, $name, $type: null) {
     @if ($type) {
         $type-color: map-get($themeMap, $type);
@@ -14,6 +16,8 @@
     .app-root {
         .bea-pb-theme-#{$themeId} {
 
+            $text-color: compontent-color($theme-map, text);
+
             &.background {
                 background-image: linear-gradient(30deg, 
                     compontent-color($theme-map, darker, background),
@@ -24,16 +28,11 @@
 
             ion-tabs {
                 .tabbar {
-                    background: transparent !important;
-        
                     .tab-button {
                         color: compontent-color($theme-map, base, tab) !important;
-                        border-bottom-width: 1px;
-                        border-bottom-style: solid;
-                        border-image-slice: 1 !important;
         
                         &[aria-selected=true] {
-                            color: compontent-color($theme-map, text) !important;
+                            color: $text-color !important;
                             border-image: linear-gradient(90deg, compontent-color($theme-map, base, tab), compontent-color($theme-map, light, tab), compontent-color($theme-map, base, tab));
                         }
                     }
@@ -42,7 +41,6 @@
             
             div[listContent] {
                 background: compontent-color($theme-map, content-background);
-                margin: 0px -16px -16px -16px;
             }
 
             pb-list-item {
@@ -62,52 +60,22 @@
             }
 
             div[view-detail] {
-                text-align: center;
-                padding-bottom: 16px;
-            
                 button {
-                    width: 50%;
                     background-color: compontent-color($theme-map, button) !important;
-                    color: compontent-color($theme-map, text) !important;
+                    color: $text-color !important;
                 }
             }
 
             div[button-row] {
-                display: flex;
-                padding: 16px 0;
-            
                 button {
-                    width: 50%;
-                    color: compontent-color($theme-map, text) !important;
-                    border-color: compontent-color($theme-map, text) !important;
-
-                    &.activated {
-                        background: transparent;
-                    }
+                    color: $text-color !important;
+                    border-color: $text-color !important;
                 
                     &.selected {
                         background: compontent-color($theme-map, button);
                         border-color: compontent-color($theme-map, button) !important;
                     }
-
-                    &.benchmark {
-                        font-size: 12px;
-                        padding: 0 1.1em;
-                    }
                 }
-
-                &.range {
-                    display: block;
-                    text-align: center;
-
-                    button {
-                        width: auto;
-                        font-size: 12px;
-                        padding: 0 1.1em;
-                        margin: 0;
-                    }
-                }
-
             }
 
             //page-portfolio-overview
@@ -132,8 +100,7 @@
             click-popup {
                 button {
                     background-color: compontent-color($theme-map, click-popup-button) !important;
-                    color: compontent-color($theme-map, text);
-                    margin-bottom: 16px;
+                    color: $text-color;
                 }
             }
 

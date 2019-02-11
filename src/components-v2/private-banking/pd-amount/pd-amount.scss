@@ -1,12 +1,31 @@
 pd-amount {
 
-    button {
-        background-color: transparent;
-        padding: 0;
+    div[amount-display] {
+        color: $text-color;
+        text-align: center;
+        padding-bottom: 16px;
+        font-weight: lighter;
+    
+        .title {
+            font-size: 30px;
+        }
+    
+        .amount {
+            font-size: 40px;
+        }
+    
+        .note {
+            font-size: 15px;
+        }
 
-        > bea-icon {
-            color: $text-color;
-            font-size: 1.1em;
+        button {
+            background-color: transparent;
+            padding: 0;
+    
+            > bea-icon {
+                color: $text-color;
+                font-size: 1.1em;
+            }
         }
     }
 
