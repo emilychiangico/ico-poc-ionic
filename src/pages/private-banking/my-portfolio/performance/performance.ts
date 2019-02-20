@@ -34,7 +34,9 @@ export class PerformancePage {
 				monthlyReturn: [6, 4.8, 1, -2, -3, 2],
 				lastSixMonthReturn: [5, 3.8, 1.8, -2, -1, 5]
 			}
-		]
+		],
+		netCapitalValue: 4756964.13,
+		header: "01 Nov 2017 - 30 Apr 2018"
 	}
 
 	thisYearData = {
@@ -55,7 +57,9 @@ export class PerformancePage {
 				monthlyReturn: [6, 4.8, 1, -2, -3, 2, 1, 2, 3, -3, 4, 5],
 				lastSixMonthReturn: [5, 3.8, 1.8, -2, -1, 5, 6, 5, 4, 3, 2, 1]
 			}
-		]
+		],
+		netCapitalValue: 22756964.13,
+		header: "01 Jan 2018 - 30 Dec 2018"
 	}
 
 	selectedIndex = 0;
@@ -191,6 +195,9 @@ export class PerformancePage {
 
 	pastSixMonth() {
 		this.selectedList = this.pastSixMonthData;
+		this.dataList[0].amount = this.selectedList.netCapitalValue;
+		this.beaListHeader.left = this.selectedList.header;
+
 		this.selectedRange = 'month';
 
 		this.mixedChart.data.labels = this.pastSixMonthData.label;
@@ -206,6 +213,9 @@ export class PerformancePage {
 
 	thisYear() {
 		this.selectedList = this.thisYearData;
+		this.dataList[0].amount = this.selectedList.netCapitalValue;
+		this.beaListHeader.left = this.selectedList.header;
+		
 		this.selectedRange = 'year';
 
 		this.mixedChart.data.labels = this.thisYearData.label;
