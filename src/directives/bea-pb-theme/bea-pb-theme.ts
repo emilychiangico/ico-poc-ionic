@@ -11,15 +11,15 @@ export const themeCount = 3;
 const DEFAULT_THEME = 'bea-pb-theme-';
 
 @Directive({
-    selector: '[bea-theme]'
+    selector: '[bea-pb-theme]'
 })
-export class BeaThemeDirective implements OnChanges, OnInit {
+export class BeaPbThemeDirective implements OnChanges, OnInit {
 
     private elmRef: ElementRef;
     private renderer: Renderer2;
     private settingsSvc: SettingsService;
 
-    //@Input('bea-theme') themeOpt: ThemeOptions = new ThemeOptions();
+    //@Input('bea-pb-theme') themeOpt: ThemeOptions = new ThemeOptions();
 
     themeId: number;
 
@@ -30,7 +30,7 @@ export class BeaThemeDirective implements OnChanges, OnInit {
 
         // If setting changes update theme
         this.settingsSvc.onChange.subscribe(settings => {
-            console.log("bea-theme update");
+            console.log("bea-pb-theme update");
             this.themeId = settings.themeId;
             this.update();
         });
