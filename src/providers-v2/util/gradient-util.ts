@@ -87,7 +87,8 @@ export class GradientUtil {
                 resultColor.addColorStop(stopItem.stop, stopItem.color);
             });
         } else {
-            resultColor = color.color;
+            //resultColor = color.color;
+            resultColor = color;
         }
         return resultColor;
     }

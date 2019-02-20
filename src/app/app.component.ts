@@ -8,6 +8,7 @@ import { ListPage } from '../pages/testing-page/list/list';
 import { ChartPage } from '../pages/testing-page/chart/chart';
 import { ChartTestPage } from '../pages/testing-page/chart-test/chart-test';
 import { PortfolioOverviewPage } from '../pages/private-banking/portfolio-overview/portfolio-overview';
+import { PortfolioOverviewPureColorPage } from '../pages/private-banking/portfolio-overview-pure-color/portfolio-overview-pure-color';
 import { PerformancePage } from '../pages/private-banking/my-portfolio/performance/performance';
 import { HighchartsPage } from '../pages/testing-page/highcharts/highcharts';
 import { C3ChartPage } from '../pages/testing-page/c3-chart/c3-chart';
@@ -42,6 +43,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Portfolio Overview', component: PortfolioOverviewPage },
+      { title: 'Portfolio Overview Pure', component: PortfolioOverviewPureColorPage },
       { title: 'My Portfolio', component: MyPortfolioPage},
       { title: 'Portfolio Holding', component: PortfolioHoldingPage},
       //{ title: 'PortfolioHistoryPage', component: PortfolioHistoryPage},
@@ -49,8 +51,8 @@ export class MyApp {
       //{ title: 'Performance', component: PerformancePage },
       //{ title: 'AssetAllocationDetailPage', component: AssetAllocationDetailPage},
       //{ title: 'NavDetailPage', component: NavDetailPage},
-      { title: 'Bar Chart', component: BarChart2Page },
-      { title: 'Area Chart', component: AreaChartPage },
+      // { title: 'Bar Chart', component: BarChart2Page },
+      // { title: 'Area Chart', component: AreaChartPage },
       { title: 'Setting', component: ColorSettingPage }
       //{ title: 'List', component: ListPage },
       //{ title: 'Home', component: HomePage },

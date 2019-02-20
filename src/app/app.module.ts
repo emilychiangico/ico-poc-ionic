@@ -40,6 +40,8 @@ import { ColorSettingPage } from '../pages/color-setting/color-setting';
 
 import { SettingsService } from '../providers-v2/settings.service';
 
+import { PortfolioOverviewPureColorPage } from '../pages/private-banking/portfolio-overview-pure-color/portfolio-overview-pure-color';
+
 
 @NgModule({
   declarations: [
@@ -66,7 +68,8 @@ import { SettingsService } from '../providers-v2/settings.service';
     PortfolioHoldingPage,
     AssetHistoryPage,
 
-    ColorSettingPage
+    ColorSettingPage,
+    PortfolioOverviewPureColorPage
   ],
   imports: [
     BrowserModule,
@@ -104,7 +107,8 @@ import { SettingsService } from '../providers-v2/settings.service';
     PortfolioHoldingPage,
     AssetHistoryPage,
     
-    ColorSettingPage
+    ColorSettingPage,
+    PortfolioOverviewPureColorPage
   ],
   providers: [
     StatusBar,

@@ -10,10 +10,10 @@ import { MyPortfolioPage } from '../my-portfolio/my-portfolio';
 
 @IonicPage()
 @Component({
-    selector: 'page-portfolio-overview',
-    templateUrl: 'portfolio-overview.html',
+    selector: 'page-portfolio-overview-pure-color',
+    templateUrl: 'portfolio-overview-pure-color.html',
 })
-export class PortfolioOverviewPage extends BasePage {
+export class PortfolioOverviewPureColorPage extends BasePage {
 
     @ViewChild('doughnutCanvas') doughnutCanvas;
     @ViewChildren('doughnutLegendCanvas') doughnutLegendCanvasList: QueryList<ElementRef>;
@@ -69,6 +69,8 @@ export class PortfolioOverviewPage extends BasePage {
     monthlyDiff = 4.15;
     sixMonthDiff = -0.95;
 
+    colorList;
+
 
     constructor(injector: Injector) {
         super(injector);
@@ -123,38 +125,13 @@ export class PortfolioOverviewPage extends BasePage {
         var chartData = {
             datasets: [{
                 data: cData.dataList,
-                backgroundColor: GradientColorUtil.getDoughnutGradientColor(ctx, cData.dataList, cData.typeList, 220, 220),
+                backgroundColor: GradientColorUtil.getDoughnutGradientColor(ctx, cData.dataList, cData.typeList, 220, 220, true),
                 borderColor: "rgba(255,255,255,0)"
             }]
         };
 
         this.doughnutChart = ChartUtil.createDonghnutChart(canvasObj, chartData);
 
-        // this.doughnutChart = new Chart(canvasObj.nativeElement, {
-
-        //   type: 'doughnut',
-        //   data: {
-        //       //labels: labels,
-        //       datasets: [{
-        //         //label: '# of Votes',
-        //         data: data,
-        //         backgroundColor: gradientColors,
-        //         borderColor: "rgba(255,255,255,0)"
-        //       }]
-        //   },
-        //   options: {
-        //     aspectRatio: 1,
-        //     cutoutPercentage: 92,
-        //     legend: {
-        //       display: false,
-        //       // position: 'bottom',
-        //       // labels: {
-        //       //     fontColor: 'rgb(255, 99, 132)'
-        //       // }
-        //     },
-        //     events: [] // remove all event of chart
-        //   }
-        // });
     }
 
     // draw Doughnut chart with 0% < data < 100%
@@ -179,7 +156,7 @@ export class PortfolioOverviewPage extends BasePage {
                 rotateDegreeEnd = rotateDegreeList[0];
             }
 
-            gradientColors = GradientColorUtil.getDoughnutGradientColor(lengendCtx, cData.dataList, cData.typeList, 90, 90);
+            gradientColors = GradientColorUtil.getDoughnutGradientColor(lengendCtx, cData.dataList, cData.typeList, 90, 90, true);
 
             let percentage = cData[index] / sum * 100;
             ChartUtil.createDoughnutLegendChart(legendCanvan, gradientColors[index], percentage, rotateDegreeStart, rotateDegreeEnd, 90);

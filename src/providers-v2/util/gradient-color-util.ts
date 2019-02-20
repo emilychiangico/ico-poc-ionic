@@ -51,15 +51,20 @@ export class GradientColorUtil {
         return GradientUtil.prepareSingleBackgroundColor(color, ctx);
     }
 
-    static getAreaGradientColor(ctx, holdingTypeList, chartWidth, chartHeight) {
+    static getAreaGradientColor(ctx, holdingTypeList, chartWidth, chartHeight, isPureColor?:boolean) {
         console.log(">>>> getAreaGradientColor Start >>>>");
 
         let gradientColors = [];
 
         for (let type of holdingTypeList) {
             // get color by PortfolioHoldingType
-            let gradientColor = this.getColorByPortfolioHoldingType(type).area;
-            gradientColor["point"] = GradientUtil.getPointOfLinearGradient(ChartType.Area, chartWidth, chartHeight);
+            let gradientColor;
+            if(isPureColor == true) {
+                gradientColor = this.getColorByPortfolioHoldingType(type).pure;
+            } else {
+                gradientColor = this.getColorByPortfolioHoldingType(type).area;
+                gradientColor["point"] = GradientUtil.getPointOfLinearGradient(ChartType.Area, chartWidth, chartHeight);
+            }
             gradientColors.push(gradientColor);
         }
 
@@ -73,7 +78,7 @@ export class GradientColorUtil {
 
     static getBarGradientColor(ctx, chartWidth, chartHeight, noOfBar?, selectedIndex?) {
         console.log(">>>> getBarGradientColor Start >>>>");
-
+        
         var selectColor = this.colorTheme.bar.selected;
         selectColor["point"] = GradientUtil.getPointOfLinearGradient(ChartType.Bar, chartWidth, chartHeight);
 
@@ -105,31 +110,38 @@ export class GradientColorUtil {
         return GradientUtil.prepareBackgroundColors(gradientColors, ctx);
     }
 
-    static getDoughnutGradientColor(ctx, data, holdingTypeList, chartWidth, chartHeight) {
+    static getDoughnutGradientColor(ctx, data, holdingTypeList, chartWidth, chartHeight, isPureColor?:boolean) {
         console.log(">>>> getDoughnutGradientColor Start >>>>");
 
         console.log(holdingTypeList);
 
         let gradientColors = [];
 
-        let rotateDegreeList = DoughnutUtil.getRotateDegreeList(data);
+        if(isPureColor == true) {
+            holdingTypeList.forEach((item) => {
+                let gradientColor = this.getColorByPortfolioHoldingType(item).pure;
+                gradientColors.push(gradientColor);
+            });
+        } else {
+            let rotateDegreeList = DoughnutUtil.getRotateDegreeList(data);
 
-        rotateDegreeList.forEach((item, index) => {
-            let halfRotateDegree;
-            // get halfRotateDegree of startDegree and endDegree
-            if (index < rotateDegreeList.length - 1) {
-                halfRotateDegree = (item + rotateDegreeList[index + 1]) / 2;
-            } else {
-                halfRotateDegree = (item + 360) / 2;
-            }
+            rotateDegreeList.forEach((item, index) => {
+                let halfRotateDegree;
+                // get halfRotateDegree of startDegree and endDegree
+                if (index < rotateDegreeList.length - 1) {
+                    halfRotateDegree = (item + rotateDegreeList[index + 1]) / 2;
+                } else {
+                    halfRotateDegree = (item + 360) / 2;
+                }
 
-            console.log("halfRotateDegree >> " + halfRotateDegree);
+                console.log("halfRotateDegree >> " + halfRotateDegree);
 
-            // get color by PortfolioHoldingType
-            let gradientColor = this.getColorByPortfolioHoldingType(holdingTypeList[index]).doughnut;
-            gradientColor["point"] = GradientUtil.getPointOfLinearGradient(ChartType.Doughnut, chartWidth, chartHeight, halfRotateDegree);
-            gradientColors.push(gradientColor);
-        });
+                // get color by PortfolioHoldingType
+                let gradientColor = this.getColorByPortfolioHoldingType(holdingTypeList[index]).doughnut;
+                gradientColor["point"] = GradientUtil.getPointOfLinearGradient(ChartType.Doughnut, chartWidth, chartHeight, halfRotateDegree);
+                gradientColors.push(gradientColor);
+            });
+        }
 
         console.log("DoughnutGradientColor >>");
         console.log(gradientColors);

@@ -44,6 +44,7 @@ export const COLOR = {
 
     gradientColors: {
         "grey": {
+            pure: "rgb(119, 134, 156)",
             area: {
                 type: "linear",
                 colorStops: [
@@ -62,6 +63,7 @@ export const COLOR = {
             }
         },
         "dark_cyan": {
+            pure: "rgb(0, 78, 110)",
             area: {
                 type: "linear",
                 colorStops: [
@@ -80,6 +82,7 @@ export const COLOR = {
             }
         },
         "ligth_purple": {
+            pure: "rgb(61, 110, 225)",
             area: {
                 type: "linear",
                 colorStops: [
@@ -98,6 +101,7 @@ export const COLOR = {
             }
         },
         "purple": {
+            pure: "rgb(127, 75, 232)",
             area: {
                 type: "linear",
                 colorStops: [
@@ -116,6 +120,7 @@ export const COLOR = {
             }
         },
         "light_cyan": {
+            pure: "rgb(0, 68, 115)",
             area: {
                 type: "linear",
                 colorStops: [
@@ -134,6 +139,7 @@ export const COLOR = {
             }
         },
         "blue": {
+            pure: "rgb(23, 50, 83)",
             area: {
                 type: "linear",
                 colorStops: [
@@ -152,74 +158,78 @@ export const COLOR = {
             }
         },
         "hotpink": {
+            pure: "hotpink",
             area: {
                 type: "linear",
                 colorStops: [
-                    { stop: 0.4, color: "hotpink" },
+                    { stop: 0.1, color: "hotpink" },
                     { stop: 0.5, color: "#FAFAFA" },
-                    { stop: 0.6, color: "hotpink" }
+                    { stop: 0.9, color: "hotpink" }
                 ]
             },
             doughnut: {
                 type: "linear",
                 colorStops: [
-                    { stop: 0.4, color: "hotpink" },
+                    { stop: 0.3, color: "hotpink" },
                     { stop: 0.5, color: "#FAFAFA" },
-                    { stop: 0.6, color: "hotpink" }
+                    { stop: 0.7, color: "hotpink" }
                 ]
             }
         },
         "cyan": {
+            pure: "cyan",
             area: {
                 type: "linear",
                 colorStops: [
-                    { stop: 0.4, color: "cyan" },
+                    { stop: 0.1, color: "cyan" },
                     { stop: 0.5, color: "#FAFAFA" },
-                    { stop: 0.6, color: "cyan" }
+                    { stop: 0.9, color: "cyan" }
                 ]
             },
             doughnut: {
                 type: "linear",
                 colorStops: [
-                    { stop: 0.4, color: "cyan" },
+                    { stop: 0.3, color: "cyan" },
                     { stop: 0.5, color: "#FAFAFA" },
-                    { stop: 0.6, color: "cyan" }
+                    { stop: 0.7, color: "cyan" }
                 ]
             }
         },
         "gold": {
+            pure: "gold",
             area: {
                 type: "linear",
                 colorStops: [
-                    { stop: 0.4, color: "gold" },
+                    { stop: 0.1, color: "gold" },
                     { stop: 0.5, color: "#FAFAFA" },
-                    { stop: 0.6, color: "gold" }
+                    { stop: 0.9, color: "gold" }
                 ]
             },
             doughnut: {
                 type: "linear",
                 colorStops: [
-                    { stop: 0.4, color: "gold" },
+                    { stop: 0.3, color: "gold" },
                     { stop: 0.5, color: "#FAFAFA" },
-                    { stop: 0.6, color: "gold" }
+                    { stop: 0.7, color: "gold" }
                 ]
             }
         },
         "brown": {
+            pure: "brown",
             area: {
                 type: "linear",
                 colorStops: [
-                    { stop: 0.4, color: "brown" },
+                    { stop: 0.1, color: "brown" },
                     { stop: 0.5, color: "#FAFAFA" },
-                    { stop: 0.6, color: "brown" }
+                    { stop: 0.9, color: "brown" }
                 ]
             },
             doughnut: {
                 type: "linear",
                 colorStops: [
-                    { stop: 0.4, color: "brown" },
+                    { stop: 0.3, color: "brown" },
                     { stop: 0.5, color: "#FAFAFA" },
-                    { stop: 0.6, color: "brown" }
+                    { stop: 0.7, color: "brown" }
                 ]
             }
         }

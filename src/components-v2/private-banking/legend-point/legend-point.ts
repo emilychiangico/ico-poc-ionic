@@ -14,6 +14,7 @@ export class LegendPointComponent implements OnInit {
     @Input('type') type: number;
 
     @Input('color') color: any;
+    @Input('pureColor') isPureColor: boolean = false;
 
     constructor(injector: Injector) {
     }
@@ -44,6 +45,8 @@ export class LegendPointComponent implements OnInit {
             color = GradientColorUtil.getColorByPortfolioHoldingType(this.type);
             if(!color) {
                 return "red";
+            } else if(this.isPureColor == true) {
+                return color.pure;
             } else {
                 return GradientColorUtil.getPointGradientColor(ctx, width, height, color.area);
             }

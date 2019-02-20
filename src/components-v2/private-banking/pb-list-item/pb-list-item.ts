@@ -13,6 +13,7 @@ export class PbListItemComponent implements OnInit {
 
     @Input('type') type: string;
     @Input('data') dataList: any[];
+    @Input('pureColor') isPureColor: boolean = false;
 
     @Output() onClick: EventEmitter<any> = new EventEmitter();
 
