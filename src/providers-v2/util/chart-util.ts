@@ -117,7 +117,6 @@ export class ChartUtil {
                 legend: {
                     display: false,
                 },
-                animation: false,
                 events: [] // remove all event of chart
             }
         });
