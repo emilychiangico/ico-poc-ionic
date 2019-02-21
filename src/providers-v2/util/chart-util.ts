@@ -104,11 +104,14 @@ export class ChartUtil {
         });
     }
 
-    static createDonghnutChart(canvasObj, chartData) {
+    static createDonghnutChart(canvasObj, chartData, isRotate?:boolean) {
         return new Chart(canvasObj.nativeElement, {
             type: 'doughnut',
             data: chartData,
             options: {
+                animation:  {
+                    animateRotate : isRotate
+                },
                 aspectRatio: 1,
                 cutoutPercentage: 92,
                 legend: {

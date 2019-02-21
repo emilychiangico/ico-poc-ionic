@@ -44,8 +44,8 @@ export class MyApp {
     this.pages = [
       { title: 'Portfolio Overview', component: PortfolioOverviewPage },
       { title: 'Portfolio Overview Pure', component: PortfolioOverviewPureColorPage },
-      { title: 'My Portfolio', component: MyPortfolioPage},
-      { title: 'Portfolio Holding', component: PortfolioHoldingPage},
+     //// { title: 'My Portfolio', component: MyPortfolioPage},
+     //// { title: 'Portfolio Holding', component: PortfolioHoldingPage},
       //{ title: 'PortfolioHistoryPage', component: PortfolioHistoryPage},
       //{ title: 'Currency Distribution', component: CcyDistributionPage },
       //{ title: 'Performance', component: PerformancePage },
@@ -53,7 +53,7 @@ export class MyApp {
       //{ title: 'NavDetailPage', component: NavDetailPage},
       // { title: 'Bar Chart', component: BarChart2Page },
       // { title: 'Area Chart', component: AreaChartPage },
-      { title: 'Setting', component: ColorSettingPage }
+     //// { title: 'Setting', component: ColorSettingPage }
       //{ title: 'List', component: ListPage },
       //{ title: 'Home', component: HomePage },
       //{ title: 'Doughnut Chart.js', component: ChartPage },

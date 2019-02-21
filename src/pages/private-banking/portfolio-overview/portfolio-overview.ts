@@ -128,7 +128,7 @@ export class PortfolioOverviewPage extends BasePage {
             }]
         };
 
-        this.doughnutChart = ChartUtil.createDonghnutChart(canvasObj, chartData);
+        this.doughnutChart = ChartUtil.createDonghnutChart(canvasObj, chartData, true);
 
         // this.doughnutChart = new Chart(canvasObj.nativeElement, {
 

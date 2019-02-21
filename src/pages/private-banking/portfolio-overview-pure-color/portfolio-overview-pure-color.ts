@@ -130,7 +130,7 @@ export class PortfolioOverviewPureColorPage extends BasePage {
             }]
         };
 
-        this.doughnutChart = ChartUtil.createDonghnutChart(canvasObj, chartData);
+        this.doughnutChart = ChartUtil.createDonghnutChart(canvasObj, chartData, false);
 
     }
 
