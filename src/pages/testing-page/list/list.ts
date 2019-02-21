@@ -31,7 +31,7 @@ export class ListPage {
 
     this.type = [PortfolioHoldingType.SavingAndCurrent, PortfolioHoldingType.TimeDeposit, PortfolioHoldingType.StructuredProduct, PortfolioHoldingType.Stock, 
       PortfolioHoldingType.BondNoteCertDeposit, PortfolioHoldingType.UnitTrust, PortfolioHoldingType.LinkedDeposit, 
-      PortfolioHoldingType.OptionAndDerivativerContract, PortfolioHoldingType.Loan, PortfolioHoldingType.ForwardForeignExchange ];
+      PortfolioHoldingType.OptionAndDerivativesContract, PortfolioHoldingType.Loan, PortfolioHoldingType.ForwardForeignExchange ];
 
     this.items = [];
     for (let i = 0; i < 10; i++) {

@@ -135,7 +135,7 @@ export class HoldingListPage extends BasePage {
 				this.selectedType = 'linkedDeposit';
 				return this.TestDataList.linkedDeposit;
 
-			case PortfolioHoldingType.OptionAndDerivativerContract:
+			case PortfolioHoldingType.OptionAndDerivativesContract:
 				this.selectedType = 'optionAndDerivativerContract';
 				return null;
 

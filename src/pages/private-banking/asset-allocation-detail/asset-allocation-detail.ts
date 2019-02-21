@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 
-import { PortfolioHoldingType } from '../../../providers-v2/util/portfolio-holding-util';
+import { PortfolioHoldingType, PortfolioHoldingUtil } from '../../../providers-v2/util/portfolio-holding-util';
 
 @IonicPage()
 @Component({
@@ -13,7 +13,7 @@ export class AssetAllocationDetailPage {
 	dataList = [
 		{
 			type: PortfolioHoldingType.SavingAndCurrent,
-			title: "Saving & Current",
+			title: "",
 			monthDetail: [
 				{ month: "Jun", year: 2018, amount: 6008194.53 },
 				{ month: "May", year: 2018, amount: 8220550.54 },
@@ -24,7 +24,7 @@ export class AssetAllocationDetailPage {
 		},
 		{
 			type: PortfolioHoldingType.TimeDeposit,
-			title: "Time Deposit",
+			title: "",
 			monthDetail: [
 				{ month: "Jun", year: 2018, amount: 6008194.53 },
 				{ month: "May", year: 2018, amount: 8220550.54 },
@@ -35,7 +35,7 @@ export class AssetAllocationDetailPage {
 		},
 		{
 			type: PortfolioHoldingType.StructuredProduct,
-			title: "Saving & Current",
+			title: "",
 			monthDetail: [
 				{ month: "Jun", year: 2018, amount: 6008194.53 },
 				{ month: "May", year: 2018, amount: 8220550.54 },
@@ -46,7 +46,7 @@ export class AssetAllocationDetailPage {
 		},
 		{
 			type: PortfolioHoldingType.SavingAndCurrent,
-			title: "Structured Product",
+			title: "",
 			monthDetail: [
 				{ month: "Jun", year: 2018, amount: 6008194.53 },
 				{ month: "May", year: 2018, amount: 8220550.54 },
@@ -57,7 +57,7 @@ export class AssetAllocationDetailPage {
 		},
 		{
 			type: PortfolioHoldingType.UnitTrust,
-			title: "Unit Trust",
+			title: "",
 			monthDetail: [
 				{ month: "Jun", year: 2018, amount: 6008194.53 },
 				{ month: "May", year: 2018, amount: 8220550.54 },
@@ -68,7 +68,7 @@ export class AssetAllocationDetailPage {
 		},
 		{
 			type: PortfolioHoldingType.Stock,
-			title: "Stock",
+			title: "",
 			monthDetail: [
 				{ month: "Jun", year: 2018, amount: 6008194.53 },
 				{ month: "May", year: 2018, amount: 8220550.54 },
@@ -79,7 +79,7 @@ export class AssetAllocationDetailPage {
 		},
 		{
 			type: PortfolioHoldingType.BondNoteCertDeposit,
-			title: "Bonds, Note & Certifcate of Deposit",
+			title: "",
 			monthDetail: [
 				{ month: "Jun", year: 2018, amount: 6008194.53 },
 				{ month: "May", year: 2018, amount: 8220550.54 },
@@ -93,5 +93,10 @@ export class AssetAllocationDetailPage {
 	constructor() {
 	}
 
+	ngOnInit() {
+        this.dataList.forEach((item) => {
+			item.title = PortfolioHoldingUtil.getTitle(item.type);
+		});
+    }
 
 }
