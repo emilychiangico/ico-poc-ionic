@@ -1,6 +1,6 @@
 export enum PortfolioHoldingType {
 	SavingAndCurrent, TimeDeposit, StructuredProduct, Stock, BondNoteCertDeposit,
-	UnitTrust, LinkedDeposit, OptionAndDerivativerContract, Loan, ForwardForeignExchange
+	UnitTrust, LinkedDeposit, OptionAndDerivativesContract, Loan, ForwardForeignExchange
 };
 
 export class PortfolioHoldingUtil {
@@ -21,7 +21,7 @@ export class PortfolioHoldingUtil {
 				return "Unit Trust";
 			case PortfolioHoldingType.LinkedDeposit:
 				return "Linked Deposit";
-			case PortfolioHoldingType.OptionAndDerivativerContract:
+			case PortfolioHoldingType.OptionAndDerivativesContract:
 				return "Option & Derivativer Contract";
 			case PortfolioHoldingType.Loan:
 				return "Loan";

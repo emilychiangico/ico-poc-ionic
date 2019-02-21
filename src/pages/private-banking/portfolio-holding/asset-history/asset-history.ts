@@ -102,7 +102,7 @@ export class AssetHistoryPage extends BasePage {
 				this.chartData = [5, 6, 7, 1, 2, 3, 4];
 				break;
 
-			case PortfolioHoldingType.OptionAndDerivativerContract:
+			case PortfolioHoldingType.OptionAndDerivativesContract:
 				this.chartData = [1, 2, 3, 4, 5, 6, 7];
 				break;
 

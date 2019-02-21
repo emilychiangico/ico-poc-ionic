@@ -28,7 +28,7 @@ export class GradientColorUtil {
                 return this.colorTheme.portfolioHoldingColors.unitTrust;
             case PortfolioHoldingType.LinkedDeposit:
                 return this.colorTheme.portfolioHoldingColors.linkedDeposit;
-            case PortfolioHoldingType.OptionAndDerivativerContract:
+            case PortfolioHoldingType.OptionAndDerivativesContract:
                 return this.colorTheme.portfolioHoldingColors.optionAndDerivativerContract;
             case PortfolioHoldingType.Loan:
                 return this.colorTheme.portfolioHoldingColors.loan;

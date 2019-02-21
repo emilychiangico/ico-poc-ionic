@@ -2,7 +2,7 @@ import { Component, ViewChild, Injector } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 
 import { GradientColorUtil } from '../../../../providers-v2/util/gradient-color-util';
-import { PortfolioHoldingType } from '../../../../providers-v2/util/portfolio-holding-util';
+import { PortfolioHoldingType, PortfolioHoldingUtil } from '../../../../providers-v2/util/portfolio-holding-util';
 import { ChartUtil } from '../../../../providers-v2/util/chart-util';
 
 import { AssetAllocationDetailPage } from '../../asset-allocation-detail/asset-allocation-detail';
@@ -90,9 +90,9 @@ export class PortfolioHistoryPage extends BasePage {
 		PortfolioHoldingType.BondNoteCertDeposit,
 	];
 	areaDataList = {
-		title: [
-			"Saving & Current", "Time Deposit", "Structured Product", "Unit Trust", "Stock", "Bonds, Note & Certifcate of Deposit",
-		],
+		// title: [
+		// 	"Saving & Current", "Time Deposit", "Structured Product", "Unit Trust", "Stock", "Bonds, Note & Certifcate of Deposit",
+		// ],
 		data: [
 			this.savingAndCurrent, this.timeDeposit, this.unitTrust, this.structProd, this.bondsNoteCert, this.stock
 		]
@@ -327,7 +327,7 @@ export class PortfolioHistoryPage extends BasePage {
 		this.holdingTypeList.forEach((item, index) => {
 			list.push({
 				type: item,
-				title: this.areaDataList.title[index],
+				title: PortfolioHoldingUtil.getTitle(item),
 				percentage: this.areaDataList.data[index][this.assetSelectedMonthIndex]
 			});
 		});

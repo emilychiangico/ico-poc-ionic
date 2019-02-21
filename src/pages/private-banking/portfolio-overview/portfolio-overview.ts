@@ -3,7 +3,7 @@ import { IonicPage } from 'ionic-angular';
 
 import { DoughnutUtil } from '../../../providers-v2/util/doughnut-util';
 import { GradientColorUtil } from '../../../providers-v2/util/gradient-color-util';
-import { PortfolioHoldingType } from '../../../providers-v2/util/portfolio-holding-util';
+import { PortfolioHoldingType, PortfolioHoldingUtil } from '../../../providers-v2/util/portfolio-holding-util';
 import { ChartUtil } from '../../../providers-v2/util/chart-util';
 import { BasePage } from '../../base-page';
 import { MyPortfolioPage } from '../my-portfolio/my-portfolio';
@@ -35,22 +35,9 @@ export class PortfolioOverviewPage extends BasePage {
         PortfolioHoldingType.BondNoteCertDeposit,
         PortfolioHoldingType.UnitTrust, 
         PortfolioHoldingType.LinkedDeposit, 
-        PortfolioHoldingType.OptionAndDerivativerContract, 
+        PortfolioHoldingType.OptionAndDerivativesContract, 
         PortfolioHoldingType.Loan, 
         PortfolioHoldingType.ForwardForeignExchange
-    ];
-
-    titles = [
-        "Saving & Current",
-        "Time Deposit",
-        "Linked Deposit",
-        "Stock",
-        "Bonds, Note & Certifcate of Deposit",
-        "Unit Trust",
-        "Structured Product",
-        "Option & Derivatives Contract",
-        "Loan",
-        "Forward Foregin Exchange"
     ];
 
     chartData = {
@@ -90,7 +77,7 @@ export class PortfolioOverviewPage extends BasePage {
         this.type.forEach((item, index) => {
             this.holdingDataList.push({
                 type: item,
-                title: this.titles[index],
+                title: PortfolioHoldingUtil.getTitle(item),
                 amount: this.cData[index],
                 percentage: percentageList[index]
             });

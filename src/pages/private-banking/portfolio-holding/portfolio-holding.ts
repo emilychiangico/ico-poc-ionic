@@ -5,7 +5,7 @@ import { HoldingListPage } from './holding-list/holding-list';
 import { AssetHistoryPage } from './asset-history/asset-history';
 import { BasePage } from '../../base-page';
 
-import { PortfolioHoldingType } from '../../../providers-v2/util/portfolio-holding-util';
+import { PortfolioHoldingType, PortfolioHoldingUtil } from '../../../providers-v2/util/portfolio-holding-util';
 
 @IonicPage()
 @Component({
@@ -26,30 +26,27 @@ export class PortfolioHoldingPage extends BasePage implements OnInit {
         holding: 0
     }
 
-    holdingTypeList = [
-        {
-            id: PortfolioHoldingType.SavingAndCurrent,
-            name: "Saving & Current"
-        },
-        {
-            id: PortfolioHoldingType.TimeDeposit,
-            name: "Time Deposit"
-        },
-        {
-            id: PortfolioHoldingType.LinkedDeposit,
-            name: "Linked Deposit"
-        },
-        {
-            id: PortfolioHoldingType.Stock,
-            name: "Stock"
-        }
+    type = [
+        PortfolioHoldingType.SavingAndCurrent, 
+        PortfolioHoldingType.TimeDeposit, 
+        PortfolioHoldingType.StructuredProduct, 
+        PortfolioHoldingType.Stock, 
+        PortfolioHoldingType.BondNoteCertDeposit,
+        PortfolioHoldingType.UnitTrust, 
+        PortfolioHoldingType.LinkedDeposit, 
+        PortfolioHoldingType.OptionAndDerivativesContract, 
+        PortfolioHoldingType.Loan, 
+        PortfolioHoldingType.ForwardForeignExchange
     ];
+
+    holdingTypeList = [];
 
     constructor(injector: Injector) {
         super(injector);
     }
 
     ngOnInit() {
+        this.getHoldingTypeList();
         let type = this._navParams.get("type");
         if (type >= 0) {
             this.selectedType = type;
@@ -57,6 +54,15 @@ export class PortfolioHoldingPage extends BasePage implements OnInit {
             this.selectedType == this.holdingTypeList[0].id;
         }
         this.loadData();
+    }
+
+    getHoldingTypeList() {
+        this.type.forEach((item) => {
+            this.holdingTypeList.push({
+                id: item,
+                name: PortfolioHoldingUtil.getTitle(item)
+            });
+        });
     }
 
     typePopupCallback(selectedItem) {
@@ -110,7 +116,7 @@ export class PortfolioHoldingPage extends BasePage implements OnInit {
                 this.info = { totalAmount: 11774.00, aumProportion: 75.30, holding: 8 }
                 break;
 
-            case PortfolioHoldingType.OptionAndDerivativerContract:
+            case PortfolioHoldingType.OptionAndDerivativesContract:
                 this.info = { totalAmount: 13770124.00, aumProportion: 65.34, holding: 14 }
                 break;
 
