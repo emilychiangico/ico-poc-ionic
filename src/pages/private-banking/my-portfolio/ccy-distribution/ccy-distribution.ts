@@ -1,26 +1,31 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild, Injector } from '@angular/core';
+import { IonicPage } from 'ionic-angular';
 
 import { GradientColorUtil } from '../../../../providers-v2/util/gradient-color-util';
 import { ChartUtil } from '../../../../providers-v2/util/chart-util';
+
+import { IPortfolioApiService } from "../../../../providers-v2/api/i-portfolio-api-service";
+
+import { BasePage } from "../../../base-page";
 
 @IonicPage()
 @Component({
 	selector: 'page-ccy-distribution',
 	templateUrl: 'ccy-distribution.html',
 })
-export class CcyDistributionPage {
+export class CcyDistributionPage extends BasePage {
+
+	private iPortfolioApiService: IPortfolioApiService;
 
 	@ViewChild('barChartCanvas2') barChartCanvas2;
 
-	dataList = [
-		{ ccy: "AUD", amount: 25519193.18 },
-		{ ccy: "EUR", amount: (32345243.34) },
-		{ ccy: "GBP", amount: (1532574.64) },
-		{ ccy: "HKD", amount: 71452643.53 },
-		{ ccy: "OTH", amount: 1245632.53 },
-		{ ccy: "USD", amount: 24743632.67 }
-	];
+	ccyDistributionInfo = {
+		dataList: [],
+		chartData: {
+			label: [],
+			data: []
+		}
+	}
 
 	beaListHeader = {
 		left: "Currency",
@@ -30,7 +35,30 @@ export class CcyDistributionPage {
 	amount = 1635667494.00;
 	date = "31 May 2018";
 
-	constructor(public navCtrl: NavController, public navParams: NavParams) {
+	constructor(public injector: Injector) {
+		super(injector);
+		this.iPortfolioApiService = injector.get(IPortfolioApiService);
+	}
+
+	ngOnInit() {
+		this.loadData();
+	}
+
+	loadData() {
+		let data = this.iPortfolioApiService.getCcyDistribution().data;
+		let dataList = data.currencyDistributionList;
+
+		let chartLabel = [];
+		let chartData = [];
+
+		dataList.forEach((item) => {
+			chartLabel.push(item.currency);
+			chartData.push(item.amount);
+		})
+
+		this.ccyDistributionInfo.dataList = dataList;
+		this.ccyDistributionInfo.chartData.label = chartLabel;
+		this.ccyDistributionInfo.chartData.data = chartData;
 	}
 
 	ionViewDidLoad() {
@@ -51,23 +79,22 @@ export class CcyDistributionPage {
 		console.log("height >>>>" + el.height);
 
 		var chartData = {
-			labels: ["AUD", "EUR", "GBP", "HKD", "OTH", "USD"],
+			labels: this.ccyDistributionInfo.chartData.label,
 			datasets: [{
 				type: 'bar',
 				backgroundColor: GradientColorUtil.getBarGradientColor(ctx, el.width, el.height),
-				//hoverBackgroundColor: GradientColorUtil.getBarGradientColor(ctx, el.width, el.height),
-				data: [20, - 25, -10, 50, 10, 20]
+				data: this.ccyDistributionInfo.chartData.data
 			}]
 		};
 
 		var yTick = {
 			callback: (label, index, labels) => {
-				return label + 'mn';
+				return label / 1000000 + 'mn';
 			},
 			fontColor: themeColor.gridLine,
-			stepSize: 20,
-			min: -40,
-			max: 80,
+			stepSize: 20000000,
+			min: -40000000,
+			max: 80000000,
 			padding: 5
 		};
 
@@ -86,7 +113,6 @@ export class CcyDistributionPage {
 		// update Gradient Color by barChart size
 		let dataset = barChart.data.datasets[0];
 		dataset.backgroundColor = GradientColorUtil.getBarGradientColor(ctx, barChart.width, barChart.height);
-		//dataset.hoverBackgroundColor = GradientColorUtil.getBarGradientColor(ctx, barChart.width, barChart.height);
 
 		barChart.update();
 

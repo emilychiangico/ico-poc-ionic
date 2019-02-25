@@ -412,4 +412,42 @@ export class IPortfolioApiService {
         return result;
     }
 
+    getCcyDistribution() {
+        let result = {
+            "data": {
+                "currencyDistributionList": [
+                    {
+                        "currency": "AUD",
+                        "amount": 20125389.15
+                    },
+                    {
+                        "currency": "EUR",
+                        "amount": -8707856.12
+                    },
+                    {
+                        "currency": "GBP",
+                        "amount": -30219342.15
+                    },
+                    {
+                        "currency": "HKD",
+                        "amount": 50472020.48
+                    },
+                    {
+                        "currency": "JPY",
+                        "amount": 8107849.96
+                    },
+                    {
+                        "currency": "OTH",
+                        "amount": 44915056.4
+                    },
+                    {
+                        "currency": "USD",
+                        "amount": 70787658.18
+                    }
+                ]
+            }
+        }
+        return result;
+    }
+
 }

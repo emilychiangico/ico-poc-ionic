@@ -30,7 +30,7 @@
     <!-- CCY - Amount -->
     <ng-container *ngIf="type == 'currency'">
         <ion-item class="itemList" *ngFor="let data of dataList">
-            <div class="notIconLeft">{{ data.ccy }}</div>
+            <div class="notIconLeft">{{ data.currency }}</div>
             <div class="notIconRight" item-end>
                 HKD {{ data.amount | beaNumber }}
             </div>
