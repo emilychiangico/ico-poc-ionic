@@ -9,6 +9,7 @@ import { ChartPage } from '../pages/testing-page/chart/chart';
 import { ChartTestPage } from '../pages/testing-page/chart-test/chart-test';
 import { PortfolioOverviewPage } from '../pages/private-banking/portfolio-overview/portfolio-overview';
 import { PortfolioOverviewPureColorPage } from '../pages/private-banking/portfolio-overview-pure-color/portfolio-overview-pure-color';
+import { PortfolioOverviewNoAnimationPage } from '../pages/private-banking/portfolio-overview-no-animation/portfolio-overview-no-animation';
 import { PerformancePage } from '../pages/private-banking/my-portfolio/performance/performance';
 import { HighchartsPage } from '../pages/testing-page/highcharts/highcharts';
 import { C3ChartPage } from '../pages/testing-page/c3-chart/c3-chart';
@@ -44,6 +45,7 @@ export class MyApp {
     this.pages = [
       { title: 'Portfolio Overview', component: PortfolioOverviewPage },
       { title: 'Portfolio Overview Pure', component: PortfolioOverviewPureColorPage },
+      { title: 'Portfolio Overview No Animation', component: PortfolioOverviewNoAnimationPage },
      //// { title: 'My Portfolio', component: MyPortfolioPage},
      //// { title: 'Portfolio Holding', component: PortfolioHoldingPage},
       //{ title: 'PortfolioHistoryPage', component: PortfolioHistoryPage},

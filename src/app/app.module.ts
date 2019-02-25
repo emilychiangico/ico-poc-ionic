@@ -42,6 +42,7 @@ import { SettingsService } from '../providers-v2/settings.service';
 
 import { PortfolioOverviewPureColorPage } from '../pages/private-banking/portfolio-overview-pure-color/portfolio-overview-pure-color';
 
+import { PortfolioOverviewNoAnimationPage } from '../pages/private-banking/portfolio-overview-no-animation/portfolio-overview-no-animation';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { PortfolioOverviewPureColorPage } from '../pages/private-banking/portfol
     AssetHistoryPage,
 
     ColorSettingPage,
-    PortfolioOverviewPureColorPage
+    PortfolioOverviewPureColorPage,
+    PortfolioOverviewNoAnimationPage
   ],
   imports: [
     BrowserModule,
@@ -108,7 +110,8 @@ import { PortfolioOverviewPureColorPage } from '../pages/private-banking/portfol
     AssetHistoryPage,
     
     ColorSettingPage,
-    PortfolioOverviewPureColorPage
+    PortfolioOverviewPureColorPage,
+    PortfolioOverviewNoAnimationPage
   ],
   providers: [
     StatusBar,

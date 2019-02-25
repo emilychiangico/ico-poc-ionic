@@ -1,0 +1,134 @@
+<ion-header bea-pb-theme>
+    <ion-navbar class="header" no-border>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>My Portfolio</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content bea-pb-theme class="background" padding>
+
+    <pd-amount [amount]="amount" [date]="date"></pd-amount>
+
+    <div align="center">
+
+        <div class="doughnut-container">
+            <div class="donut-inner">
+                <div>
+                    <div class="period">Monthly</div>
+                    <div class="diff">
+                        <ion-icon class="up" name="md-arrow-dropup" *ngIf="monthlyDiff > 0"></ion-icon>
+                        <ion-icon class="down" name="md-arrow-dropdown" *ngIf="monthlyDiff < 0"></ion-icon>
+                        {{ monthlyDiff | beaNumber }}%
+                    </div>
+                    <div class="period">6 Months</div>
+                    <div class="diff">
+                        <ion-icon class="up" name="md-arrow-dropup" *ngIf="sixMonthDiff > 0"></ion-icon>
+                        <ion-icon class="down" name="md-arrow-dropdown" *ngIf="sixMonthDiff < 0"></ion-icon>
+                        {{ sixMonthDiff | beaNumber }}%
+                    </div>
+                </div>
+            </div>
+            <canvas #doughnutCanvas></canvas>
+        </div>
+
+        <div class="doughnut-legend-container">
+
+            <!-- <div *ngFor="let number of [1,2,3,4,5,6]"> -->
+            <div *ngFor="let data of holdingDataList">
+                <div class="doughnut-legend">
+                    <div class="donut-legend-inner">
+                        <div>
+                            <div class="diff">{{ data.percentage | beaNumber }}%</div>
+                        </div>
+                    </div>
+                    <canvas #doughnutLegendCanvas></canvas>
+                </div>
+                <div class="donut-legend-bottom">
+                    <div>
+                        <div>{{ data.title }}</div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- <ion-card>
+    <ion-card-header>
+      Bar Chart
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #barCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      Line Chart
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #lineCanvas></canvas>
+    </ion-card-content>
+  </ion-card> -->
+
+    <div listContent>
+        <!-- Button -->
+        <div class="button-container">
+            <div (click)="goToPage('history')">
+                <div>
+                    Portfolio History
+                </div>
+                <div class="image">
+                    <img src="assets/imgs/pb/icon-1.png">
+                </div>
+            </div>
+            <div (click)="goToPage('currency')">
+                <div>
+                    Currency Distribution
+                </div>
+                <div class="image">
+                    <img src="assets/imgs/pb/icon-2.png">
+                </div>
+            </div>
+            <div (click)="goToPage('performance')">
+                <div>
+                    Performance
+                </div>
+                <div class="image">
+                    <img src="assets/imgs/pb/icon-3.png">
+                </div>
+            </div>
+        </div>
+
+        <!-- Info of doughnut chart data-->
+        <pb-list-item type="overview" [header]="beaListHeader" [data]="holdingDataList">
+        </pb-list-item>
+    </div>
+
+    <!-- <div listContent>
+      <pb-list-item type="history"
+                    [header]="beaListHeader"
+                    [data]="holdingDataList">
+      </pb-list-item>
+    </div> -->
+
+    <!-- <ion-list>
+    <ion-item class="test" *ngFor="let holdingData of holdingDataList">
+      <legend-point [type]="holdingData.type"></legend-point>
+      <div class="title">{{ holdingData.title }}</div>
+      <div class="amount" item-end>
+        HKD {{ holdingData.amount }}
+        <ion-icon name="ios-arrow-forward" item-end></ion-icon>
+      </div>
+    </ion-item>
+  </ion-list> -->
+
+</ion-content>
