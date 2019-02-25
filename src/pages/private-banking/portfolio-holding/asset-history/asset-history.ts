@@ -75,48 +75,56 @@ export class AssetHistoryPage extends BasePage {
 	loadData() {
 		switch (this.selectedType) {
 			case PortfolioHoldingType.SavingAndCurrent:
-				this.chartData = [6, 13.2, 10.8, 6, 12, 12, 12];
+				this.chartData = this.setChartData([6, 13.2, 10.8, 6, 12, 12, 12]);
 				break;
 
 			case PortfolioHoldingType.TimeDeposit:
-				this.chartData = [6, 6.4, 5, 4, 4.2, 4.6, 5];
+				this.chartData = this.setChartData([6, 6.4, 5, 4, 4.2, 4.6, 4.6]);
 				break;
 
 			case PortfolioHoldingType.StructuredProduct:
-				this.chartData = [8.6, 8.6, 9.5, 7, 7.5, 7.5, 7.7];
+				this.chartData = this.setChartData([8.6, 8.6, 9.5, 7, 7.5, 7.5, 7.5]);
 				break;
 
 			case PortfolioHoldingType.Stock:
-				this.chartData = [4, 5, 4.5, 2, 8, 4, 10];
+				this.chartData = this.setChartData([4, 5, 4.5, 2, 8, 4, 4]);
 				break;
 
 			case PortfolioHoldingType.BondNoteCertDeposit:
-				this.chartData = [9, 9, 10, 9, 8, 8.2, 8.6];
+				this.chartData = this.setChartData([9, 9, 10, 9, 8, 8.2, 8.2]);
 				break;
 
 			case PortfolioHoldingType.UnitTrust:
-				this.chartData = [6, 7, 7, 5, 4.5, 4.8, 5.5];
+				this.chartData = this.setChartData([6, 7, 7, 5, 4.5, 4.8, 4.8]);
 				break;
 
 			case PortfolioHoldingType.LinkedDeposit:
-				this.chartData = [5, 6, 7, 1, 2, 3, 4];
+				this.chartData = this.setChartData([5, 6, 7, 1, 2, 3, 3]);
 				break;
 
 			case PortfolioHoldingType.OptionAndDerivativesContract:
-				this.chartData = [1, 2, 3, 4, 5, 6, 7];
+				this.chartData = this.setChartData([1, 2, 3, 4, 5, 6, 6]);
 				break;
 
 			case PortfolioHoldingType.Loan:
-				this.chartData = [9, 7, 6, 5, 4, 7, 1];
+				this.chartData = this.setChartData([9, 7, 6, 5, 4, 7, 7]);
 				break;
 
 			case PortfolioHoldingType.ForwardForeignExchange:
-				this.chartData = [4, 2, 8, 6, 5, 7, 9];
+				this.chartData = this.setChartData([4, 2, 8, 6, 5, 7, 7]);
 				break;
 
 			default:
 				this.chartData = [];
 		}
+	}
+
+	setChartData(dataList) {
+		let result = [];
+		dataList.forEach((item) => {
+			result.push(item * 1000000);
+		});
+		return result;
 	}
 
 	selectMonth(chart, index) {
@@ -175,9 +183,9 @@ export class AssetHistoryPage extends BasePage {
 				this.selectMonth(this.areaChart2, this.selectedMonthIndex);
 
 				ChartUtil.openTip(this.areaChart2, 0, this.selectedMonthIndex);
-			} 
+			}
 			//else {
-				//ChartUtil.closeTip(this.areaChart2, 0, this.selectedMonthIndex);
+			//ChartUtil.closeTip(this.areaChart2, 0, this.selectedMonthIndex);
 			//}
 		};
 
@@ -207,7 +215,7 @@ export class AssetHistoryPage extends BasePage {
 				console.log("tooltips custom function");
 				console.log(tooltipModel);
 				// dataPoint only exist when area is selected
-				if(tooltipModel.dataPoints) {
+				if (tooltipModel.dataPoints) {
 					console.log(tooltipModel.dataPoints[0].yLabel);
 				}
 

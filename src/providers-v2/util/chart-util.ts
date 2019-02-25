@@ -202,16 +202,16 @@ export class ChartUtil {
                         stacked: true, // Can't just just `stacked: true` like the docs say
                         ticks: {
                             callback: (label, index, labels) => {
-                                return label + 'mn';
+                                return Number(label)/1000000 + 'mn';
                             },
                             padding: 5,
                             fontSize: 12,
                             fontFamily: "sans-serif",
                             fontColor: '#FFFFFF',
                             fontStyle: '200',
-                            stepSize: 20,
+                            stepSize: 20000000, //20mn
                             min: 0,
-                            max: 80
+                            max: 80000000 //80mn
                         },
                         gridLines: {
                             //drawOnChartArea: true,

@@ -42,6 +42,7 @@ import { SettingsService } from '../providers-v2/settings.service';
 
 import { PortfolioOverviewPureColorPage } from '../pages/private-banking/portfolio-overview-pure-color/portfolio-overview-pure-color';
 
+import { IPortfolioApiService } from '../providers-v2/api/i-portfolio-api-service';
 import { PortfolioOverviewNoAnimationPage } from '../pages/private-banking/portfolio-overview-no-animation/portfolio-overview-no-animation';
 
 @NgModule({
@@ -118,7 +119,8 @@ import { PortfolioOverviewNoAnimationPage } from '../pages/private-banking/portf
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PopupContentService,
-    SettingsService
+    SettingsService,
+    IPortfolioApiService
   ]
 })
 export class AppModule {}

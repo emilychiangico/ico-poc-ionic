@@ -2,8 +2,10 @@ import { Component, ViewChild, Injector } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 
 import { GradientColorUtil } from '../../../../providers-v2/util/gradient-color-util';
-import { PortfolioHoldingType, PortfolioHoldingUtil } from '../../../../providers-v2/util/portfolio-holding-util';
+import { PortfolioHoldingUtil } from '../../../../providers-v2/util/portfolio-holding-util';
+import { PortfolioHistoryUtil } from '../../../../providers-v2/util/portfolio-history-util';
 import { ChartUtil } from '../../../../providers-v2/util/chart-util';
+import { IPortfolioApiService } from "../../../../providers-v2/api/i-portfolio-api-service";
 
 import { AssetAllocationDetailPage } from '../../asset-allocation-detail/asset-allocation-detail';
 import { NavDetailPage } from '../../nav-detail/nav-detail';
@@ -17,99 +19,32 @@ import { BasePage } from '../../../base-page';
 })
 export class PortfolioHistoryPage extends BasePage {
 
+	iPortfolioApiService: IPortfolioApiService;
+
 	@ViewChild('barChartCanvas') barChartCanvas;
-	navDataList = [
-		{
-			title: "Dec 2017",
-			netAssetValue: 1134132.18,
-			cashAndDeposit: 1857040.24,
-			investment: 9135140.62,
-			loan: -1157040.24
+	navDataInfo = {
+		chartData: {
+			label : [],
+			data: []
 		},
-		{
-			title: "Jan 2018",
-			netAssetValue: 34132.18,
-			cashAndDeposit: 21857040.24,
-			investment: 5135140.62,
-			loan: -857040.24
-		},
-		{
-			title: "Feb 2018",
-			netAssetValue: 11134132.18,
-			cashAndDeposit: 81857040.24,
-			investment: 1135140.62,
-			loan: -31857040.24
-		},
-		{
-			title: "Mar 2018",
-			netAssetValue: 9134132.18,
-			cashAndDeposit: 11857040.24,
-			investment: 91135140.62,
-			loan: -431857040.24
-		},
-		{
-			title: "Apr 2018",
-			netAssetValue: 49134132.18,
-			cashAndDeposit: 11857040.24,
-			investment: 21135140.62,
-			loan: -11857040.24
-		},
-		{
-			title: "May 2018",
-			netAssetValue: 89134132.18,
-			cashAndDeposit: 31857040.24,
-			investment: 71135140.62,
-			loan: -31857040.24
-		}
-	];
-	barChartLabel = [
-		["DEC", "2017"],
-		["JAN", "2018"],
-		["FEB", "2018"],
-		["MAR", "2018"],
-		["APR", "2018"],
-		["MAY", "2018"]
-	];
+		detail: []
+	};
 
 	navSelectedData;
 	navHeader;
 
 	@ViewChild('areaChartCanvas') areaChartCanvas;
-	savingAndCurrent = [6, 13.2, 10.8, 6, 12, 12, 12];
-	timeDeposit = [6, 6.4, 5, 4, 4.2, 4.6, 5];
-	unitTrust = [6, 7, 7, 5, 4.5, 4.8, 5.5];
-	structProd = [8.6, 8.6, 9.5, 7, 7.5, 7.5, 7.7];
-	bondsNoteCert = [9, 9, 10, 9, 8, 8.2, 8.6];
-	stock = [4, 5, 4.5, 2, 8, 4, 10];
-	holdingTypeList = [
-		PortfolioHoldingType.SavingAndCurrent,
-		PortfolioHoldingType.TimeDeposit,
-		PortfolioHoldingType.StructuredProduct,
-		PortfolioHoldingType.UnitTrust,
-		PortfolioHoldingType.Stock,
-		PortfolioHoldingType.BondNoteCertDeposit,
-	];
-	areaDataList = {
-		// title: [
-		// 	"Saving & Current", "Time Deposit", "Structured Product", "Unit Trust", "Stock", "Bonds, Note & Certifcate of Deposit",
-		// ],
-		data: [
-			this.savingAndCurrent, this.timeDeposit, this.unitTrust, this.structProd, this.bondsNoteCert, this.stock
-		]
+	assetAllocationDataInfo = {
+		holdingTypeList: [],
+		chartData: {
+			label: [],
+			amount: []
+		},
+		percentage: []
 	};
 
 	assetSelectedData;
 	assetHeader;
-
-	areaChartLabel = [
-		["DEC", "2017"],
-		["JAN", "2018"],
-		["FEB", "2018"],
-		["MAR", "2018"],
-		["APR", "2018"],
-		["MAY", "2018"],
-		["JUN", "2018"],
-	];
 
 	assetSelectedMonthIndex: number = 5;
 	navSelectedMonthIndex: number = 5;
@@ -121,8 +56,33 @@ export class PortfolioHistoryPage extends BasePage {
 
 	constructor(injector: Injector) {
 		super(injector);
+		this.iPortfolioApiService = injector.get(IPortfolioApiService);
 	}
 
+	ngOnInit() {
+		this.loadAssetAllocationData();
+		this.loadNavData();
+	}
+
+	/************ Data Handling start ************/
+
+	loadAssetAllocationData() {
+		console.log("loadAssetAllocationData >> ");
+		let returnData = this.iPortfolioApiService.getAssetAllocationHistory().data;
+		this.assetAllocationDataInfo = PortfolioHistoryUtil.setAssetAllocationData(returnData.assetAllocationHistoryList);
+		console.log(this.assetAllocationDataInfo);
+	}
+
+	loadNavData() {
+		console.log("loadNavData >> ");
+		let returnData = this.iPortfolioApiService.getNavHistory().data;
+		this.navDataInfo = PortfolioHistoryUtil.setNavData(returnData.netAssetValueHistoryList);
+		console.log(this.navDataInfo);
+	}
+
+	/************ Data Handling end ************/
+
+	/************ Chart Handling start ************/
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad BarChartPage');
 		this.initChart();
@@ -146,12 +106,12 @@ export class PortfolioHistoryPage extends BasePage {
 		console.log("height >>>>" + el.height);
 
 		var chartData = {
-			labels: this.barChartLabel,
+			labels: this.navDataInfo.chartData.label,
 			datasets: [{
 				type: 'bar',
 				backgroundColor: GradientColorUtil.getBarGradientColor(ctx, el.width, el.height, 6, 5),
 				hoverBackgroundColor: GradientColorUtil.getBarGradientColor(ctx, el.width, el.height, 6, 5),
-				data: [30, 40, 30, 50, 35, 45]
+				data: this.navDataInfo.chartData.data
 			}]
 		};
 
@@ -173,12 +133,12 @@ export class PortfolioHistoryPage extends BasePage {
 
 		let yTick = {
 			callback: (label, index, labels) => {
-				return label + 'mn';
+				return Number(label)/1000000 + 'mn';
 			},
 			fontColor: themeColor.gridLine,
 			beginAtZero: true,
-			stepSize: 20,
-			max: 80,
+			stepSize: 20000000,
+			max: 80000000,
 			padding: 5
 		};
 
@@ -227,7 +187,9 @@ export class PortfolioHistoryPage extends BasePage {
 		console.log("areaChartCanvasEl.height = " + areaChartCanvasEl.height);
 		var ctx = areaChartCanvasEl.getContext("2d");
 
-		const backgroundColors = GradientColorUtil.getAreaGradientColor(ctx, this.holdingTypeList, areaChartCanvasEl.width, areaChartCanvasEl.height);
+		let holdingTypeList = this.assetAllocationDataInfo.holdingTypeList;
+
+		const backgroundColors = GradientColorUtil.getAreaGradientColor(ctx, holdingTypeList, areaChartCanvasEl.width, areaChartCanvasEl.height);
 
 		function setdata(dataList) {
 			let dataset = [];
@@ -246,12 +208,12 @@ export class PortfolioHistoryPage extends BasePage {
 		}
 
 		var data = {
-			labels: this.areaChartLabel,
+			labels: this.assetAllocationDataInfo.chartData.label,
 			xHighlightRange: {
 				begin: this.assetSelectedMonthIndex,
 				end: this.assetSelectedMonthIndex + 1
 			},
-			datasets: setdata(this.areaDataList.data)
+			datasets: setdata(this.assetAllocationDataInfo.chartData.amount)
 		};
 
 		var xTick = {
@@ -304,7 +266,7 @@ export class PortfolioHistoryPage extends BasePage {
 		);
 
 		// update color by char size
-		let color = GradientColorUtil.getAreaGradientColor(ctx, this.holdingTypeList, areaChart.width, areaChart.height);
+		let color = GradientColorUtil.getAreaGradientColor(ctx, holdingTypeList, areaChart.width, areaChart.height);
 
 		let datasets = areaChart.data.datasets;
 		for (var i = 0; i < datasets.length; i++) {
@@ -322,18 +284,20 @@ export class PortfolioHistoryPage extends BasePage {
 		chart.update();
 	}
 
+	/************ Chart Handling end ************/
+
 	selectAreaData() {
 		let list = [];
-		this.holdingTypeList.forEach((item, index) => {
+		this.assetAllocationDataInfo.holdingTypeList.forEach((item, index) => {
 			list.push({
 				type: item,
 				title: PortfolioHoldingUtil.getTitle(item),
-				percentage: this.areaDataList.data[index][this.assetSelectedMonthIndex]
+				percentage: this.assetAllocationDataInfo.percentage[index][this.assetSelectedMonthIndex]
 			});
 		});
 		this.assetSelectedData = list;
 
-		let label = this.areaChartLabel[this.assetSelectedMonthIndex];
+		let label = this.assetAllocationDataInfo.chartData.label[this.assetSelectedMonthIndex];
 		this.assetHeader = {
 			left: label[0] + " " + label[1],
 			right: ""
@@ -342,10 +306,10 @@ export class PortfolioHistoryPage extends BasePage {
 
 	selectBarData() {
 		let list = [];
-		list.push(this.navDataList[this.navSelectedMonthIndex]);
+		list.push(this.navDataInfo.detail[this.navSelectedMonthIndex]);
 		this.navSelectedData = list;
 
-		let label = this.barChartLabel[this.navSelectedMonthIndex];
+		let label = this.navDataInfo.chartData.label[this.navSelectedMonthIndex];
 		this.navHeader = {
 			left: label[0] + " " + label[1],
 			right: ""
@@ -363,9 +327,9 @@ export class PortfolioHistoryPage extends BasePage {
 
 	viewDetail() {
 		if (this.selectedTab == "asset") {
-			this.push(AssetAllocationDetailPage);
+			this.push(AssetAllocationDetailPage, this.assetAllocationDataInfo);
 		} else {
-			this.push(NavDetailPage);
+			this.push(NavDetailPage, this.navDataInfo);
 		}
 	}
 

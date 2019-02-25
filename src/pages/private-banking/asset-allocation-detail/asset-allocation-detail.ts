@@ -1,102 +1,54 @@
-import { Component } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 
-import { PortfolioHoldingType, PortfolioHoldingUtil } from '../../../providers-v2/util/portfolio-holding-util';
+import { PortfolioHoldingUtil } from '../../../providers-v2/util/portfolio-holding-util';
+import { PortfolioHistoryUtil } from '../../../providers-v2/util/portfolio-history-util';
+import { IPortfolioApiService } from "../../../providers-v2/api/i-portfolio-api-service";
+
+import { BasePage } from '../../base-page';
 
 @IonicPage()
 @Component({
 	selector: 'page-asset-allocation-detail',
 	templateUrl: 'asset-allocation-detail.html',
 })
-export class AssetAllocationDetailPage {
+export class AssetAllocationDetailPage extends BasePage {
 
-	dataList = [
-		{
-			type: PortfolioHoldingType.SavingAndCurrent,
-			title: "",
-			monthDetail: [
-				{ month: "Jun", year: 2018, amount: 6008194.53 },
-				{ month: "May", year: 2018, amount: 8220550.54 },
-				{ month: "Apr", year: 2018, amount: 8220550.54 },
-				{ month: "Mar", year: 2018, amount: 1202912.31 },
-				{ month: "Feb", year: 2018, amount: 11923425.63 }
-			]
-		},
-		{
-			type: PortfolioHoldingType.TimeDeposit,
-			title: "",
-			monthDetail: [
-				{ month: "Jun", year: 2018, amount: 6008194.53 },
-				{ month: "May", year: 2018, amount: 8220550.54 },
-				{ month: "Apr", year: 2018, amount: 8220550.54 },
-				{ month: "Mar", year: 2018, amount: 1202912.31 },
-				{ month: "Feb", year: 2018, amount: 11923425.63 }
-			]
-		},
-		{
-			type: PortfolioHoldingType.StructuredProduct,
-			title: "",
-			monthDetail: [
-				{ month: "Jun", year: 2018, amount: 6008194.53 },
-				{ month: "May", year: 2018, amount: 8220550.54 },
-				{ month: "Apr", year: 2018, amount: 8220550.54 },
-				{ month: "Mar", year: 2018, amount: 1202912.31 },
-				{ month: "Feb", year: 2018, amount: 11923425.63 }
-			]
-		},
-		{
-			type: PortfolioHoldingType.SavingAndCurrent,
-			title: "",
-			monthDetail: [
-				{ month: "Jun", year: 2018, amount: 6008194.53 },
-				{ month: "May", year: 2018, amount: 8220550.54 },
-				{ month: "Apr", year: 2018, amount: 8220550.54 },
-				{ month: "Mar", year: 2018, amount: 1202912.31 },
-				{ month: "Feb", year: 2018, amount: 11923425.63 }
-			]
-		},
-		{
-			type: PortfolioHoldingType.UnitTrust,
-			title: "",
-			monthDetail: [
-				{ month: "Jun", year: 2018, amount: 6008194.53 },
-				{ month: "May", year: 2018, amount: 8220550.54 },
-				{ month: "Apr", year: 2018, amount: 8220550.54 },
-				{ month: "Mar", year: 2018, amount: 1202912.31 },
-				{ month: "Feb", year: 2018, amount: 11923425.63 }
-			]
-		},
-		{
-			type: PortfolioHoldingType.Stock,
-			title: "",
-			monthDetail: [
-				{ month: "Jun", year: 2018, amount: 6008194.53 },
-				{ month: "May", year: 2018, amount: 8220550.54 },
-				{ month: "Apr", year: 2018, amount: 8220550.54 },
-				{ month: "Mar", year: 2018, amount: 1202912.31 },
-				{ month: "Feb", year: 2018, amount: 11923425.63 }
-			]
-		},
-		{
-			type: PortfolioHoldingType.BondNoteCertDeposit,
-			title: "",
-			monthDetail: [
-				{ month: "Jun", year: 2018, amount: 6008194.53 },
-				{ month: "May", year: 2018, amount: 8220550.54 },
-				{ month: "Apr", year: 2018, amount: 8220550.54 },
-				{ month: "Mar", year: 2018, amount: 1202912.31 },
-				{ month: "Feb", year: 2018, amount: 11923425.63 }
-			]
-		}
-	];
+	private iPortfolioApiService: IPortfolioApiService;
 
-	constructor() {
+	dataList = [];
+
+	constructor(injector: Injector) {
+		super(injector);
+		this.iPortfolioApiService = injector.get(IPortfolioApiService);
 	}
 
 	ngOnInit() {
-        this.dataList.forEach((item) => {
-			item.title = PortfolioHoldingUtil.getTitle(item.type);
+		//let data = this._navParams.data;
+		let data = this.iPortfolioApiService.getAssetAllocationHistory().data;
+		let assetAllocationDataInfo = PortfolioHistoryUtil.setAssetAllocationData(data.assetAllocationHistoryList);
+		this.loadData(assetAllocationDataInfo);
+	}
+
+	loadData(data) {
+		data.holdingTypeList.forEach((item, index) => {
+			let detailList = [];
+			console.log(data.chartData.amount[index]);
+			data.chartData.amount[index].forEach((amount, aIndex) => {
+				// last data is extra data, need to be remove
+				if (aIndex < data.chartData.amount[index].length - 1) {
+					detailList.push({
+						month: data.chartData.label[aIndex][0], year: data.chartData.label[aIndex][1], amount: amount
+					});
+				}
+			});
+			this.dataList.push({
+				type: item,
+				title: PortfolioHoldingUtil.getTitle(item),
+				monthDetail: detailList
+			});
 		});
-    }
+		console.log(this.dataList);
+	}
 
 }
