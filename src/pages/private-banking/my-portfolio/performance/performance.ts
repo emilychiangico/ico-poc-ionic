@@ -1,99 +1,73 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild, Injector } from '@angular/core';
+import { IonicPage } from 'ionic-angular';
 
 import { GradientColorUtil } from '../../../../providers-v2/util/gradient-color-util';
 import { ChartUtil } from './../../../../providers-v2/util/chart-util';
+import { PortfolioHistoryUtil } from '../../../../providers-v2/util/portfolio-history-util';
+
+import { IPortfolioApiService } from "../../../../providers-v2/api/i-portfolio-api-service";
+
+import { BasePage } from "../../../base-page";
 
 @IonicPage()
 @Component({
 	selector: 'page-performance',
 	templateUrl: 'performance.html',
 })
-export class PerformancePage {
+export class PerformancePage extends BasePage {
+
+	private iPortfolioApiService: IPortfolioApiService;
 
 	@ViewChild('mixedChartCanvas') mixedChartCanvas;
-
 	mixedChart = null;
-	//type = PortfolioHoldingType.SavingAndCurrent;
 
-	pastSixMonthData = {
-		label: [["DEC", "2017"], ["JAN", "2018"], ["FEB", "2018"], ["MAR", "2018"], ["APR", "2018"], ["MAY", "2018"]],
-		benchmarkDataList: [
-			{
-				benchmark: [5, 2.8, 7, -2.5, -1, 1],
-				monthlyReturn: [2, 1.8, 5, -1, -2, 3],
-				lastSixMonthReturn: [2, 1.8, 5.8, -3, -2, 3]
-			},
-			{
-				benchmark: [4, 1.8, 8, -3.5, -2, 1],
-				monthlyReturn: [5, 3.8, 2, -2, -4, 6],
-				lastSixMonthReturn: [4, 6.8, 2.8, -4, -2, 1]
-			},
-			{
-				benchmark: [2, 0.8, 5, -1.5, -3, 4],
-				monthlyReturn: [6, 4.8, 1, -2, -3, 2],
-				lastSixMonthReturn: [5, 3.8, 1.8, -2, -1, 5]
-			}
-		],
-		netCapitalValue: 4756964.13,
-		header: "01 Nov 2017 - 30 Apr 2018"
-	}
+	thisYearData = null;
+	lastSixMonthData = null;
 
-	thisYearData = {
-		label: [["JAN"], ["FEB"], ["MAR"], ["APR"], ["MAY"], ["JUN"], ["JUL"], ["AUG"], ["SEP"], ["OCT"], ["NOV"], ["DEC"]],
-		benchmarkDataList: [
-			{
-				benchmark: [2.8, 7, -2.5, -1, 1, 2, 5, -3, -0.5, 3, 1, 7.5],
-				monthlyReturn: [1.8, 5, -1, -2, 3, 6, 1, -3, -1.5, 4.5, 3, 7],
-				lastSixMonthReturn: [1.8, 5.8, -3, -2, 3, 4, 4, -2, -1, 5, 2.5, 5]
-			},
-			{
-				benchmark: [4, 1.8, 8, -3.5, -2, 1, 2, 2, 3, 3, 4, 5],
-				monthlyReturn: [5, 3.8, 2, -2, -4, 6, 5, 4, 3, 2, 1, 1],
-				lastSixMonthReturn: [4, 6.8, 2.8, -4, -2, 1, 1, 2, 3, 4, 5, 6]
-			},
-			{
-				benchmark: [2, 0.8, 5, -1.5, -3, 4, 6, 6, 5, 4, 4, 1],
-				monthlyReturn: [6, 4.8, 1, -2, -3, 2, 1, 2, 3, -3, 4, 5],
-				lastSixMonthReturn: [5, 3.8, 1.8, -2, -1, 5, 6, 5, 4, 3, 2, 1]
-			}
-		],
-		netCapitalValue: 22756964.13,
-		header: "01 Jan 2018 - 30 Dec 2018"
-	}
-
-	selectedIndex = 0;
+	selectedIndex = "dow_jones_industrial_average_index";
 	selectedRange = "month";
-	selectedList = this.pastSixMonthData;
+	selectedList = null;
+	thisYear = null;
 
 	legendList: any[] = [];
 
 	dataList = [{ type: "Change (Net Capital In-Out Value)", amount: 4756964.13 }];
 
 	beaListHeader = {
-		left: "01 Nov 2017 - 30 Apr 2018",
+		left: "",
 		right: ""
 	};
 
 	amount = 1635667494.00;
 	date = "31 May 2018";
 
-	constructor(public navCtrl: NavController, public navParams: NavParams) {
+	constructor(public injector: Injector) {
+		super(injector);
+		this.iPortfolioApiService = injector.get(IPortfolioApiService);
+	}
+
+	ngOnInit() {
+		this.loadData();
+	}
+
+	loadData() {
+		let data = this.iPortfolioApiService.getPerformanceAnalysis().data;
+		let result = PortfolioHistoryUtil.setPerformanceData(data);
+		this.lastSixMonthData = result.lastSixMonthData;
+		this.thisYearData = result.yearData;
+		this.thisYear = result.yearData.startDate.getFullYear();
+		console.log(result);
+
+		this.selectedList = this.lastSixMonthData;
+		this.beaListHeader.left = this.selectedList.header;
 	}
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad MixedChartPage');
-		this.initChart2();
+		this.initChart();
 	}
 
-	initChart2() {
-
-		// function randomScalingFactor() {
-		//   let max = 100;
-		//   let min = -100;
-		//   return Math.floor(Math.random() * (max - min + 1)) + min;
-		//   //return Math.round(Samples.utils.rand(-100, 100));
-		// };
+	initChart() {
 
 		var el = this.mixedChartCanvas.nativeElement;
 		var ctx = el.getContext("2d");
@@ -103,7 +77,7 @@ export class PerformancePage {
 		this.setLegend(themeColor);
 
 		var chartData = {
-			labels: this.pastSixMonthData.label,
+			labels: this.lastSixMonthData.label,
 			datasets: [{
 				type: 'line',
 				label: 'Dataset 1',
@@ -111,11 +85,11 @@ export class PerformancePage {
 				pointBackgroundColor: themeColor.mix.benchmarkLine,
 				backgroundColor: themeColor.mix.benchmarkBackground,
 				borderWidth: 2,
-				data: this.pastSixMonthData.benchmarkDataList[this.selectedIndex].benchmark
+				data: this.lastSixMonthData.benchmarkList.get(this.selectedIndex).percentage
 			}, {
 				type: 'line',
 				label: 'Dataset 2',
-				data: this.pastSixMonthData.benchmarkDataList[this.selectedIndex].monthlyReturn,
+				data: this.lastSixMonthData.returnPercent,
 				borderColor: themeColor.mix.returnLine,
 				pointBackgroundColor: themeColor.mix.returnLine,
 				borderWidth: 2,
@@ -124,107 +98,41 @@ export class PerformancePage {
 				type: 'bar',
 				label: 'Dataset 3',
 				backgroundColor: GradientColorUtil.getBarGradientColor(ctx, el.width, el.height),
-				hoverBackgroundColor: GradientColorUtil.getBarGradientColor(ctx, el.width, el.height),
-				data: this.pastSixMonthData.benchmarkDataList[this.selectedIndex].lastSixMonthReturn
+				data: this.lastSixMonthData.monthlyReturnPercent
 			}]
 		};
 
 		this.mixedChart = ChartUtil.createMixedChart(this.mixedChartCanvas, chartData);
-		// this.mixedChart = new Chart(this.mixedChartCanvas.nativeElement, {
-		//   type: 'bar',
-		//   data: chartData,
-		//   options: {
-		// 		responsive: true,
-		// 		aspectRatio: 1.3,
-		//     title: {
-		//       display: false,
-		//       text: 'Chart.js Combo Bar Line Chart'
-		//     },
-		//     tooltips: {
-		// 			enabled: false,
-		//       mode: 'index',
-		//       intersect: true
-		// 		},
-		// 		legend: {
-		// 			display: false, // no display legend
-		// 		},
-		// 		scales: {
-		// 			yAxes: [{
-		// 					ticks: {
-		// 						callback: (label, index, labels) => {
-		// 							return label+'.00%';
-		// 						},
-		// 						fontColor: themeColor.gridLine,
-		// 						stepSize: 2,
-		// 						min: -4,
-		// 						max: 8,
-		// 						padding: 5,
-		// 					},
-		// 					gridLines: {
-		// 						color: themeColor.gridLine,
-		// 						zeroLineColor: themeColor.gridLine,
-		// 						drawBorder: true,
-		// 						drawTicks: false
-		// 					}
-		// 			}],
-		// 			xAxes: [{
-		// 					barPercentage: 0.5,
-		// 					ticks: {
-		// 						fontColor: themeColor.gridLine,
-		// 						padding: 5,
-		// 					},
-		// 					gridLines: {
-		// 						color: themeColor.gridLine,
-		// 						drawBorder: true,
-		// 						drawTicks: false
-		// 					}
-		// 			}]
-		// 		},
-		// 		events: [] // remove onhover
-		//   }
-		// });
 
 		// update Gradient Color by barChart size
 		let dataset = this.mixedChart.data.datasets[2];
 		dataset.backgroundColor = GradientColorUtil.getBarGradientColor(ctx, this.mixedChart.width, this.mixedChart.height);
-		dataset.hoverBackgroundColor = GradientColorUtil.getBarGradientColor(ctx, this.mixedChart.width, this.mixedChart.height);
-
-		this.mixedChart.update();
-
-	}
-
-	pastSixMonth() {
-		this.selectedList = this.pastSixMonthData;
-		this.dataList[0].amount = this.selectedList.netCapitalValue;
-		this.beaListHeader.left = this.selectedList.header;
-
-		this.selectedRange = 'month';
-
-		this.mixedChart.data.labels = this.pastSixMonthData.label;
-		this.mixedChart.data.datasets[0].data = this.pastSixMonthData.benchmarkDataList[this.selectedIndex].benchmark;
-		this.mixedChart.data.datasets[1].data = this.pastSixMonthData.benchmarkDataList[this.selectedIndex].monthlyReturn;
-		this.mixedChart.data.datasets[2].data = this.pastSixMonthData.benchmarkDataList[this.selectedIndex].lastSixMonthReturn;
-
-		this.mixedChart.options.scales.xAxes[0].ticks.fontSize = 12;
-		this.mixedChart.options.scales.yAxes[0].ticks.fontSize = 12;
 
 		this.mixedChart.update();
 	}
 
-	thisYear() {
-		this.selectedList = this.thisYearData;
+	changeDateRange(type: string) {
+		if (type == "month") {
+			this.selectedList = this.lastSixMonthData;
+			this.legendList[1].name = "Last 6 Monthly Return";
+		} else {
+			this.selectedList = this.thisYearData;
+			this.legendList[1].name = "Year Return";
+		}
+		this.selectedRange = type;
+
 		this.dataList[0].amount = this.selectedList.netCapitalValue;
 		this.beaListHeader.left = this.selectedList.header;
-		
-		this.selectedRange = 'year';
 
-		this.mixedChart.data.labels = this.thisYearData.label;
-		this.mixedChart.data.datasets[0].data = this.thisYearData.benchmarkDataList[this.selectedIndex].benchmark;
-		this.mixedChart.data.datasets[1].data = this.thisYearData.benchmarkDataList[this.selectedIndex].monthlyReturn;
-		this.mixedChart.data.datasets[2].data = this.thisYearData.benchmarkDataList[this.selectedIndex].lastSixMonthReturn;
+		this.mixedChart.data.labels = this.selectedList.label;
+		this.mixedChart.data.datasets[0].data = this.selectedList.benchmarkList.get(this.selectedIndex).percentage;
+		this.mixedChart.data.datasets[1].data = this.selectedList.returnPercent;
+		this.mixedChart.data.datasets[2].data = this.selectedList.monthlyReturnPercent;
 
-		this.mixedChart.options.scales.xAxes[0].ticks.fontSize = 10;
-		this.mixedChart.options.scales.yAxes[0].ticks.fontSize = 10;
+		if (this.selectedList.label.length > 6) {
+			this.mixedChart.options.scales.xAxes[0].ticks.fontSize = 10;
+			this.mixedChart.options.scales.yAxes[0].ticks.fontSize = 10;
+		}
 
 		this.mixedChart.update();
 	}
@@ -238,13 +146,13 @@ export class PerformancePage {
 	}
 
 	changeBenchmark(index) {
-		this.selectedIndex = index;
+		if (index != this.selectedIndex) {
+			this.selectedIndex = index;
 
-		this.mixedChart.data.datasets[0].data = this.selectedList.benchmarkDataList[this.selectedIndex].benchmark;
-		this.mixedChart.data.datasets[1].data = this.selectedList.benchmarkDataList[this.selectedIndex].monthlyReturn;
-		this.mixedChart.data.datasets[2].data = this.selectedList.benchmarkDataList[this.selectedIndex].lastSixMonthReturn;
+			this.mixedChart.data.datasets[0].data = this.selectedList.benchmarkList.get(this.selectedIndex).percentage;
 
-		this.mixedChart.update();
+			this.mixedChart.update();
+		}
 	}
 
 }

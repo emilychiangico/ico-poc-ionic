@@ -3,27 +3,30 @@
     <pd-amount [amount]="amount" [date]="date"></pd-amount>
 
     <div button-row class="range">
-        <button ion-button outline [class.selected]="selectedRange == 'month'" (click)="pastSixMonth()">
+        <button ion-button outline [class.selected]="selectedRange == 'month'" (click)="changeDateRange('month')">
             Past 6 months
         </button>
-        <button ion-button outline [class.selected]="selectedRange == 'year'" (click)="thisYear()">
-            2018
+        <button ion-button outline [class.selected]="selectedRange == 'year'" (click)="changeDateRange('year')">
+            {{ thisYear }}
         </button>
     </div>
 
     <canvas #mixedChartCanvas></canvas>
 
     <div button-row style="padding-bottom: 0">
-        <button ion-button round outline class="benchmark" [class.selected]="selectedIndex == 0" (click)="changeBenchmark(0)">
+        <button ion-button round outline class="benchmark" [class.selected]="selectedIndex == 'dow_jones_industrial_average_index'" (click)="changeBenchmark('dow_jones_industrial_average_index')">
             Dow jones industrial Average
         </button>
-        <button ion-button round outline class="benchmark" [class.selected]="selectedIndex == 1" (click)="changeBenchmark(1)">
+        <button ion-button round outline class="benchmark" [class.selected]="selectedIndex == 'hang_seng_index'" (click)="changeBenchmark('hang_seng_index')">
             Hang Seng Index
         </button>
     </div>
     <div button-row style="padding-top: 0">
-        <button ion-button round outline class="benchmark" [class.selected]="selectedIndex == 2" (click)="changeBenchmark(2)">
-            HS China Enterprese Index
+        <button ion-button round outline class="benchmark" [class.selected]="selectedIndex == 'msci_world_index'" (click)="changeBenchmark('msci_world_index')">
+            MSCI World Index
+        </button>
+        <button ion-button round outline class="benchmark" [class.selected]="selectedIndex == 'sp_500_index'" (click)="changeBenchmark('sp_500_index')">
+            S&P 500 Index
         </button>
     </div>
 

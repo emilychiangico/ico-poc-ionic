@@ -20,6 +20,13 @@ export const ApiNavType = {
 	netAssetValues: "net_asset_values",
 };
 
+export const BenchmarkType = {
+	dow_jones_industrial_average_index: "dow_jones_industrial_average_index",
+	hang_seng_index: "hang_seng_index",
+	msci_world_index: "msci_world_index",
+	sp_500_index: "sp_500_index"
+}
+
 export class PortfolioHistoryUtil {
 
 	static setAssetAllocationData(dataList) {
@@ -149,6 +156,80 @@ export class PortfolioHistoryUtil {
 		return navDataInfo;
 	}
 
+	static setPerformanceData(data) {
+		console.log("setPerformanceData >> ");
+
+		let yearBeginDate = new Date(data.yearBeginDate);
+		let lastSixMonthBeginDate = new Date(data.lastSixMonthBeginDate);
+
+		let detailsList = data.detailsList;
+
+		let yearData = {
+			label: [],
+			monthlyReturnPercent: [],
+			returnPercent: [],
+			benchmarkList: new Map(),
+			netCapitalValue: data.netCapitalInOutValueFromYrBegin,
+			startDate: yearBeginDate,
+			endDate: null,
+			header: ""
+		};
+
+		let lastSixMonthData = {
+			label: [],
+			monthlyReturnPercent: [],
+			returnPercent: [],
+			benchmarkList: new Map(),
+			netCapitalValue: data.netCapitalInOutValueFromLastSixMonth,
+			startDate: lastSixMonthBeginDate,
+			endDate: null,
+			header: ""
+		}
+
+		this.sortList(detailsList).forEach((item) => {
+			let year = item.year;
+			let month = item.month;
+
+			if (lastSixMonthData.label.length < 6) {
+				lastSixMonthData.label.push([month, year]);
+				lastSixMonthData.monthlyReturnPercent.push(item.monthlyReturnPercent);
+				lastSixMonthData.returnPercent.push(item.yearToLastSixMonthReturnPercent);
+				this.getBenchmarkData(item.benchmarkList, lastSixMonthData.benchmarkList);
+
+				lastSixMonthData.endDate = item.toDate;
+			}
+
+			if (yearBeginDate.getFullYear() == item.year) {
+				yearData.label.push([month, year]);
+				yearData.monthlyReturnPercent.push(item.monthlyReturnPercent);
+				yearData.returnPercent.push(item.yearReturnPercent);
+				this.getBenchmarkData(item.benchmarkList, yearData.benchmarkList);
+
+				yearData.endDate = item.toDate;
+			}
+		});
+
+		lastSixMonthData.header = data.lastSixMonthBeginDate + " - " + lastSixMonthData.endDate;
+		yearData.header = data.yearBeginDate + " - " + yearData.endDate;
+
+		return { yearData: yearData, lastSixMonthData: lastSixMonthData };
+	}
+
+	private static getBenchmarkData(benchmarkDetailList, resultListByType) {
+		benchmarkDetailList.forEach((benchmark) => {
+			if (resultListByType.get(benchmark.id) == null) {
+				resultListByType.set(benchmark.id, {
+					value: [benchmark.value],
+					percentage: [benchmark.percentage]
+				});
+			} else {
+				let ele = resultListByType.get(benchmark.id);
+				ele.value.push(benchmark.value);
+				ele.percentage.push(benchmark.percentage);
+			}
+		})
+	}
+
 	private static sortList(dataList) {
 		return dataList.sort((a, b) => {
 			if (a.year == b.year) {
@@ -156,7 +237,6 @@ export class PortfolioHistoryUtil {
 			} else {
 				return a.year - b.year;
 			}
-		}
-		);
+		});
 	}
 }

@@ -450,4 +450,230 @@ export class IPortfolioApiService {
         return result;
     }
 
+    getPerformanceAnalysis() {
+        let result = {
+            "data": {
+                "netCapitalInOutValueFromYrBegin": 8587338.53,
+                "netCapitalInOutValueFromLastSixMonth": 8587338.53,
+                "yearBeginDate": "2016-01-01",
+                "lastSixMonthBeginDate": "2015-12-01",
+                "detailsList": [
+                    {
+                        "year": 2016,
+                        "month": 5,
+                        "fromDate": "2016-05-01",
+                        "toDate": "2016-05-31",
+                        "fromAUM": 41673251.76,
+                        "toAUM": 41673251.76,
+                        "netCapitalInOutValue": 1901294.48,
+                        "weightedNetCapitalInOutValue": 944072.64,
+                        "netChangeInPortfolioValue": -1901294.48,
+                        "monthlyReturnPercent": -1,
+                        "yearReturnPercent": -4,
+                        "yearToLastSixMonthReturnPercent": -4,
+                        "benchmarkList": [
+                            {
+                                "id": "dow_jones_industrial_average_index",
+                                "value": 18012.55,
+                                "percentage": -0.4
+                            },
+                            {
+                                "id": "hang_seng_index",
+                                "value": 20600,
+                                "percentage": -0.95
+                            },
+                            {
+                                "id": "msci_world_index",
+                                "value": 9756,
+                                "percentage": -1.46
+                            },
+                            {
+                                "id": "sp_500_index",
+                                "value": 2259.89,
+                                "percentage": 0.75
+                            }
+                        ]
+                    }, {
+                        "year": 2016,
+                        "month": 4,
+                        "fromDate": "2016-04-01",
+                        "toDate": "2016-04-30",
+                        "fromAUM": 41673251.76,
+                        "toAUM": 41673251.76,
+                        "netCapitalInOutValue": 1901294.48,
+                        "weightedNetCapitalInOutValue": 944072.64,
+                        "netChangeInPortfolioValue": -1901294.48,
+                        "monthlyReturnPercent": 2,
+                        "yearReturnPercent": -2,
+                        "yearToLastSixMonthReturnPercent": -3,
+                        "benchmarkList": [
+                            {
+                                "id": "dow_jones_industrial_average_index",
+                                "value": 18085,
+                                "percentage": -0.11
+                            },
+                            {
+                                "id": "hang_seng_index",
+                                "value": 20800,
+                                "percentage": -0.95
+                            },
+                            {
+                                "id": "msci_world_index",
+                                "value": 9900.33,
+                                "percentage": 2.65
+                            },
+                            {
+                                "id": "sp_500_index",
+                                "value": 2243,
+                                "percentage": 1.9
+                            }
+                        ]
+                    }, {
+                        "year": 2016,
+                        "month": 3,
+                        "fromDate": "2016-03-01",
+                        "toDate": "2016-03-31",
+                        "fromAUM": 38247427.13,
+                        "toAUM": 41673251.76,
+                        "netCapitalInOutValue": 1901294.48,
+                        "weightedNetCapitalInOutValue": 944072.64,
+                        "netChangeInPortfolioValue": 1524530.15,
+                        "monthlyReturnPercent": 3.89,
+                        "yearReturnPercent": -3.91,
+                        "yearToLastSixMonthReturnPercent": -3.91,
+                        "benchmarkList": [
+                            {
+                                "id": "dow_jones_industrial_average_index",
+                                "value": 18104.39,
+                                "percentage": -0.65
+                            },
+                            {
+                                "id": "hang_seng_index",
+                                "value": 21000,
+                                "percentage": 3.96
+                            },
+                            {
+                                "id": "msci_world_index",
+                                "value": 9645.12,
+                                "percentage": -1.96
+                            },
+                            {
+                                "id": "sp_500_index",
+                                "value": 2201.12,
+                                "percentage": 2.31
+                            }
+                        ]
+                    }, {
+                        "year": 2016,
+                        "month": 2,
+                        "fromDate": "2016-02-01",
+                        "toDate": "2016-02-29",
+                        "fromAUM": 38398591.67,
+                        "toAUM": 38247427.13,
+                        "netCapitalInOutValue": 771479.62,
+                        "weightedNetCapitalInOutValue": 505582.02,
+                        "netChangeInPortfolioValue": -922644.16,
+                        "monthlyReturnPercent": 5,
+                        "yearReturnPercent": -2,
+                        "yearToLastSixMonthReturnPercent": -3,
+                        "benchmarkList": [
+                            {
+                                "id": "dow_jones_industrial_average_index",
+                                "value": 18223.03,
+                                "percentage": 0.55
+                            },
+                            {
+                                "id": "hang_seng_index",
+                                "value": 20200,
+                                "percentage": 1
+                            },
+                            {
+                                "id": "msci_world_index",
+                                "value": 9837.7,
+                                "percentage": 1.03
+                            },
+                            {
+                                "id": "sp_500_index",
+                                "value": 2151.33,
+                                "percentage": 0.14
+                            }
+                        ]
+                    }, {
+                        "year": 2016,
+                        "month": 1,
+                        "fromDate": "2016-01-01",
+                        "toDate": "2016-01-31",
+                        "fromAUM": 38398591.67,
+                        "toAUM": 38398591.67,
+                        "netCapitalInOutValue": 2111975.47,
+                        "weightedNetCapitalInOutValue": 1774391,
+                        "netChangeInPortfolioValue": -2111975.47,
+                        "monthlyReturnPercent": 5,
+                        "yearReturnPercent": 2,
+                        "yearToLastSixMonthReturnPercent": -1,
+                        "benchmarkList": [
+                            {
+                                "id": "dow_jones_industrial_average_index",
+                                "value": 18123,
+                                "percentage": -0.55
+                            },
+                            {
+                                "id": "hang_seng_index",
+                                "value": 20000,
+                                "percentage": 0.76
+                            },
+                            {
+                                "id": "msci_world_index",
+                                "value": 9737.7,
+                                "percentage": 3.18
+                            },
+                            {
+                                "id": "sp_500_index",
+                                "value": 2148.25,
+                                "percentage": -4
+                            }
+                        ]
+                    },
+                    {
+                        "year": 2015,
+                        "month": 12,
+                        "fromDate": "2015-12-01",
+                        "toDate": "2015-12-31",
+                        "fromAUM": 38398591.67,
+                        "toAUM": 38398591.67,
+                        "netCapitalInOutValue": 0,
+                        "weightedNetCapitalInOutValue": 0,
+                        "netChangeInPortfolioValue": 0,
+                        "monthlyReturnPercent": 0,
+                        "yearReturnPercent": 0,
+                        "yearToLastSixMonthReturnPercent": 0,
+                        "benchmarkList": [
+                            {
+                                "id": "dow_jones_industrial_average_index",
+                                "value": 18223,
+                                "percentage": 0.01
+                            },
+                            {
+                                "id": "hang_seng_index",
+                                "value": 19850,
+                                "percentage": 2.86
+                            },
+                            {
+                                "id": "msci_world_index",
+                                "value": 9437.7,
+                                "percentage": 1.83
+                            },
+                            {
+                                "id": "sp_500_index",
+                                "value": 2248.15,
+                                "percentage": -0.56
+                            }
+                        ]
+                    }
+                ]
+            }
+        };
+        return result;
+    }
+
 }
