@@ -2,8 +2,7 @@ import { Component, ViewChild, Injector } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 
 import { GradientColorUtil } from '../../../../providers-v2/util/gradient-color-util';
-import { PortfolioHoldingUtil } from '../../../../providers-v2/util/portfolio-holding-util';
-import { PortfolioHistoryUtil } from '../../../../providers-v2/util/portfolio-history-util';
+import { IPortfolioUtil } from '../../../../providers-v2/util/i-portfolio-util';
 import { ChartUtil } from '../../../../providers-v2/util/chart-util';
 import { IPortfolioApiService } from "../../../../providers-v2/api/i-portfolio-api-service";
 
@@ -69,14 +68,14 @@ export class PortfolioHistoryPage extends BasePage {
 	loadAssetAllocationData() {
 		console.log("loadAssetAllocationData >> ");
 		let returnData = this.iPortfolioApiService.getAssetAllocationHistory().data;
-		this.assetAllocationDataInfo = PortfolioHistoryUtil.setAssetAllocationData(returnData.assetAllocationHistoryList);
+		this.assetAllocationDataInfo = IPortfolioUtil.setAssetAllocationData(returnData.assetAllocationHistoryList);
 		console.log(this.assetAllocationDataInfo);
 	}
 
 	loadNavData() {
 		console.log("loadNavData >> ");
 		let returnData = this.iPortfolioApiService.getNavHistory().data;
-		this.navDataInfo = PortfolioHistoryUtil.setNavData(returnData.netAssetValueHistoryList);
+		this.navDataInfo = IPortfolioUtil.setNavData(returnData.netAssetValueHistoryList);
 		console.log(this.navDataInfo);
 	}
 
@@ -291,7 +290,7 @@ export class PortfolioHistoryPage extends BasePage {
 		this.assetAllocationDataInfo.holdingTypeList.forEach((item, index) => {
 			list.push({
 				type: item,
-				title: PortfolioHoldingUtil.getTitle(item),
+				title: IPortfolioUtil.getTitle(item),
 				percentage: this.assetAllocationDataInfo.percentage[index][this.assetSelectedMonthIndex]
 			});
 		});

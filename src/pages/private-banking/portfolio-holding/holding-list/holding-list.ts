@@ -1,6 +1,6 @@
 import { Component, Injector } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
-import { PortfolioHoldingType } from '../../../../providers-v2/util/portfolio-holding-util';
+import { AccountType } from '../../../../providers-v2/util/i-portfolio-util';
 
 import { BasePage } from '../../../base-page';
 
@@ -107,43 +107,43 @@ export class HoldingListPage extends BasePage {
 	loadData(id) {
 		console.log(id);
 		switch (id) {
-			case PortfolioHoldingType.SavingAndCurrent:
+			case AccountType.savingAndCurrent:
 				this.selectedType = 'savingAndCurrent';
 				return this.TestDataList.savingAndCurrent;
 
-			case PortfolioHoldingType.TimeDeposit:
+			case AccountType.timeDeposit:
 				this.selectedType = 'timeDeposit';
 				return this.TestDataList.timeDeposit;
 
-			case PortfolioHoldingType.StructuredProduct:
+			case AccountType.structuredProduct:
 				this.selectedType = 'structuredProduct';
 				return null;
 
-			case PortfolioHoldingType.Stock:
+			case AccountType.stock:
 				this.selectedType = 'stock';
 				return this.TestDataList.stock;
 
-			case PortfolioHoldingType.BondNoteCertDeposit:
+			case AccountType.bondNoteCertDeposit:
 				this.selectedType = 'bondNoteCertDeposit';
 				return null;
 
-			case PortfolioHoldingType.UnitTrust:
+			case AccountType.unitTrust:
 				this.selectedType = 'unitTrust';
 				return null;
 
-			case PortfolioHoldingType.LinkedDeposit:
+			case AccountType.linkedDeposit:
 				this.selectedType = 'linkedDeposit';
 				return this.TestDataList.linkedDeposit;
 
-			case PortfolioHoldingType.OptionAndDerivativesContract:
+			case AccountType.optionAndDerivativesContract:
 				this.selectedType = 'optionAndDerivativerContract';
 				return null;
 
-			case PortfolioHoldingType.Loan:
+			case AccountType.loan:
 				this.selectedType = 'loan';
 				return null;
 
-			case PortfolioHoldingType.ForwardForeignExchange:
+			case AccountType.forwardForeignExchange:
 				this.selectedType = 'forwardForeignExchange';
 				return null;
 

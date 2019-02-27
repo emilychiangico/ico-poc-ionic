@@ -3,7 +3,7 @@ import { IonicPage } from 'ionic-angular';
 
 import { DoughnutUtil } from '../../../providers-v2/util/doughnut-util';
 import { GradientColorUtil } from '../../../providers-v2/util/gradient-color-util';
-import { PortfolioHoldingType, PortfolioHoldingUtil } from '../../../providers-v2/util/portfolio-holding-util';
+import { AccountType, IPortfolioUtil } from '../../../providers-v2/util/i-portfolio-util';
 import { ChartUtil } from '../../../providers-v2/util/chart-util';
 import { BasePage } from '../../base-page';
 import { MyPortfolioPage } from '../my-portfolio/my-portfolio';
@@ -28,16 +28,16 @@ export class PortfolioOverviewPureColorPage extends BasePage {
     //cData = [6008194.18, 31857040.24, 31857040.24, 31857040.24, 31857040.24, 31857040.24];
 
     type = [
-        PortfolioHoldingType.SavingAndCurrent, 
-        PortfolioHoldingType.TimeDeposit, 
-        PortfolioHoldingType.StructuredProduct, 
-        PortfolioHoldingType.Stock, 
-        PortfolioHoldingType.BondNoteCertDeposit,
-        PortfolioHoldingType.UnitTrust, 
-        PortfolioHoldingType.LinkedDeposit, 
-        PortfolioHoldingType.OptionAndDerivativesContract, 
-        PortfolioHoldingType.Loan, 
-        PortfolioHoldingType.ForwardForeignExchange
+        AccountType.savingAndCurrent, 
+        AccountType.timeDeposit, 
+        AccountType.structuredProduct, 
+        AccountType.stock, 
+        AccountType.bondNoteCertDeposit,
+        AccountType.unitTrust, 
+        AccountType.linkedDeposit, 
+        AccountType.optionAndDerivativesContract, 
+        AccountType.loan, 
+        AccountType.forwardForeignExchange
     ];
 
     chartData = {
@@ -79,7 +79,7 @@ export class PortfolioOverviewPureColorPage extends BasePage {
         this.type.forEach((item, index) => {
             this.holdingDataList.push({
                 type: item,
-                title: PortfolioHoldingUtil.getTitle(item),
+                title: IPortfolioUtil.getTitle(item),
                 amount: this.cData[index],
                 percentage: percentageList[index]
             });

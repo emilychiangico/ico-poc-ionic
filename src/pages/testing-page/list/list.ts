@@ -2,7 +2,7 @@ import { Component, ViewChild, ViewChildren, QueryList, ElementRef } from '@angu
 import { NavController, NavParams } from 'ionic-angular';
 
 import {GradientColorUtil} from '../../../providers-v2/util/gradient-color-util';
-import { PortfolioHoldingType } from '../../../providers-v2/util/portfolio-holding-util';
+import { AccountType } from '../../../providers-v2/util/i-portfolio-util';
 
 @Component({
   selector: 'page-list',
@@ -11,9 +11,9 @@ import { PortfolioHoldingType } from '../../../providers-v2/util/portfolio-holdi
 export class ListPage {
   selectedItem: any;
   icons: string[];
-  items: Array<{title: string, note: string, icon: string, type: number}>;
+  items: Array<{title: string, note: string, icon: string, type: string}>;
   label: string[];
-  type: number[];
+  type: string[];
 
   // @ViewChildren('pointCanvas') pointCanvasList: QueryList<ElementRef>;
 
@@ -29,9 +29,9 @@ export class ListPage {
     "Bond, Note & Certificate of Deposit", "Unit Trust", "Structured Products", "Option & Derivatives Contract",
     "Loan", "Forward Foreign Exchange"];
 
-    this.type = [PortfolioHoldingType.SavingAndCurrent, PortfolioHoldingType.TimeDeposit, PortfolioHoldingType.StructuredProduct, PortfolioHoldingType.Stock, 
-      PortfolioHoldingType.BondNoteCertDeposit, PortfolioHoldingType.UnitTrust, PortfolioHoldingType.LinkedDeposit, 
-      PortfolioHoldingType.OptionAndDerivativesContract, PortfolioHoldingType.Loan, PortfolioHoldingType.ForwardForeignExchange ];
+    this.type = [AccountType.savingAndCurrent, AccountType.timeDeposit, AccountType.structuredProduct, AccountType.stock, 
+      AccountType.bondNoteCertDeposit, AccountType.unitTrust, AccountType.linkedDeposit, 
+      AccountType.optionAndDerivativesContract, AccountType.loan, AccountType.forwardForeignExchange ];
 
     this.items = [];
     for (let i = 0; i < 10; i++) {
@@ -72,7 +72,7 @@ export class ListPage {
   //     let centerW = el.width / 2;
   //     let centerH = el.height / 2;
       
-  //     let gradientColors = GradientColorUtil.getColorByPortfolioHoldingType(this.type[index]);
+  //     let gradientColors = GradientColorUtil.getColorByAccountType(this.type[index]);
       
   //     ctx.beginPath();
   //     ctx.arc(centerW, centerH, 10, 0, 2 * Math.PI, false);

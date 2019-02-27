@@ -5,7 +5,7 @@ import { HoldingListPage } from './holding-list/holding-list';
 import { AssetHistoryPage } from './asset-history/asset-history';
 import { BasePage } from '../../base-page';
 
-import { PortfolioHoldingType, PortfolioHoldingUtil } from '../../../providers-v2/util/portfolio-holding-util';
+import { AccountType, IPortfolioUtil } from '../../../providers-v2/util/i-portfolio-util';
 
 @IonicPage()
 @Component({
@@ -18,7 +18,7 @@ export class PortfolioHoldingPage extends BasePage implements OnInit {
     tab2Root = AssetHistoryPage;
 
     selectTab = "list";
-    selectedType = PortfolioHoldingType.SavingAndCurrent;
+    selectedType = AccountType.savingAndCurrent;
 
     info = {
         totalAmount: 0,
@@ -26,17 +26,17 @@ export class PortfolioHoldingPage extends BasePage implements OnInit {
         holding: 0
     }
 
-    type = [
-        PortfolioHoldingType.SavingAndCurrent, 
-        PortfolioHoldingType.TimeDeposit, 
-        PortfolioHoldingType.StructuredProduct, 
-        PortfolioHoldingType.Stock, 
-        PortfolioHoldingType.BondNoteCertDeposit,
-        PortfolioHoldingType.UnitTrust, 
-        PortfolioHoldingType.LinkedDeposit, 
-        PortfolioHoldingType.OptionAndDerivativesContract, 
-        PortfolioHoldingType.Loan, 
-        PortfolioHoldingType.ForwardForeignExchange
+    accountTypeList = [
+        AccountType.savingAndCurrent, 
+        AccountType.timeDeposit, 
+        AccountType.structuredProduct, 
+        AccountType.stock, 
+        AccountType.bondNoteCertDeposit,
+        AccountType.unitTrust, 
+        AccountType.linkedDeposit, 
+        AccountType.optionAndDerivativesContract, 
+        AccountType.loan, 
+        AccountType.forwardForeignExchange
     ];
 
     holdingTypeList = [];
@@ -48,7 +48,7 @@ export class PortfolioHoldingPage extends BasePage implements OnInit {
     ngOnInit() {
         this.getHoldingTypeList();
         let type = this._navParams.get("type");
-        if (type >= 0) {
+        if (this.accountTypeList.indexOf(type) != -1) {
             this.selectedType = type;
         } else {
             this.selectedType == this.holdingTypeList[0].id;
@@ -57,10 +57,10 @@ export class PortfolioHoldingPage extends BasePage implements OnInit {
     }
 
     getHoldingTypeList() {
-        this.type.forEach((item) => {
+        this.accountTypeList.forEach((item) => {
             this.holdingTypeList.push({
                 id: item,
-                name: PortfolioHoldingUtil.getTitle(item)
+                name: IPortfolioUtil.getTitle(item)
             });
         });
     }
@@ -88,43 +88,43 @@ export class PortfolioHoldingPage extends BasePage implements OnInit {
 
     loadData() {
         switch (this.selectedType) {
-            case PortfolioHoldingType.SavingAndCurrent:
+            case AccountType.savingAndCurrent:
                 this.info = { totalAmount: 11770124.00, aumProportion: 25.34, holding: 12 }
                 break;
 
-            case PortfolioHoldingType.TimeDeposit:
+            case AccountType.timeDeposit:
                 this.info = { totalAmount: 91770124.00, aumProportion: 5.34, holding: 120 }
                 break;
 
-            case PortfolioHoldingType.StructuredProduct:
+            case AccountType.structuredProduct:
                 this.info = { totalAmount: 144.00, aumProportion: 29.34, holding: 1 }
                 break;
 
-            case PortfolioHoldingType.Stock:
+            case AccountType.stock:
                 this.info = { totalAmount: 11345124.00, aumProportion: 75.34, holding: 2 }
                 break;
 
-            case PortfolioHoldingType.BondNoteCertDeposit:
+            case AccountType.bondNoteCertDeposit:
                 this.info = { totalAmount: 1177.00, aumProportion: 29.45, holding: 5 }
                 break;
 
-            case PortfolioHoldingType.UnitTrust:
+            case AccountType.unitTrust:
                 this.info = { totalAmount: 11870124.00, aumProportion: 21.94, holding: 92 }
                 break;
 
-            case PortfolioHoldingType.LinkedDeposit:
+            case AccountType.linkedDeposit:
                 this.info = { totalAmount: 11774.00, aumProportion: 75.30, holding: 8 }
                 break;
 
-            case PortfolioHoldingType.OptionAndDerivativesContract:
+            case AccountType.optionAndDerivativesContract:
                 this.info = { totalAmount: 13770124.00, aumProportion: 65.34, holding: 14 }
                 break;
 
-            case PortfolioHoldingType.Loan:
+            case AccountType.loan:
                 this.info = { totalAmount: 117704.00, aumProportion: 14.53, holding: 45 }
                 break;
 
-            case PortfolioHoldingType.ForwardForeignExchange:
+            case AccountType.forwardForeignExchange:
                 this.info = { totalAmount: 1770124.00, aumProportion: 23.77, holding: 87 }
                 break;
 

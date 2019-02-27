@@ -1,8 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 
-import { PortfolioHoldingUtil } from '../../../providers-v2/util/portfolio-holding-util';
-import { PortfolioHistoryUtil } from '../../../providers-v2/util/portfolio-history-util';
+import { IPortfolioUtil } from '../../../providers-v2/util/i-portfolio-util';
 import { IPortfolioApiService } from "../../../providers-v2/api/i-portfolio-api-service";
 
 import { BasePage } from '../../base-page';
@@ -26,7 +25,7 @@ export class AssetAllocationDetailPage extends BasePage {
 	ngOnInit() {
 		//let data = this._navParams.data;
 		let data = this.iPortfolioApiService.getAssetAllocationHistory().data;
-		let assetAllocationDataInfo = PortfolioHistoryUtil.setAssetAllocationData(data.assetAllocationHistoryList);
+		let assetAllocationDataInfo = IPortfolioUtil.setAssetAllocationData(data.assetAllocationHistoryList);
 		this.loadData(assetAllocationDataInfo);
 	}
 
@@ -44,7 +43,7 @@ export class AssetAllocationDetailPage extends BasePage {
 			});
 			this.dataList.push({
 				type: item,
-				title: PortfolioHoldingUtil.getTitle(item),
+				title: IPortfolioUtil.getTitle(item),
 				monthDetail: detailList
 			});
 		});

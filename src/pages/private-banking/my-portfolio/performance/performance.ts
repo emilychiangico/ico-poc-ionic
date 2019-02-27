@@ -3,7 +3,7 @@ import { IonicPage } from 'ionic-angular';
 
 import { GradientColorUtil } from '../../../../providers-v2/util/gradient-color-util';
 import { ChartUtil } from './../../../../providers-v2/util/chart-util';
-import { PortfolioHistoryUtil } from '../../../../providers-v2/util/portfolio-history-util';
+import { IPortfolioUtil } from '../../../../providers-v2/util/i-portfolio-util';
 
 import { IPortfolioApiService } from "../../../../providers-v2/api/i-portfolio-api-service";
 
@@ -52,7 +52,7 @@ export class PerformancePage extends BasePage {
 
 	loadData() {
 		let data = this.iPortfolioApiService.getPerformanceAnalysis().data;
-		let result = PortfolioHistoryUtil.setPerformanceData(data);
+		let result = IPortfolioUtil.setPerformanceData(data);
 		this.lastSixMonthData = result.lastSixMonthData;
 		this.thisYearData = result.yearData;
 		this.thisYear = result.yearData.startDate.getFullYear();

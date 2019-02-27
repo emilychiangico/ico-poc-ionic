@@ -42,7 +42,7 @@ export class LegendPointComponent implements OnInit {
     getColor(ctx?, width?, height?) {
         let color = null;
         if(!this.color) {
-            color = GradientColorUtil.getColorByPortfolioHoldingType(this.type);
+            color = GradientColorUtil.getColorByAccountType(this.type);
             if(!color) {
                 return "red";
             } else if(this.isPureColor == true) {
@@ -62,7 +62,7 @@ export class LegendPointComponent implements OnInit {
 
         let center = el.width / 2;
         
-        //let gradientColors = GradientColorUtil.getColorByPortfolioHoldingType(this.type);
+        //let gradientColors = GradientColorUtil.getColorByAccountType(this.type);
         
         ctx.beginPath();
         ctx.arc(center, center, center, 0, 2 * Math.PI, false);

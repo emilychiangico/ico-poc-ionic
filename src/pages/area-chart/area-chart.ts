@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 
 import { GradientColorUtil } from '../../providers-v2/util/gradient-color-util';
-import { PortfolioHoldingType } from '../../providers-v2/util/portfolio-holding-util';
+import { AccountType } from '../../providers-v2/util/i-portfolio-util';
 import { ChartUtil } from '../../providers-v2/util/chart-util';
 
 /**
@@ -49,12 +49,12 @@ export class AreaChartPage {
   ];
 
   holdingTypeList = [
-    PortfolioHoldingType.SavingAndCurrent,
-    PortfolioHoldingType.TimeDeposit,
-    PortfolioHoldingType.StructuredProduct,
-    PortfolioHoldingType.UnitTrust,
-    PortfolioHoldingType.Stock,
-    PortfolioHoldingType.BondNoteCertDeposit,
+    AccountType.savingAndCurrent,
+    AccountType.timeDeposit,
+    AccountType.structuredProduct,
+    AccountType.unitTrust,
+    AccountType.stock,
+    AccountType.bondNoteCertDeposit,
   ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {

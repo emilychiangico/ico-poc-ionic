@@ -1,7 +1,7 @@
 import { Component, ViewChild, Injector } from '@angular/core';
 import { IonicPage, Content } from 'ionic-angular';
 import { GradientColorUtil } from '../../../../providers-v2/util/gradient-color-util';
-import { PortfolioHoldingUtil, PortfolioHoldingType } from '../../../../providers-v2/util/portfolio-holding-util';
+import { AccountType, IPortfolioUtil } from '../../../../providers-v2/util/i-portfolio-util';
 import { ChartUtil } from '../../../../providers-v2/util/chart-util';
 
 import { AssetAllocationDetailPage } from '../../asset-allocation-detail/asset-allocation-detail';
@@ -35,7 +35,7 @@ export class AssetHistoryPage extends BasePage {
 		["JUN", "2018"],
 	];
 
-	selectedType = PortfolioHoldingType.SavingAndCurrent;
+	selectedType = AccountType.savingAndCurrent;
 	title = "";
 	chartData;
 
@@ -51,12 +51,12 @@ export class AssetHistoryPage extends BasePage {
 	}
 
 	ionViewWillEnter() {
-		this.title = PortfolioHoldingUtil.getTitle(this.selectedType);
+		this.title = IPortfolioUtil.getTitle(this.selectedType);
 
 		this._event.subscribe('change-type-history', (selectedType) => {
 			console.log('change-type >> ');
 			this.selectedType = selectedType;
-			this.title = PortfolioHoldingUtil.getTitle(this.selectedType);
+			this.title = IPortfolioUtil.getTitle(this.selectedType);
 			this.loadData();
 			this.updateChart();
 		});
@@ -74,43 +74,43 @@ export class AssetHistoryPage extends BasePage {
 
 	loadData() {
 		switch (this.selectedType) {
-			case PortfolioHoldingType.SavingAndCurrent:
+			case AccountType.savingAndCurrent:
 				this.chartData = this.setChartData([6, 13.2, 10.8, 6, 12, 12, 12]);
 				break;
 
-			case PortfolioHoldingType.TimeDeposit:
+			case AccountType.timeDeposit:
 				this.chartData = this.setChartData([6, 6.4, 5, 4, 4.2, 4.6, 4.6]);
 				break;
 
-			case PortfolioHoldingType.StructuredProduct:
+			case AccountType.structuredProduct:
 				this.chartData = this.setChartData([8.6, 8.6, 9.5, 7, 7.5, 7.5, 7.5]);
 				break;
 
-			case PortfolioHoldingType.Stock:
+			case AccountType.stock:
 				this.chartData = this.setChartData([4, 5, 4.5, 2, 8, 4, 4]);
 				break;
 
-			case PortfolioHoldingType.BondNoteCertDeposit:
+			case AccountType.bondNoteCertDeposit:
 				this.chartData = this.setChartData([9, 9, 10, 9, 8, 8.2, 8.2]);
 				break;
 
-			case PortfolioHoldingType.UnitTrust:
+			case AccountType.unitTrust:
 				this.chartData = this.setChartData([6, 7, 7, 5, 4.5, 4.8, 4.8]);
 				break;
 
-			case PortfolioHoldingType.LinkedDeposit:
+			case AccountType.linkedDeposit:
 				this.chartData = this.setChartData([5, 6, 7, 1, 2, 3, 3]);
 				break;
 
-			case PortfolioHoldingType.OptionAndDerivativesContract:
+			case AccountType.optionAndDerivativesContract:
 				this.chartData = this.setChartData([1, 2, 3, 4, 5, 6, 6]);
 				break;
 
-			case PortfolioHoldingType.Loan:
+			case AccountType.loan:
 				this.chartData = this.setChartData([9, 7, 6, 5, 4, 7, 7]);
 				break;
 
-			case PortfolioHoldingType.ForwardForeignExchange:
+			case AccountType.forwardForeignExchange:
 				this.chartData = this.setChartData([4, 2, 8, 6, 5, 7, 7]);
 				break;
 

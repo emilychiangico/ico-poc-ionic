@@ -2,7 +2,7 @@ import { GradientUtil, ChartType } from './gradient-util';
 import { DoughnutUtil } from './doughnut-util';
 import { COLOR_THEME } from '../chart-color/colorTheme';
 
-import { PortfolioHoldingType } from './portfolio-holding-util';
+import { AccountType } from './i-portfolio-util';
 
 export class GradientColorUtil {
 
@@ -12,27 +12,27 @@ export class GradientColorUtil {
         return this.colorTheme;
     }
 
-    static getColorByPortfolioHoldingType(holderType) {
+    static getColorByAccountType(holderType) {
         switch (holderType) {
-            case PortfolioHoldingType.SavingAndCurrent:
+            case AccountType.savingAndCurrent:
                 return this.colorTheme.portfolioHoldingColors.savingAndCurrent;
-            case PortfolioHoldingType.TimeDeposit:
+            case AccountType.timeDeposit:
                 return this.colorTheme.portfolioHoldingColors.timeDeposit;
-            case PortfolioHoldingType.StructuredProduct:
+            case AccountType.structuredProduct:
                 return this.colorTheme.portfolioHoldingColors.structuredProduct;
-            case PortfolioHoldingType.Stock:
+            case AccountType.stock:
                 return this.colorTheme.portfolioHoldingColors.stock;
-            case PortfolioHoldingType.BondNoteCertDeposit:
+            case AccountType.bondNoteCertDeposit:
                 return this.colorTheme.portfolioHoldingColors.bondNoteCertDeposit;
-            case PortfolioHoldingType.UnitTrust:
+            case AccountType.unitTrust:
                 return this.colorTheme.portfolioHoldingColors.unitTrust;
-            case PortfolioHoldingType.LinkedDeposit:
+            case AccountType.linkedDeposit:
                 return this.colorTheme.portfolioHoldingColors.linkedDeposit;
-            case PortfolioHoldingType.OptionAndDerivativesContract:
+            case AccountType.optionAndDerivativesContract:
                 return this.colorTheme.portfolioHoldingColors.optionAndDerivativerContract;
-            case PortfolioHoldingType.Loan:
+            case AccountType.loan:
                 return this.colorTheme.portfolioHoldingColors.loan;
-            case PortfolioHoldingType.ForwardForeignExchange:
+            case AccountType.forwardForeignExchange:
                 return this.colorTheme.portfolioHoldingColors.forwardForeignExchange;
             default:
                 return null;
@@ -57,12 +57,12 @@ export class GradientColorUtil {
         let gradientColors = [];
 
         for (let type of holdingTypeList) {
-            // get color by PortfolioHoldingType
+            // get color by AccountType
             let gradientColor;
             if(isPureColor == true) {
-                gradientColor = this.getColorByPortfolioHoldingType(type).pure;
+                gradientColor = this.getColorByAccountType(type).pure;
             } else {
-                gradientColor = this.getColorByPortfolioHoldingType(type).area;
+                gradientColor = this.getColorByAccountType(type).area;
                 gradientColor["point"] = GradientUtil.getPointOfLinearGradient(ChartType.Area, chartWidth, chartHeight);
             }
             gradientColors.push(gradientColor);
@@ -119,7 +119,7 @@ export class GradientColorUtil {
 
         if(isPureColor == true) {
             holdingTypeList.forEach((item) => {
-                let gradientColor = this.getColorByPortfolioHoldingType(item).pure;
+                let gradientColor = this.getColorByAccountType(item).pure;
                 gradientColors.push(gradientColor);
             });
         } else {
@@ -136,8 +136,8 @@ export class GradientColorUtil {
 
                 console.log("halfRotateDegree >> " + halfRotateDegree);
 
-                // get color by PortfolioHoldingType
-                let gradientColor = this.getColorByPortfolioHoldingType(holdingTypeList[index]).doughnut;
+                // get color by AccountType
+                let gradientColor = this.getColorByAccountType(holdingTypeList[index]).doughnut;
                 gradientColor["point"] = GradientUtil.getPointOfLinearGradient(ChartType.Doughnut, chartWidth, chartHeight, halfRotateDegree);
                 gradientColors.push(gradientColor);
             });
