@@ -6,8 +6,7 @@ import { Injector, Component, Input, OnInit } from '@angular/core'
 })
 export class PbAmountComponent implements OnInit {
 
-    @Input('amount') amount: number;
-    @Input('date') date: string;
+    @Input('info') info: any;
 
     constructor(injector: Injector) {
     }

@@ -50,8 +50,11 @@ export class PortfolioOverviewPage extends BasePage {
         right: "Total Amount"
     }
 
-    amount = 1635667494.00;
-    date = "31 May 2018";
+	totalAmountInfo = {
+		ccy: "HKD",
+		amount : 1635667494.00,
+		date : "31 May 2018"
+	}
 
     monthlyDiff = 4.15;
     sixMonthDiff = -0.95;

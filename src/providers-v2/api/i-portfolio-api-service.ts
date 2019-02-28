@@ -9,6 +9,9 @@ export class IPortfolioApiService {
     getAssetAllocationHistory() {
         let result = {
             "data": {
+                "portfolioCurrency": "HKD",
+                "totalAUM": 1635667494.00,
+                "lastUpdateDate": "31-05-2018",
                 "assetAllocationHistoryList": [
                     {
                         "month": 6,
@@ -262,16 +265,7 @@ export class IPortfolioApiService {
                             }
                         ]
                     }
-                ]
-            }
-        };
-
-        return result;
-    }
-
-    getNavHistory() {
-        let result = {
-            "data": {
+                ],
                 "netAssetValueHistoryList": [
                     {
                         "month": 6,
@@ -412,9 +406,13 @@ export class IPortfolioApiService {
         return result;
     }
 
+
     getCcyDistribution() {
         let result = {
             "data": {
+                "portfolioCurrency": "HKD",
+                "totalAUM": 1635667494.00,
+                "lastUpdateDate": "31-05-2018",
                 "currencyDistributionList": [
                     {
                         "currency": "AUD",
@@ -453,6 +451,9 @@ export class IPortfolioApiService {
     getPerformanceAnalysis() {
         let result = {
             "data": {
+                "portfolioCurrency": "HKD",
+                "totalAUM": 1635667494.00,
+                "lastUpdateDate": "31-05-2018",
                 "netCapitalInOutValueFromYrBegin": 8587338.53,
                 "netCapitalInOutValueFromLastSixMonth": 8587338.53,
                 "yearBeginDate": "2016-01-01",

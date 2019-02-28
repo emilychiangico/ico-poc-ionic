@@ -50,8 +50,11 @@ export class PortfolioHistoryPage extends BasePage {
 
 	selectedTab = "asset";
 
-	amount = 1635667494.00;
-	date = "31 May 2018";
+	totalAmountInfo = {
+		ccy: "HKD",
+		amount : 1635667494.00,
+		date : "31 May 2018"
+	}
 
 	constructor(injector: Injector) {
 		super(injector);
@@ -59,24 +62,18 @@ export class PortfolioHistoryPage extends BasePage {
 	}
 
 	ngOnInit() {
-		this.loadAssetAllocationData();
-		this.loadNavData();
+		this.loadData();
 	}
 
 	/************ Data Handling start ************/
 
-	loadAssetAllocationData() {
+	loadData() {
 		console.log("loadAssetAllocationData >> ");
 		let returnData = this.iPortfolioApiService.getAssetAllocationHistory().data;
+		this.totalAmountInfo = IPortfolioUtil.setTotalAumontInfo(returnData.portfolioCurrency, returnData.totalAUM, returnData.lastUpdateDate);
 		this.assetAllocationDataInfo = IPortfolioUtil.setAssetAllocationData(returnData.assetAllocationHistoryList);
-		console.log(this.assetAllocationDataInfo);
-	}
-
-	loadNavData() {
-		console.log("loadNavData >> ");
-		let returnData = this.iPortfolioApiService.getNavHistory().data;
 		this.navDataInfo = IPortfolioUtil.setNavData(returnData.netAssetValueHistoryList);
-		console.log(this.navDataInfo);
+		console.log(this.assetAllocationDataInfo);
 	}
 
 	/************ Data Handling end ************/

@@ -1,6 +1,6 @@
 <ion-content padding>
 
-    <pd-amount [amount]="amount" [date]="date"></pd-amount>
+    <pd-amount [info]="totalAmountInfo"></pd-amount>
 
     <div button-row class="range">
         <button ion-button outline [class.selected]="selectedRange == 'month'" (click)="changeDateRange('month')">

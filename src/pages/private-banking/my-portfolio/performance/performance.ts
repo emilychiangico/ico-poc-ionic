@@ -38,8 +38,11 @@ export class PerformancePage extends BasePage {
 		right: ""
 	};
 
-	amount = 1635667494.00;
-	date = "31 May 2018";
+	totalAmountInfo = {
+		ccy: "HKD",
+		amount : 1635667494.00,
+		date : "31 May 2018"
+	}
 
 	constructor(public injector: Injector) {
 		super(injector);
