@@ -254,11 +254,13 @@ export class AssetHistoryPage extends BasePage {
 					var titleLines = tooltipModel.title || [];
 					var bodyLines = tooltipModel.body.map(getBody);
 
+					var marginLeft = (this.selectedMonthIndex == 0) ? -10 : ((this.selectedMonthIndex == 5) ? -80 : -30);
+
 					var innerHtml = '';
 
 					innerHtml += '<div style="position: relative;">';
 
-					innerHtml += '<div style="margin-left: -30px; background: blue; padding: 3px 20px; border-radius: 10px; color: #FFF; font-weight: bold;">';
+					innerHtml += '<div style="margin-left: ' + marginLeft + 'px; background: blue; padding: 3px 20px; border-radius: 10px; color: #FFF; font-weight: bold;">';
 					innerHtml += "HKD " + tooltipModel.dataPoints[0].yLabel;
 					innerHtml += '</div>';
 
