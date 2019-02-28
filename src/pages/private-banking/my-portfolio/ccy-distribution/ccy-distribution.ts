@@ -3,6 +3,7 @@ import { IonicPage } from 'ionic-angular';
 
 import { GradientColorUtil } from '../../../../providers-v2/util/gradient-color-util';
 import { ChartUtil } from '../../../../providers-v2/util/chart-util';
+import { IPortfolioUtil } from '../../../../providers-v2/util/i-portfolio-util';
 
 import { IPortfolioApiService } from "../../../../providers-v2/api/i-portfolio-api-service";
 
@@ -53,6 +54,8 @@ export class CcyDistributionPage extends BasePage {
 
 		let chartLabel = [];
 		let chartData = [];
+
+		this.totalAmountInfo = IPortfolioUtil.setTotalAumontInfo(data.portfolioCurrency, data.totalAUM, data.lastUpdateDate);
 
 		dataList.forEach((item) => {
 			chartLabel.push(item.currency);

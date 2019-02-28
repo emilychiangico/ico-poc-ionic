@@ -1,3 +1,5 @@
+import { IPortfolioInterface } from '../models/private-banking/i-portfolio-interface';
+
 export const AccountType = {
 	savingAndCurrent: "savings_n_current",
 	timeDeposit: "time_deposit",
@@ -172,7 +174,7 @@ export class IPortfolioUtil {
 	}
 
 	/******************** setAssetAllocationData ********************/
-	static setAssetAllocationData(dataList) {
+	static setAssetAllocationData(dataList: IPortfolioInterface.AssetAllocationInfo[]) {
 		console.log("setAssetAllocationData >> ");
 		let assetAllocationDataInfo = {
 			holdingTypeList: [],
@@ -187,8 +189,8 @@ export class IPortfolioUtil {
 
 		this.sortList(dataList).forEach((item, index) => {
 			assetAllocationDataInfo.chartData.label.push([item.month, item.year]);
-			item.detailsList.forEach((detail) => {
-				let typeId = detail.assetClassID;
+			item.detailList.forEach((detail) => {
+				let typeId = detail.accountType;
 				if (resultListByType.get(typeId) == null) {
 					resultListByType.set(typeId, {
 						amount: [detail.amount],
@@ -220,7 +222,7 @@ export class IPortfolioUtil {
 	}
 
 	/******************** setNavData ********************/
-	static setNavData(dataList) {
+	static setNavData(dataList: IPortfolioInterface.NetAssetValueInfo[]) {
 		let navDataInfo = {
 			chartData: {
 				label: [],
@@ -234,7 +236,7 @@ export class IPortfolioUtil {
 			let cashAndDeposit;
 			let investment;
 			let loan;
-			item.detailsList.forEach((detail) => {
+			item.detailList.forEach((detail) => {
 				switch (detail.category) {
 					case NavType.netAssetValues:
 						netAssetValue = detail.amount;
@@ -266,13 +268,13 @@ export class IPortfolioUtil {
 	}
 
 	/******************** setPerformanceData ********************/
-	static setPerformanceData(data) {
+	static setPerformanceData(data: IPortfolioInterface.Performance.ResponseData) {
 		console.log("setPerformanceData >> ");
 
 		let yearBeginDate = new Date(data.yearBeginDate);
 		let lastSixMonthBeginDate = new Date(data.lastSixMonthBeginDate);
 
-		let detailsList = data.detailsList;
+		let detailList = data.detailList;
 
 		let yearData = {
 			label: [],
@@ -296,7 +298,7 @@ export class IPortfolioUtil {
 			header: ""
 		}
 
-		this.sortList(detailsList).forEach((item) => {
+		this.sortList(detailList).forEach((item) => {
 			let year = item.year;
 			let month = item.month;
 

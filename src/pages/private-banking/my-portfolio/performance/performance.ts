@@ -55,6 +55,7 @@ export class PerformancePage extends BasePage {
 
 	loadData() {
 		let data = this.iPortfolioApiService.getPerformanceAnalysis().data;
+		this.totalAmountInfo = IPortfolioUtil.setTotalAumontInfo(data.portfolioCurrency, data.totalAUM, data.lastUpdateDate);
 		let result = IPortfolioUtil.setPerformanceData(data);
 		this.lastSixMonthData = result.lastSixMonthData;
 		this.thisYearData = result.yearData;

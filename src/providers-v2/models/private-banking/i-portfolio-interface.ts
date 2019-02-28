@@ -39,7 +39,7 @@ export namespace IPortfolioInterface {
 
         export interface Response {
             data: ResponseData,
-            result: BaseResponseResult
+            result?: BaseResponseResult
         }
     }
     /******************** MyPortfolio End ********************/
@@ -57,7 +57,7 @@ export namespace IPortfolioInterface {
 
         export interface Response {
             data: ResponseData,
-            result: BaseResponseResult
+            result?: BaseResponseResult
         }
     }
     /******************** PortfolioHistory End ********************/
@@ -79,7 +79,7 @@ export namespace IPortfolioInterface {
 
         export interface Response {
             data: ResponseData,
-            result: BaseResponseResult
+            result?: BaseResponseResult
         }
     }
     /******************** CurrencyDistribution End ********************/
@@ -116,7 +116,7 @@ export namespace IPortfolioInterface {
 
         export interface Response {
             data: ResponseData,
-            result: BaseResponseResult
+            result?: BaseResponseResult
         }
     }
     /******************** Performance End ********************/
@@ -151,7 +151,7 @@ export namespace IPortfolioInterface {
 
         export interface Response {
             data: ResponseData,
-            result: BaseResponseResult
+            result?: BaseResponseResult
         }
     }
     /******************** PortfolioHolding End ********************/

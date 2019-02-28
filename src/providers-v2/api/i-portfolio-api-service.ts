@@ -16,40 +16,39 @@ export class IPortfolioApiService {
                     {
                         "month": 6,
                         "year": 2018,
-                        "totalAsset": 41673251.76,
-                        "detailsList": [
+                        "detailList": [
                             {
-                                "assetClassID": "savings_n_current",
+                                "accountType": "savings_n_current",
                                 "amount": 12000000,
                                 "percentage": 30
                             },
                             {
-                                "assetClassID": "time_deposit",
+                                "accountType": "time_deposit",
                                 "amount": 4600000,
                                 "percentage": 12.6
                             },
                             {
-                                "assetClassID": "bond",
+                                "accountType": "bond",
                                 "amount": 8200000,
                                 "percentage": 24
                             },
                             {
-                                "assetClassID": "stock",
+                                "accountType": "stock",
                                 "amount": 4000000,
                                 "percentage": 10
                             },
                             {
-                                "assetClassID": "structured_products",
+                                "accountType": "structured_products",
                                 "amount": 7500000,
                                 "percentage": 20
                             },
                             {
-                                "assetClassID": "unit_trust",
+                                "accountType": "unit_trust",
                                 "amount": 4800000,
                                 "percentage": 15
                             },
                             {
-                                "assetClassID": "linked_deposit",
+                                "accountType": "linked_deposit",
                                 "amount": 0,
                                 "percentage": 0
                             }
@@ -58,40 +57,39 @@ export class IPortfolioApiService {
                     {
                         "month": 5,
                         "year": 2018,
-                        "totalAsset": 41673251.76,
-                        "detailsList": [
+                        "detailList": [
                             {
-                                "assetClassID": "savings_n_current",
+                                "accountType": "savings_n_current",
                                 "amount": 12000000,
                                 "percentage": 30
                             },
                             {
-                                "assetClassID": "time_deposit",
+                                "accountType": "time_deposit",
                                 "amount": 4200000,
                                 "percentage": 10
                             },
                             {
-                                "assetClassID": "bond",
+                                "accountType": "bond",
                                 "amount": 8000000,
                                 "percentage": 24
                             },
                             {
-                                "assetClassID": "stock",
+                                "accountType": "stock",
                                 "amount": 8000000,
                                 "percentage": 24
                             },
                             {
-                                "assetClassID": "structured_products",
+                                "accountType": "structured_products",
                                 "amount": 7500000,
                                 "percentage": 23
                             },
                             {
-                                "assetClassID": "unit_trust",
+                                "accountType": "unit_trust",
                                 "amount": 4500000,
                                 "percentage": 15
                             },
                             {
-                                "assetClassID": "linked_deposit",
+                                "accountType": "linked_deposit",
                                 "amount": 0,
                                 "percentage": 0
                             }
@@ -100,40 +98,39 @@ export class IPortfolioApiService {
                     {
                         "month": 4,
                         "year": 2018,
-                        "totalAsset": 41673251.76,
-                        "detailsList": [
+                        "detailList": [
                             {
-                                "assetClassID": "savings_n_current",
+                                "accountType": "savings_n_current",
                                 "amount": 6000000,
                                 "percentage": 30
                             },
                             {
-                                "assetClassID": "time_deposit",
+                                "accountType": "time_deposit",
                                 "amount": 4000000,
                                 "percentage": 15
                             },
                             {
-                                "assetClassID": "bond",
+                                "accountType": "bond",
                                 "amount": 9000000,
                                 "percentage": 40
                             },
                             {
-                                "assetClassID": "stock",
+                                "accountType": "stock",
                                 "amount": 2000000,
                                 "percentage": 10
                             },
                             {
-                                "assetClassID": "structured_products",
+                                "accountType": "structured_products",
                                 "amount": 7000000,
                                 "percentage": 35
                             },
                             {
-                                "assetClassID": "unit_trust",
+                                "accountType": "unit_trust",
                                 "amount": 5000000,
                                 "percentage": 20
                             },
                             {
-                                "assetClassID": "linked_deposit",
+                                "accountType": "linked_deposit",
                                 "amount": 0,
                                 "percentage": 0
                             }
@@ -142,40 +139,39 @@ export class IPortfolioApiService {
                     {
                         "month": 3,
                         "year": 2018,
-                        "totalAsset": 41673251.76,
-                        "detailsList": [
+                        "detailList": [
                             {
-                                "assetClassID": "savings_n_current",
+                                "accountType": "savings_n_current",
                                 "amount": 10800000,
                                 "percentage": 40
                             },
                             {
-                                "assetClassID": "time_deposit",
+                                "accountType": "time_deposit",
                                 "amount": 5000000,
                                 "percentage": 20
                             },
                             {
-                                "assetClassID": "bond",
+                                "accountType": "bond",
                                 "amount": 10000000,
                                 "percentage": 39.5
                             },
                             {
-                                "assetClassID": "stock",
+                                "accountType": "stock",
                                 "amount": 4500000,
                                 "percentage": 17.5
                             },
                             {
-                                "assetClassID": "structured_products",
+                                "accountType": "structured_products",
                                 "amount": 9500000,
                                 "percentage": 35.5
                             },
                             {
-                                "assetClassID": "unit_trust",
+                                "accountType": "unit_trust",
                                 "amount": 7000000,
                                 "percentage": 30.5
                             },
                             {
-                                "assetClassID": "linked_deposit",
+                                "accountType": "linked_deposit",
                                 "amount": 0,
                                 "percentage": 0
                             }
@@ -184,40 +180,39 @@ export class IPortfolioApiService {
                     {
                         "month": 2,
                         "year": 2018,
-                        "totalAsset": 41673251.76,
-                        "detailsList": [
+                        "detailList": [
                             {
-                                "assetClassID": "savings_n_current",
+                                "accountType": "savings_n_current",
                                 "amount": 13200000,
                                 "percentage": 45
                             },
                             {
-                                "assetClassID": "time_deposit",
+                                "accountType": "time_deposit",
                                 "amount": 6400000,
                                 "percentage": 26
                             },
                             {
-                                "assetClassID": "bond",
+                                "accountType": "bond",
                                 "amount": 9000000,
                                 "percentage": 39.5
                             },
                             {
-                                "assetClassID": "stock",
+                                "accountType": "stock",
                                 "amount": 5000000,
                                 "percentage": 17.5
                             },
                             {
-                                "assetClassID": "structured_products",
+                                "accountType": "structured_products",
                                 "amount": 8600000,
                                 "percentage": 40.5
                             },
                             {
-                                "assetClassID": "unit_trust",
+                                "accountType": "unit_trust",
                                 "amount": 7000000,
                                 "percentage": 30.5
                             },
                             {
-                                "assetClassID": "linked_deposit",
+                                "accountType": "linked_deposit",
                                 "amount": 0,
                                 "percentage": 0
                             }
@@ -226,40 +221,39 @@ export class IPortfolioApiService {
                     {
                         "month": 1,
                         "year": 2018,
-                        "totalAsset": 41673251.76,
-                        "detailsList": [
+                        "detailList": [
                             {
-                                "assetClassID": "savings_n_current",
+                                "accountType": "savings_n_current",
                                 "amount": 6000000,
                                 "percentage": 25.5
                             },
                             {
-                                "assetClassID": "time_deposit",
+                                "accountType": "time_deposit",
                                 "amount": 6000000,
                                 "percentage": 25.5
                             },
                             {
-                                "assetClassID": "bond",
+                                "accountType": "bond",
                                 "amount": 9000000,
                                 "percentage": 40.5
                             },
                             {
-                                "assetClassID": "stock",
+                                "accountType": "stock",
                                 "amount": 4000000,
                                 "percentage": 20
                             },
                             {
-                                "assetClassID": "structured_products",
+                                "accountType": "structured_products",
                                 "amount": 8600000,
                                 "percentage": 37.5
                             },
                             {
-                                "assetClassID": "unit_trust",
+                                "accountType": "unit_trust",
                                 "amount": 6000000,
                                 "percentage": 25.5
                             },
                             {
-                                "assetClassID": "linked_deposit",
+                                "accountType": "linked_deposit",
                                 "amount": 0,
                                 "percentage": 0
                             }
@@ -270,7 +264,7 @@ export class IPortfolioApiService {
                     {
                         "month": 6,
                         "year": 2018,
-                        "detailsList": [
+                        "detailList": [
                             {
                                 "category": "cash_n_deposit",
                                 "amount": 588863.25
@@ -292,7 +286,7 @@ export class IPortfolioApiService {
                     {
                         "month": 5,
                         "year": 2018,
-                        "detailsList": [
+                        "detailList": [
                             {
                                 "category": "cash_n_deposit",
                                 "amount": 3863.25
@@ -314,7 +308,7 @@ export class IPortfolioApiService {
                     {
                         "month": 4,
                         "year": 2018,
-                        "detailsList": [
+                        "detailList": [
                             {
                                 "category": "cash_n_deposit",
                                 "amount": 77763.25
@@ -336,7 +330,7 @@ export class IPortfolioApiService {
                     {
                         "month": 3,
                         "year": 2018,
-                        "detailsList": [
+                        "detailList": [
                             {
                                 "category": "cash_n_deposit",
                                 "amount": 188863.25
@@ -358,7 +352,7 @@ export class IPortfolioApiService {
                     {
                         "month": 2,
                         "year": 2018,
-                        "detailsList": [
+                        "detailList": [
                             {
                                 "category": "cash_n_deposit",
                                 "amount": 88763.25
@@ -380,7 +374,7 @@ export class IPortfolioApiService {
                     {
                         "month": 1,
                         "year": 2018,
-                        "detailsList": [
+                        "detailList": [
                             {
                                 "category": "cash_n_deposit",
                                 "amount": 88863.25
@@ -458,17 +452,12 @@ export class IPortfolioApiService {
                 "netCapitalInOutValueFromLastSixMonth": 8587338.53,
                 "yearBeginDate": "2016-01-01",
                 "lastSixMonthBeginDate": "2015-12-01",
-                "detailsList": [
+                "detailList": [
                     {
                         "year": 2016,
                         "month": 5,
                         "fromDate": "2016-05-01",
                         "toDate": "2016-05-31",
-                        "fromAUM": 41673251.76,
-                        "toAUM": 41673251.76,
-                        "netCapitalInOutValue": 1901294.48,
-                        "weightedNetCapitalInOutValue": 944072.64,
-                        "netChangeInPortfolioValue": -1901294.48,
                         "monthlyReturnPercent": -1,
                         "yearReturnPercent": -4,
                         "yearToLastSixMonthReturnPercent": -4,
@@ -499,11 +488,6 @@ export class IPortfolioApiService {
                         "month": 4,
                         "fromDate": "2016-04-01",
                         "toDate": "2016-04-30",
-                        "fromAUM": 41673251.76,
-                        "toAUM": 41673251.76,
-                        "netCapitalInOutValue": 1901294.48,
-                        "weightedNetCapitalInOutValue": 944072.64,
-                        "netChangeInPortfolioValue": -1901294.48,
                         "monthlyReturnPercent": 2,
                         "yearReturnPercent": -2,
                         "yearToLastSixMonthReturnPercent": -3,
@@ -534,11 +518,6 @@ export class IPortfolioApiService {
                         "month": 3,
                         "fromDate": "2016-03-01",
                         "toDate": "2016-03-31",
-                        "fromAUM": 38247427.13,
-                        "toAUM": 41673251.76,
-                        "netCapitalInOutValue": 1901294.48,
-                        "weightedNetCapitalInOutValue": 944072.64,
-                        "netChangeInPortfolioValue": 1524530.15,
                         "monthlyReturnPercent": 3.89,
                         "yearReturnPercent": -3.91,
                         "yearToLastSixMonthReturnPercent": -3.91,
@@ -569,11 +548,6 @@ export class IPortfolioApiService {
                         "month": 2,
                         "fromDate": "2016-02-01",
                         "toDate": "2016-02-29",
-                        "fromAUM": 38398591.67,
-                        "toAUM": 38247427.13,
-                        "netCapitalInOutValue": 771479.62,
-                        "weightedNetCapitalInOutValue": 505582.02,
-                        "netChangeInPortfolioValue": -922644.16,
                         "monthlyReturnPercent": 5,
                         "yearReturnPercent": -2,
                         "yearToLastSixMonthReturnPercent": -3,
@@ -604,11 +578,6 @@ export class IPortfolioApiService {
                         "month": 1,
                         "fromDate": "2016-01-01",
                         "toDate": "2016-01-31",
-                        "fromAUM": 38398591.67,
-                        "toAUM": 38398591.67,
-                        "netCapitalInOutValue": 2111975.47,
-                        "weightedNetCapitalInOutValue": 1774391,
-                        "netChangeInPortfolioValue": -2111975.47,
                         "monthlyReturnPercent": 5,
                         "yearReturnPercent": 2,
                         "yearToLastSixMonthReturnPercent": -1,
@@ -640,11 +609,6 @@ export class IPortfolioApiService {
                         "month": 12,
                         "fromDate": "2015-12-01",
                         "toDate": "2015-12-31",
-                        "fromAUM": 38398591.67,
-                        "toAUM": 38398591.67,
-                        "netCapitalInOutValue": 0,
-                        "weightedNetCapitalInOutValue": 0,
-                        "netChangeInPortfolioValue": 0,
                         "monthlyReturnPercent": 0,
                         "yearReturnPercent": 0,
                         "yearToLastSixMonthReturnPercent": 0,
@@ -674,6 +638,7 @@ export class IPortfolioApiService {
                 ]
             }
         };
+
         return result;
     }
 
