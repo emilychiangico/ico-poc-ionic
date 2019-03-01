@@ -6,6 +6,72 @@ export class IPortfolioApiService {
 
     constructor() { }
 
+    getMyPortfolio() {
+        let result = {
+            "data": {
+                "portfolioCurrency": "HKD",
+                "totalAUM": 1635667494.00,
+                "lastUpdateDate": "31-05-2018",
+                "monthlyPercentage": 4.15,
+                "lastSixMonthsPercentage": -0.95,
+                "detailList": [
+                    {
+                        "accountType": "savings_n_current",
+                        "amount": 1200000,
+                        "percentage": 10
+                    },
+                    {
+                        "accountType": "time_deposit",
+                        "amount": 1200000,
+                        "percentage": 10
+                    },
+                    {
+                        "accountType": "structured_products",
+                        "amount": 1200000,
+                        "percentage": 10
+                    },
+                    {
+                        "accountType": "stock",
+                        "amount": 1200000,
+                        "percentage": 10
+                    },
+                    {
+                        "accountType": "bond",
+                        "amount": 1200000,
+                        "percentage": 10
+                    },
+                    {
+                        "accountType": "unit_trust",
+                        "amount": 1200000,
+                        "percentage": 10
+                    },
+                    {
+                        "accountType": "linked_deposit",
+                        "amount": 1200000,
+                        "percentage": 10
+                    },
+                    {
+                        "accountType": "option_n_derivatives_contract",
+                        "amount": 1200000,
+                        "percentage": 10
+                    },
+                    {
+                        "accountType": "loan",
+                        "amount": 1200000,
+                        "percentage": 10
+                    },
+                    {
+                        "accountType": "forward_foreign_exchange",
+                        "amount": 1200000,
+                        "percentage": 10
+                    }
+                ]
+            }
+        }
+
+        return result;
+    }
+
     getAssetAllocationHistory() {
         let result = {
             "data": {

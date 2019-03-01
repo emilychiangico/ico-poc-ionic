@@ -3,10 +3,13 @@ import { IonicPage } from 'ionic-angular';
 
 import { DoughnutUtil } from '../../../providers-v2/util/doughnut-util';
 import { GradientColorUtil } from '../../../providers-v2/util/gradient-color-util';
-import { AccountType, IPortfolioUtil } from '../../../providers-v2/util/i-portfolio-util';
+import { IPortfolioUtil } from '../../../providers-v2/util/i-portfolio-util';
 import { ChartUtil } from '../../../providers-v2/util/chart-util';
+
 import { BasePage } from '../../base-page';
 import { MyPortfolioPage } from '../my-portfolio/my-portfolio';
+
+import { IPortfolioApiService } from "../../../providers-v2/api/i-portfolio-api-service";
 
 @IonicPage()
 @Component({
@@ -15,34 +18,19 @@ import { MyPortfolioPage } from '../my-portfolio/my-portfolio';
 })
 export class PortfolioOverviewPage extends BasePage {
 
+    private iPortfolioApiService: IPortfolioApiService;
+
     @ViewChild('doughnutCanvas') doughnutCanvas;
     @ViewChildren('doughnutLegendCanvas') doughnutLegendCanvasList: QueryList<ElementRef>;
 
     doughnutChart: any;
 
-    //List Data
-    holdingDataList = [];
-
-    cData = [1200000, 1200000, 1200000, 1200000, 1200000, 1200000, 1200000, 1200000, 1200000, 1200000];
-    //cData = [4500000, 3500000, 1200000, 1200000, 600000, 500000];
-    //cData = [6008194.18, 31857040.24, 31857040.24, 31857040.24, 31857040.24, 31857040.24];
-
-    type = [
-        AccountType.savingAndCurrent, 
-        AccountType.timeDeposit, 
-        AccountType.structuredProduct, 
-        AccountType.stock, 
-        AccountType.bondNoteCertDeposit,
-        AccountType.unitTrust, 
-        AccountType.linkedDeposit, 
-        AccountType.optionAndDerivativesContract, 
-        AccountType.loan, 
-        AccountType.forwardForeignExchange
-    ];
-
-    chartData = {
-        dataList: this.cData,
-        typeList: this.type
+    myPortfolioData = {
+        chartData: {
+            dataList: [],
+            typeList: []
+        },
+        holdingDataList: []
     }
 
     beaListHeader = {
@@ -50,22 +38,22 @@ export class PortfolioOverviewPage extends BasePage {
         right: "Total Amount"
     }
 
-	totalAmountInfo = {
-		ccy: "HKD",
-		amount : 1635667494.00,
-		date : "31 May 2018"
-	}
+    totalAmountInfo = {
+        ccy: "HKD",
+        amount: 1635667494.00,
+        date: "31 May 2018"
+    }
 
     monthlyDiff = 4.15;
     sixMonthDiff = -0.95;
 
-
     constructor(injector: Injector) {
         super(injector);
+        this.iPortfolioApiService = injector.get(IPortfolioApiService);
     }
 
     ngOnInit() {
-        this.initHoldingDataList();
+        this.loadData();
     }
 
     ionViewDidLoad() {
@@ -74,36 +62,35 @@ export class PortfolioOverviewPage extends BasePage {
         this.initChart();
     }
 
-    initHoldingDataList() {
-        let percentageList = this.countPercentage();
+    loadData() {
+        let data = this.iPortfolioApiService.getMyPortfolio().data;
 
-        this.type.forEach((item, index) => {
-            this.holdingDataList.push({
-                type: item,
-                title: IPortfolioUtil.getTitle(item),
-                amount: this.cData[index],
-                percentage: percentageList[index]
+        this.totalAmountInfo = IPortfolioUtil.setTotalAumontInfo(data.portfolioCurrency, data.totalAUM, data.lastUpdateDate);
+        this.monthlyDiff = data.monthlyPercentage;
+        this.sixMonthDiff = data.lastSixMonthsPercentage;
+
+        data.detailList.forEach((item) => {
+            let accountType = item.accountType;
+            this.myPortfolioData.chartData.dataList.push(item.amount);
+            this.myPortfolioData.chartData.typeList.push(accountType);
+            this.myPortfolioData.holdingDataList.push({
+                type: accountType,
+                title: IPortfolioUtil.getTitle(accountType),
+                amount: item.amount,
+                percentage: item.percentage
             });
         });
     }
 
-    countPercentage() {
-        let sum = this.cData.reduce((a, b) => a + b, 0);
-        let list = []
-        this.cData.forEach((data) => {
-            list.push((data / sum * 100).toFixed(2));
-        });
-
-        return list;
-    }
-
     initChart() {
 
+        let chartData = this.myPortfolioData.chartData;
+
         // Draw doughnut Chart
-        this.initDoughnutChart(this.doughnutCanvas, this.chartData);
+        this.initDoughnutChart(this.doughnutCanvas, chartData);
 
         // Draw doughnut Legend Chart
-        this.initDoughnutLegendChart(this.doughnutLegendCanvasList.toArray(), this.chartData);
+        this.initDoughnutLegendChart(this.doughnutLegendCanvasList.toArray(), chartData);
 
     }
 

@@ -38,7 +38,7 @@
         <div class="doughnut-legend-container">
 
             <!-- <div *ngFor="let number of [1,2,3,4,5,6]"> -->
-            <div *ngFor="let data of holdingDataList">
+            <div *ngFor="let data of myPortfolioData.holdingDataList">
                 <div class="doughnut-legend">
                     <div class="donut-legend-inner">
                         <div>
@@ -58,26 +58,6 @@
         </div>
 
     </div>
-
-
-
-    <!-- <ion-card>
-    <ion-card-header>
-      Bar Chart
-    </ion-card-header>
-    <ion-card-content>
-      <canvas #barCanvas></canvas>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card>
-    <ion-card-header>
-      Line Chart
-    </ion-card-header>
-    <ion-card-content>
-      <canvas #lineCanvas></canvas>
-    </ion-card-content>
-  </ion-card> -->
 
     <div listContent>
         <!-- Button -->
@@ -109,26 +89,8 @@
         </div>
 
         <!-- Info of doughnut chart data-->
-        <pb-list-item type="overview" [header]="beaListHeader" [data]="holdingDataList">
+        <pb-list-item type="overview" [header]="beaListHeader" [data]="myPortfolioData.holdingDataList">
         </pb-list-item>
     </div>
-
-    <!-- <div listContent>
-      <pb-list-item type="history"
-                    [header]="beaListHeader"
-                    [data]="holdingDataList">
-      </pb-list-item>
-    </div> -->
-
-    <!-- <ion-list>
-    <ion-item class="test" *ngFor="let holdingData of holdingDataList">
-      <legend-point [type]="holdingData.type"></legend-point>
-      <div class="title">{{ holdingData.title }}</div>
-      <div class="amount" item-end>
-        HKD {{ holdingData.amount }}
-        <ion-icon name="ios-arrow-forward" item-end></ion-icon>
-      </div>
-    </ion-item>
-  </ion-list> -->
 
 </ion-content>
