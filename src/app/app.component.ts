@@ -28,6 +28,10 @@ import { AssetHistoryPage } from '../pages/private-banking/portfolio-holding/ass
 
 import { ColorSettingPage } from '../pages/color-setting/color-setting';
 
+import { PureColorPage } from '../pages/testing-page/background-test/pure-color/pure-color';
+import { GradientColorPage } from '../pages/testing-page/background-test/gradient-color/gradient-color';
+
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -46,7 +50,10 @@ export class MyApp {
       { title: 'Portfolio Overview', component: PortfolioOverviewPage },
       { title: 'Portfolio Overview Pure', component: PortfolioOverviewPureColorPage },
       { title: 'Portfolio Overview No Animation', component: PortfolioOverviewNoAnimationPage },
-     //// { title: 'My Portfolio', component: MyPortfolioPage},
+      //{ title: 'GradientColorPage', component: GradientColorPage },
+      //{ title: 'PureColorPage', component: PureColorPage },
+     
+      //// { title: 'My Portfolio', component: MyPortfolioPage},
      //// { title: 'Portfolio Holding', component: PortfolioHoldingPage},
       //{ title: 'PortfolioHistoryPage', component: PortfolioHistoryPage},
       //{ title: 'Currency Distribution', component: CcyDistributionPage },

@@ -45,6 +45,9 @@ import { PortfolioOverviewPureColorPage } from '../pages/private-banking/portfol
 import { IPortfolioApiService } from '../providers-v2/api/i-portfolio-api-service';
 import { PortfolioOverviewNoAnimationPage } from '../pages/private-banking/portfolio-overview-no-animation/portfolio-overview-no-animation';
 
+import { PureColorPage } from '../pages/testing-page/background-test/pure-color/pure-color';
+import { GradientColorPage } from '../pages/testing-page/background-test/gradient-color/gradient-color';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -72,7 +75,10 @@ import { PortfolioOverviewNoAnimationPage } from '../pages/private-banking/portf
 
     ColorSettingPage,
     PortfolioOverviewPureColorPage,
-    PortfolioOverviewNoAnimationPage
+    PortfolioOverviewNoAnimationPage,
+
+    PureColorPage,
+    GradientColorPage
   ],
   imports: [
     BrowserModule,
@@ -112,7 +118,10 @@ import { PortfolioOverviewNoAnimationPage } from '../pages/private-banking/portf
     
     ColorSettingPage,
     PortfolioOverviewPureColorPage,
-    PortfolioOverviewNoAnimationPage
+    PortfolioOverviewNoAnimationPage,
+
+    PureColorPage,
+    GradientColorPage
   ],
   providers: [
     StatusBar,
