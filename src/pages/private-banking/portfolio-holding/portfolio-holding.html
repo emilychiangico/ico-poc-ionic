@@ -8,22 +8,22 @@
     <div header-content>
 
         <click-popup ngDefaultControl class="bea-select" type="pbType" [ngModelBinding]="holdingType" name="holdingType" #holdingType="ngModel"
-            [(ngModel)]="selectedType" buttonText="Please Select" popupTitleText="Please Select" [dataList]="holdingTypeList"
+            [(ngModel)]="selectedAccountType" buttonText="Please Select" popupTitleText="Please Select" [dataList]="accountTypeList"
             dataListDisplayAttr="name" dataListValueAttr="id" (onSelect)="typePopupCallback($event[0])">
         </click-popup>
 
         <div class="title">Total Amount</div>
-        <div class="value"><span class="ccy">HKD</span> {{ info.totalAmount | beaNumber }}</div>
+        <div class="value"><span class="ccy">HKD</span> {{ totalAmountInfo.totalAmount | beaNumber }}</div>
 
         <ion-grid role="list" class="twoColCenter">
             <ion-row>
                 <ion-col role="listitem" col-6>
                     <div class="title">AUM Proportion</div>
-                    <div class="value">{{ info.aumProportion | beaNumber }}%</div>
+                    <div class="value">{{ totalAmountInfo.aumProportion | beaNumber }}%</div>
                 </ion-col>
                 <ion-col role="listitem" class="line" col-6 line>
                     <div class="title">Holding</div>
-                    <div class="value">{{ info.holding | beaNumber:0 }}</div>
+                    <div class="value">{{ totalAmountInfo.holding | beaNumber:0 }}</div>
                 </ion-col>
             </ion-row>
         </ion-grid>

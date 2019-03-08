@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
+import { TestData } from "./i-portfolio-test-data";
+
 @Injectable()
 export class IPortfolioApiService {
 
@@ -67,8 +69,7 @@ export class IPortfolioApiService {
                     }
                 ]
             }
-        }
-
+        };
         return result;
     }
 
@@ -462,7 +463,6 @@ export class IPortfolioApiService {
                 ]
             }
         };
-
         return result;
     }
 
@@ -504,7 +504,7 @@ export class IPortfolioApiService {
                     }
                 ]
             }
-        }
+        };
         return result;
     }
 
@@ -702,6 +702,27 @@ export class IPortfolioApiService {
                         ]
                     }
                 ]
+            }
+        };
+        return result;
+    }
+
+    getPortfolioHolding(type: string) {
+        let result = {
+            "data": {
+                "accountTypeList": [
+                    "savings_n_current",
+                    "time_deposit",
+                    "structured_products",
+                    "stock",
+                    "bond",
+                    "unit_trust",
+                    "linked_deposit",
+                    "option_n_derivatives_contract",
+                    "loan",
+                    "forward_foreign_exchange"
+                ],
+                "detail": TestData.getMyPortolioData(type)
             }
         };
 

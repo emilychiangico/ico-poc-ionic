@@ -27,113 +27,6 @@ export const BenchmarkType = {
 	sp_500_index: "sp_500_index"
 }
 
-export const PortfolioHolding = {
-	savings_n_current: {
-		account_type: "account_type",
-		ccy: "ccy",
-		principal_in_market: "principal_in_market",
-		principal_in_base_market: "principal_in_base_market"
-	},
-	time_deposit: {
-		account_type: "account_type",
-		effective_date: "effective_date",
-		due_date: "due_date",
-		deposit_no: "deposit_no",
-		interest_rate: "interest_rate",
-		ccy: "ccy",
-		principal_in_market: "principal_in_market",
-		principal_in_base_market: "principal_in_base_market"
-	},
-	linked_deposit: {
-		linked_type: "linked_type",
-		reference_no: "reference_no",
-		deposit_underlying_ccy: "deposit_underlying_ccy",
-		settlement_date: "settlement_date",
-		maturity_date: "maturity_date",
-		reference_value: "reference_value",
-		coupon_rate: "coupon_rate",
-		deposit_amount_in_market: "deposit_amount_in_market",
-		deposit_amount_in_base_market: "deposit_amount_in_base_market"
-	},
-	stock: {
-		securities_name: "securities_name",
-		stock_code: "stock_code",
-		shares: "shares",
-		market_price: "market_price",
-		avg_unit_cost: "avg_unit_cost",
-		ccy: "ccy",
-		market_value_in_market: "market_value_in_market",
-		market_value_in_base_market: "market_value_in_base_market"
-	},
-	unit_trust: {
-		securities_name: "securities_name",
-		unit: "unit",
-		market_price: "market_price",
-		avg_unit_cost: "avg_unit_cost",
-		ccy: "ccy",
-		market_value_in_market: "market_value_in_market",
-		market_value_in_base_market: "market_value_in_base_market"
-	},
-	bond: {
-		securities_name: "securities_name",
-		nominal_value: "nominal_value",
-		market_price: "market_price",
-		avg_unit_cost: "avg_unit_cost",
-		ccy: "ccy",
-		market_value_in_market: "market_value_in_market",
-		market_value_in_base_market: "market_value_in_base_market"
-	},
-	structured_products: {
-		securities_name: "securities_name",
-		nominal_value: "nominal_value",
-		market_price: "market_price",
-		avg_unit_cost: "avg_unit_cost",
-		ccy: "ccy",
-		market_value_in_market: "market_value_in_market",
-		market_value_in_base_market: "market_value_in_base_market"
-	},
-	loans: {
-		loan_type: "loan_type",
-		effective_date: "effective_date",
-		due_date: "due_date",
-		loan_no: "loan_no",
-		interest_rate: "interest_rate",
-		ccy: "ccy",
-		principal_in_market: "principal_in_market",
-		principal_in_base_market: "principal_in_base_market"
-	},
-	option_derivatives_contract: {
-		trade_date: "trade_date",
-		reference_no: "reference_no",
-		underlying: "underlying",
-		option_type: "option_type",
-		strike_price: "strike_price",
-		knock_out_price: "knock_out_price",
-		shares_notional_per_fixing: "shares_notional_per_fixing",
-		remaining_notional_amount: "remaining_notional_amount"
-	},
-	forward_foreign_exchange: {
-		trade_date: "trade_date",
-		value_date: "value_date",
-		reference_no: "reference_no",
-		buy_ccy: "buy_ccy",
-		buy_amount: "buy_amount",
-		sell_ccy: "sell_ccy",
-		sell_amount: "sell_amount",
-		forward_rate: "forward_rate"
-	},
-	pending_settlement: {
-		trade_date: "trade_date",
-		settlement_date: "settlement_date",
-		reference_no: "reference_no",
-		description: "description",
-		transaction_type: "transaction_type",
-		ccy: "ccy",
-		pending_settlement_value: "pending_settlement_value",
-		pending_settlement_amount: "pending_settlement_amount"
-	}
-}
-
 export class IPortfolioUtil {
 
 	/******************** getTitle by type ********************/
@@ -345,8 +238,8 @@ export class IPortfolioUtil {
 		})
 	}
 
-	/******************** sortList ********************/
-	private static sortList(dataList) {
+	/******************** sort list by month and year ********************/
+	static sortList(dataList) {
 		return dataList.sort((a, b) => {
 			if (a.year == b.year) {
 				return a.month - b.month;

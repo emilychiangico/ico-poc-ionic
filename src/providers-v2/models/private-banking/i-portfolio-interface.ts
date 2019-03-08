@@ -129,13 +129,9 @@ export namespace IPortfolioInterface {
             totalAmount: number,
             aumProportion: number,
             holding: number,
-            contentList: ContentDetailInfo[][],
+            headerList: string[];
+            contentList: any[][],
             historyList: HistoryList[]
-        }
-
-        export interface ContentDetailInfo {
-            key: string,
-            value: any
         }
 
         export interface HistoryList {

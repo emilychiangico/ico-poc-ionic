@@ -23,9 +23,9 @@ export class AssetAllocationDetailPage extends BasePage {
 	}
 
 	ngOnInit() {
-		//let data = this._navParams.data;
-		let data = this.iPortfolioApiService.getAssetAllocationHistory().data;
-		let assetAllocationDataInfo = IPortfolioUtil.setAssetAllocationData(data.assetAllocationHistoryList);
+		let assetAllocationDataInfo = this._navParams.data;
+		//let data = this.iPortfolioApiService.getAssetAllocationHistory().data;
+		//let assetAllocationDataInfo = IPortfolioUtil.setAssetAllocationData(data.assetAllocationHistoryList);
 		this.loadData(assetAllocationDataInfo);
 	}
 

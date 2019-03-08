@@ -26,6 +26,12 @@
                     compontent-color($theme-map, lighter, background)) !important;
             }
 
+            &.pure-scroll-background {
+                div.scroll-content {
+                    background-color: compontent-color($theme-map, content-background);
+                }
+            }
+
             ion-tabs {
                 .tabbar {
                     .tab-button {
@@ -83,7 +89,7 @@
                 background-color: compontent-color($theme-map, list-item-background);
             }
 
-            page-asset-history, page-holding-list, page-nav-detail, page-asset-allocation-detail {
+            page-asset-history, page-holding-list {
                 ion-content {
                     div.scroll-content {
                         background-color: compontent-color($theme-map, content-background);

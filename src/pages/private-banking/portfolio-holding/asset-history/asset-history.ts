@@ -1,20 +1,20 @@
 import { Component, ViewChild, Injector } from '@angular/core';
 import { IonicPage, Content } from 'ionic-angular';
 import { GradientColorUtil } from '../../../../providers-v2/util/gradient-color-util';
-import { AccountType, IPortfolioUtil } from '../../../../providers-v2/util/i-portfolio-util';
+import { IPortfolioUtil } from '../../../../providers-v2/util/i-portfolio-util';
 import { ChartUtil } from '../../../../providers-v2/util/chart-util';
 
 import { AssetAllocationDetailPage } from '../../asset-allocation-detail/asset-allocation-detail';
 import { MyPortfolioPage } from '../../my-portfolio/my-portfolio';
 
-import { BasePage } from '../../../base-page';
+import { ProfolioHoldingMaster } from '../portfolio-holding-master';
 
 @IonicPage()
 @Component({
 	selector: 'page-asset-history',
 	templateUrl: 'asset-history.html',
 })
-export class AssetHistoryPage extends BasePage {
+export class AssetHistoryPage extends ProfolioHoldingMaster {
 
 	@ViewChild(Content) content: Content;
 
@@ -25,19 +25,7 @@ export class AssetHistoryPage extends BasePage {
 	selectedMonthIndex: number = 0;
 	selectedMonthLabel: string;
 
-	xData = [
-		["DEC", "2017"],
-		["JAN", "2018"],
-		["FEB", "2018"],
-		["MAR", "2018"],
-		["APR", "2018"],
-		["MAY", "2018"],
-		["JUN", "2018"],
-	];
-
-	selectedType = AccountType.savingAndCurrent;
 	title = "";
-	chartData;
 
 	constructor(injector: Injector) {
 		super(injector);
@@ -45,86 +33,23 @@ export class AssetHistoryPage extends BasePage {
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad AssetHistoryPage');
-		this.loadData();
-		ChartUtil.initChartForSelectedArea();
-		this.initAreaChart();
 	}
 
 	ionViewWillEnter() {
-		this.title = IPortfolioUtil.getTitle(this.selectedType);
+		this._event.subscribe('change-type-history', (assetAllocationDataInfo) => {
+			console.log('change-type-history >> ');
+			console.log(assetAllocationDataInfo);
+			this.assetAllocationDataInfo = assetAllocationDataInfo;
+			this.selectedAccountType = assetAllocationDataInfo.selectedAccountType;
+			this.title = IPortfolioUtil.getTitle(this.selectedAccountType);
 
-		this._event.subscribe('change-type-history', (selectedType) => {
-			console.log('change-type >> ');
-			this.selectedType = selectedType;
-			this.title = IPortfolioUtil.getTitle(this.selectedType);
-			this.loadData();
-			this.updateChart();
+			if (this.areaChart2) {
+				this.updateChart();
+			} else {
+				ChartUtil.initChartForSelectedArea();
+				this.initAreaChart();
+			}
 		});
-	}
-
-	ionViewWillLeave() {
-		//console.log("asset-history >> ionViewWillLeave");
-		this._event.unsubscribe('change-type-history');
-	}
-
-	ionViewWillUnload() {
-		//console.log("asset-history >> ionViewWillUnload");
-		this._event.unsubscribe('change-type-history');
-	}
-
-	loadData() {
-		switch (this.selectedType) {
-			case AccountType.savingAndCurrent:
-				this.chartData = this.setChartData([6, 13.2, 10.8, 6, 12, 12, 12]);
-				break;
-
-			case AccountType.timeDeposit:
-				this.chartData = this.setChartData([6, 6.4, 5, 4, 4.2, 4.6, 4.6]);
-				break;
-
-			case AccountType.structuredProduct:
-				this.chartData = this.setChartData([8.6, 8.6, 9.5, 7, 7.5, 7.5, 7.5]);
-				break;
-
-			case AccountType.stock:
-				this.chartData = this.setChartData([4, 5, 4.5, 2, 8, 4, 4]);
-				break;
-
-			case AccountType.bondNoteCertDeposit:
-				this.chartData = this.setChartData([9, 9, 10, 9, 8, 8.2, 8.2]);
-				break;
-
-			case AccountType.unitTrust:
-				this.chartData = this.setChartData([6, 7, 7, 5, 4.5, 4.8, 4.8]);
-				break;
-
-			case AccountType.linkedDeposit:
-				this.chartData = this.setChartData([5, 6, 7, 1, 2, 3, 3]);
-				break;
-
-			case AccountType.optionAndDerivativesContract:
-				this.chartData = this.setChartData([1, 2, 3, 4, 5, 6, 6]);
-				break;
-
-			case AccountType.loan:
-				this.chartData = this.setChartData([9, 7, 6, 5, 4, 7, 7]);
-				break;
-
-			case AccountType.forwardForeignExchange:
-				this.chartData = this.setChartData([4, 2, 8, 6, 5, 7, 7]);
-				break;
-
-			default:
-				this.chartData = [];
-		}
-	}
-
-	setChartData(dataList) {
-		let result = [];
-		dataList.forEach((item) => {
-			result.push(item * 1000000);
-		});
-		return result;
 	}
 
 	selectMonth(chart, index) {
@@ -140,23 +65,22 @@ export class AssetHistoryPage extends BasePage {
 		console.log("areaChartCanvasEl.height = " + areaChartCanvasEl.height);
 		this.areaChartCanvasCtx = areaChartCanvasEl.getContext("2d");
 
-		const backgroundColors = GradientColorUtil.getAreaGradientColor(this.areaChartCanvasCtx, [this.selectedType], areaChartCanvasEl.width, areaChartCanvasEl.height);
+		const backgroundColors = GradientColorUtil.getAreaGradientColor(this.areaChartCanvasCtx, [this.selectedAccountType], areaChartCanvasEl.width, areaChartCanvasEl.height);
 
 		let chartData = {
-			labels: this.xData,
+			labels: this.assetAllocationDataInfo.chartData.label,
 			xHighlightRange: {
 				begin: this.selectedMonthIndex,
 				end: this.selectedMonthIndex + 1
 			},
 			datasets: [{
-				label: "UntimeDeposit",
 				fill: true,
 				backgroundColor: backgroundColors[0],
 				pointRadius: 0,
 				borderWidth: 0.01,
 				borderColor: backgroundColors[0],
 				borderCapStyle: 'butt',
-				data: this.chartData,
+				data: this.assetAllocationDataInfo.chartData.amount[0],
 			}]
 		};
 
@@ -299,7 +223,7 @@ export class AssetHistoryPage extends BasePage {
 		this.areaChart2 = ChartUtil.createAreaChart(this.areaChartCanvas, chartData, xTick, customTooltip, clickCallback);
 
 		// update color by char size
-		let color = GradientColorUtil.getAreaGradientColor(this.areaChartCanvasCtx, [this.selectedType], this.areaChart2.width, this.areaChart2.height);
+		let color = GradientColorUtil.getAreaGradientColor(this.areaChartCanvasCtx, [this.selectedAccountType], this.areaChart2.width, this.areaChart2.height);
 
 		let datasets = this.areaChart2.data.datasets;
 		datasets[0].backgroundColor = color[0];
@@ -311,10 +235,10 @@ export class AssetHistoryPage extends BasePage {
 
 		ChartUtil.closeTip(this.areaChart2);
 
-		let color = GradientColorUtil.getAreaGradientColor(this.areaChartCanvasCtx, [this.selectedType], this.areaChart2.width, this.areaChart2.height);
+		let color = GradientColorUtil.getAreaGradientColor(this.areaChartCanvasCtx, [this.selectedAccountType], this.areaChart2.width, this.areaChart2.height);
 
 		let datasets = this.areaChart2.data.datasets;
-		datasets[0].data = this.chartData;
+		datasets[0].data = this.assetAllocationDataInfo.chartData.amount[0];
 		datasets[0].backgroundColor = color[0];
 
 		this.areaChart2.update();
@@ -327,6 +251,6 @@ export class AssetHistoryPage extends BasePage {
 	}
 
 	viewDetail() {
-		this.push(AssetAllocationDetailPage);
+		this.push(AssetAllocationDetailPage, this.assetAllocationDataInfo);
 	}
 }

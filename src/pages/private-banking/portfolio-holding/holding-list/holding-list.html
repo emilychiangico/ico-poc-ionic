@@ -2,10 +2,10 @@
 
     <div listContent>
         <ion-list pb-list>
-            <ng-container *ngFor="let data of dataList">
+            <ng-container *ngFor="let data of holdingInfo.data">
 
                 <!-------------------- savingAndCurrent Start -------------------->
-                <ion-list saving-and-current *ngIf="selectedType == 'savingAndCurrent'">
+                <ion-list saving-and-current *ngIf="holdingInfo.selectedAccountType == 'savings_n_current'">
                     <ion-item role="text" class="title">
                         <div>Account Type</div>
                     </ion-item>
@@ -26,7 +26,7 @@
                 <!-------------------- savingAndCurrent End -------------------->
 
                 <!-------------------- timeDeposit Start -------------------->
-                <ion-list time-deposit *ngIf="selectedType == 'timeDeposit'">
+                <ion-list time-deposit *ngIf="holdingInfo.selectedAccountType == 'time_deposit'">
                     <ion-item role="text">
                         <div>{{ data.accountType }} {{ data.referNo }}</div>
                     </ion-item>
@@ -57,9 +57,9 @@
                 <!-------------------- timeDeposit End -------------------->
 
                 <!-------------------- linkedDeposit Start -------------------->
-                <ion-list linked-deposit *ngIf="selectedType == 'linkedDeposit'">
+                <ion-list linked-deposit *ngIf="holdingInfo.selectedAccountType == 'linked_deposit'">
                     <ion-item role="text">
-                        <div>{{ data.accountType }}</div>
+                        <div>{{ data.linkedType }}</div>
                     </ion-item>
                     <ion-item role="text">
                         <div>Reference No. {{ data.referNo }}</div>
@@ -93,9 +93,9 @@
                 <!-------------------- linkedDeposit End -------------------->
 
                 <!-------------------- stock Start -------------------->
-                <ion-list stock *ngIf="selectedType == 'stock'">
+                <ion-list stock *ngIf="holdingInfo.selectedAccountType == 'stock'">
                     <ion-item role="text">
-                        <div>{{ data.company }}</div>
+                        <div>{{ data.companyCode }} {{ data.companyName }}</div>
                     </ion-item>
                     <ion-item role="text" class="title">
                         <div item-ccy>CCY</div>
