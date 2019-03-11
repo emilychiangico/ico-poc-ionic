@@ -1,5 +1,7 @@
 import { Component, ViewChild, Injector } from '@angular/core';
 import { IonicPage, Content } from 'ionic-angular';
+import { BasePage } from '../../../base-page';
+
 import { GradientColorUtil } from '../../../../providers-v2/util/gradient-color-util';
 import { IPortfolioUtil } from '../../../../providers-v2/util/i-portfolio-util';
 import { ChartUtil } from '../../../../providers-v2/util/chart-util';
@@ -7,14 +9,12 @@ import { ChartUtil } from '../../../../providers-v2/util/chart-util';
 import { AssetAllocationDetailPage } from '../../asset-allocation-detail/asset-allocation-detail';
 import { MyPortfolioPage } from '../../my-portfolio/my-portfolio';
 
-import { ProfolioHoldingMaster } from '../portfolio-holding-master';
-
 @IonicPage()
 @Component({
 	selector: 'page-asset-history',
 	templateUrl: 'asset-history.html',
 })
-export class AssetHistoryPage extends ProfolioHoldingMaster {
+export class AssetHistoryPage extends BasePage {
 
 	@ViewChild(Content) content: Content;
 
@@ -27,15 +27,27 @@ export class AssetHistoryPage extends ProfolioHoldingMaster {
 
 	title = "";
 
+	assetAllocationDataInfo = {
+		selectedAccountType: null,
+		holdingTypeList: [],
+		chartData: {
+			label: [],
+			amount: []
+		}
+	};
+
+	selectedAccountType = null;
+
 	constructor(injector: Injector) {
 		super(injector);
 	}
 
 	ionViewDidLoad() {
-		console.log('ionViewDidLoad AssetHistoryPage');
+		console.log('AssetHistoryPage >> ionViewDidLoad');
 	}
 
 	ionViewWillEnter() {
+		console.log("AssetHistoryPage >> ionViewWillEnter");
 		this._event.subscribe('change-type-history', (assetAllocationDataInfo) => {
 			console.log('change-type-history >> ');
 			console.log(assetAllocationDataInfo);
@@ -50,6 +62,16 @@ export class AssetHistoryPage extends ProfolioHoldingMaster {
 				this.initAreaChart();
 			}
 		});
+	}
+
+	ionViewWillLeave() {
+		console.log("AssetHistoryPage >> ionViewWillLeave");
+		this._event.unsubscribe('change-type-history');
+	}
+
+	ionViewWillUnload() {
+		console.log("AssetHistoryPage >> ionViewWillUnload");
+		this._event.unsubscribe('change-type-history');
 	}
 
 	selectMonth(chart, index) {
