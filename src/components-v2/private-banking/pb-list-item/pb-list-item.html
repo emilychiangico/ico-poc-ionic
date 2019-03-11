@@ -50,7 +50,7 @@
     <!-- Asset Allocation - View Details -->
     <ng-container *ngIf="type == 'assetAllocationDetail'">
         <ng-container *ngFor="let data of dataList">
-            <pb-expand-item type="assetAllocation" [data]="data"></pb-expand-item>
+            <pb-expand-item type="assetAllocation" [data]="data" [isExpanded]="detailExpand"></pb-expand-item>
         </ng-container>
     </ng-container>
 

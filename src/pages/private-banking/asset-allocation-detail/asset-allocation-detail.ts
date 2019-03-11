@@ -1,10 +1,8 @@
 import { Component, Injector } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
+import { BasePage } from '../../base-page';
 
 import { IPortfolioUtil } from '../../../providers-v2/util/i-portfolio-util';
-import { IPortfolioApiService } from "../../../providers-v2/api/i-portfolio-api-service";
-
-import { BasePage } from '../../base-page';
 
 @IonicPage()
 @Component({
@@ -13,24 +11,25 @@ import { BasePage } from '../../base-page';
 })
 export class AssetAllocationDetailPage extends BasePage {
 
-	private iPortfolioApiService: IPortfolioApiService;
-
 	dataList = [];
+
+	detailExpand : boolean = false;
 
 	constructor(injector: Injector) {
 		super(injector);
-		this.iPortfolioApiService = injector.get(IPortfolioApiService);
 	}
 
 	ngOnInit() {
 		let assetAllocationDataInfo = this._navParams.data;
-		//let data = this.iPortfolioApiService.getAssetAllocationHistory().data;
-		//let assetAllocationDataInfo = IPortfolioUtil.setAssetAllocationData(data.assetAllocationHistoryList);
 		this.loadData(assetAllocationDataInfo);
 	}
 
 	loadData(data) {
-		data.holdingTypeList.forEach((item, index) => {
+		let holdingTypeList = data.holdingTypeList;
+		if(holdingTypeList.length == 1) {
+			this.detailExpand = true;
+		}
+		holdingTypeList.forEach((item, index) => {
 			let detailList = [];
 			console.log(data.chartData.amount[index]);
 			data.chartData.amount[index].forEach((amount, aIndex) => {

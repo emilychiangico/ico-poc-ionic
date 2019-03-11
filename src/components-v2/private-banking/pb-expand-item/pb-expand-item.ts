@@ -19,6 +19,7 @@ export class PbExpandItemComponent implements OnInit{
 
     @Input() type: string;
     @Input() data: any;
+    @Input() isExpanded: boolean = false;
 
     expanded: boolean = false;
 
@@ -26,6 +27,7 @@ export class PbExpandItemComponent implements OnInit{
     }
 
     ngOnInit() {
+        this.expanded = this.isExpanded;
     }
 
     expand(e) {
