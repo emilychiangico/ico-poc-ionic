@@ -28,6 +28,7 @@ export class PortfolioOverviewNoAnimationPage extends BasePage {
     myPortfolioData = {
         chartData: {
             dataList: [],
+            percentageList:[],
             typeList: []
         },
         holdingDataList: []
@@ -73,6 +74,7 @@ export class PortfolioOverviewNoAnimationPage extends BasePage {
         data.detailList.forEach((item) => {
             let accountType = item.accountType;
             this.myPortfolioData.chartData.dataList.push(item.amount);
+            this.myPortfolioData.chartData.percentageList.push(item.percentage);
             this.myPortfolioData.chartData.typeList.push(accountType);
             this.myPortfolioData.holdingDataList.push({
                 type: accountType,
@@ -101,53 +103,24 @@ export class PortfolioOverviewNoAnimationPage extends BasePage {
         var chartData = {
             datasets: [{
                 data: cData.dataList,
-                backgroundColor: GradientColorUtil.getDoughnutGradientColor(ctx, cData.dataList, cData.typeList, 220, 220),
+                backgroundColor: GradientColorUtil.getDoughnutGradientColor(ctx, cData.dataList, cData.typeList, 220),
                 borderColor: "rgba(255,255,255,0)"
             }]
         };
 
         this.doughnutChart = ChartUtil.createDonghnutChart(canvasObj, chartData, false);
-
-        // this.doughnutChart = new Chart(canvasObj.nativeElement, {
-
-        //   type: 'doughnut',
-        //   data: {
-        //       //labels: labels,
-        //       datasets: [{
-        //         //label: '# of Votes',
-        //         data: data,
-        //         backgroundColor: gradientColors,
-        //         borderColor: "rgba(255,255,255,0)"
-        //       }]
-        //   },
-        //   options: {
-        //     aspectRatio: 1,
-        //     cutoutPercentage: 92,
-        //     legend: {
-        //       display: false,
-        //       // position: 'bottom',
-        //       // labels: {
-        //       //     fontColor: 'rgb(255, 99, 132)'
-        //       // }
-        //     },
-        //     events: [] // remove all event of chart
-        //   }
-        // });
     }
 
     // draw Doughnut chart with 0% < data < 100%
     initDoughnutLegendChart(doughnutLegendCanvanList, cData) {
-
+        var chartSize = 90;
         var rotateDegreeList = DoughnutUtil.getRotateDegreeList(cData.dataList);
         console.log(rotateDegreeList);
 
-        var gradientColors = null;
+        var gradientColors = GradientColorUtil.getDoughnutGradientColor(doughnutLegendCanvanList, cData.dataList, cData.typeList, chartSize, false, true);
+        console.log(gradientColors);
 
         doughnutLegendCanvanList.forEach((legendCanvan, index) => {
-
-            var sum = cData.dataList.reduce((a, b) => a + b, 0);
-
-            let lengendCtx = doughnutLegendCanvanList[index].nativeElement.getContext("2d");
             let rotateDegreeStart = rotateDegreeList[index];
             let rotateDegreeEnd;
 
@@ -157,10 +130,8 @@ export class PortfolioOverviewNoAnimationPage extends BasePage {
                 rotateDegreeEnd = rotateDegreeList[0];
             }
 
-            gradientColors = GradientColorUtil.getDoughnutGradientColor(lengendCtx, cData.dataList, cData.typeList, 90, 90);
-
-            let percentage = cData[index] / sum * 100;
-            ChartUtil.createDoughnutLegendChart(legendCanvan, gradientColors[index], percentage, rotateDegreeStart, rotateDegreeEnd, 90);
+            let percentage = cData.percentageList[index];
+            ChartUtil.createDoughnutLegendChart(legendCanvan, gradientColors[index], percentage, rotateDegreeStart, rotateDegreeEnd, chartSize);
         });
     }
 

@@ -224,7 +224,7 @@ export class ChartTestPage {
             datasets: [{
                 label: '# of Votes',
                 data: cData,
-                backgroundColor: GradientColorUtil.getDoughnutGradientColor(ctx, cData, type, 220, 220),
+                backgroundColor: GradientColorUtil.getDoughnutGradientColor(ctx, cData, type, 220),
                 borderColor: "rgba(255,255,255,0)",
                 hoverBackgroundColor: cHoverBackgroundColor
             }]

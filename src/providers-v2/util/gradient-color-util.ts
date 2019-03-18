@@ -12,6 +12,7 @@ export class GradientColorUtil {
         return this.colorTheme;
     }
 
+    /******************** getColorByAccountType ********************/
     static getColorByAccountType(holderType) {
         switch (holderType) {
             case AccountType.savingAndCurrent:
@@ -39,6 +40,7 @@ export class GradientColorUtil {
         }
     }
 
+    /******************** getPointGradientColor - Legend Point ********************/
     static getPointGradientColor(ctx, chartWidth, chartHeight, color) {
         console.log(">>>> getPointGradientColor Start >>>>");
         color["point"] = GradientUtil.getPointOfLinearGradient(ChartType.Point, chartWidth, chartHeight);
@@ -51,7 +53,8 @@ export class GradientColorUtil {
         return GradientUtil.prepareSingleBackgroundColor(color, ctx);
     }
 
-    static getAreaGradientColor(ctx, holdingTypeList, chartWidth, chartHeight, isPureColor?:boolean) {
+    /******************** getAreaGradientColor ********************/
+    static getAreaGradientColor(ctx, holdingTypeList, chartWidth, chartHeight, isPureColor?: boolean) {
         console.log(">>>> getAreaGradientColor Start >>>>");
 
         let gradientColors = [];
@@ -59,7 +62,7 @@ export class GradientColorUtil {
         for (let type of holdingTypeList) {
             // get color by AccountType
             let gradientColor;
-            if(isPureColor == true) {
+            if (isPureColor == true) {
                 gradientColor = this.getColorByAccountType(type).pure;
             } else {
                 gradientColor = this.getColorByAccountType(type).area;
@@ -76,9 +79,10 @@ export class GradientColorUtil {
         return GradientUtil.prepareBackgroundColors(gradientColors, ctx);
     }
 
+    /******************** getBarGradientColor ********************/
     static getBarGradientColor(ctx, chartWidth, chartHeight, noOfBar?, selectedIndex?) {
         console.log(">>>> getBarGradientColor Start >>>>");
-        
+
         var selectColor = this.colorTheme.bar.selected;
         selectColor["point"] = GradientUtil.getPointOfLinearGradient(ChartType.Bar, chartWidth, chartHeight);
 
@@ -110,14 +114,15 @@ export class GradientColorUtil {
         return GradientUtil.prepareBackgroundColors(gradientColors, ctx);
     }
 
-    static getDoughnutGradientColor(ctx, data, holdingTypeList, chartWidth, chartHeight, isPureColor?:boolean) {
+    /******************** getDoughnutGradientColor ********************/
+    static getDoughnutGradientColor(ctx, data, holdingTypeList, chartSize, isPureColor?: boolean, isCtxList?: boolean) {
         console.log(">>>> getDoughnutGradientColor Start >>>>");
 
         console.log(holdingTypeList);
 
         let gradientColors = [];
 
-        if(isPureColor == true) {
+        if (isPureColor == true) {
             holdingTypeList.forEach((item) => {
                 let gradientColor = this.getColorByAccountType(item).pure;
                 gradientColors.push(gradientColor);
@@ -138,7 +143,7 @@ export class GradientColorUtil {
 
                 // get color by AccountType
                 let gradientColor = this.getColorByAccountType(holdingTypeList[index]).doughnut;
-                gradientColor["point"] = GradientUtil.getPointOfLinearGradient(ChartType.Doughnut, chartWidth, chartHeight, halfRotateDegree);
+                gradientColor["point"] = GradientUtil.getPointOfLinearGradient(ChartType.Doughnut, chartSize, chartSize, halfRotateDegree);
                 gradientColors.push(gradientColor);
             });
         }
@@ -148,7 +153,16 @@ export class GradientColorUtil {
 
         console.log(">>>> getDoughnutGradientColor End >>>>");
 
-        return GradientUtil.prepareBackgroundColors(gradientColors, ctx);
+        if (isCtxList && ctx instanceof Array) {
+            // for Doughnut Legend
+            let colorList = [];
+            ctx.forEach((item, index) => {
+                colorList.push(GradientUtil.prepareBackgroundColors([gradientColors[index]], item.nativeElement.getContext("2d"))[0]);
+            });
+            return colorList;
+        } else {
+            return GradientUtil.prepareBackgroundColors(gradientColors, ctx);
+        }
     }
 
 

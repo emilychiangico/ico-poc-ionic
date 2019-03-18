@@ -28,6 +28,7 @@ export class PortfolioOverviewPureColorPage extends BasePage {
     myPortfolioData = {
         chartData: {
             dataList: [],
+            percentageList:[],
             typeList: []
         },
         holdingDataList: []
@@ -72,6 +73,7 @@ export class PortfolioOverviewPureColorPage extends BasePage {
         data.detailList.forEach((item) => {
             let accountType = item.accountType;
             this.myPortfolioData.chartData.dataList.push(item.amount);
+            this.myPortfolioData.chartData.percentageList.push(item.percentage);
             this.myPortfolioData.chartData.typeList.push(accountType);
             this.myPortfolioData.holdingDataList.push({
                 type: accountType,
@@ -100,7 +102,7 @@ export class PortfolioOverviewPureColorPage extends BasePage {
         var chartData = {
             datasets: [{
                 data: cData.dataList,
-                backgroundColor: GradientColorUtil.getDoughnutGradientColor(ctx, cData.dataList, cData.typeList, 220, 220, true),
+                backgroundColor: GradientColorUtil.getDoughnutGradientColor(ctx, cData.dataList, cData.typeList, 220, true),
                 borderColor: "rgba(255,255,255,0)"
             }]
         };
@@ -112,16 +114,18 @@ export class PortfolioOverviewPureColorPage extends BasePage {
     // draw Doughnut chart with 0% < data < 100%
     initDoughnutLegendChart(doughnutLegendCanvanList, cData) {
 
+        var chartSize = 90;
         var rotateDegreeList = DoughnutUtil.getRotateDegreeList(cData.dataList);
         console.log(rotateDegreeList);
 
-        var gradientColors = null;
+        var gradientColors = GradientColorUtil.getDoughnutGradientColor(doughnutLegendCanvanList, cData.dataList, cData.typeList, chartSize, true, true);
+        console.log(gradientColors);
 
         doughnutLegendCanvanList.forEach((legendCanvan, index) => {
 
-            var sum = cData.dataList.reduce((a, b) => a + b, 0);
+            //var sum = cData.dataList.reduce((a, b) => a + b, 0);
 
-            let lengendCtx = doughnutLegendCanvanList[index].nativeElement.getContext("2d");
+            //let lengendCtx = doughnutLegendCanvanList[index].nativeElement.getContext("2d");
             let rotateDegreeStart = rotateDegreeList[index];
             let rotateDegreeEnd;
 
@@ -131,9 +135,9 @@ export class PortfolioOverviewPureColorPage extends BasePage {
                 rotateDegreeEnd = rotateDegreeList[0];
             }
 
-            gradientColors = GradientColorUtil.getDoughnutGradientColor(lengendCtx, cData.dataList, cData.typeList, 90, 90, true);
+            //gradientColors = GradientColorUtil.getDoughnutGradientColor(lengendCtx, cData.dataList, cData.typeList, 90, true);
 
-            let percentage = cData[index] / sum * 100;
+            let percentage = cData.percentageList[index];
             ChartUtil.createDoughnutLegendChart(legendCanvan, gradientColors[index], percentage, rotateDegreeStart, rotateDegreeEnd, 90);
         });
     }
