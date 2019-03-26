@@ -1,4 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -48,6 +50,9 @@ import { PortfolioOverviewNoAnimationPage } from '../pages/private-banking/portf
 import { PureColorPage } from '../pages/testing-page/background-test/pure-color/pure-color';
 import { GradientColorPage } from '../pages/testing-page/background-test/gradient-color/gradient-color';
 
+import { FileTestPage } from '../pages/file-test/file-test';
+import { Chooser } from '@ionic-native/chooser';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -78,7 +83,9 @@ import { GradientColorPage } from '../pages/testing-page/background-test/gradien
     PortfolioOverviewNoAnimationPage,
 
     PureColorPage,
-    GradientColorPage
+    GradientColorPage,
+
+    FileTestPage
   ],
   imports: [
     BrowserModule,
@@ -90,6 +97,8 @@ import { GradientColorPage } from '../pages/testing-page/background-test/gradien
     BrowserAnimationsModule,
     PipesModule,
     IonicStorageModule.forRoot(),
+    HttpClientModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -121,7 +130,9 @@ import { GradientColorPage } from '../pages/testing-page/background-test/gradien
     PortfolioOverviewNoAnimationPage,
 
     PureColorPage,
-    GradientColorPage
+    GradientColorPage,
+
+    FileTestPage
   ],
   providers: [
     StatusBar,
@@ -129,7 +140,8 @@ import { GradientColorPage } from '../pages/testing-page/background-test/gradien
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PopupContentService,
     SettingsService,
-    IPortfolioApiService
+    IPortfolioApiService,
+    Chooser
   ]
 })
 export class AppModule {}

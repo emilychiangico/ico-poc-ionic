@@ -31,6 +31,7 @@ import { ColorSettingPage } from '../pages/color-setting/color-setting';
 import { PureColorPage } from '../pages/testing-page/background-test/pure-color/pure-color';
 import { GradientColorPage } from '../pages/testing-page/background-test/gradient-color/gradient-color';
 
+import { FileTestPage } from '../pages/file-test/file-test';
 
 @Component({
   templateUrl: 'app.html'
@@ -38,7 +39,7 @@ import { GradientColorPage } from '../pages/testing-page/background-test/gradien
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = PortfolioOverviewPage;
+  rootPage: any = FileTestPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -47,9 +48,9 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Portfolio Overview', component: PortfolioOverviewPage },
-      { title: 'Portfolio Overview Pure', component: PortfolioOverviewPureColorPage },
-      { title: 'Portfolio Overview No Animation', component: PortfolioOverviewNoAnimationPage },
+      { title: 'FileTestPage', component: FileTestPage },
+      // { title: 'Portfolio Overview Pure', component: PortfolioOverviewPureColorPage },
+      // { title: 'Portfolio Overview No Animation', component: PortfolioOverviewNoAnimationPage },
       //{ title: 'GradientColorPage', component: GradientColorPage },
       //{ title: 'PureColorPage', component: PureColorPage },
      
