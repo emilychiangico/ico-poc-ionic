@@ -53,6 +53,9 @@ import { GradientColorPage } from '../pages/testing-page/background-test/gradien
 import { FileTestPage } from '../pages/file-test/file-test';
 import { Chooser } from '@ionic-native/chooser';
 
+import { Camera } from '@ionic-native/camera';
+import { ImagePicker } from '@ionic-native/image-picker';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -141,7 +144,9 @@ import { Chooser } from '@ionic-native/chooser';
     PopupContentService,
     SettingsService,
     IPortfolioApiService,
-    Chooser
+    Chooser,
+    Camera,
+    ImagePicker
   ]
 })
 export class AppModule {}
