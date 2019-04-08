@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
-import { SettingsService, Settings } from '../../providers-v2/settings.service';
+import { IonicPage, Platform } from 'ionic-angular';
 import { Chooser } from '@ionic-native/chooser';
 
 import { Camera, CameraOptions } from '@ionic-native/camera';
@@ -17,7 +16,8 @@ export class FileTestPage {
 
 	constructor(private chooser: Chooser,
 		private camera: Camera,
-		private imagePicker: ImagePicker) {
+		private imagePicker: ImagePicker,
+		private platform: Platform) {
 
 	}
 
@@ -69,8 +69,11 @@ export class FileTestPage {
 
 		this.imagePicker.getPictures(options).then(
 			file_uris => {
-				console.log(file_uris)
-				this.uploadDocFile = file_uris[0]
+				console.log(file_uris);
+				this.uploadDocFile = file_uris[0];
+				if(this.platform.is('ios')) {
+					this.uploadDocFile = this.uploadDocFile.replace(/^file:\/\//, '');
+				}
 			},
 			err => console.log('uh oh')
 		);
