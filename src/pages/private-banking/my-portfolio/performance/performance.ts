@@ -40,9 +40,11 @@ export class PerformancePage extends BasePage {
 
 	totalAmountInfo = {
 		ccy: "HKD",
-		amount : 1635667494.00,
-		date : "31 May 2018"
+		amount: 1635667494.00,
+		date: "31 May 2018"
 	}
+
+	benchmarkTitleList = [];
 
 	constructor(public injector: Injector) {
 		super(injector);
@@ -54,21 +56,29 @@ export class PerformancePage extends BasePage {
 	}
 
 	loadData() {
-		let data = this.iPortfolioApiService.getPerformanceAnalysis().data;
-		this.totalAmountInfo = IPortfolioUtil.setTotalAumontInfo(data.portfolioCurrency, data.totalAUM, data.lastUpdateDate);
-		let result = IPortfolioUtil.setPerformanceData(data);
-		this.lastSixMonthData = result.lastSixMonthData;
-		this.thisYearData = result.yearData;
-		this.thisYear = result.yearData.startDate.getFullYear();
-		console.log(result);
+		this.iPortfolioApiService.getPerformanceAnalysis().subscribe(
+			response => {
+				console.log("response >> ");
+                console.log(response);
+				let data = response.data;
+				this.totalAmountInfo = IPortfolioUtil.setTotalAumontInfo(data.portfolioCurrency, data.totalAUM, data.lastUpdateDate);
+				let result = IPortfolioUtil.setPerformanceData(data);
+				this.lastSixMonthData = result.lastSixMonthData;
+				this.thisYearData = result.yearData;
+				this.thisYear = result.yearData.startDate.getFullYear();
+				this.benchmarkTitleList = IPortfolioUtil.setBenchmarkTitleList(data.benchmarkTitleList);
+				console.log(result);
 
-		this.selectedList = this.lastSixMonthData;
-		this.beaListHeader.left = this.selectedList.header;
+				this.selectedList = this.lastSixMonthData;
+				this.beaListHeader.left = this.selectedList.header;
+
+				this.initChart();
+			}
+		);
 	}
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad MixedChartPage');
-		this.initChart();
 	}
 
 	initChart() {

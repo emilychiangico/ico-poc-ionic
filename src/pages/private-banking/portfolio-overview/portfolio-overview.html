@@ -37,23 +37,23 @@
 
         <div class="doughnut-legend-container">
 
-            <!-- <div *ngFor="let number of [1,2,3,4,5,6]"> -->
-            <div *ngFor="let data of myPortfolioData.holdingDataList">
-                <div class="doughnut-legend">
-                    <div class="donut-legend-inner">
+            <ng-container *ngFor="let number of [0,1,2,3,4,5,6,7,8,9]"> <!-- for creating doughnutLegendCanvas when enter the page -->
+                <div *ngIf="!isChartCreated || myPortfolioData.holdingDataList[number].type"> <!-- only display legend with value existed -->
+                    <div class="doughnut-legend">
+                        <div class="donut-legend-inner">
+                            <div>
+                                <div class="diff">{{ myPortfolioData.holdingDataList[number].percentage | beaNumber }}%</div>
+                            </div>
+                        </div>
+                        <canvas #doughnutLegendCanvas></canvas>
+                    </div>
+                    <div class="donut-legend-bottom">
                         <div>
-                            <div class="diff">{{ data.percentage | beaNumber }}%</div>
+                            <div>{{ myPortfolioData.holdingDataList[number].title }}</div>
                         </div>
                     </div>
-                    <canvas #doughnutLegendCanvas></canvas>
                 </div>
-                <div class="donut-legend-bottom">
-                    <div>
-                        <div>{{ data.title }}</div>
-                    </div>
-                </div>
-            </div>
-
+            </ng-container>
 
         </div>
 

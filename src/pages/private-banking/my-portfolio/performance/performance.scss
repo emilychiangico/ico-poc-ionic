@@ -17,11 +17,6 @@ page-performance {
         }
     }
 
-    button.benchmark {
-        font-size: 12px;
-        padding: 0 1.1em;
-    }
-
     div[button-row].range {
         display: block;
         text-align: center;
@@ -31,6 +26,19 @@ page-performance {
             font-size: 12px;
             padding: 0 1.1em;
             margin: 0;
+        }
+    }
+
+    div.benchmarkTitle {
+        padding: 16px 0;
+
+        div[button-row] {
+            padding: 0;
+
+            button.benchmark {
+                font-size: 12px;
+                padding: 0 1.1em;
+            }
         }
     }
 

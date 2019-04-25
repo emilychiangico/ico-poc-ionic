@@ -23,7 +23,7 @@ export class PortfolioHistoryPage extends BasePage {
 	@ViewChild('barChartCanvas') barChartCanvas;
 	navDataInfo = {
 		chartData: {
-			label : [],
+			label: [],
 			data: []
 		},
 		detail: []
@@ -52,8 +52,8 @@ export class PortfolioHistoryPage extends BasePage {
 
 	totalAmountInfo = {
 		ccy: "HKD",
-		amount : 1635667494.00,
-		date : "31 May 2018"
+		amount: 1635667494.00,
+		date: "31 May 2018"
 	}
 
 	constructor(injector: Injector) {
@@ -69,11 +69,19 @@ export class PortfolioHistoryPage extends BasePage {
 
 	loadData() {
 		console.log("loadAssetAllocationData >> ");
-		let returnData = this.iPortfolioApiService.getAssetAllocationHistory().data;
-		this.totalAmountInfo = IPortfolioUtil.setTotalAumontInfo(returnData.portfolioCurrency, returnData.totalAUM, returnData.lastUpdateDate);
-		this.assetAllocationDataInfo = IPortfolioUtil.setAssetAllocationData(returnData.assetAllocationHistoryList);
-		this.navDataInfo = IPortfolioUtil.setNavData(returnData.netAssetValueHistoryList);
-		console.log(this.assetAllocationDataInfo);
+		this.iPortfolioApiService.getAssetAllocationHistory().subscribe(
+			response => {
+				console.log("response >> ");
+                console.log(response);
+				let data = response.data;
+				this.totalAmountInfo = IPortfolioUtil.setTotalAumontInfo(data.portfolioCurrency, data.totalAUM, data.lastUpdateDate);
+				this.assetAllocationDataInfo = IPortfolioUtil.setAssetAllocationData(data.assetAllocationHistoryList);
+				this.navDataInfo = IPortfolioUtil.setNavData(data.netAssetValueHistoryList);
+				console.log(this.assetAllocationDataInfo);
+
+				this.initChart();
+			}
+		);
 	}
 
 	/************ Data Handling end ************/
@@ -81,7 +89,7 @@ export class PortfolioHistoryPage extends BasePage {
 	/************ Chart Handling start ************/
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad BarChartPage');
-		this.initChart();
+		
 	}
 
 	initChart() {
@@ -129,7 +137,7 @@ export class PortfolioHistoryPage extends BasePage {
 
 		let yTick = {
 			callback: (label, index, labels) => {
-				return Number(label)/1000000 + 'mn';
+				return Number(label) / 1000000 + 'mn';
 			},
 			fontColor: themeColor.gridLine,
 			beginAtZero: true,

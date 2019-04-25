@@ -3,6 +3,7 @@ import { IonicPage } from 'ionic-angular';
 import { BasePage } from '../../base-page';
 
 import { IPortfolioApiService } from "../../../providers-v2/api/i-portfolio-api-service";
+import { IPortfolioApiMockService } from "../../../providers-v2/api/i-portfolio-api-mock-service";
 
 import { HoldingListPage } from './holding-list/holding-list';
 import { AssetHistoryPage } from './asset-history/asset-history';
@@ -20,8 +21,10 @@ export class PortfolioHoldingPage extends BasePage implements OnInit {
     tab2Root = AssetHistoryPage;
 
     protected iPortfolioApiService: IPortfolioApiService;
+    protected iportfolioApiMockService: IPortfolioApiMockService; // for testing
 
     selectedAccountType: string = null;
+    currentType: string = null;
     accountTypeList: any[] = [];
 
     totalAmountInfo = {
@@ -50,6 +53,7 @@ export class PortfolioHoldingPage extends BasePage implements OnInit {
     constructor(injector: Injector) {
         super(injector);
         this.iPortfolioApiService = injector.get(IPortfolioApiService);
+        this.iportfolioApiMockService = injector.get(IPortfolioApiMockService);
     }
 
     ngOnInit() {
@@ -58,25 +62,31 @@ export class PortfolioHoldingPage extends BasePage implements OnInit {
             this.selectedAccountType = type;
         }
         this.loadData();
-        this._event.publish('change-type-list', this.holdingInfo);
     }
 
     loadData() {
-        let data = this.iPortfolioApiService.getPortfolioHolding(this.selectedAccountType).data;
-        this.setAccountTypeList(data.accountTypeList);
+        this.iPortfolioApiService.getPortfolioHolding(this.selectedAccountType).subscribe(
+            response => {
+                let data =  response.data;
+                this.setAccountTypeList(data.accountTypeList);
 
-        let detail = data.detail;
-        this.totalAmountInfo = {
-            totalAmount: detail.totalAmount,
-            aumProportion: detail.aumProportion,
-            holding: detail.holding
-        };
+                let detail = data.detail;
+                this.totalAmountInfo = {
+                    totalAmount: detail.totalAmount,
+                    aumProportion: detail.aumProportion,
+                    holding: detail.holding
+                };
 
-        this.selectedAccountType = detail.accountType;
-        let result = IPortfolioUtil.setPortfolioHoldingData(detail);
+                this.selectedAccountType = detail.accountType;
+                this.currentType = detail.accountType;
+                let result = IPortfolioUtil.setPortfolioHoldingData(detail);
 
-        this.holdingInfo = result.holdingInfo;
-        this.assetAllocationDataInfo = result.assetAllocationDataInfo;
+                this.holdingInfo = result.holdingInfo;
+                this.assetAllocationDataInfo = result.assetAllocationDataInfo;
+
+                this.publish();
+            }
+        );
     }
 
     setAccountTypeList(accountList) {
@@ -90,10 +100,9 @@ export class PortfolioHoldingPage extends BasePage implements OnInit {
     }
 
     typePopupCallback(selectedItem) {
-        console.log(selectedItem);
-        if (selectedItem) {
+        console.log("typePopupCallback >> " + selectedItem);
+        if (this.currentType != selectedItem.id) {
             this.loadData();
-            this.publish();
         }
     }
 

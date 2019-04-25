@@ -12,22 +12,15 @@
     </div>
 
     <canvas #mixedChartCanvas></canvas>
-
-    <div button-row style="padding-bottom: 0">
-        <button ion-button round outline class="benchmark" [class.selected]="selectedIndex == 'dow_jones_industrial_average_index'" (click)="changeBenchmark('dow_jones_industrial_average_index')">
-            Dow jones industrial Average
-        </button>
-        <button ion-button round outline class="benchmark" [class.selected]="selectedIndex == 'hang_seng_index'" (click)="changeBenchmark('hang_seng_index')">
-            Hang Seng Index
-        </button>
-    </div>
-    <div button-row style="padding-top: 0">
-        <button ion-button round outline class="benchmark" [class.selected]="selectedIndex == 'msci_world_index'" (click)="changeBenchmark('msci_world_index')">
-            MSCI World Index
-        </button>
-        <button ion-button round outline class="benchmark" [class.selected]="selectedIndex == 'sp_500_index'" (click)="changeBenchmark('sp_500_index')">
-            S&P 500 Index
-        </button>
+    
+    <div class="benchmarkTitle">
+        <div button-row *ngFor="let titleGroup of benchmarkTitleList">
+            <ng-container *ngFor="let title of titleGroup">
+                <button ion-button round outline class="benchmark" [class.selected]="selectedIndex == title.id" (click)="changeBenchmark(title.id)">
+                    {{ title.title }}
+                </button>
+            </ng-container>
+        </div>
     </div>
 
     <div class="legendList">

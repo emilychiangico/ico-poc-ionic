@@ -6,14 +6,16 @@
 
     <!-- HoldingType - Amount -->
     <ng-container *ngIf="type == 'overview'">
-        <ion-item class="itemList" *ngFor="let data of dataList" (click)="goToPortfolioHolding(data.type)">
-            <legend-point [type]="data.type" [pureColor]="isPureColor"></legend-point>
-            <div class="title">{{ data.title }}</div>
-            <div class="amount" item-end>
-                HKD {{ data.amount | beaNumber }}
-                <ion-icon name="ios-arrow-forward" item-end></ion-icon>
-            </div>
-        </ion-item>
+        <ng-container *ngFor="let data of dataList">
+            <ion-item class="itemList" (click)="goToPortfolioHolding(data.type)" *ngIf="data.type">
+                <legend-point [type]="data.type" [pureColor]="isPureColor"></legend-point>
+                <div class="title">{{ data.title }}</div>
+                <div class="amount" item-end>
+                    HKD {{ data.amount | beaNumber }}
+                    <ion-icon name="ios-arrow-forward" item-end></ion-icon>
+                </div>
+            </ion-item>
+        </ng-container>
     </ng-container>
 
     <!-- HoldingType - Percentage -->

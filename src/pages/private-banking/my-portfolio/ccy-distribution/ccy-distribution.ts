@@ -35,8 +35,8 @@ export class CcyDistributionPage extends BasePage {
 
 	totalAmountInfo = {
 		ccy: "HKD",
-		amount : 1635667494.00,
-		date : "31 May 2018"
+		amount: 1635667494.00,
+		date: "31 May 2018"
 	}
 
 	constructor(public injector: Injector) {
@@ -49,22 +49,30 @@ export class CcyDistributionPage extends BasePage {
 	}
 
 	loadData() {
-		let data = this.iPortfolioApiService.getCcyDistribution().data;
-		let dataList = data.currencyDistributionList;
+		this.iPortfolioApiService.getCcyDistribution().subscribe(
+			response => {
+				console.log("response >> ");
+                console.log(response);
+				let data = response.data;
+				let dataList = data.currencyDistributionList;
 
-		let chartLabel = [];
-		let chartData = [];
+				let chartLabel = [];
+				let chartData = [];
 
-		this.totalAmountInfo = IPortfolioUtil.setTotalAumontInfo(data.portfolioCurrency, data.totalAUM, data.lastUpdateDate);
+				this.totalAmountInfo = IPortfolioUtil.setTotalAumontInfo(data.portfolioCurrency, data.totalAUM, data.lastUpdateDate);
 
-		dataList.forEach((item) => {
-			chartLabel.push(item.currency);
-			chartData.push(item.amount);
-		})
+				dataList.forEach((item) => {
+					chartLabel.push(item.currency);
+					chartData.push(item.amount);
+				})
 
-		this.ccyDistributionInfo.dataList = dataList;
-		this.ccyDistributionInfo.chartData.label = chartLabel;
-		this.ccyDistributionInfo.chartData.data = chartData;
+				this.ccyDistributionInfo.dataList = dataList;
+				this.ccyDistributionInfo.chartData.label = chartLabel;
+				this.ccyDistributionInfo.chartData.data = chartData;
+
+				this.initCcyChart();
+			}
+		);
 	}
 
 	ionViewDidLoad() {

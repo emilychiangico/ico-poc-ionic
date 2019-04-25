@@ -10,6 +10,7 @@ import { BasePage } from '../../base-page';
 import { MyPortfolioPage } from '../my-portfolio/my-portfolio';
 
 import { IPortfolioApiService } from "../../../providers-v2/api/i-portfolio-api-service";
+import { IPortfolioApiMockService } from "../../../providers-v2/api/i-portfolio-api-mock-service";
 
 @IonicPage()
 @Component({
@@ -19,6 +20,7 @@ import { IPortfolioApiService } from "../../../providers-v2/api/i-portfolio-api-
 export class PortfolioOverviewPureColorPage extends BasePage {
 
     private iPortfolioApiService: IPortfolioApiService;
+    private iPortfolioApiMockService: IPortfolioApiMockService;
 
     @ViewChild('doughnutCanvas') doughnutCanvas;
     @ViewChildren('doughnutLegendCanvas') doughnutLegendCanvasList: QueryList<ElementRef>;
@@ -51,6 +53,7 @@ export class PortfolioOverviewPureColorPage extends BasePage {
     constructor(injector: Injector) {
         super(injector);
         this.iPortfolioApiService = injector.get(IPortfolioApiService);
+        this.iPortfolioApiMockService = injector.get(IPortfolioApiMockService);
     }
 
     ngOnInit() {
@@ -64,7 +67,7 @@ export class PortfolioOverviewPureColorPage extends BasePage {
     }
 
     loadData() {
-        let data = this.iPortfolioApiService.getMyPortfolio().data;
+        let data = this.iPortfolioApiMockService.getMyPortfolio().data;
 
         this.totalAmountInfo = IPortfolioUtil.setTotalAumontInfo(data.portfolioCurrency, data.totalAUM, data.lastUpdateDate);
         this.monthlyDiff = data.monthlyPercentage;

@@ -238,6 +238,20 @@ export class IPortfolioUtil {
 		})
 	}
 
+	/******************** setBenchmarkTitleList ********************/
+	static setBenchmarkTitleList(titleList) {
+		let resultList = [];
+		let list = [];
+		titleList.forEach((item) => {
+			list.push(item);
+			if(list.length == 2) {
+				resultList.push(list);
+				list = [];
+			}
+		});
+		return resultList;
+	}
+
 	/******************** setPortfolioHoldingData ********************/
 	static setPortfolioHoldingData(detail) {
 		let holdingInfo = {

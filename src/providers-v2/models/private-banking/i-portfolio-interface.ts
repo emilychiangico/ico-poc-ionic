@@ -33,7 +33,7 @@ export namespace IPortfolioInterface {
             totalAUM: number,
             lastUpdateDate: string,
             monthlyPercentage: number,
-            sixMonthsPercentage: number,
+            lastSixMonthsPercentage: number,
             detailList: AssetAllocationDetail[]
         }
 
@@ -51,7 +51,7 @@ export namespace IPortfolioInterface {
             portfolioCurrency: string,
             totalAUM: number,
             lastUpdateDate: string,
-            assetAllocationHistoryList: AssetAllocationDetail[],
+            assetAllocationHistoryList: AssetAllocationInfo[],
             netAssetValueHistoryList: NetAssetValueInfo[]
         }
 
@@ -103,6 +103,11 @@ export namespace IPortfolioInterface {
             percentage: number
         }
 
+        export interface benchmarkTitleInfo {
+            id: string,
+            title: string
+        }
+
         export interface ResponseData {
             portfolioCurrency: string,
             totalAUM: number,
@@ -111,7 +116,8 @@ export namespace IPortfolioInterface {
             netCapitalInOutValueFromLastSixMonth: number,
             yearBeginDate: string,
             netCapitalInOutValueFromYrBegin: number,
-            detailList: DetailInfo[]
+            detailList: DetailInfo[],
+            benchmarkTitleList: benchmarkTitleInfo[]
         }
 
         export interface Response {

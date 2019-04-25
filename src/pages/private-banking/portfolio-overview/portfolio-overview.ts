@@ -31,7 +31,18 @@ export class PortfolioOverviewPage extends BasePage {
             percentageList: [],
             typeList: []
         },
-        holdingDataList: []
+        holdingDataList: [
+            {type: null, title: null, amount: null, percentage: null},
+            {type: null, title: null, amount: null, percentage: null},
+            {type: null, title: null, amount: null, percentage: null},
+            {type: null, title: null, amount: null, percentage: null},
+            {type: null, title: null, amount: null, percentage: null},
+            {type: null, title: null, amount: null, percentage: null},
+            {type: null, title: null, amount: null, percentage: null},
+            {type: null, title: null, amount: null, percentage: null},
+            {type: null, title: null, amount: null, percentage: null},
+            {type: null, title: null, amount: null, percentage: null}
+        ]
     }
 
     beaListHeader = {
@@ -40,13 +51,15 @@ export class PortfolioOverviewPage extends BasePage {
     }
 
     totalAmountInfo = {
-        ccy: "HKD",
-        amount: 1635667494.00,
-        date: "31 May 2018"
+        ccy: null,
+        amount: null,
+        date: null
     }
 
-    monthlyDiff = 4.15;
-    sixMonthDiff = -0.95;
+    monthlyDiff = null;
+    sixMonthDiff = null;
+
+    isChartCreated = false;
 
     constructor(injector: Injector) {
         super(injector);
@@ -60,28 +73,35 @@ export class PortfolioOverviewPage extends BasePage {
     ionViewDidLoad() {
         console.log('ionViewDidLoad ChartPage');
         console.log(this.doughnutLegendCanvasList);
-        this.initChart();
+        //this.initChart();
     }
 
     loadData() {
-        let data = this.iPortfolioApiService.getMyPortfolio().data;
+        this.iPortfolioApiService.getMyPortfolio().subscribe(
+            response => {
+                console.log("response >> ");
+                console.log(response);
+                let data = response.data;
+                this.totalAmountInfo = IPortfolioUtil.setTotalAumontInfo(data.portfolioCurrency, data.totalAUM, data.lastUpdateDate);
+                this.monthlyDiff = data.monthlyPercentage;
+                this.sixMonthDiff = data.lastSixMonthsPercentage;
 
-        this.totalAmountInfo = IPortfolioUtil.setTotalAumontInfo(data.portfolioCurrency, data.totalAUM, data.lastUpdateDate);
-        this.monthlyDiff = data.monthlyPercentage;
-        this.sixMonthDiff = data.lastSixMonthsPercentage;
-
-        data.detailList.forEach((item) => {
-            let accountType = item.accountType;
-            this.myPortfolioData.chartData.dataList.push(item.amount);
-            this.myPortfolioData.chartData.percentageList.push(item.percentage);
-            this.myPortfolioData.chartData.typeList.push(accountType);
-            this.myPortfolioData.holdingDataList.push({
-                type: accountType,
-                title: IPortfolioUtil.getTitle(accountType),
-                amount: item.amount,
-                percentage: item.percentage
-            });
-        });
+                data.detailList.forEach((item, index) => {
+                    let accountType = item.accountType;
+                    this.myPortfolioData.chartData.dataList.push(item.amount);
+                    this.myPortfolioData.chartData.percentageList.push(item.percentage);
+                    this.myPortfolioData.chartData.typeList.push(accountType);
+                    this.myPortfolioData.holdingDataList[index] = {
+                        type: accountType,
+                        title: IPortfolioUtil.getTitle(accountType),
+                        amount: item.amount,
+                        percentage: item.percentage
+                    };
+                });
+                
+                this.initChart();
+            }
+        );
     }
 
     initChart() {
@@ -94,6 +114,7 @@ export class PortfolioOverviewPage extends BasePage {
         // Draw doughnut Legend Chart
         this.initDoughnutLegendChart(this.doughnutLegendCanvasList.toArray(), chartData);
 
+        this.isChartCreated = true;
     }
 
     initDoughnutChart(canvasObj, cData) {
@@ -114,16 +135,21 @@ export class PortfolioOverviewPage extends BasePage {
     // draw Doughnut chart with 0% < data < 100%
     initDoughnutLegendChart(doughnutLegendCanvanList, cData) {
 
+        let existedLegendCanvanList = [];
+        this.myPortfolioData.holdingDataList.forEach((item, index) => {
+            if(item.type) {
+                existedLegendCanvanList.push(doughnutLegendCanvanList[index]);
+            }
+        });
+
+        var chartSize = 90;
         var rotateDegreeList = DoughnutUtil.getRotateDegreeList(cData.dataList);
         console.log(rotateDegreeList);
 
-        var gradientColors = null;
+        var gradientColors = GradientColorUtil.getDoughnutGradientColor(existedLegendCanvanList, cData.dataList, cData.typeList, chartSize, false, true);
+        console.log(gradientColors);
 
-        doughnutLegendCanvanList.forEach((legendCanvan, index) => {
-
-            var sum = cData.dataList.reduce((a, b) => a + b, 0);
-
-            let lengendCtx = doughnutLegendCanvanList[index].nativeElement.getContext("2d");
+        existedLegendCanvanList.forEach((item, index) => {
             let rotateDegreeStart = rotateDegreeList[index];
             let rotateDegreeEnd;
 
@@ -133,10 +159,8 @@ export class PortfolioOverviewPage extends BasePage {
                 rotateDegreeEnd = rotateDegreeList[0];
             }
 
-            gradientColors = GradientColorUtil.getDoughnutGradientColor(lengendCtx, cData.dataList, cData.typeList, 90);
-
             let percentage = cData.percentageList[index];
-            ChartUtil.createDoughnutLegendChart(legendCanvan, gradientColors[index], percentage, rotateDegreeStart, rotateDegreeEnd, 90);
+            ChartUtil.createDoughnutLegendChart(item, gradientColors[index], percentage, rotateDegreeStart, rotateDegreeEnd, chartSize);
         });
     }
 
