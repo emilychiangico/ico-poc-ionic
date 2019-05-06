@@ -21,12 +21,14 @@ export class IPortfolioApiService {
     constructor(private http: AngularHttp) { }
 
     httpOptions = {
-        headers: new Headers({ 'Content-Type': "application/json",
-        "Access-Control-Allow-Origin": "*" }),
+        headers: new Headers({
+            'Content-Type': "application/json",
+            "Access-Control-Allow-Origin": "*"
+        }),
         responseType: ResponseContentType.Json
     };
 
-    getMyPortfolio(): Observable<IPortfolioInterface.MyPortfolio.Response>  {
+    getMyPortfolio(): Observable<IPortfolioInterface.MyPortfolio.Response> {
         console.log("Calling IPortfolioApiService getMyPortfolio");
 
         let result = <Observable<any>>this.http.get(
@@ -68,6 +70,10 @@ export class IPortfolioApiService {
 
     getPortfolioHolding(type: string): Observable<IPortfolioInterface.PortfolioHolding.Response> {
         console.log("Calling IPortfolioApiService getPortfolioHolding");
+
+        if (!type) {
+            type = "";
+        }
 
         let result = <Observable<any>>this.http.get(
             endpoint + url.portfolioHolding + type, this.httpOptions
