@@ -3,10 +3,10 @@
     <pd-amount [info]="totalAmountInfo"></pd-amount>
 
     <div button-row class="range">
-        <button ion-button outline [class.selected]="selectedRange == 'month'" (click)="changeDateRange('month')">
+        <button ion-button outline class="month" [class.selected]="selectedRange == 'month'" (click)="changeDateRange('month')">
             Past 6 months
         </button>
-        <button ion-button outline [class.selected]="selectedRange == 'year'" (click)="changeDateRange('year')">
+        <button ion-button outline class="year" [class.selected]="selectedRange == 'year'" (click)="changeDateRange('year')">
             {{ thisYear }}
         </button>
     </div>
@@ -14,12 +14,10 @@
     <canvas #mixedChartCanvas></canvas>
     
     <div class="benchmarkTitle">
-        <div button-row *ngFor="let titleGroup of benchmarkTitleList">
-            <ng-container *ngFor="let title of titleGroup">
-                <button ion-button round outline class="benchmark" [class.selected]="selectedIndex == title.id" (click)="changeBenchmark(title.id)">
-                    {{ title.title }}
-                </button>
-            </ng-container>
+        <div *ngFor="let title of benchmarkTitleList">
+            <button ion-button round outline class="benchmark" [class.selected]="selectedIndex == title.id" (click)="changeBenchmark(title.id)">
+                {{ title.title }}
+            </button>
         </div>
     </div>
 

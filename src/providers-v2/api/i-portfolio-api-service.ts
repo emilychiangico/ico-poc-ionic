@@ -5,7 +5,7 @@ import { Headers, Http as AngularHttp, Response as AngularHttpResponse, Response
 import { IPortfolioInterface } from '../models/private-banking/i-portfolio-interface';
 
 //const endpoint = "https://localhost:7777/mobileBankingSecured/v1";
-const endpoint = "http://localhost:3002";
+const endpoint = "http://10.95.71.150:3002";
 
 const url = {
     myPortfolio: '/iPortfolio/myPortfolio',

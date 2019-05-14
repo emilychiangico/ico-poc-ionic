@@ -1,0 +1,32 @@
+$bea-toggle-border-width:  1px !default;
+
+$bea-toggle-handle-height: 20px !default;
+$bea-toggle-handle-width:  $bea-toggle-handle-height !default;
+
+$bea-toggle-height:        $bea-toggle-handle-height - ($bea-toggle-border-width * 2) !default;
+$bea-toggle-width:         40px !default;
+
+.app-root.ios {
+    .toggle-ios {
+        height: $bea-toggle-height;
+        width: $bea-toggle-width;
+
+        .toggle-icon {
+            &::before {
+                @include position(0, 0, 0, 0);
+            }
+        }
+
+        .toggle-inner {
+            @include position(-$bea-toggle-border-width, null, null, -$bea-toggle-border-width);
+            height: $bea-toggle-handle-height;
+            width: $bea-toggle-handle-width;
+        }
+
+        &.toggle-checked {
+            .toggle-inner {
+                @include transform(translate3d($bea-toggle-width + $bea-toggle-border-width * 2 - $bea-toggle-handle-width, 0, 0));
+            }
+        }
+    }
+}

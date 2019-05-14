@@ -48,17 +48,17 @@ export const COLOR = {
             area: {
                 type: "linear",
                 colorStops: [
-                    { stop: 0.1, color: "rgb(119, 134, 156)" },
+                    { stop: 0.1, color: "rgb(152, 164, 180)" },
                     { stop: 0.5, color: "rgb(255, 255, 255)" },
-                    { stop: 0.9, color: "rgb(119, 134, 156)" }
+                    { stop: 0.9, color: "rgb(152, 164, 180)" }
                 ]
             },
             doughnut: {
                 type: "linear",
                 colorStops: [
-                    { stop: 0.3, color: "rgb(119, 134, 156)" },
+                    { stop: 0.3, color: "rgb(152, 164, 180)" },
                     { stop: 0.5, color: "rgb(255, 255, 255)" },
-                    { stop: 0.7, color: "rgb(119, 134, 156)" }
+                    { stop: 0.7, color: "rgb(152, 164, 180)" }
                 ]
             }
         },

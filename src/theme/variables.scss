@@ -75,8 +75,8 @@ $bea-colors: (
   theme-1: (
     background : (
       lighter: rgb(48, 65, 113),
-      light: rgb(44, 59, 101),
-      dark: rgb(39, 42, 68),
+      light: #3D4167,
+      dark: #191921,
       darker: rgb(33, 33, 39)
     ),
     tab: (
@@ -86,8 +86,8 @@ $bea-colors: (
     click-popup-button: rgb(49, 56, 79),
     list-item-background : rgb(45, 50, 75),
     content-background: rgb(35, 39, 64),
-    button: rgb(59, 94, 194),
-    text: rgb(223, 217, 217)
+    button: rgb(71, 94, 200),
+    text: rgb(255, 255, 255)
   ),
   theme-2: (
     background : (
@@ -104,7 +104,7 @@ $bea-colors: (
     list-item-background : rgb(46, 46, 51),
     content-background: rgb(34, 34, 41),
     button: rgb(19, 57, 163),
-    text: rgb(223, 217, 217)
+    text: rgb(255, 255, 255)
   ),
   theme-3: (
     background : (
@@ -121,7 +121,7 @@ $bea-colors: (
     list-item-background : rgb(45, 50, 75),
     content-background: rgb(35, 39, 64),
     button: rgb(23, 93, 139),
-    text: rgb(223, 217, 217)
+    text: rgb(255, 255, 255)
   )
 );
 
@@ -141,5 +141,6 @@ $bea-colors: (
 @import "noto-sans";
 
 @import './bea-pb-theme';
-@import "./global";
+@import './global/font';
+@import "./global.scss";
 @import "./style";

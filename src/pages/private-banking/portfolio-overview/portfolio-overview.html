@@ -1,9 +1,14 @@
 <ion-header bea-pb-theme>
     <ion-navbar class="header" no-border>
         <button ion-button menuToggle>
-            <ion-icon name="menu"></ion-icon>
+            <bea-icon name="menu" aria-hidden="true"></bea-icon>
         </button>
+
         <ion-title>My Portfolio</ion-title>
+
+        <button ion-button menuToggle end>
+            <bea-icon name="iplanner_datepicker" aria-hidden="true"></bea-icon>
+        </button>
     </ion-navbar>
 
 </ion-header>
@@ -11,7 +16,7 @@
 
 <ion-content bea-pb-theme class="background" padding>
 
-    <pd-amount [info]="totalAmountInfo"></pd-amount>
+    <pd-amount [info]="totalAmountInfo" isOverview="true"></pd-amount>
 
     <div align="center">
 
@@ -20,14 +25,12 @@
                 <div>
                     <div class="period">Monthly</div>
                     <div class="diff">
-                        <ion-icon class="up" name="md-arrow-dropup" *ngIf="monthlyDiff > 0"></ion-icon>
-                        <ion-icon class="down" name="md-arrow-dropdown" *ngIf="monthlyDiff < 0"></ion-icon>
+                        <bea-icon name="arrow_order" [class.up]="monthlyDiff > 0" [class.down]="monthlyDiff < 0"></bea-icon>
                         {{ monthlyDiff | beaNumber }}%
                     </div>
                     <div class="period">6 Months</div>
                     <div class="diff">
-                        <ion-icon class="up" name="md-arrow-dropup" *ngIf="sixMonthDiff > 0"></ion-icon>
-                        <ion-icon class="down" name="md-arrow-dropdown" *ngIf="sixMonthDiff < 0"></ion-icon>
+                        <bea-icon name="arrow_order" [class.up]="sixMonthDiff > 0" [class.down]="sixMonthDiff < 0"></bea-icon>
                         {{ sixMonthDiff | beaNumber }}%
                     </div>
                 </div>
@@ -38,7 +41,7 @@
         <div class="doughnut-legend-container">
 
             <ng-container *ngFor="let number of [0,1,2,3,4,5,6,7,8,9]"> <!-- for creating doughnutLegendCanvas when enter the page -->
-                <div *ngIf="!isChartCreated || myPortfolioData.holdingDataList[number].type"> <!-- only display legend with value existed -->
+                <div *ngIf="!isChartCreated || myPortfolioData.holdingDataList[number].type" (click)="goToHolding(myPortfolioData.holdingDataList[number].type)"> <!-- only display legend with value existed -->
                     <div class="doughnut-legend">
                         <div class="donut-legend-inner">
                             <div>

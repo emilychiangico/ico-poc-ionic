@@ -8,6 +8,7 @@ import { ChartUtil } from '../../../providers-v2/util/chart-util';
 
 import { BasePage } from '../../base-page';
 import { MyPortfolioPage } from '../my-portfolio/my-portfolio';
+import { PortfolioHoldingPage } from '../../../pages/private-banking/portfolio-holding/portfolio-holding';
 
 import { IPortfolioApiService } from "../../../providers-v2/api/i-portfolio-api-service";
 
@@ -135,6 +136,7 @@ export class PortfolioOverviewPage extends BasePage {
     // draw Doughnut chart with 0% < data < 100%
     initDoughnutLegendChart(doughnutLegendCanvanList, cData) {
 
+        // Only get LegendCanvan exist in return data
         let existedLegendCanvanList = [];
         this.myPortfolioData.holdingDataList.forEach((item, index) => {
             if(item.type) {
@@ -172,6 +174,12 @@ export class PortfolioOverviewPage extends BasePage {
             this.setRoot(MyPortfolioPage, { tabIndex: 1 });
         } else {
             this.setRoot(MyPortfolioPage, { tabIndex: 2 });
+        }
+    }
+
+    goToHolding(type: string) {
+        if(type) {
+            this.setRoot(PortfolioHoldingPage, {type: type});
         }
     }
 

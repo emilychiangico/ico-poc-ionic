@@ -1,0 +1,55 @@
+// BEA Icons Font
+@font-face {
+    font-family: 'BEA';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../assets/fonts/BEA.eot');
+    src: url('../assets/fonts/BEA.eot#iefix') format('embedded-opentype'),
+    url('../assets/fonts/BEA.ttf') format('truetype'),
+    url('../assets/fonts/BEA.woff') format('woff'),
+    url('../assets/fonts/BEA.svg#BEA') format('svg');
+}
+
+// Credit Card No
+@font-face {
+    font-family: 'OCRAStd';
+    font-style: normal;
+    font-weight: normal;
+    src: local('OCRAStd'), url('../assets/fonts/OCRAStd.otf') format('opentype');
+}
+
+// OpenSans
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Open Sans Light'), local('OpenSans-Light'), url('../assets/fonts/OpenSans-Light.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Open Sans Regular'), local('OpenSans-Regular'), url('../assets/fonts/OpenSans-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: bold;
+    src: local('Open Sans SemiBold'), local('OpenSans-SemiBold'), url('../assets/fonts/OpenSans-Semibold.ttf') format('truetype');
+}
+
+// Trajan Pro
+@font-face {
+    font-family: 'Trajan Pro';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Trajan Pro 3 Regular'), local('TrajanPro3-Regular'), url('../assets/fonts/TrajanPro3-Regular.otf') format('opentype');
+}
+
+// Optima
+@font-face {
+    font-family: 'Optima';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Optima Roman'), local('Optima_Roman'), url('../assets/fonts/Optima_Roman.woff') format('woff');
+}

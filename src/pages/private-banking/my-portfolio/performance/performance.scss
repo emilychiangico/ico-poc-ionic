@@ -22,22 +22,38 @@ page-performance {
         text-align: center;
 
         button {
-            width: auto;
             font-size: 12px;
+            width: 120px;
             padding: 0 1.1em;
             margin: 0;
+            border-radius: 0;
+            text-transform: none;
+
+            &.month {
+                border-right: 0px;
+                border-radius: 5px 0 0 5px;
+            }
+
+            &.year {
+                margin-left: -4px;
+                border-left: 0px;
+                border-radius: 0 5px 5px 0px;
+            }
         }
     }
 
     div.benchmarkTitle {
         padding: 16px 0;
 
-        div[button-row] {
+        div {
             padding: 0;
 
             button.benchmark {
-                font-size: 12px;
-                padding: 0 1.1em;
+                font-family: "TrajanPro-Regular";
+                font-size: 13px;
+                height: 35px;
+                border-radius: 17.5px;
+                padding: 0 20px;
             }
         }
     }

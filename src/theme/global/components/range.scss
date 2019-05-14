@@ -1,0 +1,39 @@
+$bea-range-slider-height: 42px !default;
+$bea-range-hit-width:     42px !default;
+$bea-range-hit-height:    $bea-range-slider-height !default;
+$bea-range-bar-height:    6px !default;
+$bea-range-knob-width:    18px !default;
+$bea-range-knob-height:   $bea-range-knob-width !default;
+$bea-range-tick-width:    $bea-range-bar-height !default;
+$bea-range-tick-height:   8px !default;
+
+.app-root.ios {
+    .range-ios .range-slider {
+        height: $bea-range-slider-height;
+    }
+
+    .range-ios .range-bar {
+        @include position(($bea-range-slider-height / 2), null, null, 0);
+        height: $bea-range-bar-height;
+    }
+
+    .range-ios .range-knob-handle {
+        @include margin(-($bea-range-hit-height / 2), null, null, -($bea-range-hit-width / 2));
+        @include position(($bea-range-slider-height / 2), null, null, 0);
+        height: $bea-range-hit-height;
+        width: $bea-range-hit-width;
+    }
+
+    .range-ios .range-knob {
+        @include position(($bea-range-hit-height / 2) - ($bea-range-knob-height / 2) + ($bea-range-bar-height / 2) - .5px, null, null, ($bea-range-hit-width / 2) - ($bea-range-knob-width / 2));
+        height: $bea-range-knob-height;
+        width: $bea-range-knob-width;
+    }
+
+    .range-ios .range-tick {
+        @include margin-horizontal(-($bea-range-tick-width / 2), null);
+        height: $bea-range-tick-height;
+        top: ($bea-range-hit-height / 2) - ($bea-range-tick-height / 2) + ($bea-range-bar-height / 2);
+        width: $bea-range-tick-width;
+    }
+}

@@ -1,4 +1,4 @@
-$text-color : rgb(223, 217, 217);
+$text-color : rgb(255, 255, 255);
 
 //$list-item-background : rgb(45, 50, 75);
 
@@ -6,7 +6,7 @@ $text-color : rgb(223, 217, 217);
 
 $border-radius: 5px;
 
-$legend-point-size: 15px;
+$legend-point-size: 13px;
 
 ion-navbar.header {
     > div.toolbar-background {
@@ -16,13 +16,21 @@ ion-navbar.header {
 
     ion-title {
         > div.toolbar-title {
+            font-family: 'TrajanPro-Regular';
+            font-size: 17px;
+            letter-spacing: 0.47px;
             color: $text-color !important;
             text-transform: uppercase;
+            font-weight: normal;
         }
     }
 
     button[ion-button] {
         color: $text-color !important;
+
+        bea-icon.bea-iplanner_datepicker {
+            font-size: 1.5em;
+        }
     }
     
 }
@@ -75,6 +83,8 @@ ion-tabs {
         background: transparent !important;
 
         .tab-button {
+            font-family: 'Optima-Regular';
+            font-size: 14px;
             border-bottom-width: 1px;
             border-bottom-style: solid;
             border-image-slice: 1 !important;
@@ -103,4 +113,8 @@ ion-tabs {
     div[listContent] {
         margin-top: -16px !important;
     }
+}
+
+button[ion-button] {
+    text-transform: uppercase;
 }

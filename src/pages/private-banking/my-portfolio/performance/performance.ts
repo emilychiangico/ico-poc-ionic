@@ -66,7 +66,7 @@ export class PerformancePage extends BasePage {
 				this.lastSixMonthData = result.lastSixMonthData;
 				this.thisYearData = result.yearData;
 				this.thisYear = result.yearData.startDate.getFullYear();
-				this.benchmarkTitleList = IPortfolioUtil.setBenchmarkTitleList(data.benchmarkTitleList);
+				this.benchmarkTitleList = data.benchmarkTitleList;
 				console.log(result);
 
 				this.selectedList = this.lastSixMonthData;

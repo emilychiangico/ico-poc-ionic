@@ -1,8 +1,39 @@
 <div amount-display>
     <div class="title">AUM ({{ info.ccy }})</div>
     <div class="amount">{{ info.amount | beaNumber }}</div>
+
+    <!-- <ng-container *ngIf="!isOverview">
+        <div class="amount">{{ info.amount | beaNumber }}</div>
+    </ng-container>
+    <ng-container *ngIf="isOverview">
+        <ion-slides class="price-slides" [centeredSlides]="true" [loop]="false" [initialSlide]="shouldTotalBalanceHide ? 1 : 0" (ionSlideDidChange)="onTotalBalanceSlideDidChange($event)">
+            <ion-slide class="price-slide" slide-accessibility role="text">
+                <div>
+                    <section class="price-container" role="text">
+                        <div class="amount">{{ info.amount | beaNumber }}</div>
+                        <span class="arrow" style="padding-top: 4px;">
+                            <bea-icon class="bea-arrow_left bea-icon"></bea-icon>
+                            <bea-icon class="bea-arrow_left bea-icon"></bea-icon>
+                            <bea-icon class="bea-arrow_left bea-icon"></bea-icon>
+                        </span>
+                    </section>
+                </div>
+            </ion-slide>
+            <ion-slide class="swipe-message-slide" slide-accessibility role="text">
+                <div>
+                    <span class="swipe-label bea-font-subtitle">test</span>
+                    <span class="arrow">
+                        <bea-icon class="bea-arrow_right"></bea-icon>
+                        <bea-icon class="bea-arrow_right"></bea-icon>
+                        <bea-icon class="bea-arrow_right"></bea-icon>
+                    </span>
+                </div>
+            </ion-slide>
+        </ion-slides>
+    </ng-container> -->
+
     <div class="note">
-        Date and conversion rates as of {{ info.date }}
+        <span>Date and conversion rates as of {{ info.date }}</span>
         <button ion-button icon-only clear (click)="popup()">
             <bea-icon name="note"></bea-icon>
         </button>

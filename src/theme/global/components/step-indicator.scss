@@ -1,0 +1,36 @@
+.app-root.ios {
+    .step-indicator {
+        $step-indicator-size: 26px;
+        $step-indicator-spacing: 50px;
+
+        align-items: center;
+        display: flex;
+        justify-content: center;
+
+        span {
+            align-items: center;
+            border-radius: 50%;
+            box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.3);
+            display: flex;
+            height: $step-indicator-size;
+            justify-content: center;
+            position: relative;
+            transition: background-color 300ms, color 300ms;
+            width: $step-indicator-size;
+
+            &:not(:last-child) {
+                margin-right: 2.5em;
+
+                &:after {
+                    content: '';
+                    display: inline;
+                    height: 1px;
+                    left: 100%;
+                    position: absolute;
+                    top: 50%;
+                    width: $step-indicator-spacing;
+                }
+            }
+        }
+    }
+}

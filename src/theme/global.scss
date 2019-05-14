@@ -33,15 +33,3 @@
 
     //@extend flex;
 }
-
-// BEA Icons Font
-@font-face {
-    font-family: 'BEA';
-    font-style: normal;
-    font-weight: normal;
-    src: url('../assets/fonts/BEA.eot');
-    src: url('../assets/fonts/BEA.eot#iefix') format('embedded-opentype'),
-    url('../assets/fonts/BEA.ttf') format('truetype'),
-    url('../assets/fonts/BEA.woff') format('woff'),
-    url('../assets/fonts/BEA.svg#BEA') format('svg');
-}

@@ -20,29 +20,35 @@ page-portfolio-overview {
             }
 
             .period {
+                font-family: 'Optima-Regular';
                 margin-top: 10px;
-                font-weight: bolder;
-                font-size: 14px;
+                font-weight: normal;
+                font-size: 16px;
                 margin-bottom: 5px;
-                color: #FFF;
+                color: rgb(195, 196, 208);
             }
 
             .diff {
-                font-weight: 100;
-                font-size: 20px;
+                font-family: 'OpenSans-Light';
+                font-weight: normal;
+                font-size: 28px;
                 margin-bottom: 10px;
-                color: white;
+                color: rgb(255, 255, 255);
                 white-space: normal;
 
-                > ion-icon {
+                > bea-icon {
+                    font-size: 0.5em;
+
                     &.up {
                         color: rgb(98, 186, 106);
+                        transform: rotate(180deg);
                     }
 
                     &.down {
                         color: rgb(193, 26, 49);
                     }
                 }
+
             }
         }
     }
@@ -64,6 +70,9 @@ page-portfolio-overview {
         vertical-align: top;
 
         .donut-legend-bottom {
+            font-family: 'Optima-Regular';
+            font-size: 13px;
+            line-height: 16px;
             margin: 10px 0 ;
             color: white;
             white-space: normal;
@@ -92,6 +101,8 @@ page-portfolio-overview {
             > div {
                 display: table-cell;
                 vertical-align: middle;
+                font-family: 'OpenSans-Semibold';
+                font-size: 14px;
                 text-align:center;
                 color: white;
             }
@@ -124,38 +135,5 @@ page-portfolio-overview {
         }
 
     }
-
-    // ion-item.test {
-    //     background: rgb(45, 50, 75);
-    //     color: $text-color;
-    //     height: 80px;
-    //     border: 0 !important;
-    //     margin: 5px 0 5px 0;
-    //     font-size: 14px;
-
-    //     > .item-inner {
-    //         border: 0 !important;
-    //         vertical-align: middle;
-
-    //         ion-label {
-    //             display: contents;
-    //         }
-    //     }
-
-    //     .title {
-    //         padding-left:10px;
-    //         white-space: normal;
-    //     }
-
-    //     .amount {
-    //         display: contents;
-    //         font-weight: bold;
-
-    //         > ion-icon {
-    //             padding-left: 10px;
-    //         }
-    //     }
-    // }
-
 
 }

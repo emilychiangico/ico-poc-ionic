@@ -1,0 +1,15 @@
+@function complex-mul($complex, $val) {
+    $a: nth($complex, 1);
+    $b: nth($complex, 2);
+    @return ($a*$val, $b*$val);
+}
+@function complex-add($complex, $val) {
+    $a: nth($complex, 1);
+    $b: nth($complex, 2);
+    @return ($a, $b+$val);
+}
+@function complex-resolve($complex) {
+    $a: nth($complex, 1);
+    $b: nth($complex, 2);
+    @return calc(#{$a} + #{$b});
+}

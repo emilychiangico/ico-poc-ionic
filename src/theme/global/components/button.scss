@@ -1,0 +1,36 @@
+@import 'ionic.components';
+
+.app-root.ios {
+    .button-ios {
+        font-size: 1.5rem;
+    }
+
+    .button-large-ios {
+        font-size: 1.8rem;
+    }
+
+    .button-small-ios {
+        font-size: 1.2rem;
+    }
+
+    .bea-sg & {
+        // .button-ios {
+        //     font-size: 1.6rem;
+        // }
+
+        // .button-large-ios {
+        //     font-size: 2rem;
+        // }
+
+        // .button-small-ios {
+        //     font-size: 1.3rem;
+        // }
+        .button, .button-ios, .bea-button, .bea-button-inverse, .bea-button-cancel {
+            font-family: 'Trajan Pro';
+        }
+    }
+
+    .button-small-ios[icon-only] ion-icon {
+        font-size: $button-ios-small-icon-font-size;
+    }
+}

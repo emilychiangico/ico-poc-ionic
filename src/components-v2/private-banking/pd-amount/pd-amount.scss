@@ -1,30 +1,44 @@
 pd-amount {
 
     div[amount-display] {
-        color: $text-color;
         text-align: center;
         padding-bottom: 16px;
-        font-weight: lighter;
+        //font-weight: lighter;
     
         .title {
-            font-size: 30px;
+            font-family: 'TrajanPro-Regular';
+            font-size: 15px;
+            color: rgb(195, 196, 208);
         }
     
         .amount {
-            font-size: 40px;
+            font-family: 'OpenSans-Light';
+            font-size: 34px;
+            color: rgb(255, 255, 255);
         }
     
         .note {
-            font-size: 15px;
-        }
+            font-family: 'OpenSans-Light';
+            font-size: 13px;
+            color: rgb(255, 255, 255);
+            line-height: 16px;
 
-        button {
-            background-color: transparent;
-            padding: 0;
-    
-            > bea-icon {
-                color: $text-color;
-                font-size: 1.1em;
+            span {
+                line-height: 16px;
+            }
+           
+            button {
+                background-color: transparent;
+                padding: 0;
+                margin: 0;
+                min-width: 0;
+                line-height: 16px;
+        
+                > bea-icon {
+                    vertical-align: text-bottom;
+                    color: rgb(255, 255, 255) !important;
+                    font-size: 13px;
+                }
             }
         }
     }

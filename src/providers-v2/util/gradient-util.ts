@@ -67,7 +67,7 @@ export class GradientUtil {
     }
 
     static prepareSingleBackgroundColor(color, ctx) {
-        //console.log("prepareSingleBackgroundColor >> ");
+        console.log("prepareSingleBackgroundColor >> ");
         //console.log(ctx);
         //console.log(color);
         let resultColor;

@@ -19,11 +19,9 @@
             $text-color: compontent-color($theme-map, text);
 
             &.background {
-                background-image: linear-gradient(30deg, 
-                    compontent-color($theme-map, darker, background),
-                    compontent-color($theme-map, dark, background), 
-                    compontent-color($theme-map, light, background), 
-                    compontent-color($theme-map, lighter, background)) !important;
+                background: linear-gradient(to top right, 
+                compontent-color($theme-map, dark, background) 0%,
+                compontent-color($theme-map, light, background) 100%) !important;
             }
 
             &.pure-scroll-background {
@@ -72,8 +70,8 @@
                 }
             }
 
-            div[button-row] {
-                button {
+            //div[button-row] {
+                button[outline] {
                     color: $text-color !important;
                     border-color: $text-color !important;
                 
@@ -82,7 +80,7 @@
                         border-color: compontent-color($theme-map, button) !important;
                     }
                 }
-            }
+            //}
 
             //page-portfolio-overview
             .button-container > div {

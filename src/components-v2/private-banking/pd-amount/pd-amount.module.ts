@@ -4,6 +4,7 @@ import { PbAmountComponent } from './pd-amount';
 
 import { BeaIconComponentModule } from '../../bea-icon/bea-icon.module';
 import { PipesModule } from '../../../pipes/pipes.module';
+import { IonicModule } from 'ionic-angular';
 
 @NgModule({
     declarations: [
@@ -11,7 +12,8 @@ import { PipesModule } from '../../../pipes/pipes.module';
     ],
     imports: [
         PipesModule,
-        BeaIconComponentModule
+        BeaIconComponentModule,
+        //IonicModule
     ],
     exports: [
         PbAmountComponent

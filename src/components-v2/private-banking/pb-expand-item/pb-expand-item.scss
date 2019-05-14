@@ -36,6 +36,7 @@ pb-expand-item.item-wrapper {
 
         &.item-expanded {
             @include top-border-radius;
+            padding-bottom: 0;
         }
 
         > .item-inner {

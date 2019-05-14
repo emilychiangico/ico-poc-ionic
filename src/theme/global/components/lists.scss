@@ -1,0 +1,489 @@
+@import '../../bea-theme/functions.scss';
+
+.app-root.ios {
+    .list {
+        &.bea-list {
+            > button.item-block, > ion-item.item-block, > expandable-item > button.item-block{
+                padding-top:4.5px;
+                padding-bottom:4.5px;
+            }
+
+            & > .item, & > ion-item-group > .item, & > .expandable-item > .item:first-child {
+                & > .item-inner > .input-wrapper {
+                    align-items: center;
+                    display: flex;
+
+                    & > .label {
+                        white-space: normal;
+                        font-size:bea-font-size(38);
+                        margin-top: 1.6rem;
+                        margin-bottom: 1.6rem;
+
+                        .sub-label {
+                            font-size: 0.95em;
+                        }
+                    }
+                }
+
+                &.item-label-stacked {
+                    *[item-content] {
+                        align-self: stretch;
+                    }
+                }
+
+                &.item-checkbox {
+                    & > .checkbox.tnc-checkbox {
+                        position: relative;
+                    }
+                }
+            }
+
+            & > .expandable-item > .item:last-child {
+                & > .item-inner > .input-wrapper > .label {
+                    font-size: bea-font-size(38);
+                    line-height: 1.8em;
+                    white-space: normal;
+                }
+            }
+
+            &.bea-title-list, &.bea-title-light-list, &.bea-subtitle-list, &.bea-subtitle-light-list {
+                & > .item, & > ion-item-group > .item, & > .expandable-item > .item:first-child {
+                    font-size: bea-font-size(38);
+
+                    & > .bea-icon[item-start] {
+                        font-size: 1.25em;
+                    }
+
+                    & > .item-inner > .input-wrapper > .label {
+                        margin-top: 1.6rem;
+                        margin-bottom: 1.6rem;
+
+                        &[stacked] {
+                            font-size: inherit;
+                        }
+                    }
+
+                    &.item-label-stacked {
+                        *[item-content] {
+                            margin: 0 8px 1.6rem 0;
+                        }
+                    }
+                }
+            }
+
+            &.bea-list-1, &.bea-list-2, &.bea-avatar-list, &.bea-stack-form-list, &.bea-service-find-us-list {
+                & > .item, & > ion-item-group > .item, & > .expandable-item > .item:first-child {
+                    & > .item-inner > .input-wrapper {
+                        & > .label {
+                            font-size: bea-font-size(38);
+
+                            .bea-sg & {
+                                font-size: bea-font-size(38);
+                            }
+                        }
+
+                        & > *[item-content], & > .input, & > .select {
+                            font-size: 1.5rem;
+                        }
+
+                        & > *[item-content] {
+                            & > .list[radio-group] {
+                                & > .item-radio {
+                                    & + .item-radio {
+                                        margin-top: 22px;
+                                    }
+
+                                    & > .item-inner > .input-wrapper > .label {
+                                        font-size: 1.5rem;
+                                    }
+
+                                    .radio {
+                                        margin: 0 8px 0 0 !important;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &.item-checkbox {
+                        & > .item-inner > .input-wrapper > .label {
+                            a {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+
+                    & > .bea-icon[item-start] {
+                        font-size: 1.25em;
+                    }
+                }
+            }
+
+            &.bea-list-1, &.bea-list-2 {
+                & > .item, & > ion-item-group > .item {
+                    min-height: initial;
+
+                    & > .item-inner > .input-wrapper {
+                        align-items: baseline;
+
+                        & > .label {
+                            flex: 1;
+                            padding-left: 0;
+
+                            & + *[item-content] > .text-input {
+                                margin-left: 0;
+                            }
+                        }
+
+                        & > *[item-content] {
+                            flex: 2;
+                            padding-right: 0;
+
+                            &:not(.input) {
+                                margin: 11px 0;
+                            }
+
+                            &.detail-select {
+                                position: relative;
+
+                                & > .detail-select-placeholder {
+                                    color: #999;
+                                    text-indent: 0;
+                                }
+
+                                &:after {
+                                    @extend bea-icon;
+                                    @extend bea-icon.bea-arrow_right:before;
+                                    font-size: $item-detail-arrow-size !important;
+                                    position: absolute;
+                                    right: .6rem;
+                                    top: calc((100% - #{$item-detail-arrow-size}) / 2);
+                                }
+                            }
+                        }
+                    }
+
+                    &:not(.item-checkbox, .item-radio) > .item-inner > .input-wrapper > .label {
+                        //margin-top: 4px;
+                    }
+
+                    &.item-checkbox > .checkbox.tnc-checkbox {
+                        align-self: flex-start;
+                        margin-top: 15px;
+                    }
+                }
+            }
+
+            &.bea-list-1 {
+            }
+
+            &.bea-list-2 {
+                & > .item, & > ion-item-group > .item {
+                    &.item-divider {
+                        @extend [no-item-gap-bottom];
+                    }
+
+                    & > .item-inner > .input-wrapper {
+                        & > .label {
+                            @include where('.item', '.item-label-stacked') {
+                                flex: initial;
+                            }
+                        }
+
+                        & > *[item-content] {
+                            @include where('.item', '.item-label-stacked') {
+                                margin-top: 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.bea-avatar-list {
+                & > .item, & > ion-item-group > .item {
+                    min-height: initial;
+
+                    & > .item-inner > .input-wrapper > .label {
+                        .name, .data {
+                            font-size: 1em;
+                        }
+                    }
+                }
+            }
+
+            &.bea-stack-form-list {
+                .item {
+                    & > .item-inner > .input-wrapper {
+                        & > .label {
+                            font-size: bea-font-size(38);
+                        }
+
+                        & > ion-input > .text-input, & > ion-select > .select-text, & > ion-datetime > .datetime-text {
+                            font-size: bea-font-size(45);
+                        }
+                    }
+                }
+
+                & > .item, & > ion-item-group > .item {
+                    padding: 10px 0;
+
+                    &:first-child {
+                        padding-top: 0;
+                    }
+
+                    &:last-child {
+                        padding-bottom: 0;
+                    }
+
+                    &.item-checkbox > .checkbox {
+                        align-self: flex-start;
+                        margin-top: 20px;
+                    }
+                }
+            }
+
+            &.bea-account-portfolio-list {
+                .item {
+                    & > .item-inner > .input-wrapper {
+                        & > .label {
+                            font-size: bea-font-size(38);
+                        }
+
+                        & > *[item-content] {
+                            font-size: bea-font-size(40);
+                        }
+                    }
+
+                    &.list-header {
+                        letter-spacing: 0;
+                        padding: 0 $item-ios-padding-right;
+                        text-transform: none;
+
+                        & > .item-inner > .input-wrapper {
+                            & > .label, & > *[item-content] {
+                                font-size: bea-font-size(36);
+
+                                .bea-sg & {
+                                    font-size: bea-font-size(38);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                & > div {
+                    & > .item, & > ion-item-group > .item {
+                        padding-left: $item-ios-padding-right * 1.5;
+
+                        & > .item-inner {
+                            border-bottom: 0;
+                        }
+                    }
+                }
+
+                > .sub-account-list {
+                    > .item {
+                        & > .item-inner > .input-wrapper {
+                            & > .label {
+                                white-space: normal;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.bea-service-find-us-list {
+                & > .item, & > ion-item-group > .item {
+                    & > .item-inner > .input-wrapper {
+                        align-items: flex-start;
+
+                        & > *[item-content] {
+                            margin: 0 8px 11px 0;
+                        }
+                    }
+
+                    &.sub-item > .item-inner > .input-wrapper {
+                        margin-left: 31px;
+
+                        & > .label {
+                            font-size: 1.5rem;
+                        }
+                    }
+
+                    & > .bea-icon[item-start] {
+                        align-self: flex-start;
+                        margin-top: 20px;
+                    }
+
+                    &.item-label-stacked > .bea-icon[item-start] {
+                        margin-top: 20px;
+                    }
+                }
+
+                & > ion-item-group > .item-block {
+                    &:first-child {
+                        border-bottom: 0;
+                    }
+                }
+
+                & > ion-item-group > .item-block, & > .item-block{
+                    padding-top:4.5px;
+                    padding-bottom:4.5px;
+                    min-height: 52px;
+                }
+            }
+
+            &.bea-two-level-list {
+                .item > .item-inner {
+                    .bea-icon[item-end] {
+                        text-align: center;
+                        width: 2rem;
+                    }
+
+                    & > .input-wrapper > .label {
+                        font-size: bea-font-size(42);
+                    }
+                }
+
+                & > .item, & > ion-item-group > .item {
+                    & > .item-inner {
+                        .bea-icon[item-end][name="arrow_down"] {
+                            font-size: $item-detail-arrow-size !important;
+                        }
+                    }
+                }
+
+                & > div {
+                    overflow: hidden;
+
+                    & > .item, & > ion-item-group > .item {
+                        & > .item-inner {
+                            border-bottom: 0;
+                        }
+                    }
+                }
+            }
+
+            &.bea-card-detail-list {
+
+                ion-item-group {
+                    padding-bottom: 5px;
+                }
+                // For all item
+                .item {
+                    white-space: normal;
+                    > .item-inner > .input-wrapper > .html-content{
+                        //margin-top:0px;
+                        //margin-bottom:0px;
+                    }
+                }
+
+                .item-divider {
+                    background: inherit;
+
+                    [item-start] {
+                        @include size(60px);
+                        object-fit: contain;
+                    }
+
+                    .label {
+                        font-size: bea-font-size(60);
+                    }
+                }
+
+                .item-block {
+                    min-height:5px;
+                    .label {
+                        line-height: 1.6;
+                        margin-top:0px !important ;
+                        margin-bottom:0px !important;
+
+                    }
+                }
+            }
+
+            &.bea-iplanner-transaction-list {
+                .item-divider {
+                    button[item-content] {
+                        font-size: bea-font-size(36);
+                    }
+                }
+                .item-block {
+                    &.item-checkbox-checked.select-mode {
+                        // highlight the item if checked
+                        background: rgba(0, 107, 255, 0.06);
+                    }
+
+                    & > .checkbox {
+                        max-width: 21px;
+                        transition: margin-right 400ms, max-width 400ms, opacity 200ms;
+
+                        @include where('.item-block', ':not(.select-mode)') {
+                            margin-right: 0;
+                            max-width: 0;
+                            opacity: 0;
+                        }
+                    }
+
+                    .input-wrapper {
+                        align-items: flex-end;
+
+                        .label {
+                            @include where('.item-block', '.item-checkbox-disabled') {
+                                opacity: 1; // override
+                            }
+
+                            div:nth-child(1) {
+                                font-size: bea-font-size(36);
+                            }
+
+                            div:nth-child(2) {
+                                font-size: bea-font-size(38);
+                            }
+                        }
+
+                        [item-content] {
+                            font-size: bea-font-size(38);
+                            margin: 8px 0;
+
+                            .bea-icon {
+                                font-size: 22px;
+                                margin-right: 5px;
+                                vertical-align: middle;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.bea-dashboard-section-list {
+            .section-title-item {
+                & > .item-inner {
+                    & > .input-wrapper > .label {
+                        font-size: bea-font-size(36);
+
+                        .bea-sg & {
+                            font-size: bea-font-size(38);
+                        }
+                    }
+
+                    & > .button > .button-inner {
+                        & > span {
+                            font-size: bea-font-size(36);
+
+                            .bea-sg & {
+                                font-size: bea-font-size(38);
+                            }
+                        }
+
+                        & > .bea-icon {
+                            font-size: .9em;
+                            padding-left: .8rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

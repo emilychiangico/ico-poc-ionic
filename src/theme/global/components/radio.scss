@@ -1,0 +1,45 @@
+$bea-radio-checkbox-icon-size:                21px !default;
+$bea-radio-checkbox-icon-border-width:        1px !default;
+$bea-radio-checkbox-icon-border-style:        solid !default;
+$bea-radio-checkbox-icon-border-radius:       50% !default;
+$bea-radio-checkbox-item-left-margin:         null !default;
+$bea-radio-checkbox-item-start-margin-top:    $item-ios-padding-media-top !default;
+$bea-radio-checkbox-item-start-margin-end:    $item-ios-padding-end !default;
+$bea-radio-checkbox-item-start-margin-bottom: $item-ios-padding-media-bottom !default;
+$bea-radio-checkbox-item-start-margin-start:  2px !default;
+$bea-radio-checkbox-icon-inner-padding:       4px !default;
+
+.app-root.ios {
+    // Default Ionic Radio Button
+    .radio-ios .radio-checked .radio-inner {
+        border-width: 0 1px 1px 0;
+    }
+
+    // Checkbox-like Radio Button
+    .radio-ios[item-start] {
+        .radio-icon {
+            border-style: $bea-radio-checkbox-icon-border-style;
+            border-width: $bea-radio-checkbox-icon-border-width;
+            height: $bea-radio-checkbox-icon-size;
+            padding: $bea-radio-checkbox-icon-inner-padding;
+            width: $bea-radio-checkbox-icon-size;
+
+            &, & .radio-inner {
+                @include border-radius($bea-radio-checkbox-icon-border-radius);
+            }
+        }
+
+        .radio-checked .radio-inner {
+            height: 100%;
+            position: static;
+            transform: none;
+            width: 100%;
+        }
+    }
+
+    .item.item-ios .radio-ios[item-start] {
+        @include deprecated-variable(margin, $bea-radio-checkbox-item-left-margin) {
+            @include margin($bea-radio-checkbox-item-start-margin-top, $bea-radio-checkbox-item-start-margin-end, $bea-radio-checkbox-item-start-margin-bottom, $bea-radio-checkbox-item-start-margin-start);
+        }
+    }
+}

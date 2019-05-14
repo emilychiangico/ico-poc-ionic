@@ -7,10 +7,10 @@
     <canvas #barChartCanvas [hidden]="selectedTab == 'asset'"></canvas>
 
     <div button-row>
-        <button ion-button round outline class="selectButton" [class.selected]="selectedTab == 'asset'" (click)="changeTab('asset')">
+        <button ion-button round outline [class.selected]="selectedTab == 'asset'" (click)="changeTab('asset')">
             Asset Allocation
         </button>
-        <button ion-button round outline class="selectButton" [class.selected]="selectedTab == 'nav'" (click)="changeTab('nav')">
+        <button ion-button round outline [class.selected]="selectedTab == 'nav'" (click)="changeTab('nav')">
             Net Asset Value
         </button>
     </div>

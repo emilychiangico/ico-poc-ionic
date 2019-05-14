@@ -1,0 +1,224 @@
+@mixin responsive($arg1, $arg2: "") {
+    @if type-of($arg1) == "map" {
+        $map: $arg1;
+        @each $prop, $values in $map {
+            #{$prop}: nth($values, 1);
+            @media screen and (max-width: 320px) {
+                #{$prop}: nth($values, 2);
+            }
+        }
+    } @else {
+        $prop: $arg1; $values: $arg2;
+
+        #{$prop}: nth($values, 1);
+        @media screen and (max-width: 320px) {
+            #{$prop}: nth($values, 2);
+        }
+    }
+}
+@mixin _resp($prop, $value) {
+    @if type-of($value) != "list" {
+        #{$prop}: $value;
+    } @else {
+        #{$prop}: nth($value, 1);
+        @media screen and (max-width: 320px) {
+            #{$prop}: nth($value, 2);
+        }
+    }
+}
+@mixin _resp-important($prop, $value) {
+    @if type-of($value) != "list" {
+        #{$prop}: $value !important;
+    } @else {
+        #{$prop}: nth($value, 1);
+        @media screen and (max-width: 320px) {
+            #{$prop}: nth($value, 2) !important;
+        }
+    }
+}
+
+@mixin is-iphone5() {
+    @media screen and (max-width: 320px) {
+        @content;
+    }
+}
+
+@mixin is-iphone-x() {
+    .is-iphone-x & {
+        @content;
+    }
+}
+
+@mixin between() {
+    &:not(:last-child) {
+        @content;
+    }
+}
+
+@mixin where($target, $condition) {
+    @at-root #{selector-replace(&, $target, $target + $condition)} {
+        @content;
+    }
+}
+
+@mixin flex($h: unset, $v: unset, $wrap: "") {
+    display: flex;
+    justify-content: $h;
+    align-items: $v;
+
+    @if $wrap != "" {
+        flex-wrap: $wrap;
+    }
+
+    //@extend flex;
+}
+@mixin flex-row($h: unset, $v: unset, $wrap: "") {
+    display: flex;
+    flex-direction: row;
+    justify-content: $h;
+    align-items: $v;
+
+    @if $wrap != "" {
+        flex-wrap: $wrap;
+    }
+
+    //@extend flex;
+}
+@mixin flex-col($h: unset, $v: unset, $wrap: "") {
+    display: flex;
+    flex-direction: column;
+    justify-content: $v;
+    align-items: $h;
+
+    @if $wrap != "" {
+        flex-wrap: $wrap;
+    }
+
+    //@extend flex;
+}
+
+@mixin bea-float($pos: "", $top: "", $left: "", $right: "", $bottom: "") {
+    position: absolute;
+    @if $pos != "" {
+        @if type-of($pos) == "string" {
+            #{$pos}: 0;
+        } @else {
+            @each $_pos in $pos {
+                #{$_pos}: 0;
+            }
+        }
+    } @else {
+        @if $top    != "" { top: $top; }
+        @if $bottom != "" { bottom: $bottom; }
+        @if $left   != "" { left: $left; }
+        @if $right  != "" { right: $right; }
+    }
+}
+
+@mixin bea-margin($v: "", $h: "", $top: "", $bottom: "", $left: "", $right: "") {
+    @if $v != "" {
+        @include _resp(margin-left, $v);
+        @include _resp(margin-right, $v);
+    }
+    @if $h != "" {
+        @include _resp(margin-top, $h);
+        @include _resp(margin-bottom, $h);
+    }
+    @if $top    != "" { @include _resp(margin-top,     $top); }
+    @if $bottom != "" { @include _resp(margin-bottom,  $bottom); }
+    @if $left   != "" { @include _resp(margin-left,    $left); }
+    @if $right  != "" { @include _resp(margin-right,   $right); }
+}
+
+@mixin bea-padding($v: "", $h: "", $top: "", $bottom: "", $left: "", $right: "") {
+    @if $v != "" {
+        @include _resp(padding-left, $v);
+        @include _resp(padding-right, $v);
+    }
+    @if $h != "" {
+        @include _resp(padding-top, $h);
+        @include _resp(padding-bottom, $h);
+    }
+    @if $top    != "" { @include _resp(padding-top,     $top); }
+    @if $bottom != "" { @include _resp(padding-bottom,  $bottom); }
+    @if $left   != "" { @include _resp(padding-left,    $left); }
+    @if $right  != "" { @include _resp(padding-right,   $right); }
+}
+
+@mixin size($w: "", $h: "") {
+    @if $w != "" and $h == "" {
+        @include _resp(width, $w);
+        @include _resp(height, $w);
+    } @else {
+        @if $w != "" { @include _resp(width, $w); }
+        @if $h != "" { @include _resp(height, $h); }
+    }
+}
+
+@mixin font($size: "", $weight: "", $color-key: "", $color: "") {
+    @if $size != "" {
+        @include _resp(font-size, $size);
+    }
+    @if $weight != "" { font-weight: $weight }
+    @if $color-key != "" { color: color($colors, $color-key) }
+    @if $color != "" { color: $color }
+}
+
+@mixin font-important($size: "", $weight: "", $color-key: "", $color: "") {
+    @if $size != "" {
+        @include _resp-important(font-size, $size);
+    }
+    @if $weight != "" { font-weight: $weight !important }
+    @if $color-key != "" { color: color($colors, $color-key) !important }
+    @if $color != "" { color: $color !important }
+}
+
+@mixin aspect-ratio-box($ratio, $apply-to-children: true) {
+    position: relative;
+    width: 100%;
+    padding-top: (1 / $ratio * 100%);
+
+    @if $apply-to-children {
+        > * {
+            @include bea-float(top left);
+            @include size(100%);
+        }
+    }
+}
+
+// ----------------------------------------------------------------------------------------------------------------------------
+
+// https://hugogiraudel.com/2013/08/08/advanced-sass-list-functions/
+@function to-string($list, $glue: '', $is-nested: false) {
+    $result: null;
+
+    @for $i from 1 through length($list) {
+        $e: nth($list, $i);
+
+        @if type-of($e) == list {
+            $result: $result#{to-string($e, $glue, true)};
+        }
+
+        @else {
+            $result: if($i != length($list) or $is-nested, $result#{$e}#{$glue}, $result#{$e});
+        }
+    }
+
+    @return $result;
+}
+
+@mixin transition($transition-class, $duration, $map) {
+    transition: to-string(map-keys($map), ' #{$duration}, ') $duration;
+
+    &:not(.#{$transition-class}) {
+        @each $name, $value in $map {
+            #{$name}: nth($value, 1);
+        }
+    }
+
+    &.#{$transition-class} {
+        @each $name, $value in $map {
+            #{$name}: nth($value, 2);
+        }
+    }
+}
