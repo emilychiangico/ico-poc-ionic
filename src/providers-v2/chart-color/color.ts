@@ -31,11 +31,11 @@ export const COLOR = {
 
     mix: {
         "blue": "rgb(50, 95, 186)",
-        "white_0.2": "rgb(255, 255, 255, 0.2)",
+        "white_0.2": "rgba(255, 255, 255, 0.2)",
     },
 
     gridLine: {
-        "grey_0.5": "rgb(192, 187, 191, 0.5)"
+        "grey_0.5": "rgba(192, 187, 191, 0.5)"
     },
 
     doughnut: {
