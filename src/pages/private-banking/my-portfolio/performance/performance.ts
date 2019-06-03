@@ -6,6 +6,7 @@ import { ChartUtil } from './../../../../providers-v2/util/chart-util';
 import { IPortfolioUtil } from '../../../../providers-v2/util/i-portfolio-util';
 
 import { IPortfolioApiService } from "../../../../providers-v2/api/i-portfolio-api-service";
+import { IPortfolioApiMockService } from "../../../../providers-v2/api/i-portfolio-api-mock-service";
 
 import { BasePage } from "../../../base-page";
 
@@ -17,6 +18,7 @@ import { BasePage } from "../../../base-page";
 export class PerformancePage extends BasePage {
 
 	private iPortfolioApiService: IPortfolioApiService;
+	private iPortfolioApiMockService: IPortfolioApiMockService;
 
 	@ViewChild('mixedChartCanvas') mixedChartCanvas;
 	mixedChart = null;
@@ -49,6 +51,7 @@ export class PerformancePage extends BasePage {
 	constructor(public injector: Injector) {
 		super(injector);
 		this.iPortfolioApiService = injector.get(IPortfolioApiService);
+		this.iPortfolioApiMockService = injector.get(IPortfolioApiMockService);
 	}
 
 	ngOnInit() {
@@ -56,10 +59,11 @@ export class PerformancePage extends BasePage {
 	}
 
 	loadData() {
-		this.iPortfolioApiService.getPerformanceAnalysis().subscribe(
-			response => {
-				console.log("response >> ");
-                console.log(response);
+		// this.iPortfolioApiService.getPerformanceAnalysis().subscribe(
+		// 	response => {
+		// 		console.log("response >> ");
+		// 		console.log(response);
+				let response = this.iPortfolioApiMockService.getPerformanceAnalysis();
 				let data = response.data;
 				this.totalAmountInfo = IPortfolioUtil.setTotalAumontInfo(data.portfolioCurrency, data.totalAUM, data.lastUpdateDate);
 				let result = IPortfolioUtil.setPerformanceData(data);
@@ -73,8 +77,8 @@ export class PerformancePage extends BasePage {
 				this.beaListHeader.left = this.selectedList.header;
 
 				this.initChart();
-			}
-		);
+		// 	}
+		// );
 	}
 
 	ionViewDidLoad() {

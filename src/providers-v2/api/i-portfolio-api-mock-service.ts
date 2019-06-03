@@ -513,7 +513,7 @@ export class IPortfolioApiMockService {
             "data": {
                 "portfolioCurrency": "HKD",
                 "totalAUM": 1635667494.00,
-                "lastUpdateDate": "31-05-2018",
+                "lastUpdateDate": "2018-05-31",
                 "netCapitalInOutValueFromYrBegin": 8587338.53,
                 "netCapitalInOutValueFromLastSixMonth": 8587338.53,
                 "yearBeginDate": "2016-01-01",
@@ -549,7 +549,8 @@ export class IPortfolioApiMockService {
                                 "percentage": 0.75
                             }
                         ]
-                    }, {
+                    },
+                    {
                         "year": 2016,
                         "month": 4,
                         "fromDate": "2016-04-01",
@@ -579,7 +580,8 @@ export class IPortfolioApiMockService {
                                 "percentage": 1.9
                             }
                         ]
-                    }, {
+                    },
+                    {
                         "year": 2016,
                         "month": 3,
                         "fromDate": "2016-03-01",
@@ -609,7 +611,8 @@ export class IPortfolioApiMockService {
                                 "percentage": 2.31
                             }
                         ]
-                    }, {
+                    },
+                    {
                         "year": 2016,
                         "month": 2,
                         "fromDate": "2016-02-01",
@@ -639,7 +642,8 @@ export class IPortfolioApiMockService {
                                 "percentage": 0.14
                             }
                         ]
-                    }, {
+                    },
+                    {
                         "year": 2016,
                         "month": 1,
                         "fromDate": "2016-01-01",
@@ -700,6 +704,24 @@ export class IPortfolioApiMockService {
                                 "percentage": -0.56
                             }
                         ]
+                    }
+                ],
+                "benchmarkTitleList": [
+                    {
+                        "id": "dow_jones_industrial_average_index",
+                        "title": "Dow jones industrial Average"
+                    },
+                    {
+                        "id": "hang_seng_index",
+                        "title": "Hang Seng Index"
+                    },
+                    {
+                        "id": "msci_world_index",
+                        "title": "MSCI World Index"
+                    },
+                    {
+                        "id": "sp_500_index",
+                        "title": "S&P 500 Index"
                     }
                 ]
             }

@@ -6,6 +6,7 @@ import { ChartUtil } from '../../../../providers-v2/util/chart-util';
 import { IPortfolioUtil } from '../../../../providers-v2/util/i-portfolio-util';
 
 import { IPortfolioApiService } from "../../../../providers-v2/api/i-portfolio-api-service";
+import { IPortfolioApiMockService } from "../../../../providers-v2/api/i-portfolio-api-mock-service";
 
 import { BasePage } from "../../../base-page";
 
@@ -17,6 +18,7 @@ import { BasePage } from "../../../base-page";
 export class CcyDistributionPage extends BasePage {
 
 	private iPortfolioApiService: IPortfolioApiService;
+	private iPortfolioApiMockService: IPortfolioApiMockService;
 
 	@ViewChild('barChartCanvas2') barChartCanvas2;
 
@@ -42,6 +44,7 @@ export class CcyDistributionPage extends BasePage {
 	constructor(public injector: Injector) {
 		super(injector);
 		this.iPortfolioApiService = injector.get(IPortfolioApiService);
+		this.iPortfolioApiMockService = injector.get(IPortfolioApiMockService);
 	}
 
 	ngOnInit() {
@@ -49,10 +52,11 @@ export class CcyDistributionPage extends BasePage {
 	}
 
 	loadData() {
-		this.iPortfolioApiService.getCcyDistribution().subscribe(
-			response => {
-				console.log("response >> ");
-                console.log(response);
+		// this.iPortfolioApiService.getCcyDistribution().subscribe(
+		// 	response => {
+		// 		console.log("response >> ");
+		// 		console.log(response);
+				let response = this.iPortfolioApiMockService.getCcyDistribution();
 				let data = response.data;
 				let dataList = data.currencyDistributionList;
 
@@ -71,8 +75,8 @@ export class CcyDistributionPage extends BasePage {
 				this.ccyDistributionInfo.chartData.data = chartData;
 
 				this.initCcyChart();
-			}
-		);
+		// 	}
+		// );
 	}
 
 	ionViewDidLoad() {

@@ -11,6 +11,7 @@ import { MyPortfolioPage } from '../my-portfolio/my-portfolio';
 import { PortfolioHoldingPage } from '../../../pages/private-banking/portfolio-holding/portfolio-holding';
 
 import { IPortfolioApiService } from "../../../providers-v2/api/i-portfolio-api-service";
+import { IPortfolioApiMockService } from "../../../providers-v2/api/i-portfolio-api-mock-service";
 
 @IonicPage()
 @Component({
@@ -20,6 +21,7 @@ import { IPortfolioApiService } from "../../../providers-v2/api/i-portfolio-api-
 export class PortfolioOverviewPage extends BasePage {
 
     private iPortfolioApiService: IPortfolioApiService;
+    private iPortfolioApiMockService: IPortfolioApiMockService;
 
     @ViewChild('doughnutCanvas') doughnutCanvas;
     @ViewChildren('doughnutLegendCanvas') doughnutLegendCanvasList: QueryList<ElementRef>;
@@ -65,23 +67,26 @@ export class PortfolioOverviewPage extends BasePage {
     constructor(injector: Injector) {
         super(injector);
         this.iPortfolioApiService = injector.get(IPortfolioApiService);
+        this.iPortfolioApiMockService = injector.get(IPortfolioApiMockService);
     }
 
     ngOnInit() {
-        this.loadData();
+        //this.loadData();
     }
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad ChartPage');
         console.log(this.doughnutLegendCanvasList);
         //this.initChart();
+        this.loadData();
     }
 
     loadData() {
-        this.iPortfolioApiService.getMyPortfolio().subscribe(
-            response => {
-                console.log("response >> ");
-                console.log(response);
+        // this.iPortfolioApiService.getMyPortfolio().subscribe(
+        //     response => {
+        //         console.log("response >> ");
+        //         console.log(response);
+                let response = this.iPortfolioApiMockService.getMyPortfolio();
                 let data = response.data;
                 this.totalAmountInfo = IPortfolioUtil.setTotalAumontInfo(data.portfolioCurrency, data.totalAUM, data.lastUpdateDate);
                 this.monthlyDiff = data.monthlyPercentage;
@@ -101,8 +106,8 @@ export class PortfolioOverviewPage extends BasePage {
                 });
                 
                 this.initChart();
-            }
-        );
+        //     }
+        // );
     }
 
     initChart() {

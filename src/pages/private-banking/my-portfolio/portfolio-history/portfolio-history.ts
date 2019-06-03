@@ -5,6 +5,7 @@ import { GradientColorUtil } from '../../../../providers-v2/util/gradient-color-
 import { IPortfolioUtil } from '../../../../providers-v2/util/i-portfolio-util';
 import { ChartUtil } from '../../../../providers-v2/util/chart-util';
 import { IPortfolioApiService } from "../../../../providers-v2/api/i-portfolio-api-service";
+import { IPortfolioApiMockService } from "../../../../providers-v2/api/i-portfolio-api-mock-service";
 
 import { AssetAllocationDetailPage } from '../../asset-allocation-detail/asset-allocation-detail';
 import { NavDetailPage } from '../../nav-detail/nav-detail';
@@ -19,6 +20,7 @@ import { BasePage } from '../../../base-page';
 export class PortfolioHistoryPage extends BasePage {
 
 	iPortfolioApiService: IPortfolioApiService;
+	iPortfolioApiMockService: IPortfolioApiMockService; //testing
 
 	@ViewChild('barChartCanvas') barChartCanvas;
 	navDataInfo = {
@@ -59,6 +61,7 @@ export class PortfolioHistoryPage extends BasePage {
 	constructor(injector: Injector) {
 		super(injector);
 		this.iPortfolioApiService = injector.get(IPortfolioApiService);
+		this.iPortfolioApiMockService = injector.get(IPortfolioApiMockService);
 	}
 
 	ngOnInit() {
@@ -69,10 +72,11 @@ export class PortfolioHistoryPage extends BasePage {
 
 	loadData() {
 		console.log("loadAssetAllocationData >> ");
-		this.iPortfolioApiService.getAssetAllocationHistory().subscribe(
-			response => {
-				console.log("response >> ");
-                console.log(response);
+		// this.iPortfolioApiService.getAssetAllocationHistory().subscribe(
+		// 	response => {
+		// 		console.log("response >> ");
+		// 		console.log(response);
+				let response = this.iPortfolioApiMockService.getAssetAllocationHistory();
 				let data = response.data;
 				this.totalAmountInfo = IPortfolioUtil.setTotalAumontInfo(data.portfolioCurrency, data.totalAUM, data.lastUpdateDate);
 				this.assetAllocationDataInfo = IPortfolioUtil.setAssetAllocationData(data.assetAllocationHistoryList);
@@ -80,8 +84,8 @@ export class PortfolioHistoryPage extends BasePage {
 				console.log(this.assetAllocationDataInfo);
 
 				this.initChart();
-			}
-		);
+		// 	}
+		// );
 	}
 
 	/************ Data Handling end ************/

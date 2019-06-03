@@ -65,8 +65,9 @@ export class PortfolioHoldingPage extends BasePage implements OnInit {
     }
 
     loadData() {
-        this.iPortfolioApiService.getPortfolioHolding(this.selectedAccountType).subscribe(
-            response => {
+        //this.iPortfolioApiService.getPortfolioHolding(this.selectedAccountType).subscribe(
+        //    response => {
+                let response = this.iportfolioApiMockService.getPortfolioHolding(this.selectedAccountType);
                 let data =  response.data;
                 this.setAccountTypeList(data.accountTypeList);
 
@@ -85,8 +86,8 @@ export class PortfolioHoldingPage extends BasePage implements OnInit {
                 this.assetAllocationDataInfo = result.assetAllocationDataInfo;
 
                 this.publish();
-            }
-        );
+        //    }
+        //);
     }
 
     setAccountTypeList(accountList) {

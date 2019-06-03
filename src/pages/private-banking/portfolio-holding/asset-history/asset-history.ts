@@ -228,6 +228,10 @@ export class AssetHistoryPage extends BasePage {
 				let scrollLeft = this.content.getContentDimensions().scrollLeft;
 				let scrollTop = this.content.getContentDimensions().scrollTop;
 
+				console.log("position.top >> " +position.top);
+				console.log("scrollTop >> " + scrollTop);
+				console.log("tooltipModel.caretY >> " + tooltipModel.caretY);
+
 				// Display, position, and set styles for font
 				tooltipEl.style.opacity = "1";
 				tooltipEl.style.position = 'absolute';
