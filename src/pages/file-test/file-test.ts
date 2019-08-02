@@ -13,6 +13,7 @@ import { ImagePicker } from '@ionic-native/image-picker';
 export class FileTestPage {
 
 	uploadDocFile = null;
+	uploadDocFile2 = null;
 
 	constructor(private chooser: Chooser,
 		private camera: Camera,
@@ -29,15 +30,15 @@ export class FileTestPage {
 		console.log("uploadDocFile >> " + this.uploadDocFile);
 	}
 
-	getFile() {
-		// cannot select in IOS
-		this.chooser.getFile("image/*")
-			.then(file => {
-				console.log(file ? file : 'canceled')
-				this.uploadDocFile = file.dataURI;
-			})
-			.catch((error: any) => console.error(error));
-	}
+	// getFile() {
+	// 	// cannot select in IOS
+	// 	this.chooser.getFile("image/*")
+	// 		.then(file => {
+	// 			console.log(file ? file : 'canceled')
+	// 			this.uploadDocFile = file.dataURI;
+	// 		})
+	// 		.catch((error: any) => console.error(error));
+	// }
 
 	getFile2() {
 		// Open Camera to take photo then return file url
@@ -52,7 +53,7 @@ export class FileTestPage {
 			// imageData is either a base64 encoded string or a file URI
 			// If it's base64 (DATA_URL):
 			console.log(imageData);
-			this.uploadDocFile = 'data:image/jpeg;base64,' + imageData;
+			this.uploadDocFile2 = 'data:image/jpeg;base64,' + imageData;
 		}, (err) => {
 			// Handle error
 		});
@@ -72,8 +73,9 @@ export class FileTestPage {
 				console.log(file_uris);
 				this.uploadDocFile = file_uris[0];
 				if(this.platform.is('ios')) {
-					this.uploadDocFile = this.uploadDocFile.replace(/^file:\/\//, '');
+					this.uploadDocFile = this.uploadDocFile.replace("file:///", '/');
 				}
+				console.log('this.uploadDocFile >> ' + this.uploadDocFile);
 			},
 			err => console.log('uh oh')
 		);

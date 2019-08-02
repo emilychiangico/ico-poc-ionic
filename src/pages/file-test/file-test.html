@@ -14,9 +14,17 @@
     [(ngModel)]="uploadDocFile" #docFile="ngModel"/>
 
     <button (click)="getFile()">test</button> -->
-
+    
+    Select File Test
     <div class="image-block" (click)="getFile3()">
       <img [src]="uploadDocFile" *ngIf="uploadDocFile">
     </div>
+
+    Camera Test
+    <div class="image-block" (click)="getFile2()">
+      <img [src]="uploadDocFile2" *ngIf="uploadDocFile2">
+    </div>
+
+
     
 </ion-content>
